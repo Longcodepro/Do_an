@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Trang chủ Admin</title>
+        <link href="admin.css" rel="stylesheet">
+    </head>
+    <body>
+                    <!-- Trang Dang Nhap -->
+        <div class="overlay" id="loginOverlay" style="display: none;">
+            <div class="login" id="closeX">
+                <span onclick="closeLogin()" class="closeX">X</span>
+                <h1>Đăng Nhập</h1>
+                <form>
+                    <div class="formtk">
+                        <input type="text" required >
+                        <label><span>Tài Khoản</span></label>
+                    </div>
+                    <div class="formtk">
+                        <input type="password" required >
+                        <label><span>Mật Khẩu </span></label> 
+                    </div>
+                    <div>
+                        <button type="submit" class="nutlogin">Đăng nhập</button>
+                        <p class="text">Bạn chưa có tài khoản?<a href="#">  Đăng kí</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+                    <!-- Trang chủ -->
+        <div class="home">
+            <header class="topmenu">
+                <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <span class="logo-text">Điện máy<span class="highlight">XANH</span></span>
+                </div>
+
+                <div class="menu">
+                <i class="fa-solid fa-bars"></i>
+                <span>Danh mục</span>
+                </div>
+
+                <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Bạn cần tìm gì hôm nay?">
+                </div>
+
+                <div class="actions">
+                <div class="action-item">
+                    <i class="fa-regular fa-user"></i>
+                    <button onclick="openLogin()" class="nutlogin">Đăng Nhập</button>
+                </div>
+                <div class="action-item">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Giỏ hàng</span>
+                </div>
+                </div>
+            </header>
+        </div>
+        <script src="admin.js"></script>
+    </body>
+</html>
