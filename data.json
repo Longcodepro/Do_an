@@ -1,0 +1,198 @@
+{
+  "khachHang": [
+    {
+      "maKhachHang": "KH001",
+      "tenKhachHang": "Nguyễn Văn A",
+      "gioiTinh": 1,
+      "namSinh": "1998-05-10",
+      "capDoThanhVien": "Vàng",
+      "soDienThoai": "0901234567",
+      "diaChi": "Hà Nội"
+    },
+    {
+      "maKhachHang": "KH002",
+      "tenKhachHang": "Trần Thị B",
+      "gioiTinh": 0,
+      "namSinh": "2000-07-22",
+      "capDoThanhVien": "Bạc",
+      "soDienThoai": "0912345678",
+      "diaChi": "TP. Hồ Chí Minh"
+    },
+    {
+      "maKhachHang": "KH003",
+      "tenKhachHang": "Lê Văn C",
+      "gioiTinh": 1,
+      "namSinh": "1995-12-03",
+      "capDoThanhVien": "Kim cương",
+      "soDienThoai": "0923456789",
+      "diaChi": "Đà Nẵng"
+    },
+    {
+      "maKhachHang": "KH004",
+      "tenKhachHang": "Phạm Thị D",
+      "gioiTinh": 0,
+      "namSinh": "1999-04-15",
+      "capDoThanhVien": "Vàng",
+      "soDienThoai": "0934567890",
+      "diaChi": "Cần Thơ"
+    },
+    {
+      "maKhachHang": "KH005",
+      "tenKhachHang": "Hoàng Văn E",
+      "gioiTinh": 1,
+      "namSinh": "2001-01-25",
+      "capDoThanhVien": "Bạc",
+      "soDienThoai": "0945678901",
+      "diaChi": "Hải Phòng"
+    }
+  ],
+  "nhapHang": [
+    {
+      "maNhapHang": "NH001",
+      "ngayNhap": "2025-01-05 09:00:00",
+      "tongGiaTri": 8500000
+    },
+    {
+      "maNhapHang": "NH002",
+      "ngayNhap": "2025-01-20 10:30:00",
+      "tongGiaTri": 10200000
+    },
+    {
+      "maNhapHang": "NH003",
+      "ngayNhap": "2025-02-10 15:45:00",
+      "tongGiaTri": 7600000
+    },
+    {
+      "maNhapHang": "NH004",
+      "ngayNhap": "2025-03-02 13:20:00",
+      "tongGiaTri": 9200000
+    },
+    {
+      "maNhapHang": "NH005",
+      "ngayNhap": "2025-03-25 16:50:00",
+      "tongGiaTri": 11400000
+    }
+  ],
+  "matHang": [
+    { "maMatHang": "MH001", "tenMatHang": "Máy giặt" },
+    { "maMatHang": "MH002", "tenMatHang": "Bàn ủi" },
+    { "maMatHang": "MH003", "tenMatHang": "Quạt" },
+    { "maMatHang": "MH004", "tenMatHang": "Ấm đun siêu tốc" },
+    { "maMatHang": "MH005", "tenMatHang": "Máy hút bụi" },
+    { "maMatHang": "MH006", "tenMatHang": "Nồi cơm điện" },
+    { "maMatHang": "MH007", "tenMatHang": "Lò vi sóng" },
+    { "maMatHang": "MH008", "tenMatHang": "Máy sấy tóc" },
+    { "maMatHang": "MH009", "tenMatHang": "Máy xay sinh tố" },
+    { "maMatHang": "MH010", "tenMatHang": "Máy lọc không khí" }
+  ],
+  "donHang": [
+    {
+      "maDonHang": "DH001",
+      "ngayDat": "2025-01-10 14:32:00",
+      "giaTri": 1250000,
+      "tinhTrang": "Hoàn thành",
+      "hinhThucThanhToan": "Chuyển khoản",
+      "donViVanChuyen": "Giao Hàng Nhanh",
+      "maKhachHang": "KH001"
+    },
+    {
+      "maDonHang": "DH002",
+      "ngayDat": "2025-01-15 09:45:00",
+      "giaTri": 2350000,
+      "tinhTrang": "Hoàn thành",
+      "hinhThucThanhToan": "Tiền mặt",
+      "donViVanChuyen": "Giao Hàng Tiết Kiệm",
+      "maKhachHang": "KH002"
+    },
+    {
+      "maDonHang": "DH003",
+      "ngayDat": "2025-02-02 17:20:00",
+      "giaTri": 780000,
+      "tinhTrang": "Đang xử lý",
+      "hinhThucThanhToan": "Ví Momo",
+      "donViVanChuyen": "J&T Express",
+      "maKhachHang": "KH003"
+    },
+    {
+      "maDonHang": "DH004",
+      "ngayDat": "2025-02-10 11:00:00",
+      "giaTri": 1640000,
+      "tinhTrang": "Đã giao",
+      "hinhThucThanhToan": "Chuyển khoản",
+      "donViVanChuyen": "VNPost",
+      "maKhachHang": "KH004"
+    },
+    {
+      "maDonHang": "DH005",
+      "ngayDat": "2025-02-15 18:45:00",
+      "giaTri": 560000,
+      "tinhTrang": "Đang vận chuyển",
+      "hinhThucThanhToan": "Tiền mặt",
+      "donViVanChuyen": "Giao Hàng Nhanh",
+      "maKhachHang": "KH005"
+    },
+    {
+      "maDonHang": "DH006",
+      "ngayDat": "2025-02-18 13:00:00",
+      "giaTri": 3200000,
+      "tinhTrang": "Hoàn thành",
+      "hinhThucThanhToan": "Chuyển khoản",
+      "donViVanChuyen": "Shopee Express",
+      "maKhachHang": "KH006"
+    },
+    {
+      "maDonHang": "DH007",
+      "ngayDat": "2025-03-05 08:15:00",
+      "giaTri": 450000,
+      "tinhTrang": "Đã hủy",
+      "hinhThucThanhToan": "Ví Momo",
+      "donViVanChuyen": "Giao Hàng Tiết Kiệm",
+      "maKhachHang": "KH001"
+    },
+    {
+      "maDonHang": "DH008",
+      "ngayDat": "2025-03-18 20:00:00",
+      "giaTri": 2890000,
+      "tinhTrang": "Hoàn thành",
+      "hinhThucThanhToan": "Chuyển khoản",
+      "donViVanChuyen": "J&T Express",
+      "maKhachHang": "KH002"
+    },
+    {
+      "maDonHang": "DH009",
+      "ngayDat": "2025-03-25 10:30:00",
+      "giaTri": 940000,
+      "tinhTrang": "Đang xử lý",
+      "hinhThucThanhToan": "Tiền mặt",
+      "donViVanChuyen": "VNPost",
+      "maKhachHang": "KH003"
+    },
+    {
+      "maDonHang": "DH010",
+      "ngayDat": "2025-04-01 15:40:00",
+      "giaTri": 1250000,
+      "tinhTrang": "Hoàn thành",
+      "hinhThucThanhToan": "Ví Momo",
+      "donViVanChuyen": "Shopee Express",
+      "maKhachHang": "KH004"
+    },
+    {
+      "maDonHang": "DH011",
+      "ngayDat": "2025-04-10 12:10:00",
+      "giaTri": 650000,
+      "tinhTrang": "Đang vận chuyển",
+      "hinhThucThanhToan": "Tiền mặt",
+      "donViVanChuyen": "Giao Hàng Nhanh",
+      "maKhachHang": "KH005"
+    },
+    {
+      "maDonHang": "DH012",
+      "ngayDat": "2025-04-18 09:55:00",
+      "giaTri": 4720000,
+      "tinhTrang": "Hoàn thành",
+      "hinhThucThanhToan": "Chuyển khoản",
+      "donViVanChuyen": "VNPost",
+      "maKhachHang": "KH006"
+    }
+  ]
+}
