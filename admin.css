@@ -1,5 +1,8 @@
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
 }
 
 body {
@@ -9,8 +12,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
     height: 100vh;
     overflow: hidden;
 }
@@ -70,7 +72,7 @@ body {
     display: inline-block;
     width: 100%;
     background: lightblue;
-    padding: 15px;
+    padding: 10px;
     font-family: inherit;
     font-size: 16px;
     border: 0;
@@ -130,4 +132,85 @@ body {
 .formtk input:valid + label span{
     color: lightblue;
     transform: translateY(-30px);
+}
+
+.topmenu {
+  background: #1e90ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.logo-icon {
+  background: yellow;
+  color: black;
+  border-radius: 50%;
+  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight {
+  color: #ffee00;
+  margin-left: 3px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 50px;
+  padding: 6px 16px;
+  width: 40%;
+}
+
+.search-bar i {
+  color: gray;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  flex: 1;
+  font-size: 15px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.action-item:hover {
+  opacity: 0.8;
 }
