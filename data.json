@@ -1,198 +1,140 @@
-{
-  "khachHang": [
-    {
-      "maKhachHang": "KH001",
-      "tenKhachHang": "Nguyễn Văn A",
-      "gioiTinh": 1,
-      "namSinh": "1998-05-10",
-      "capDoThanhVien": "Vàng",
-      "soDienThoai": "0901234567",
-      "diaChi": "Hà Nội"
-    },
-    {
-      "maKhachHang": "KH002",
-      "tenKhachHang": "Trần Thị B",
-      "gioiTinh": 0,
-      "namSinh": "2000-07-22",
-      "capDoThanhVien": "Bạc",
-      "soDienThoai": "0912345678",
-      "diaChi": "TP. Hồ Chí Minh"
-    },
-    {
-      "maKhachHang": "KH003",
-      "tenKhachHang": "Lê Văn C",
-      "gioiTinh": 1,
-      "namSinh": "1995-12-03",
-      "capDoThanhVien": "Kim cương",
-      "soDienThoai": "0923456789",
-      "diaChi": "Đà Nẵng"
-    },
-    {
-      "maKhachHang": "KH004",
-      "tenKhachHang": "Phạm Thị D",
-      "gioiTinh": 0,
-      "namSinh": "1999-04-15",
-      "capDoThanhVien": "Vàng",
-      "soDienThoai": "0934567890",
-      "diaChi": "Cần Thơ"
-    },
-    {
-      "maKhachHang": "KH005",
-      "tenKhachHang": "Hoàng Văn E",
-      "gioiTinh": 1,
-      "namSinh": "2001-01-25",
-      "capDoThanhVien": "Bạc",
-      "soDienThoai": "0945678901",
-      "diaChi": "Hải Phòng"
-    }
-  ],
-  "nhapHang": [
-    {
-      "maNhapHang": "NH001",
-      "ngayNhap": "2025-01-05 09:00:00",
-      "tongGiaTri": 8500000
-    },
-    {
-      "maNhapHang": "NH002",
-      "ngayNhap": "2025-01-20 10:30:00",
-      "tongGiaTri": 10200000
-    },
-    {
-      "maNhapHang": "NH003",
-      "ngayNhap": "2025-02-10 15:45:00",
-      "tongGiaTri": 7600000
-    },
-    {
-      "maNhapHang": "NH004",
-      "ngayNhap": "2025-03-02 13:20:00",
-      "tongGiaTri": 9200000
-    },
-    {
-      "maNhapHang": "NH005",
-      "ngayNhap": "2025-03-25 16:50:00",
-      "tongGiaTri": 11400000
-    }
-  ],
-  "matHang": [
-    { "maMatHang": "MH001", "tenMatHang": "Máy giặt" },
-    { "maMatHang": "MH002", "tenMatHang": "Bàn ủi" },
-    { "maMatHang": "MH003", "tenMatHang": "Quạt" },
-    { "maMatHang": "MH004", "tenMatHang": "Ấm đun siêu tốc" },
-    { "maMatHang": "MH005", "tenMatHang": "Máy hút bụi" },
-    { "maMatHang": "MH006", "tenMatHang": "Nồi cơm điện" },
-    { "maMatHang": "MH007", "tenMatHang": "Lò vi sóng" },
-    { "maMatHang": "MH008", "tenMatHang": "Máy sấy tóc" },
-    { "maMatHang": "MH009", "tenMatHang": "Máy xay sinh tố" },
-    { "maMatHang": "MH010", "tenMatHang": "Máy lọc không khí" }
-  ],
-  "donHang": [
-    {
-      "maDonHang": "DH001",
-      "ngayDat": "2025-01-10 14:32:00",
-      "giaTri": 1250000,
-      "tinhTrang": "Hoàn thành",
-      "hinhThucThanhToan": "Chuyển khoản",
-      "donViVanChuyen": "Giao Hàng Nhanh",
-      "maKhachHang": "KH001"
-    },
-    {
-      "maDonHang": "DH002",
-      "ngayDat": "2025-01-15 09:45:00",
-      "giaTri": 2350000,
-      "tinhTrang": "Hoàn thành",
-      "hinhThucThanhToan": "Tiền mặt",
-      "donViVanChuyen": "Giao Hàng Tiết Kiệm",
-      "maKhachHang": "KH002"
-    },
-    {
-      "maDonHang": "DH003",
-      "ngayDat": "2025-02-02 17:20:00",
-      "giaTri": 780000,
-      "tinhTrang": "Đang xử lý",
-      "hinhThucThanhToan": "Ví Momo",
-      "donViVanChuyen": "J&T Express",
-      "maKhachHang": "KH003"
-    },
-    {
-      "maDonHang": "DH004",
-      "ngayDat": "2025-02-10 11:00:00",
-      "giaTri": 1640000,
-      "tinhTrang": "Đã giao",
-      "hinhThucThanhToan": "Chuyển khoản",
-      "donViVanChuyen": "VNPost",
-      "maKhachHang": "KH004"
-    },
-    {
-      "maDonHang": "DH005",
-      "ngayDat": "2025-02-15 18:45:00",
-      "giaTri": 560000,
-      "tinhTrang": "Đang vận chuyển",
-      "hinhThucThanhToan": "Tiền mặt",
-      "donViVanChuyen": "Giao Hàng Nhanh",
-      "maKhachHang": "KH005"
-    },
-    {
-      "maDonHang": "DH006",
-      "ngayDat": "2025-02-18 13:00:00",
-      "giaTri": 3200000,
-      "tinhTrang": "Hoàn thành",
-      "hinhThucThanhToan": "Chuyển khoản",
-      "donViVanChuyen": "Shopee Express",
-      "maKhachHang": "KH006"
-    },
-    {
-      "maDonHang": "DH007",
-      "ngayDat": "2025-03-05 08:15:00",
-      "giaTri": 450000,
-      "tinhTrang": "Đã hủy",
-      "hinhThucThanhToan": "Ví Momo",
-      "donViVanChuyen": "Giao Hàng Tiết Kiệm",
-      "maKhachHang": "KH001"
-    },
-    {
-      "maDonHang": "DH008",
-      "ngayDat": "2025-03-18 20:00:00",
-      "giaTri": 2890000,
-      "tinhTrang": "Hoàn thành",
-      "hinhThucThanhToan": "Chuyển khoản",
-      "donViVanChuyen": "J&T Express",
-      "maKhachHang": "KH002"
-    },
-    {
-      "maDonHang": "DH009",
-      "ngayDat": "2025-03-25 10:30:00",
-      "giaTri": 940000,
-      "tinhTrang": "Đang xử lý",
-      "hinhThucThanhToan": "Tiền mặt",
-      "donViVanChuyen": "VNPost",
-      "maKhachHang": "KH003"
-    },
-    {
-      "maDonHang": "DH010",
-      "ngayDat": "2025-04-01 15:40:00",
-      "giaTri": 1250000,
-      "tinhTrang": "Hoàn thành",
-      "hinhThucThanhToan": "Ví Momo",
-      "donViVanChuyen": "Shopee Express",
-      "maKhachHang": "KH004"
-    },
-    {
-      "maDonHang": "DH011",
-      "ngayDat": "2025-04-10 12:10:00",
-      "giaTri": 650000,
-      "tinhTrang": "Đang vận chuyển",
-      "hinhThucThanhToan": "Tiền mặt",
-      "donViVanChuyen": "Giao Hàng Nhanh",
-      "maKhachHang": "KH005"
-    },
-    {
-      "maDonHang": "DH012",
-      "ngayDat": "2025-04-18 09:55:00",
-      "giaTri": 4720000,
-      "tinhTrang": "Hoàn thành",
-      "hinhThucThanhToan": "Chuyển khoản",
-      "donViVanChuyen": "VNPost",
-      "maKhachHang": "KH006"
-    }
-  ]
+[
+{"type":"header","version":"5.2.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"web"},
+{"type":"table","name":"admin","database":"web","data":
+[
+{"MA_ADMIN":"A001","TEN":"Nguyễn Thành Long","GIOI_TINH":"1","CHUC_VU":"Quản lí hàng hóa","NAM_SINH":"2006-08-25","NGAY_BAT_DAU_LAM":"2025-10-01","SO_DIEN_THOAI":"3333333"},
+{"MA_ADMIN":"AD001","TEN":"Nguyễn Văn Quản","GIOI_TINH":"1","CHUC_VU":"Quản lý hệ thống","NAM_SINH":"1988-05-15","NGAY_BAT_DAU_LAM":"2020-01-10","SO_DIEN_THOAI":"901234567"},
+{"MA_ADMIN":"AD002","TEN":"Trần Thị Hằng","GIOI_TINH":"0","CHUC_VU":"Nhân viên hỗ trợ","NAM_SINH":"1995-09-20","NGAY_BAT_DAU_LAM":"2021-03-25","SO_DIEN_THOAI":"912345678"},
+{"MA_ADMIN":"AD003","TEN":"Lê Văn Minh","GIOI_TINH":"1","CHUC_VU":"Kỹ thuật viên","NAM_SINH":"1992-07-05","NGAY_BAT_DAU_LAM":"2019-11-12","SO_DIEN_THOAI":"923456789"},
+{"MA_ADMIN":"AD004","TEN":"Phạm Thị Lan","GIOI_TINH":"0","CHUC_VU":"Kế toán","NAM_SINH":"1998-02-18","NGAY_BAT_DAU_LAM":"2022-06-30","SO_DIEN_THOAI":"934567890"}
+]
 }
+,{"type":"table","name":"chi_tiet_don_hang","database":"web","data":
+[
+{"MA_CTDH":"CT001","SO_LUONG":"2","TONG_TIEN":"500000.00","MA_SAN_PHAM":"MSP001","MA_DON_HANG":"DH001"},
+{"MA_CTDH":"CT002","SO_LUONG":"3","TONG_TIEN":"750000.00","MA_SAN_PHAM":"MSP003","MA_DON_HANG":"DH001"},
+{"MA_CTDH":"CT003","SO_LUONG":"1","TONG_TIEN":"1350000.00","MA_SAN_PHAM":"MSP005","MA_DON_HANG":"DH002"},
+{"MA_CTDH":"CT004","SO_LUONG":"2","TONG_TIEN":"1000000.00","MA_SAN_PHAM":"MSP002","MA_DON_HANG":"DH002"},
+{"MA_CTDH":"CT005","SO_LUONG":"2","TONG_TIEN":"400000.00","MA_SAN_PHAM":"MSP004","MA_DON_HANG":"DH003"},
+{"MA_CTDH":"CT006","SO_LUONG":"1","TONG_TIEN":"380000.00","MA_SAN_PHAM":"MSP009","MA_DON_HANG":"DH003"},
+{"MA_CTDH":"CT007","SO_LUONG":"3","TONG_TIEN":"960000.00","MA_SAN_PHAM":"MSP006","MA_DON_HANG":"DH004"},
+{"MA_CTDH":"CT008","SO_LUONG":"1","TONG_TIEN":"680000.00","MA_SAN_PHAM":"MSP010","MA_DON_HANG":"DH004"},
+{"MA_CTDH":"CT009","SO_LUONG":"2","TONG_TIEN":"560000.00","MA_SAN_PHAM":"MSP002","MA_DON_HANG":"DH005"},
+{"MA_CTDH":"CT010","SO_LUONG":"4","TONG_TIEN":"2200000.00","MA_SAN_PHAM":"MSP007","MA_DON_HANG":"DH006"},
+{"MA_CTDH":"CT011","SO_LUONG":"2","TONG_TIEN":"1000000.00","MA_SAN_PHAM":"MSP003","MA_DON_HANG":"DH006"},
+{"MA_CTDH":"CT012","SO_LUONG":"1","TONG_TIEN":"1000000.00","MA_SAN_PHAM":"MSP001","MA_DON_HANG":"DH006"},
+{"MA_CTDH":"CT013","SO_LUONG":"1","TONG_TIEN":"450000.00","MA_SAN_PHAM":"MSP008","MA_DON_HANG":"DH007"},
+{"MA_CTDH":"CT014","SO_LUONG":"2","TONG_TIEN":"1500000.00","MA_SAN_PHAM":"MSP009","MA_DON_HANG":"DH008"},
+{"MA_CTDH":"CT015","SO_LUONG":"1","TONG_TIEN":"1390000.00","MA_SAN_PHAM":"MSP004","MA_DON_HANG":"DH008"},
+{"MA_CTDH":"CT016","SO_LUONG":"3","TONG_TIEN":"600000.00","MA_SAN_PHAM":"MSP002","MA_DON_HANG":"DH009"},
+{"MA_CTDH":"CT017","SO_LUONG":"1","TONG_TIEN":"340000.00","MA_SAN_PHAM":"MSP005","MA_DON_HANG":"DH009"},
+{"MA_CTDH":"CT018","SO_LUONG":"2","TONG_TIEN":"800000.00","MA_SAN_PHAM":"MSP010","MA_DON_HANG":"DH010"},
+{"MA_CTDH":"CT019","SO_LUONG":"1","TONG_TIEN":"450000.00","MA_SAN_PHAM":"MSP007","MA_DON_HANG":"DH010"},
+{"MA_CTDH":"CT020","SO_LUONG":"2","TONG_TIEN":"650000.00","MA_SAN_PHAM":"MSP003","MA_DON_HANG":"DH011"},
+{"MA_CTDH":"CT021","SO_LUONG":"3","TONG_TIEN":"2400000.00","MA_SAN_PHAM":"MSP006","MA_DON_HANG":"DH012"},
+{"MA_CTDH":"CT022","SO_LUONG":"2","TONG_TIEN":"2320000.00","MA_SAN_PHAM":"MSP008","MA_DON_HANG":"DH012"}
+]
+}
+,{"type":"table","name":"chi_tiet_nhap_hang","database":"web","data":
+[
+{"MA_CTNH":"CTNH001","SO_LUONG":"50","GIA_NHAP":"150000.00","MA_SAN_PHAM":"MSP001","MA_NHAP_HANG":"NH001"},
+{"MA_CTNH":"CTNH002","SO_LUONG":"40","GIA_NHAP":"120000.00","MA_SAN_PHAM":"MSP002","MA_NHAP_HANG":"NH001"},
+{"MA_CTNH":"CTNH003","SO_LUONG":"30","GIA_NHAP":"180000.00","MA_SAN_PHAM":"MSP003","MA_NHAP_HANG":"NH001"},
+{"MA_CTNH":"CTNH004","SO_LUONG":"60","GIA_NHAP":"200000.00","MA_SAN_PHAM":"MSP004","MA_NHAP_HANG":"NH002"},
+{"MA_CTNH":"CTNH005","SO_LUONG":"45","GIA_NHAP":"160000.00","MA_SAN_PHAM":"MSP005","MA_NHAP_HANG":"NH002"},
+{"MA_CTNH":"CTNH006","SO_LUONG":"35","GIA_NHAP":"220000.00","MA_SAN_PHAM":"MSP006","MA_NHAP_HANG":"NH002"},
+{"MA_CTNH":"CTNH007","SO_LUONG":"25","GIA_NHAP":"300000.00","MA_SAN_PHAM":"MSP007","MA_NHAP_HANG":"NH003"},
+{"MA_CTNH":"CTNH008","SO_LUONG":"40","GIA_NHAP":"150000.00","MA_SAN_PHAM":"MSP008","MA_NHAP_HANG":"NH003"},
+{"MA_CTNH":"CTNH009","SO_LUONG":"20","GIA_NHAP":"190000.00","MA_SAN_PHAM":"MSP009","MA_NHAP_HANG":"NH003"},
+{"MA_CTNH":"CTNH010","SO_LUONG":"30","GIA_NHAP":"210000.00","MA_SAN_PHAM":"MSP010","MA_NHAP_HANG":"NH004"},
+{"MA_CTNH":"CTNH011","SO_LUONG":"50","GIA_NHAP":"140000.00","MA_SAN_PHAM":"MSP001","MA_NHAP_HANG":"NH004"},
+{"MA_CTNH":"CTNH012","SO_LUONG":"25","GIA_NHAP":"170000.00","MA_SAN_PHAM":"MSP005","MA_NHAP_HANG":"NH004"},
+{"MA_CTNH":"CTNH013","SO_LUONG":"40","GIA_NHAP":"230000.00","MA_SAN_PHAM":"MSP003","MA_NHAP_HANG":"NH005"},
+{"MA_CTNH":"CTNH014","SO_LUONG":"30","GIA_NHAP":"200000.00","MA_SAN_PHAM":"MSP006","MA_NHAP_HANG":"NH005"},
+{"MA_CTNH":"CTNH015","SO_LUONG":"20","GIA_NHAP":"250000.00","MA_SAN_PHAM":"MSP009","MA_NHAP_HANG":"NH005"},
+{"MA_CTNH":"CTNH016","SO_LUONG":"25","GIA_NHAP":"190000.00","MA_SAN_PHAM":"MSP008","MA_NHAP_HANG":"NH005"}
+]
+}
+,{"type":"table","name":"dang_nhap","database":"web","data":
+[
+{"NAME":"hoangvane","PASSWORD":"hello321","TINH_TRANG":"1","MA_KHACH_HANG":"KH005"},
+{"NAME":"levanc","PASSWORD":"pass789","TINH_TRANG":"1","MA_KHACH_HANG":"KH003"},
+{"NAME":"nguyenvana","PASSWORD":"123456","TINH_TRANG":"1","MA_KHACH_HANG":"KH001"},
+{"NAME":"phamthid","PASSWORD":"mypwd456","TINH_TRANG":"0","MA_KHACH_HANG":"KH004"},
+{"NAME":"tranthib","PASSWORD":"abc123","TINH_TRANG":"1","MA_KHACH_HANG":"KH002"},
+{"NAME":"vuthif","PASSWORD":"secure999","TINH_TRANG":"1","MA_KHACH_HANG":"KH006"}
+]
+}
+,{"type":"table","name":"dang_nhap1","database":"web","data":
+[
+{"NAME":"admin_hang","PASSWORD":"support@2024","TINH_TRANG":"1","MA_ADMIN":"AD002"},
+{"NAME":"admin_lan","PASSWORD":"kt@2024","TINH_TRANG":"0","MA_ADMIN":"AD004"},
+{"NAME":"admin_minh","PASSWORD":"tech@2024","TINH_TRANG":"1","MA_ADMIN":"AD003"},
+{"NAME":"admin_quan","PASSWORD":"123456","TINH_TRANG":"1","MA_ADMIN":"AD001"}
+]
+}
+,{"type":"table","name":"don_hang","database":"web","data":
+[
+{"MA_DON_HANG":"DH001","NGAY_DAT":"2025-01-10 14:32:00","GIA_TRI":"1250000.00","TINH_TRANG":"Hoàn thành","HINH_THUC_THANH_TOAN":"Chuyển khoản","DON_VI_VAN_CHUYEN":"Giao Hàng Nhanh","MA_KHACH_HANG":"KH001"},
+{"MA_DON_HANG":"DH002","NGAY_DAT":"2025-01-15 09:45:00","GIA_TRI":"2350000.00","TINH_TRANG":"Hoàn thành","HINH_THUC_THANH_TOAN":"Tiền mặt","DON_VI_VAN_CHUYEN":"Giao Hàng Tiết Kiệm","MA_KHACH_HANG":"KH002"},
+{"MA_DON_HANG":"DH003","NGAY_DAT":"2025-02-02 17:20:00","GIA_TRI":"780000.00","TINH_TRANG":"Đang xử lý","HINH_THUC_THANH_TOAN":"Ví Momo","DON_VI_VAN_CHUYEN":"J&T Express","MA_KHACH_HANG":"KH003"},
+{"MA_DON_HANG":"DH004","NGAY_DAT":"2025-02-10 11:00:00","GIA_TRI":"1640000.00","TINH_TRANG":"Đã giao","HINH_THUC_THANH_TOAN":"Chuyển khoản","DON_VI_VAN_CHUYEN":"VNPost","MA_KHACH_HANG":"KH004"},
+{"MA_DON_HANG":"DH005","NGAY_DAT":"2025-02-15 18:45:00","GIA_TRI":"560000.00","TINH_TRANG":"Đang vận chuyển","HINH_THUC_THANH_TOAN":"Tiền mặt","DON_VI_VAN_CHUYEN":"Giao Hàng Nhanh","MA_KHACH_HANG":"KH005"},
+{"MA_DON_HANG":"DH006","NGAY_DAT":"2025-02-18 13:00:00","GIA_TRI":"3200000.00","TINH_TRANG":"Hoàn thành","HINH_THUC_THANH_TOAN":"Chuyển khoản","DON_VI_VAN_CHUYEN":"Shopee Express","MA_KHACH_HANG":"KH006"},
+{"MA_DON_HANG":"DH007","NGAY_DAT":"2025-03-05 08:15:00","GIA_TRI":"450000.00","TINH_TRANG":"Đã hủy","HINH_THUC_THANH_TOAN":"Ví Momo","DON_VI_VAN_CHUYEN":"Giao Hàng Tiết Kiệm","MA_KHACH_HANG":"KH001"},
+{"MA_DON_HANG":"DH008","NGAY_DAT":"2025-03-18 20:00:00","GIA_TRI":"2890000.00","TINH_TRANG":"Hoàn thành","HINH_THUC_THANH_TOAN":"Chuyển khoản","DON_VI_VAN_CHUYEN":"J&T Express","MA_KHACH_HANG":"KH002"},
+{"MA_DON_HANG":"DH009","NGAY_DAT":"2025-03-25 10:30:00","GIA_TRI":"940000.00","TINH_TRANG":"Đang xử lý","HINH_THUC_THANH_TOAN":"Tiền mặt","DON_VI_VAN_CHUYEN":"VNPost","MA_KHACH_HANG":"KH003"},
+{"MA_DON_HANG":"DH010","NGAY_DAT":"2025-04-01 15:40:00","GIA_TRI":"1250000.00","TINH_TRANG":"Hoàn thành","HINH_THUC_THANH_TOAN":"Ví Momo","DON_VI_VAN_CHUYEN":"Shopee Express","MA_KHACH_HANG":"KH004"},
+{"MA_DON_HANG":"DH011","NGAY_DAT":"2025-04-10 12:10:00","GIA_TRI":"650000.00","TINH_TRANG":"Đang vận chuyển","HINH_THUC_THANH_TOAN":"Tiền mặt","DON_VI_VAN_CHUYEN":"Giao Hàng Nhanh","MA_KHACH_HANG":"KH005"},
+{"MA_DON_HANG":"DH012","NGAY_DAT":"2025-04-18 09:55:00","GIA_TRI":"4720000.00","TINH_TRANG":"Hoàn thành","HINH_THUC_THANH_TOAN":"Chuyển khoản","DON_VI_VAN_CHUYEN":"VNPost","MA_KHACH_HANG":"KH006"}
+]
+}
+,{"type":"table","name":"khach_hang","database":"web","data":
+[
+{"MA_KHACH_HANG":"KH001","TEN_KHACH_HANG":"Nguyễn Văn A","GIOI_TINH":"1","NAM_SINH":"1998-05-10","CAP_DO_THANH_VIEN":"Vàng","SO_DIEN_THOAI":"0901234567","DIA_CHI":"Hà Nội"},
+{"MA_KHACH_HANG":"KH002","TEN_KHACH_HANG":"Trần Thị B","GIOI_TINH":"0","NAM_SINH":"2000-07-22","CAP_DO_THANH_VIEN":"Bạc","SO_DIEN_THOAI":"0912345678","DIA_CHI":"TP. Hồ Chí Minh"},
+{"MA_KHACH_HANG":"KH003","TEN_KHACH_HANG":"Lê Văn C","GIOI_TINH":"1","NAM_SINH":"1995-12-03","CAP_DO_THANH_VIEN":"Kim cương","SO_DIEN_THOAI":"0923456789","DIA_CHI":"Đà Nẵng"},
+{"MA_KHACH_HANG":"KH004","TEN_KHACH_HANG":"Phạm Thị D","GIOI_TINH":"0","NAM_SINH":"1999-04-15","CAP_DO_THANH_VIEN":"Vàng","SO_DIEN_THOAI":"0934567890","DIA_CHI":"Cần Thơ"},
+{"MA_KHACH_HANG":"KH005","TEN_KHACH_HANG":"Hoàng Văn E","GIOI_TINH":"1","NAM_SINH":"2001-01-25","CAP_DO_THANH_VIEN":"Bạc","SO_DIEN_THOAI":"0945678901","DIA_CHI":"Hải Phòng"},
+{"MA_KHACH_HANG":"KH006","TEN_KHACH_HANG":"Vũ Thị F","GIOI_TINH":"0","NAM_SINH":"1997-09-17","CAP_DO_THANH_VIEN":"Kim cương","SO_DIEN_THOAI":"0956789012","DIA_CHI":"Huế"}
+]
+}
+,{"type":"table","name":"mat_hang","database":"web","data":
+[
+{"MA_MAT_HANG":"MH001","TEN_MAT_HANG":"Máy giặt"},
+{"MA_MAT_HANG":"MH002","TEN_MAT_HANG":"Bàn ủi"},
+{"MA_MAT_HANG":"MH003","TEN_MAT_HANG":"Quạt"},
+{"MA_MAT_HANG":"MH004","TEN_MAT_HANG":"Ấm đun siêu tốc"},
+{"MA_MAT_HANG":"MH005","TEN_MAT_HANG":"Máy hút bụi"},
+{"MA_MAT_HANG":"MH006","TEN_MAT_HANG":"Nồi cơm điện"},
+{"MA_MAT_HANG":"MH007","TEN_MAT_HANG":"Lò vi sóng"},
+{"MA_MAT_HANG":"MH008","TEN_MAT_HANG":"Máy sấy tóc"},
+{"MA_MAT_HANG":"MH009","TEN_MAT_HANG":"Máy xay sinh tố"},
+{"MA_MAT_HANG":"MH010","TEN_MAT_HANG":"Máy lọc không khí"}
+]
+}
+,{"type":"table","name":"nhap_hang","database":"web","data":
+[
+{"MA_NHAP_HANG":"NH001","NGAY_NHAP":"2025-01-05 09:00:00","TONG_GIA_TRI":"8500000.00"},
+{"MA_NHAP_HANG":"NH002","NGAY_NHAP":"2025-01-20 10:30:00","TONG_GIA_TRI":"10200000.00"},
+{"MA_NHAP_HANG":"NH003","NGAY_NHAP":"2025-02-10 15:45:00","TONG_GIA_TRI":"7600000.00"},
+{"MA_NHAP_HANG":"NH004","NGAY_NHAP":"2025-03-02 13:20:00","TONG_GIA_TRI":"9200000.00"},
+{"MA_NHAP_HANG":"NH005","NGAY_NHAP":"2025-03-25 16:50:00","TONG_GIA_TRI":"11400000.00"}
+]
+}
+,{"type":"table","name":"san_pham","database":"web","data":
+[
+{"MA_SAN_PHAM":"MSP001","SO_LUONG":"10","TEN_SP":"Máy giặt Casper Inverter 9.5kg","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 114814.png","MO_TA":"Máy giặt Casper Inverter 9.5 kg WF-95VG5 tích hợp đa dạng chương trình hoạt động đáp ứng nhu cầu sử dụng cơ bản của gia đình, diệt khuẩn với công nghệ giặt hơi nước Steam Wash. Máy có thể tự động xác định khối lượng, tùy chỉnh lượng nước nhờ vào công nghệ suy luận ảo Fuzzy logic. Và công nghệ Inverter giúp máy vận hành êm ái, tiết kiệm điện năng. ","GIA_BAN":"1500000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH001"},
+{"MA_SAN_PHAM":"MSP002","SO_LUONG":"7","TEN_SP":"Bàn ủi khô Philips HD1172 1100W","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 115659.png","MO_TA":"Loại bàn ủi:Bàn ủi khô\nCông suất:1100W\nBình nước:Không có bình nước\nMặt đế:Hợp kim nhôm\nChức năn","GIA_BAN":"1500000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH002"},
+{"MA_SAN_PHAM":"MSP003","SO_LUONG":"3","TEN_SP":"Quạt hộp Senko 5 cánh BD230 28W","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 120132.png","MO_TA":"Loại quạt:Quạt hộp\r\nCông suất - Mức gió:28W - 2 mức gió\r\nChế độ gió:Gió thường\r\nBảng điều khiển:Nút ","GIA_BAN":"800000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH003"},
+{"MA_SAN_PHAM":"MSP004","SO_LUONG":"11","TEN_SP":"Máy hút bụi cầm tay Midea MVC-SC861B","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 120807.png","MO_TA":"Loại máy:Máy hút bụi cầm tay\r\nCông suất hoạt động:600W\r\nCông suất hút:15000 Pa\r\nLoại khoang chứa:Hộp chứa\r\nDung tích:0.8 lít\r\nĐộ ồn cao nhất:84 dB\r\nBộ lọc:Bộ lọc HEPA\r\nCác loại đầu hút:Đầu hút khe Đầu hút sàn\r\nThương hiệu của:Trung Quốc\r\nNơi sản xuất:Trung Quốc\r\nNăm ra mắt:2020","GIA_BAN":"8500000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH004"},
+{"MA_SAN_PHAM":"MSP005","SO_LUONG":"15","TEN_SP":"Nồi cơm nắp gài Sunhouse 1.8 lít SHD8611N","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 121119.png","MO_TA":"Loại nồi:Nồi cơm nắp gài\r\nDung tích:1.8 lít, Số người ăn 4 - 6 người\r\nCông suất:700W\r\nThương hiệu của:Việt Nam\r\nNơi sản xuất:Việt Nam\r\nNăm ra mắt:2024","GIA_BAN":"2100000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH005"},
+{"MA_SAN_PHAM":"MSP006","SO_LUONG":"3","TEN_SP":"Lò vi sóng Toshiba MW3-MM25PE(BK)","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 121314.png","MO_TA":"Loại lò:Lò vi sóng không nướng\r\nDung tích:25 lít\r\nCông suất vi sóng:800W\r\nChất liệu khoang lò:Thép sơn tĩnh điện\r\nThương hiệu của:Nhật Bản\r\nSản xuất tại:Trung Quốc\r\nNăm ra mắt:2023","GIA_BAN":"4500000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH006"},
+{"MA_SAN_PHAM":"MSP007","SO_LUONG":"21","TEN_SP":"Máy sấy tóc 1000W Panasonic EH-ND12-P645","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 121437.png","MO_TA":"Công suất:1000W\r\nTốc độ sấy:2 tốc độ, có sấy mát\r\nĐầu sấy:Đầu sấy hẹp\r\nKiểu dáng:Tay cầm thẳng\r\nChế độ bảo vệ:Tự ngắt khi quá nhiệt\r\nTiện ích:Có móc treoĐầu sấy hẹp tạo kiểu tóc\r\nKích thước - Khối lượng:Ngang 14 cm - Cao 24 cm - Rộng 16 cm - Khối lượng 300g\r\nChiều dài dây điện:110 cm\r\nThương hiệu của:Nhật Bản\r\nSản xuất tại:Thái Lan\r\nNăm ra mắt:2011\r\nHãng:Panasonic.","GIA_BAN":"450000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH007"},
+{"MA_SAN_PHAM":"MSP008","SO_LUONG":"14","TEN_SP":" Máy xay sinh tố đa năng AVA BL828","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 121626.png","MO_TA":"Loại máy xay:Máy xay đa năng\r\nChức năng:Xay được đáXay sinh tốXay rau củXay hạtXay gia vị: Hành, tỏi, ớt, nấm,...\r\nCông suất:600W\r\nSố lượng cối:2 cối\r\nDung tích sử dụng:Cối lớn 1.5 lít - Cối nhỏ 0.1 lít\r\nThương hiệu của:Việt Nam\r\nSản xuất tại:Trung Quốc\r\nNăm ra mắt:2025","GIA_BAN":"750000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH008"},
+{"MA_SAN_PHAM":"MSP009","SO_LUONG":"11","TEN_SP":"Nồi chiên không dầu Mishio MK-01 3.8 lít","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 121909.png","MO_TA":"Loại sản phẩm:Nồi chiên không dầu\r\nDung tích tổng:3.8 lít\r\nDung tích sử dụng:3.8 lít\r\nCông suất:1400W\r\nNhiệt độ:80 - 200°C\r\nHẹn giờ:0 - 30 phút\r\nChất liệu:Lòng nồi kim loại phủ chống dínhVỏ bằng nhựa PP\r\nBảng điều khiển:Nút xoay\r\nThương hiệu của:Việt Nam\r\nSản xuất tại:Trung Quốc\r\nNăm ra mắt:2019","GIA_BAN":"1000000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH009"},
+{"MA_SAN_PHAM":"MSP010","SO_LUONG":"5","TEN_SP":"Máy lọc không khí Philips AC0950\/10 23W","HINH_ANH":"Do_an\\anh\\Ảnh chụp màn hình 2025-10-21 122054.png","MO_TA":"Loại bụi lọc được:PM0.003PM0.01PM0.02PM0.03PM0.1PM0.2PM0.3PM0.5PM1.0PM2.5PM10\r\nPhạm vi lọc hiệu quả:Phòng 65m²\r\nLượng gió thổi ra lớn nhất:250 m³\/h\r\nCông suất hoạt động:23W\r\nBộ lọc bụi cho máy:Màng lọc Nano Protect HEPAMàng lọc than hoạt tínhMàng lọc thô\r\nBảng điều khiển:Cảm ứng\r\nĐộ ồn cao nhất:49.5 dB\r\nThương hiệu của:Hà Lan\r\nNơi sản xuất:Trung Quốc\r\nNăm ra mắt:2024","GIA_BAN":"6500000.00","TINH_TRANG":"1","MA_MAT_HANG":"MH010"}
+]
+}
+]
