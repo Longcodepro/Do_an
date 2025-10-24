@@ -153,15 +153,21 @@ body {
 }
 
 .logo-icon {
-  background: yellow;
-  color: black;
-  border-radius: 50%;
-  font-size: 20px;
-  width: 32px;
-  height: 32px;
+  width: 80px;               /* Kích thước logo */
+  height: 80px;
+  border-radius: 50%;        /* Tạo khung tròn */
+  overflow: hidden;          /* Ẩn phần ảnh thừa ngoài khung tròn */
   display: flex;
   align-items: center;
   justify-content: center;
+  background: white;         /* Nền trắng cho đẹp */
+  box-shadow: 0 0 5px rgba(0,0,0,0.2); /* Đổ bóng nhẹ */
+}
+
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* Giúp ảnh không bị méo */
 }
 
 .highlight {
@@ -177,7 +183,7 @@ body {
   cursor: pointer;
 }
 
-.search-bar {
+/* .search-bar {
   display: flex;
   align-items: center;
   background: white;
@@ -196,7 +202,7 @@ body {
   padding-left: 10px;
   flex: 1;
   font-size: 15px;
-}
+} */
 
 .actions {
   display: flex;
@@ -244,8 +250,107 @@ body {
   background-color: #1e5fa7;
 }
 
+.nutAdmin{
+  display: none; 
+  position: absolute; 
+  top: 45px; right: 0; 
+  background: #222; 
+  color: white; 
+  border-radius: 6px; 
+  padding: 10px; width: 160px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
 .content {
   flex: 1;
   padding: 20px;
   background: white;
+}
+
+/* ====== MENU TRONG CONTAINER ====== */
+.l-menu {
+  width: 250px;
+  background: #2b7ed7;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.danhmuc {
+  display: none; /* Ẩn khi màn hình lớn */
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.danhmuc:hover {
+  background: #154b8f;
+  transform: scale(1.05);
+}
+/*hiệu ứng đóng mở */
+#menuDanhmuc {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+#menuDanhmuc.hide {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Khi thu nhỏ màn hình */
+@media (max-width: 768px) {
+  .l-menu {
+    width: 60px; /* ✅ Ban đầu chỉ còn khung nhỏ chứa nút 3 gạch */
+    transition: width 0.3s ease;
+    position: relative;
+  }
+
+  /* Khi có class "open" thì menu bung to ra */
+  .l-menu.open {
+    width: 250px; /* ✅ Bung ra kích thước gốc */
+  }
+
+  .danhmuc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    font-size: 16px;
+    width: 45px;
+    height: 45px;
+    margin: 10px auto;
+    border-radius: 8px;
+  }
+
+  .danhmuc i {
+    font-size: 20px;
+  }
+
+  #menuDanhmuc {
+    display: none;
+  }
+
+  /* Khi click vào 3 gạch thì show menu */
+  .l-menu.open #menuDanhmuc {
+    display: block;
+    animation: slideDown 0.3s ease;
+  }
+}
+
+/* Hiệu ứng xổ mượt */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
