@@ -21,7 +21,7 @@ function togglemk() {
     let toggle = document.getElementById("toggle-mk");
     if (mkInput.type === "password") {
         mkInput.type = "text";
-        toggle.textContent = "👁️‍🗨️"; // icon khi hiện
+        toggle.textContent = "👁"; // icon khi hiện
     } else {
         mkInput.type = "password";
         toggle.textContent = "👁"; // icon khi ẩn
@@ -84,21 +84,27 @@ function dangKy() {
         return;
     }
 
+    // Tạo mã khách hàng mới 
+    let newID = "KH" + String(bangKH.length + 1).padStart(3, "0");
+
     // Thêm vào bảng dang_nhap
     bangDN.push({
         NAME: tk,
         PASSWORD: mk,
-        TINH_TRANG: "1",
+        MA_KHACH_HANG: newID,
+        TINH_TRANG: "1"
     });
 
     // Thêm vào bảng khach_hang
     bangKH.push({
+        MA_KHACH_HANG: newID,
         TEN_KHACH_HANG: ten,
         GIOI_TINH: gt,
         NAM_SINH: ns,
         SO_DIEN_THOAI: sdt,
         DIA_CHI: dc
     });
+
 
     // Lưu lại database vào local
     localStorage.setItem("du_lieu", JSON.stringify(db));
