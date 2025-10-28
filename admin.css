@@ -354,3 +354,62 @@ body {
     transform: translateY(0);
   }
 }
+
+#noi_dung table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+#noi_dung th, #noi_dung td {
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+  text-align: center;
+  color: #333;
+  background: #fff;
+}
+
+#noi_dung th {
+  background-color: #2b7ed7;
+  color: white;
+  font-weight: 700;
+}
+
+.khoa {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mo {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.reset {
+  background-color: #f0ad4e;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.small {
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+/* responsive: băng ghế ngang scroll */
+#noi_dung .table-wrap {
+  overflow-x: auto;
+  width: 100%;
+}
