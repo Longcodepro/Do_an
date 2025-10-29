@@ -284,3 +284,177 @@ btnReset.addEventListener("click", () => {
   wrap.appendChild(table);
   noiDung.appendChild(wrap);
 }
+
+///////////
+//1.7
+// ===================== Hiển thị danh sách ĐƠN HÀNG =====================
+function quanLyDonHang() {
+  const db = getDB();
+  if (!db || db.length === 0) {
+    ensureDataLoaded();
+    setTimeout(quanLyDonHang, 250);
+    return;
+  }
+
+  const donHangTable = getTable("don_hang");
+  const chiTietTable = getTable("chi_tiet_don_hang");
+  const khTable = getTable("khach_hang");
+
+  if (!donHangTable || !chiTietTable) {
+    alert("Không tìm thấy bảng đơn hàng hoặc chi tiết đơn hàng trong data.json");
+    return;
+  }
+
+  const ds = donHangTable.data;
+  const noiDung = document.getElementById("noi_dung");
+  noiDung.innerHTML = "<h2 style='color:#333'>Quản Lí Đơn Hàng</h2>";
+
+  const wrap = document.createElement("div");
+  wrap.className = "table-wrap";
+
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const trHead = document.createElement("tr");
+  const headers = [
+    "Mã đơn hàng",
+    "Ngày đặt",
+    "Giá trị",
+    "Tình trạng",
+    "Hình thức thanh toán",
+    "Đơn vị vận chuyển",
+    "Khách hàng",
+    "Thao tác",
+  ];
+  headers.forEach((h) => {
+    const th = document.createElement("th");
+    th.textContent = h;
+    trHead.appendChild(th);
+  });
+  thead.appendChild(trHead);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  ds.forEach((dh) => {
+    const tr = document.createElement("tr");
+
+    // Các cột dữ liệu chính
+    const tdMa = document.createElement("td");
+    tdMa.textContent = dh.MA_DON_HANG;
+    tr.appendChild(tdMa);
+
+    const tdNgay = document.createElement("td");
+    tdNgay.textContent = dh.NGAY_DAT;
+    tr.appendChild(tdNgay);
+
+    const tdGia = document.createElement("td");
+    tdGia.textContent = Number(dh.GIA_TRI).toLocaleString("vi-VN") + " ₫";
+    tr.appendChild(tdGia);
+
+    const tdTrang = document.createElement("td");
+    tdTrang.textContent = dh.TINH_TRANG;
+    tr.appendChild(tdTrang);
+
+    const tdHTTT = document.createElement("td");
+    tdHTTT.textContent = dh.HINH_THUC_THANH_TOAN;
+    tr.appendChild(tdHTTT);
+
+    const tdDVVC = document.createElement("td");
+    tdDVVC.textContent = dh.DON_VI_VAN_CHUYEN;
+    tr.appendChild(tdDVVC);
+
+    // Tên khách hàng
+    const kh = khTable?.data?.find(k => k.MA_KHACH_HANG === dh.MA_KHACH_HANG);
+    const tdKH = document.createElement("td");
+    tdKH.textContent = kh ? kh.TEN_KHACH_HANG : dh.MA_KHACH_HANG;
+    tr.appendChild(tdKH);
+
+    // Nút xem chi tiết
+    const tdAction = document.createElement("td");
+    const btnXem = document.createElement("button");
+    btnXem.textContent = "Xem chi tiết";
+    btnXem.className = "xem small";
+    tdAction.appendChild(btnXem);
+    tr.appendChild(tdAction);
+
+    // Sự kiện khi bấm xem chi tiết
+    btnXem.addEventListener("click", () => {
+      hienChiTietDonHang(dh.MA_DON_HANG);
+    });
+
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+  noiDung.appendChild(wrap);
+}
+
+// ===================== Hiển thị CHI TIẾT ĐƠN HÀNG =====================
+function hienChiTietDonHang(maDH) {
+  const db = getDB();
+  const chiTietTable = getTable("chi_tiet_don_hang");
+  if (!chiTietTable) {
+    alert("Không tìm thấy bảng chi tiết đơn hàng");
+    return;
+  }
+
+  const dsChiTiet = chiTietTable.data.filter(
+    (ct) => ct.MA_DON_HANG === maDH
+  );
+
+  const noiDung = document.getElementById("noi_dung");
+  noiDung.innerHTML = `<h2 style='color:#333'>Chi Tiết Đơn Hàng ${maDH}</h2>`;
+
+  const wrap = document.createElement("div");
+  wrap.className = "table-wrap";
+
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const trHead = document.createElement("tr");
+  const headers = ["Mã CTDH", "Mã sản phẩm", "Số lượng", "Tổng tiền"];
+  headers.forEach((h) => {
+    const th = document.createElement("th");
+    th.textContent = h;
+    trHead.appendChild(th);
+  });
+  thead.appendChild(trHead);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  dsChiTiet.forEach((ct) => {
+    const tr = document.createElement("tr");
+
+    const td1 = document.createElement("td");
+    td1.textContent = ct.MA_CTDH;
+    tr.appendChild(td1);
+
+    const td2 = document.createElement("td");
+    td2.textContent = ct.MA_SAN_PHAM;
+    tr.appendChild(td2);
+
+    const td3 = document.createElement("td");
+    td3.textContent = ct.SO_LUONG;
+    tr.appendChild(td3);
+
+    const td4 = document.createElement("td");
+    td4.textContent =
+      Number(ct.TONG_TIEN).toLocaleString("vi-VN") + " ₫";
+    tr.appendChild(td4);
+
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+  noiDung.appendChild(wrap);
+
+  // Nút quay lại danh sách
+  const btnBack = document.createElement("button");
+  btnBack.textContent = "← Quay lại danh sách";
+  btnBack.className = "small";
+  btnBack.style.marginTop = "16px";
+  btnBack.addEventListener("click", quanLyDonHang);
+  noiDung.appendChild(btnBack);
+}
+

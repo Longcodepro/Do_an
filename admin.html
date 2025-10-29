@@ -64,15 +64,20 @@
             <li>Quản Lí Danh Mục Sản Phẩm</li>
             <li>Quản Lí Nhập Sản Phẩm</li>
             <li>Quản Lí Giá Bán</li>
-            <li>Quản lý đơn đặt hàng của khách hàng</li>
+            <li onclick="quanLyDonHang()">Quản lý đơn đặt hàng của khách hàng</li>
             <li>Quản lý số lượng tồn của sản phẩm</li>
           </ul>
         </div>
       </div>
 
       <!-- 1.2 -->
-      <div class="content" id="noi_dung">
+      <div class="content" id="noi_dung" style="overflow : auto; ">
         <h2>Chào mừng đến với trang quản trị</h2>
+      </div>
+     <!-- 1.7: Quản lý đơn hàng -->
+      <div class="content" id="noi_dung_donhang" style="display:none; overflow:auto;">
+        <h2>Quản lý đơn hàng</h2>
+        <div id="bangDonHang"></div>
       </div>
     </div>
   </div>
