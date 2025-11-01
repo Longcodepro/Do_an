@@ -14,7 +14,7 @@ body {
     flex-direction: column;
 
     height: 100vh;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .overlay{
@@ -354,3 +354,97 @@ body {
     transform: translateY(0);
   }
 }
+
+#noi_dung table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+#noi_dung th, #noi_dung td {
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+  text-align: center;
+  color: #333;
+  background: #fff;
+}
+
+#noi_dung th {
+  background-color: #2b7ed7;
+  color: white;
+  font-weight: 700;
+}
+
+.khoa {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mo {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.reset {
+  background-color: #f0ad4e;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.small {
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+/* responsive: băng ghế ngang scroll  */
+#noi_dung .table-wrap {
+  overflow-x: auto;
+  width: 100%;
+}
+
+
+/* 1.7 ========================*/
+/* Cho phép vùng đơn hàng cuộn dọc và ngang */
+#noi_dung_donhang {
+  display: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 150px);
+  background: white;
+  padding: 20px;
+}
+
+/* Phần chứa bảng đơn hàng */
+#bangDonHang {
+  width: 100%;
+  overflow-x: auto;  /* ✅ bật cuộn ngang */
+  overflow-y: visible;
+  margin-top: 10px;
+}
+
+/* Bảng bên trong phải đủ rộng để kích hoạt thanh cuộn */
+#bangDonHang table {
+  width: max-content;   /* ✅ quan trọng: cho phép bảng dài hơn khung */
+  min-width: 1200px;    /* ép hiện thanh cuộn nếu ít cột */
+  border-collapse: collapse;
+}
+
+/* Giữ bảng không xuống dòng */
+#bangDonHang th, #bangDonHang td {
+  white-space: nowrap;
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
