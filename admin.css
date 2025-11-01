@@ -14,7 +14,7 @@ body {
     flex-direction: column;
 
     height: 100vh;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .overlay{
@@ -408,8 +408,43 @@ body {
   font-size: 14px;
 }
 
-/* responsive: băng ghế ngang scroll */
+/* responsive: băng ghế ngang scroll  */
 #noi_dung .table-wrap {
   overflow-x: auto;
   width: 100%;
 }
+
+
+/* 1.7 ========================*/
+/* Cho phép vùng đơn hàng cuộn dọc và ngang */
+#noi_dung_donhang {
+  display: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 150px);
+  background: white;
+  padding: 20px;
+}
+
+/* Phần chứa bảng đơn hàng */
+#bangDonHang {
+  width: 100%;
+  overflow-x: auto;  /* ✅ bật cuộn ngang */
+  overflow-y: visible;
+  margin-top: 10px;
+}
+
+/* Bảng bên trong phải đủ rộng để kích hoạt thanh cuộn */
+#bangDonHang table {
+  width: max-content;   /* ✅ quan trọng: cho phép bảng dài hơn khung */
+  min-width: 1200px;    /* ép hiện thanh cuộn nếu ít cột */
+  border-collapse: collapse;
+}
+
+/* Giữ bảng không xuống dòng */
+#bangDonHang th, #bangDonHang td {
+  white-space: nowrap;
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
