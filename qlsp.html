@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Trang Quản lí Sản phẩm</title>
+        <link href="qlsp.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <body>
+        <div class="overlay" id="loginOverlay" style="display: none;">
+            <div class="login" id="closeX">
+                <span onclick="closeLogin()" class="closeX">X</span>
+                <h1>Đăng Nhập</h1>
+                <form id="loginForm">
+                    <div class="formtk">
+                        <input type="text" id="username" required >
+                        <label><span>Tài Khoản</span></label>
+                    </div>
+                    <div class="formtk">
+                        <input type="password" id="password" required >
+                        <label><span>Mật Khẩu </span></label> 
+                    </div>
+                    <div>
+                        <button type="submit" class="nutlogin">Đăng nhập</button>
+                        <p class="text">Bạn muốn mua hàng?<a href="user.html">Home User</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="home" >
+            <header class="topmenu">
+                <div class="logo">
+                <div class="logo-icon"><img src="../Do_an/img/sgu.png" alt="Logo SGU"></div>
+                <span class="logo-text">  Điện máy<span class="highlight">SGU</span></span>
+                </div>
+
+                <div class="actions">
+                <div class="action-item" id="nutlogin">
+                    <button onclick="openLogin()" class="nutlogin"><i class="fa-regular fa-user"></i>   Đăng Nhập</button>
+                </div>
+                <div class="action-item" id="nutaccount" style="display: none; position: relative;">
+                    <button onclick="account()" class="nutlogin" id="nutAdmin"><i class="fa-regular fa-user"></i>   Admin </button>
+                    <div id="menuAdmin" class="nutAdmin" > 
+                        <div style="padding: 5px;cursor: pointer;"><i class="fa-regular fa-user"></i>   Thông tin tài khoản</div>
+                        <hr style="border: solid 1px black;">
+                        <div style="padding: 5px;cursor: pointer;" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i>   Đăng xuất</div>
+                    </div>
+                </div>
+                </div>
+            </header>
+            <div class="container" >
+                <div class="l-menu" >
+                    <div class="danhmuc" id="nutDanhmuc">
+                        <button class="nutlogin"><i class="fa-solid fa-bars"></i></button>
+                    </div>
+                    <div id="menuDanhmuc">
+                        <ul>
+                            <li onclick="showContent('customerContent')">Quản Lí Khách Hàng</li>
+                            <li onclick="showContent('productTypeContent')">Quản Lí Loại Sản Phẩm</li>
+                            <li onclick="showContent('productCategoryContent')">Quản Lí Danh Mục Sản Phẩm</li>
+                            <li onclick="showContent('productImportContent')">Quản Lí Nhập Sản Phẩm</li>
+                            <li onclick="showContent('priceContent')">Quản Lí Giá Bán</li>
+                            <li onclick="showContent('orderContent')">Quản lý đơn đặt hàng của khách hàng</li>
+                            <li onclick="showContent('inventoryContent')">Quản lý số lượng tồn của sản phẩm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content">
+                    
+                    <div id="welcomeContent" class="content-section active">
+                        <h2>Chào mừng đến trang Quản trị!</h2>
+                        <p>Vui lòng chọn một chức năng từ menu bên trái để bắt đầu.</p>
+                    </div>
+
+                    <div id="customerContent" class="content-section">
+                        <h2>Quản Lí Khách Hàng</h2>
+                        <p>Nội dung quản lý khách hàng sẽ ở đây. (Chưa triển khai)</p>
+                    </div>
+
+                    <div id="productTypeContent" class="content-section">
+                        <h2>Quản Lý Loại Sản Phẩm</h2>
+                        <button class="btn btn-add" id="btnAddProductType" onclick="openProductTypeModal()">
+                            <i class="fa-solid fa-plus"></i> Thêm Loại Mới
+                        </button>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên Loại Sản Phẩm</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productTypeTableBody">
+                                </tbody>
+                        </table>
+                    </div>
+
+                    <div id="productCategoryContent" class="content-section">
+                        <h2>Quản Lí Danh Mục Sản Phẩm</h2>
+                        <p>Nội dung quản lý danh mục sẽ ở đây. (Chưa triển khai)</p>
+                    </div>
+
+                    <div id="productImportContent" class="content-section">
+                        <h2>Quản Lí Nhập Sản Phẩm</h2>
+                        <p>Nội dung quản lý nhập sản phẩm sẽ ở đây. (Chưa triển khai)</p>
+                    </div>
+
+                    <div id="priceContent" class="content-section">
+                        <h2>Quản Lí Giá Bán</h2>
+                        <p>Nội dung quản lý giá bán sẽ ở đây. (Chưa triển khai)</p>
+                    </div>
+
+                    <div id="orderContent" class="content-section">
+                        <h2>Quản lý đơn đặt hàng của khách hàng</h2>
+                        <p>Nội dung quản lý đơn hàng sẽ ở đây. (Chưa triển khai)</p>
+                    </div>
+
+                    <div id="inventoryContent" class="content-section">
+                        <h2>Quản Lý Số Lượng Tồn</h2>
+                        
+                        <div class="filter-bar">
+                            <div class="form-group">
+                                <label for="invSearchProduct">Tên/Mã SP:</label>
+                                <input type="text" id="invSearchProduct" placeholder="Tìm theo tên hoặc mã..." onkeyup="searchInventory()">
+                            </div>
+                            <div class="form-group">
+                                <label for="invSelectCategory">Loại SP:</label>
+                                <select id="invSelectCategory" onchange="searchInventory()">
+                                    <option value="">Tất cả các loại</option>
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="invStartDate">Từ ngày:</label>
+                                <input type="date" id="invStartDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="invEndDate">Đến ngày:</label>
+                                <input type="date" id="invEndDate">
+                            </div>
+                            <button class="btn btn-primary" onclick="searchInventory(true)">
+                                <i class="fa-solid fa-search"></i> Tra Cứu
+                            </button>
+                        </div>
+
+                        <div class="low-stock-warning">
+                            <button class="btn btn-warning" onclick="showLowStock()">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Xem SP Sắp Hết Hàng
+                            </button>
+                            <span id="lowStockCount" style="margin-left: 10px;"></span>
+                        </div>
+
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã SP</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Loại Sản Phẩm</th>
+                                    <th>Nhập</th>
+                                    <th>Xuất</th>
+                                    <th>Tồn Kho</th>
+                                    <th>Hành Động</th> 
+                                </tr>
+                            </thead>
+                            <tbody id="inventoryTableBody">
+                                </tbody>
+                        </table>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+
+        <div id="productTypeModal" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeProductTypeModal()">X</span>
+                <h2 id="modalTitle">Thêm Loại Sản Phẩm Mới</h2>
+                <form id="productTypeForm">
+                    <input type="hidden" id="productTypeId">
+                    <div class="modal-form-group">
+                        <label for="productTypeName">Tên Loại Sản Phẩm:</label>
+                        <input type="text" id="productTypeName" required>
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="productTypeStatus">Trạng Thái:</label>
+                        <select id="productTypeStatus">
+                            <option value="active">Hoạt động</option>
+                            <option value="hidden">Ẩn</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Lưu Lại</button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="inventoryUpdateModal" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeInventoryUpdateModal()">X</span>
+                <h2 id="inventoryModalTitle">Cập nhật Tồn Kho</h2>
+                <form id="inventoryUpdateForm">
+                    <input type="hidden" id="invUpdateProductId">
+                    <p>Sản phẩm: <strong id="invProductNameDisplay"></strong></p>
+                    
+                    <div class="modal-form-group">
+                        <label for="invUpdateAction">Loại Thao Tác:</label>
+                        <select id="invUpdateAction" required>
+                            <option value="nhap">Nhập thêm vào kho (+)</option>
+                            <option value="xuat">Xuất bớt khỏi kho (-)</option>
+                        </select>
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="invUpdateQuantity">Số Lượng:</label>
+                        <input type="number" id="invUpdateQuantity" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="qlsp.js"></script>
+    </body>
+</html>
