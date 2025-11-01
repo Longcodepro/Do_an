@@ -457,4 +457,3 @@ function hienChiTietDonHang(maDH) {
   btnBack.addEventListener("click", quanLyDonHang);
   noiDung.appendChild(btnBack);
 }
-

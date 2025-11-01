@@ -37,7 +37,6 @@ function hamChinh() {
   // tạo div nối với nội thẻ div có id = noi_dung trong html
   const div = document.querySelector('#noi_dung');
   div.innerHTML = '';
-  div.id = 'div';
   menu(div, rowsSp);
   content(div, rowsSp);
 }
@@ -78,7 +77,7 @@ function menu(div, rowsSp) {
       const db1 = lay_du_lieu();
       const rowsSp1 = lay_bang_san_pham(db1).data;
       console.log(rowsSp1);
-      const divTong = document.querySelector('#div');
+      const divTong = document.querySelector('#noi_dung');
       content(divTong, rowsSp1);
       rowsSp = rowsSp1; // gán lại cho rowsSp để kh dùng sort cho đúng
     }
@@ -86,7 +85,7 @@ function menu(div, rowsSp) {
       let db1 = lay_du_lieu();  // đổi thành let để có thể gán lại bằng filter ở dưới
       let rowsSp1 = lay_bang_san_pham(db1).data;
       rowsSp1 = rowsSp1.filter(row => row.MA_MAT_HANG === theo_loai.value);
-      const divTong = document.querySelector('#div');
+      const divTong = document.querySelector('#noi_dung');
       content(divTong, rowsSp1);
       rowsSp = rowsSp1;
     }
@@ -109,7 +108,7 @@ function menu(div, rowsSp) {
     rowsSp1 = rowsSp1.filter(row => row.TEN_SP.toLowerCase().includes(tu_khoa) || row.MA_SAN_PHAM.toLowerCase().includes(tu_khoa)); // Có thể tìm theo mã hoặc tên sản phẩm
     const div2 = document.querySelector('#div2');
     div2.remove();
-    const divTong = document.querySelector('#div');  
+    const divTong = document.querySelector('#noi_dung');  
     content(divTong, rowsSp1);
     rowsSp = rowsSp1; // gán lại cho rowsSp để kh dùng sort cho đúng
   });
@@ -140,7 +139,7 @@ function menu(div, rowsSp) {
     const div2 = document.querySelector('#div2');
     div2.remove();  /// xóa table cũ 
     // bắt div tổng
-    const divTong = document.querySelector('#div');
+    const divTong = document.querySelector('#noi_dung');
     content(divTong, rowsSp1); // truyền vô divTong để tạo bảng mới
   };
 }
@@ -184,7 +183,7 @@ function themSanPham() {
       d.remove();
       const db = lay_du_lieu();
       const rowsSp = lay_bang_san_pham(db).data;
-      const divTong = document.querySelector('#div');
+      const divTong = document.querySelector('#noi_dung');
       content(divTong, rowsSp);
     }
   });
@@ -305,7 +304,7 @@ function themSanPham() {
     const rowsSp = lay_bang_san_pham(lay_du_lieu()).data;
     const div2 = document.querySelector('#div2');
     div2.remove();
-    const divTong = document.querySelector('#div');
+    const divTong = document.querySelector('#noi_dung');
     content(divTong, rowsSp);
   })
   // nút button reset
@@ -498,7 +497,7 @@ function nut_hien_an(idSp){
   cap_nhap_localStorage(db);
   const div2 = document.querySelector('#div2');
   div2.remove();
-  const divTong = document.querySelector('#div');
+  const divTong = document.querySelector('#noi_dung');
   content(divTong, rowsSp);
 }
 
