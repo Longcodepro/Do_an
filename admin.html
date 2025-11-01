@@ -5,7 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Trang chủ Admin</title>
         <link href="admin.css" rel="stylesheet">
+        <link href="./1.4.css" rel="stylesheet"> <!--1.4-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="./1.4.js"></script>
+
     </head>
     <body>
                     <!-- Trang Dang Nhap -->
@@ -33,7 +36,7 @@
         <div class="home" >
             <header class="topmenu">
                 <div class="logo">
-                <div class="logo-icon"><img src="../Do_an/img/sgu.png" alt="Logo SGU"></div>
+                <div class="logo-icon"><img src="./img/sgu.png" alt="Logo SGU"></div>
                 <span class="logo-text">  Điện máy<span class="highlight">SGU</span></span>
                 </div>
 
@@ -65,7 +68,9 @@
                         <ul>
                             <li>Quản Lí Khách Hàng</li>
                             <li>Quản Lí Loại Sản Phẩm</li>
-                            <li>Quản Lí Danh Mục Sản Phẩm</li>
+                            <!--phần 1.4 -->
+                            <li onclick='hamChinh()'>Quản Lí Danh Mục Sản Phẩm</li>
+                            <!--kết thúc 1.4-->
                             <li>Quản Lí Nhập Sản Phẩm</li>
                             <li>Quản Lí Giá Bán</li>
                             <li>Quản lý đơn đặt hàng của khách hàng</li>
@@ -73,8 +78,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="content">
-                    <!-- 1.2 -->
+                <div class="content" id="noi_dung">
+                    <!-- 1.2 -->    
                 </div>
             </div>
         </div>

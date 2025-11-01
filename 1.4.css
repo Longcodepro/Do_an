@@ -1,0 +1,160 @@
+/* javascript */
+#div{
+    background-color: #E6F0FF; 
+    padding: 10px;
+    color:blue;
+#div1{
+    border: 2px solid blue;
+    padding: 10px;
+    display:flex;
+    flex-direction: row;
+    border-radius: 20px;
+}
+#logo{
+    border: 2px solid blue;
+    border-radius: 500px;
+    width: 3%;
+    height: 3%;
+    margin-left: 1%;
+}
+#tim_theo_loai{
+    background-color: rgba(79, 179, 229, 0.845);
+    margin-left: 10px;
+    border: 2px solid blue;
+}
+#searchBox{
+    margin-left: 10px;
+    background-color: rgba(79, 179, 229, 0.845);
+    width: 70%;
+    border: 2px solid blue;
+}
+#kinh_lup{
+    background-color: rgba(79, 179, 229, 0.845);
+    cursor: pointer;
+    margin-left: 2px;
+    border: 2px solid blue;
+}
+#them_sp{
+    background-color: rgba(79, 179, 229, 0.845);
+    cursor: pointer;
+    margin-left: 10px;
+    color:blue;
+    font-size: larger;
+    border: 2px solid blue;
+}
+#tang_giam{
+    background-color: rgba(79, 179, 229, 0.845);
+    cursor: pointer;
+    margin-left: 10px;
+    color:blue;
+    font-size: larger;
+    border: 2px solid blue;
+}
+#div2{
+    overflow-y: auto;
+    height: 79%
+}
+#table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5%;
+    font-size: medium;
+}
+.headTable{
+    border: 1px solid blue;
+}
+.du_lieu{
+    border: 1px solid blue;
+    text-align: center;
+    padding: 2px;
+}
+.xoa_sua{
+    background-color: rgba(79, 179, 229, 0.845);
+    color: blue;
+    cursor: pointer;
+}
+.tieu_de_nhapSp{
+    width: 100%;
+    text-align: center;
+    font-size:x-large;
+    color:cornflowerblue
+}
+.khungThemSp{
+    border: 2px solid blue;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 2%;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative; /*chỉnh nút thoát*/
+}
+.nut_thoat{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    border-color: blue;
+    background-color: rgba(79, 179, 229, 0.845);
+}
+.khungThemSp input{
+    width: 45%;
+    height: 40px;
+    border: 2px solid blue;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.khungThemSp .selectMatHang{
+    width: 45%;
+    height: 91px;
+    border: 2px solid blue;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.special{
+    border: 2px solid blue;
+    width: 45%;
+    height: 91px;
+    border-radius: 5px;
+    margin-top: 10px;
+    white-space: normal;
+    resize: none;   /*không cho ô kéo giãn*/
+}
+#divBaoAnh{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-left: 2.7%;
+}
+.divBao{
+    display:flex;
+    margin-top: 10px;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 5%;
+}
+.divBao button{
+    flex: 1;
+    height: 50px;
+    width: 80px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.divBao .xac_nhan{
+    background-color: #007BFF;
+    margin-top: 10px;
+}
+.divBao .reset{
+    background-color: #17a2b8;
+    margin-top: 10px;
+    margin-left: 2%;
+}
+
+
+/* html */
