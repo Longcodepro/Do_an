@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="data:,">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link href="2_1.css" rel="stylesheet">
+        <script src="2_1.js"></script>
+        <script src="data.json"></script>
+    </head>
+    <body>
+        <div id="overlay"></div>
+
+        <div style="position: relative;">
+            <div class="action-item" id="nut-dn">
+                <button id="btn-login" onclick="moFormdnhap()" class="nutlogin">
+                    <i class="fa-regular fa-user"></i>Đăng Nhập
+                </button>
+            </div>
+            <div class="action-item" id="nut-tk" style="display: none; position: absolute;">
+                <button id="btn-tk" class="nutlogin"></button>
+                
+                <!-- Menu Khách Hàng -->
+                <div id="menu-user" class="menu-user">
+                    <p id="xem-thongtin" onclick="moThongTin()">Thông tin cá nhân</p>
+                    <p id="dang-xuat" onclick="logout()">Đăng xuất</p>
+                </div>
+            </div>
+        </div>  
+
+        <!-- form đăng nhập -->
+        <form id="formdnhap" class="form-animation" style="display: none">
+            <div>
+                <span class="closeX" onclick="dongFormdnhap()">✕</span>
+            </div>
+            <div class="inputdn">
+                <input type="text" id="dn-tk" placeholder=" " required>
+                <label>Tài Khoản</label>
+            </div>
+            <div class="inputdn">
+                <input type="password" id="dn-mk" placeholder=" " required>
+                <label>Mật Khẩu</label>
+                <span class="toggle-mk" onclick="togglemk()">👁️‍🗨️</span> 
+            </div>
+            <div class="btndnhap">
+                <button type="button" onclick="dangNhap()">Đăng nhập</button>
+                <p class="cauhoi">Bạn chưa có tài khoản?<span class="taoacc" onclick="moFormdky()">Đăng ký</span></p>
+            </div>
+        </form>
+            
+        <!-- form dăng ký -->
+        <form id="formdky" class="form-animation" style="display: none;">
+            <div>
+                <span class="closeX" onclick="dongFormdky()">✕</span>
+            </div>
+            <div class="inputdk">
+                <input type="text" id="dk-tk" placeholder=" " required>
+                <label>Tên đăng nhập</label>
+            </div>
+            <div class="inputdk">
+                <input type="text" id="dk-hoten" placeholder=" " required>
+                <label>Họ tên</label>
+            </div>
+            <div class="inputdk">
+                <input type="password" id="dk-mk" placeholder=" " required>
+                <label>Mật khẩu</label>
+                <span class="toggle-mk" onclick="togglemk()">👁️‍🗨️</span>
+            </div>
+            <div class="gioitinh">
+                <label><span>Giới tính</span></label>
+                <label><input type="radio" name="sex" value="1">Nam</label>
+                <label><input type="radio" name="sex" value="0">Nữ</label>
+            </div>
+            <div class="inputdk" >
+                <input type="number" placeholder=" " required id="dk-namsinh" min="1950" max="2025">
+                <label>Năm sinh</label>
+            </div>
+            <div class="inputdk">
+                <input type="tel" placeholder=" " required id="dk-sdt">
+                <label>Số điện thoại</label>
+            </div>
+            <div class="inputdk" >
+                <input type="text" placeholder=" " required id="dk-diachi">
+                <label>Địa chỉ</label>
+            </div>
+            <div class="btndky">
+                <button type="button" onclick="dangKy()">Đăng ký</button>
+            </div>
+        </form> 
+        
+        <!-- Form Thông Tin Cá Nhân -->
+        <div id="form-info" class="form-info">
+            <div class="info-box">
+                <span class="closeX" onclick="dongThongTin()">✕</span>
+                <h2 class="text"><i class="fa-regular fa-circle-user"></i> Thông Tin Cá Nhân</h2>
+
+                <div class="row-info">
+                    <div>Tài khoản:</div> 
+                    <div id="in-name"></div>
+                </div>
+                <div class="row-info">
+                    <div>Họ Tên:</div> 
+                    <div id="in-ten"></div>
+                </div>
+                <div class="row-info">
+                    <div>Giới Tính:</div> 
+                    <div id="in-gt"></div>
+                </div>
+                <div class="row-info">
+                    <div>Năm sinh:</div> 
+                    <div id="in-ns"></div>
+                </div>
+                <div class="row-info">
+                    <div>Số điện thoại:</div> 
+                    <div id="in-sdt"></div>
+                </div>
+                <div class="row-info">
+                    <div>Địa chỉ:</div> 
+                    <div id="in-dc"></div>
+                </div>
+                <div class="nut-group">
+                    <button id="btn-sua" class="nut nut-sua" onclick="SuaThongTin()"><i class="fa-solid fa-gears"></i> Sửa thông tin</button>
+                    <button id="btn-luu" class="nut nut-luu" style="display:none" onclick="LuuThongTin()">Lưu</button>
+                    <button id="btn-huy" class="nut nut-huy" style="display:none" onclick="HuyChinhSua()">Hủy</button>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

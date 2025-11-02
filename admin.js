@@ -68,99 +68,219 @@ function danhmuc() {
   const lmenu = document.querySelector(".l-menu");
   lmenu.classList.toggle("open");
 }
-
-// // mở file json để add dữ liệu vô local
-fetch('./data.json')
-  .then(res => res.json())
-  .then(data =>{
-    localStorage.setItem('du_lieu', JSON.stringify(data));
-  });
-
-// lấy dữ liệu từ local và đổi thành object
-const db = JSON.parse(localStorage.getItem('du_lieu'));
-console.log(db);
-// kiểm tra xem lấy được chưa
-if(db){
-  console.log('Đã lấy được dữ liệu');
+////////////////////////////////////////////////////////////////////////////////////////////^^^^^^khanh Nguyen
+function ensureDataLoaded() {
+  if (!localStorage.getItem("du_lieu")) {
+    fetch("./data.json")
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("du_lieu", JSON.stringify(data));
+        localStorage.setItem("du_lieu_original", JSON.stringify(data)); // lưu bản gốc để reset
+        console.log("Dữ liệu được load từ data.json và lưu vào localStorage.");
+      })
+      .catch((err) => {
+        console.error("Lỗi load data.json:", err);
+      });
+  } else if (!localStorage.getItem("du_lieu_original")) {
+    localStorage.setItem("du_lieu_original", localStorage.getItem("du_lieu"));
+  }
 }
-else console.log('Không lấy được dữ liệu');
+ensureDataLoaded();
 
-// hàm
-function ham(){
-  // alert('Bạn muốn dùng các chức năng chỉnh sửa sản phẩm');
-  const tableSp = db.find( table => table.name == 'san_pham');
-  const rowsSp = tableSp.data;
+// ===================== Helpers =====================
+function getDB() {
+  try {
+    return JSON.parse(localStorage.getItem("du_lieu")) || [];
+  } catch {
+    return [];
+  }
+}
+function saveDB(db) {
+  localStorage.setItem("du_lieu", JSON.stringify(db));
+}
+function getOriginalDB() {
+  try {
+    return JSON.parse(localStorage.getItem("du_lieu_original")) || [];
+  } catch {
+    return [];
+  }
+}
+function getTable(name) {
+  const db = getDB();
+  return db.find((t) => t.name === name);
+}
+function getOriginalTable(name) {
+  const db = getOriginalDB();
+  return db.find((t) => t.name === name);
+}
 
-  // tạo link css
-  const link = document.createElement('link');
-  link.href = './1.4.css';
-  link.rel = 'stylesheet';
-  // tạo div nối với nội thẻ div có id = noi_dung trong html
-  const div = document.getElementById('noi_dung');
-  div.innerHTML = '';
-  div.id = 'tieu_de';
+// ===================== Hiển thị danh sách khách hàng =====================
+function quanLyKhachHang() {
+  const db = getDB();
+  if (!db || db.length === 0) {
+    ensureDataLoaded();
+    setTimeout(quanLyKhachHang, 250);
+    return;
+  }
 
-  // làm phần nút thêm sản phẩm
-  const div1 = document.createElement('div');
-  div1.id = 'them_sp';
-  div1.textContent = 'Thêm sản phẩm';
-  div.appendChild(div1);
+  const khachHangTable = getTable("khach_hang");
+  const dangNhapTable = getTable("dang_nhap");
+  if (!khachHangTable || !dangNhapTable) {
+    alert("Không tìm thấy bảng khách hàng hoặc đăng nhập trong data.json");
+    return;
+  }
 
-  // tạo table
-  const table = document.createElement('table');
-  div.appendChild(table); // chồng thẻ table vô trong div trong html
-  table.id = 'table';
-  // tạo thẻ <thead> trong table
-  const thead = document.createElement('thead');
-  // tạo thẻ <tr> trong table
-  const tr = document.createElement('tr');
+  const rows = khachHangTable.data;
+  const noiDung = document.getElementById("noi_dung");
+  noiDung.innerHTML = "<h2 style='color:#333'>Quản Lí Khách Hàng</h2>";
 
-  // tạo một array chứa các tiêu đề của bảng
-  const tieu_de = ["Tên sản phẩm", "Hiện", "Xóa/Sửa"];
-  // tạo mảng  độ rộng của các cột head trong table
-  const do_rong_head = ['70%', '15%', '15%'];
+  const wrap = document.createElement("div");
+  wrap.className = "table-wrap";
 
-  // duyệt qua các phần tử trong mảng tieu_de và dùng i là chỉ số để có thể gán độ rộng
-  tieu_de.forEach( (title, i, ) => {  // i là chỉ số bắt đầu từ 0
-    const th = document.createElement('th');  // tạo thẻ th
-    th.classList = 'headTable';
-    th.textContent = title;
-    th.style.width = do_rong_head[i];
-    tr.appendChild(th);
-  })
-  thead.appendChild(tr); // chồng thể tr trong thead
-  table.appendChild(thead); // chồng thẻ thead bên trong table
-
-  // lấy dữ liệu từng dòng để đưa vô table
-  rowsSp.forEach( row => {
-    const tr1 = document.createElement('tr');
-    const nameSp = document.createElement('td');   // ô name sp
-    nameSp.textContent = row.TEN_SP;
-    nameSp.classList.add('du_lieu');  //add class
-    const hien_an = document.createElement('td'); // ô hiện/ẩn
-    hien_an.classList.add('du_lieu');
-
-    const xoa_sua = document.createElement('td')  // ô sửa/xóa
-    xoa_sua.classList.add('du_lieu');
-    const xoa = document.createElement('button'); //nút xóa
-    xoa.classList.add('xoa_sua');
-    xoa.textContent = 'Xóa';
-    const sua = document.createElement('button'); //nút sửa
-    sua.classList.add('xoa_sua');
-    sua.textContent = 'Sửa';
-    sua.style.marginLeft = '5%';
-// tạo hộp checkbox
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    if(row.TINH_TRANG == "1"){  // nếu nó bằng 1 thì tức là hiện nên đánh dấu tích
-      checkbox.checked = true;
-    }
-    tr1.appendChild(nameSp);
-    tr1.appendChild(hien_an);
-    hien_an.appendChild(checkbox);
-    tr1.appendChild(xoa_sua);
-    xoa_sua.appendChild(xoa);
-    xoa_sua.appendChild(sua);
-    table.appendChild(tr1);
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const trHead = document.createElement("tr");
+  const headers = [
+    "Mã KH",
+    "Tên KH",
+    "Giới tính",
+    "Năm sinh",
+    "Cấp độ",
+    "SĐT",
+    "Password",
+    "Trạng thái",
+    "Thao tác",
+  ];
+  headers.forEach((h) => {
+    const th = document.createElement("th");
+    th.textContent = h;
+    trHead.appendChild(th);
   });
+  thead.appendChild(trHead);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  rows.forEach((kh) => {
+    const tr = document.createElement("tr");
+
+    // Mã KH
+    const tdMa = document.createElement("td");
+    tdMa.textContent = kh.MA_KHACH_HANG;
+    tr.appendChild(tdMa);
+
+    // Tên KH
+    const tdTen = document.createElement("td");
+    tdTen.textContent = kh.TEN_KHACH_HANG;
+    tr.appendChild(tdTen);
+
+    // Giới tính
+    const tdGioi = document.createElement("td");
+    tdGioi.textContent = kh.GIOI_TINH == 1 ? "Nam" : "Nữ";
+    tr.appendChild(tdGioi);
+
+    // Năm sinh
+    const tdNs = document.createElement("td");
+    tdNs.textContent = kh.NAM_SINH;
+    tr.appendChild(tdNs);
+
+    // Cấp độ
+    const tdCap = document.createElement("td");
+    tdCap.textContent = kh.CAP_DO_THANH_VIEN;
+    tr.appendChild(tdCap);
+
+    // SĐT
+    const tdSdt = document.createElement("td");
+    tdSdt.textContent = kh.SO_DIEN_THOAI;
+    tr.appendChild(tdSdt);
+
+    // Password
+    const tdPass = document.createElement("td");
+    const loginRow = dangNhapTable.data.find(
+      (dn) => dn.MA_KHACH_HANG === kh.MA_KHACH_HANG
+    );
+    tdPass.textContent = loginRow ? loginRow.PASSWORD : "";
+    tr.appendChild(tdPass);
+
+    // Trạng thái
+    const tdTrang = document.createElement("td");
+    const tinhTrang =
+      loginRow && (loginRow.TINH_TRANG === "0" || loginRow.TINH_TRANG === 0)
+        ? "0"
+        : "1";
+    tdTrang.textContent = tinhTrang === "1" ? "Hoạt động" : "Đã khóa";
+    tr.appendChild(tdTrang);
+
+    // Nút thao tác
+    const tdAction = document.createElement("td");
+    const btnReset = document.createElement("button");
+    btnReset.textContent = "Reset MK";
+    btnReset.className = "reset small";
+
+    const btnToggle = document.createElement("button");
+    btnToggle.textContent = tinhTrang === "1" ? "Khóa" : "Mở";
+    btnToggle.className = (tinhTrang === "1" ? "khoa" : "mo") + " small";
+    btnToggle.style.marginLeft = "8px";
+
+    tdAction.appendChild(btnReset);
+    tdAction.appendChild(btnToggle);
+    tr.appendChild(tdAction);
+
+    // ====== SỰ KIỆN ======
+    // ✅ Reset mật khẩu — cập nhật ngay trên bảng
+    // ✅ Reset mật khẩu — cập nhật ngay trên bảng
+btnReset.addEventListener("click", () => {
+  const dbNow = getDB();
+  const dnNow = dbNow.find((t) => t.name === "dang_nhap");
+  if (!dnNow) {
+    alert("Không tìm thấy bảng đăng nhập để reset.");
+    return;
+  }
+
+  const rowNow = dnNow.data.find(
+    (x) => x.MA_KHACH_HANG === kh.MA_KHACH_HANG
+  );
+  if (!rowNow) return;
+
+  // Gán lại mật khẩu mặc định
+  rowNow.PASSWORD = "123456";
+  saveDB(dbNow);
+
+  // Cập nhật cột hiển thị mật khẩu ngay lập tức
+  tdPass.textContent = rowNow.PASSWORD;
+
+  alert(`Đã reset mật khẩu của ${kh.TEN_KHACH_HANG} về mặc định: 123456`);
+});
+
+    // 🔁 Khóa / Mở khóa tài khoản
+    btnToggle.addEventListener("click", () => {
+      const dbNow = getDB();
+      const dnNow = dbNow.find((t) => t.name === "dang_nhap");
+      if (!dnNow) return;
+
+      const rowNow = dnNow.data.find(
+        (x) => x.MA_KHACH_HANG === kh.MA_KHACH_HANG
+      );
+      if (!rowNow) return;
+
+      // Đảo trạng thái
+      rowNow.TINH_TRANG =
+        rowNow.TINH_TRANG === "1" || rowNow.TINH_TRANG === 1 ? "0" : "1";
+      saveDB(dbNow);
+
+      // Cập nhật hiển thị ngay
+      tdTrang.textContent =
+        rowNow.TINH_TRANG === "1" ? "Hoạt động" : "Đã khóa";
+      btnToggle.textContent =
+        rowNow.TINH_TRANG === "1" ? "Khóa" : "Mở";
+      btnToggle.className =
+        (rowNow.TINH_TRANG === "1" ? "khoa" : "mo") + " small";
+    });
+
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+  noiDung.appendChild(wrap);
 }
