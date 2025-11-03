@@ -31,7 +31,7 @@ function togglemk() {
 
 // khi load lại vẫn hiện tài khoản
 window.onload = function() {
-    let user = JSON.parse(localStorage.getItem("userLogin"));
+    let user = JSON.parse(localStorage.getItem("currentUser"));
     let nutTK = document.getElementById("nut-tk");
     let nutDN = document.getElementById("nut-dn");
 
@@ -153,7 +153,7 @@ function dangNhap() {
 
     if (found) {
         alert("Đăng nhập thành công!");
-        localStorage.setItem("userLogin", JSON.stringify(found));
+        localStorage.setItem("currentUser", JSON.stringify(found));
 
         document.getElementById("nut-dn").style.display="none";
         nutTK.style.display = "flex";
@@ -173,14 +173,14 @@ function dangNhap() {
 
 //Hàm đăng xuất
 function logout(){
-    localStorage.removeItem("userLogin"); // XÓA TRẠNG THÁI ĐĂNG NHẬP
+    localStorage.removeItem("currentUser"); // XÓA TRẠNG THÁI ĐĂNG NHẬP
     document.getElementById("nut-dn").style.display = "flex"; 
     document.getElementById("nut-tk").style.display = "none"; 
     alert("Bạn đã đăng xuất thành công ");
 }
 
 function moThongTin(){
-    let user = JSON.parse(localStorage.getItem("userLogin"));
+    let user = JSON.parse(localStorage.getItem("currentUser"));
     if(!user){ alert("Bạn chưa đăng nhập!"); return; }
 
     let bangKH = db.find(t => t.name === "khach_hang").data;
@@ -237,7 +237,7 @@ function SuaThongTin(){
 }
 
 function HuyChinhSua(){
-    let user = JSON.parse(localStorage.getItem("userLogin"));
+    let user = JSON.parse(localStorage.getItem("currentUser"));
     let bangKH = db.find(t => t.name === "khach_hang").data;
     let kh = bangKH.find(k => k.MA_KHACH_HANG === user.MA_KHACH_HANG);
 
@@ -256,7 +256,7 @@ function HuyChinhSua(){
 
 
 function LuuThongTin(){
-    let user = JSON.parse(localStorage.getItem("userLogin"));
+    let user = JSON.parse(localStorage.getItem("currentUser"));
     let bangKH = db.find(t => t.name === "khach_hang").data;
 
     let kh = bangKH.find(k => k.MA_KHACH_HANG === user.MA_KHACH_HANG);

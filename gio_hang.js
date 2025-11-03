@@ -13,12 +13,21 @@ function lichSuMuaHang() {
     return;
   }
 
+  let db=null;
+
+  function getBangDonHang() {
+  return db.find(t => t.name === "don_hang").data;
+}
+
   fetch("data.json")
     .then(res => res.json())
     .then(data => {
-      const orders = data.don_hang.filter(
-        d => d.ma_khach_hang === currentUser.ma_khach_hang
-      );
+      db = data; // ✅ GÁN Ở ĐÂY
+
+      const BANGDH = getBangDonHang(); // ✅ Gọi sau khi có dữ liệu
+      const orders = BANGDH.filter(
+          d => d.MA_KHACH_HANG === currentUser.MA_KHACH_HANG
+    );
 
       const container = document.getElementById("orderList");
       if (orders.length === 0) {
@@ -30,10 +39,10 @@ function lichSuMuaHang() {
         const div = document.createElement("div");
         div.classList.add("order-item");
         div.innerHTML = `
-          <p><i class="fa-solid fa-receipt"></i> <b>${o.ma_don_hang}</b></p>
-          <p><i class="fa-regular fa-clock"></i> ${o.ngay_dat}</p>
-          <p><i class="fa-solid fa-money-bill"></i> ${o.tong_tien.toLocaleString()}đ</p>
-          <p><i class="fa-solid fa-truck-fast"></i> ${o.trang_thai}</p>
+          <p><i class="fa-solid fa-receipt"></i> <b>${o.MA_DON_HANG}</b></p>
+          <p><i class="fa-regular fa-clock"></i> ${o.NGAY_DAT}</p>
+          <p><i class="fa-solid fa-money-bill"></i> ${o.GIA_TRI.toLocaleString()}đ</p>
+          <p><i class="fa-solid fa-truck-fast"></i> ${o.TINH_TRANG}</p>
           <hr>
         `;
         container.appendChild(div);
