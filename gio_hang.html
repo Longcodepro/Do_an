@@ -52,10 +52,6 @@
                 <i class="fa-solid fa-house  "></i>
                 <div> Về Trang Chủ</div>
             </button>
-            <button class="user">
-                <i class="nav-user fa-solid fa-circle-user"></i>
-                <div>Dang Nhap</div>
-            </button>
             <button class="Hotline"><i class="fa-solid fa-phone-volume"></i> 1900 1800</button>
         </nav>
         <div class="container">
@@ -67,11 +63,16 @@
                     <ul>
                         <li><i class="fa-solid fa-bag-shopping"></i>Danh Sách Sản Phẩm</li>
                         <li><i class="fa-solid fa-house"></i>Địa chỉ nhận hàng </li>
-                        <li><i class="fa-solid fa-history"></i>Lịch Sử Mua Hàng</li>
+                        <li>
+                            <div class="history-container">
+                                <a onclick="lichSuMuaHang()">
+                                <i class="fa-solid fa-clock-rotate-left"></i> Lịch sử mua hàng</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="content">
+            <div class="content" id="content">
                 <!-- Nội Dung -->
             </div>
         </div>
