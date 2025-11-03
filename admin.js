@@ -30,7 +30,7 @@ function loginSuccess() {
     closeLogin();
 }
 // ✅ Kiểm tra đăng nhập
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => { //cho file html chạy hết trước r mới chạy js sau
     const form = document.getElementById("loginForm");
 
     form.addEventListener("submit", (e) => {
@@ -68,7 +68,7 @@ function danhmuc() {
   const lmenu = document.querySelector(".l-menu");
   lmenu.classList.toggle("open");
 }
-////////////////////////////////////////////////////////////////////////////////////////////
+
 // l.2 và 1.7 lấy dữ liệu từ data.json vào localStore 
 function ensureDataLoaded() {
   if (!localStorage.getItem("du_lieu")) {

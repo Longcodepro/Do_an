@@ -8,8 +8,12 @@
     <link href="./1.4.css" rel="stylesheet"> <!--1.4-->
     <link href="./1_2.css" rel="stylesheet"> <!--1.2-->
     <link href="./1_7.css" rel="stylesheet"> <!--1.7-->
+<<<<<<< HEAD
     <link href="./1_5.css" rel="stylesheet"> <!--1.5-->
 
+=======
+    <link rel="stylesheet" href="/1,6.css">    <!-- 1.6 -->
+>>>>>>> 1c021b3e21172cb8098c41676906f0aaf3f2bb3f
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="admin.js"></script>
     <script src="./1_2.js"></script>
@@ -19,10 +23,11 @@
     <!-- <script src="./1.6.js"></script>
     <script src="./1.8.js"></script> -->
     <script src="./1_7.js"></script>
+    <script src="1,6.js"></script>
   </head>
     <body>
   <!-- Trang Dang Nhap -->
-  <div class="overlay" id="loginOverlay" style="display: none;">
+  <div class="overlay" id="loginOverlay" >
     <div class="login" id="closeX">
                 <span onclick="closeLogin()" class="closeX">X</span>
                 <h1>Đăng Nhập</h1>
@@ -49,6 +54,7 @@
                 <div class="logo-icon"><img src="./img/sgu.png" alt="Logo SGU"></div>
                 <span class="logo-text">  Điện máy<span class="highlight">SGU</span></span>
                 </div>
+
 
                 <!-- <div class="search-bar" style="display: none;">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -81,10 +87,11 @@
                             <!--phần 1.4 -->
                             <li onclick='hamChinh()'>Quản Lí Danh Mục Sản Phẩm</li>
                             <!--kết thúc 1.4-->
-                            <li onclick="quanLyNhapHang();">Quản Lí Nhập Sản Phẩm</li>
-                            <li>Quản Lí Giá Bán</li>
+                            <li onclick="quanLyNhapHang()">Quản Lí Nhập Sản Phẩm</li>
+                            <li onclick="quanLyGiaBan()">Quản Lí Giá Bán</li>  <!-- 1.6 -->
                             <li onclick="quanLyDonHang()">Quản lý đơn đặt hàng của khách hàng</li>
                             <li>Quản lý số lượng tồn của sản phẩm</li>
+                           
                         </ul>
                     </div>
                 </div>
@@ -102,6 +109,6 @@
       </div>
     </div>
   </div>
-
+ 
 </body>
 </html>

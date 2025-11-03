@@ -1,0 +1,534 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+}
+
+#header {
+    /* border: 3px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color:#1e90ff;
+  }
+  
+  .search {
+    flex: 1;
+    /* width: 100%; */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #b2d0eb;
+    border-radius: 20px;
+    /* overflow: hidden; */
+    margin-left: 20px;
+  
+    background-color: #d6d6d6;
+    box-sizing: border-box;
+    /* margin-top: 29px; */
+  }
+  
+  .search input {
+    cursor: pointer;
+    background-color: #d6d6d6;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    border-radius: 20px;
+  }
+  .search button .nav-search {
+    font-size: 20px;
+  }
+  .search .btn-search {
+    cursor: pointer;
+    border-radius: 20px;
+    width: 45px;
+    height: 100%;
+    /* background-color: orange; */
+    border: none;
+    background-color: #d6d6d6;
+  }
+  
+  .nav-img {
+    /* position: absolute; */
+    display: flex;
+    height: 100%;
+    width: 100px;
+    margin: 0px 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-img img {
+    height: 60px;
+    width: 60px;
+  }
+  .btn-bar {
+    width: auto;
+    /* border: 2px solid red; */
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+    border-radius: 8px;
+    /* color: white; */
+    transition: transform 0.3s linear;
+    background-color: lightblue;
+    transform-origin: center;
+    position: relative;
+    border-radius: 30px;
+  }
+  .nav-bar {
+    font-size: 17px;
+    /* color: white; */
+    margin-right: 5px;
+  }
+  .btn-bar:hover {
+      box-shadow: 0px 2px 2px 2px  rgba(0, 0, 0, 0.09);
+    /* transform: scale(1.1); */
+    /* border: 2px solid transparent; */
+   
+    background-color: lightblue;
+  }
+  
+  .cart {
+    width: auto;
+    /* border: 2px solid red; */
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+    border-radius: 8px;
+    /* color: white; */
+    transition: transform 0.3s linear;
+    background-color: lightblue;
+    transform-origin: center;
+    border-radius: 30px;
+  }
+  .cart:hover {
+      box-shadow: 0px 2px 2px 2px  rgba(0, 0, 0, 0.09);
+    transform: scale(1.1);
+    /* border: 2px solid transparent; */
+    
+    background-color: lightblue;
+    margin: none;
+  }
+  .nav-cart {
+    font-size: 17px;
+    /* color: white; */
+    margin-right: 5px;
+  }
+  .user {
+    width: auto;
+    border: none;
+    /* border: 2px solid red; */
+    padding: 8px 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+    border-radius: 8px;
+    /* color: white; */
+    transition: transform 0.3s linear;
+    background-color: lightblue;
+    border-radius: 30px;
+  }
+  .user:hover {
+    transform: scale(1.1);
+    /* border: 2px solid transparent; */
+    
+    background-color: lightblue;
+    margin: none;
+    box-shadow: 0px 2px 2px 2px  rgba(0, 0, 0, 0.09);
+  }
+  .nav-user {
+    font-size: 17px;
+    margin-right: 5px;
+  }
+  .Hotline {
+    border: none;
+    width: auto;
+    /* border: 2px solid red; */
+    padding: 8px 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+    border-radius: 8px;
+    /* color: white; */
+    transition: transform 0.3s linear;
+    background-color: lightblue;
+    margin-right: 10px;
+    border-radius: 30px;
+   
+  }
+  .Hotline:hover {
+      box-shadow: 0px 2px 2px 2px  rgba(0, 0, 0, 0.09);
+    transform: scale(1.1);
+    /* border: 2px solid transparent; */
+    
+    background-color: lightblue;
+    margin: none;
+  }
+  .Hotline i {
+    margin-right: 5px;
+  }
+
+  .cart, .user, .Hotline {
+  width: auto;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  border-radius: 30px;
+  background-color: lightblue;
+  transition: transform 0.3s linear;
+  cursor: pointer;
+}
+
+.cart:hover, .user:hover, .Hotline:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.09);
+}
+
+/* Icon */
+.cart i, .user i, .Hotline i {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+/* Phần chữ */
+.cart div, .user div {
+  font-size: 15px;
+}
+
+/* 🔻 Khi màn hình nhỏ */
+@media (max-width: 768px) {
+  .cart div,
+  .user div,
+  .Hotline {
+    display: none; /* Ẩn chữ */
+  }
+
+  .cart i, .user i, .Hotline i {
+    margin-right: 0;
+    font-size: 22px;
+  }
+
+  .cart, .user, .Hotline {
+    padding: 10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    justify-content: center;
+  }
+}
+
+  ul.sub-menu{
+    position: absolute;
+    margin-top: 7px;
+    background-color: #88beeb;
+    padding: 10px 5px 10px 5px;
+    border-radius: 8px;
+    display: none;
+    z-index: 1;
+  }
+  
+  .sub-menu li{
+    list-style: none;
+    display: flex;
+    line-height: 20px;
+    /* border: 2px solid blue;   */
+    margin-top: 3px;
+    /* position: absolute; */
+    width: 130px;
+    border-bottom: 2px solid black;
+    position: relative;
+    /* z-index: 1; */
+  }
+  .sub-menu li a{
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+  }
+  .sub-menu li a{
+    transition: transform linear 0.4s;
+    will-change: transform;
+   }
+   .sub-menu li a:hover{
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+   }
+   /* ul.sub-menu li .sub-menu{
+    left: 138px;
+    top: -18px;
+   } */
+   .btn-bar:hover .sub-menu{
+    display: block;
+   }
+   .menu-sub{
+    position: absolute;
+    width: 190px;
+    left: 124px;
+      top: -10px;
+      padding-left: 15px;
+      display: none; 
+      /* z-index: 1; */
+   }
+  
+    .sub-menu1{
+      
+      width: 100%;
+      background-color: rgba(129, 235, 203,1);
+      /* border-bottom: 2px solid black; */
+      padding: 10px;
+      border-radius: 8px;
+    }
+   
+    .sub-menu1 li{
+      width: 150px;
+    }
+    .sub-menu li:hover>.menu-sub{
+      display: block;
+      transition: all 0.5s ease-out;
+    }
+    
+    .sub-menu li a{
+      /* padding: 8px 15px; */
+      left: 0;
+    }
+    .container {
+  display: flex;
+  height: 80vh;
+  background-color: #f0f0f0;
+}
+.l-menu {
+  width: 250px;
+  background-color: #2b7ed7; 
+  color: white;
+  border-radius: 0px 10px 10px 0px;
+  padding: 10px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.l-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.l-menu li {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+}
+
+.l-menu li:hover {
+  background-color: #198dff;
+  transform: scale(1.03);
+}
+
+.nutlogin {
+  background-color: #198dff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.nutlogin:hover {
+  background-color: #0f6cd9;
+  transform: scale(1.1);
+}
+
+/* ===== NÚT 3 GẠCH ===== */
+.danhmuc button {
+  background: #1e5fa7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+}
+
+/* Ẩn nút 3 gạch khi màn hình lớn */
+@media (min-width: 769px) {
+  .danhmuc {
+    display: none;
+  }
+}
+
+.danhmuc button:hover {
+  background: #154b8f;
+  transform: scale(1.1);
+}
+
+/* ===== DANH SÁCH MENU ===== */
+#menuDanhmuc ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+#menuDanhmuc li {
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s;
+}
+
+#menuDanhmuc li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== RESPONSIVE (THU NHỎ) ===== */
+@media (max-width: 768px) {
+  .l-menu {
+    width: 60px;
+    padding: 10px 0;
+  }
+
+  #menuDanhmuc {
+    display: none;
+  }
+
+  /* Khi có class open thì show menu */
+  .l-menu.open {
+    width: 250px;
+  }
+
+  .l-menu.open #menuDanhmuc {
+    display: block;
+    animation: showMenu 0.3s ease;
+  }
+
+  /* Hiệu ứng xổ xuống */
+  @keyframes showMenu {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.nut-goc {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2b7ed7;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  width: 0px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.nut-goc:hover {
+  background: #1e5fa7;
+  transform: scale(1.1);
+}
+.nut-thanh-toan {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.nut-thanh-toan:hover {
+  background: #27ae60;
+  transform: scale(1.05);
+}
+
+/* ====== LỊCH SỬ MUA HÀNG TRONG MENU ====== */
+.history-container {
+  padding: 10px;
+}
+.history-container a {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.history-container a:hover {
+  color: #ffeb3b;
+}
+
+#orderList {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease;
+}
+
+.order-item {
+  background: white;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.order-item p {
+  margin: 5px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -12,7 +12,7 @@ async function getuser(tukhoa=tukhoaHienTai) {
     let danhsach = sanphamdata.data;
    
     if (sanpham !== "") {
-      danhsach = danhsach.filter(sp => sp.MA_MAT_HANG === sanpham);
+      danhsach = danhsach.filter(sp => sp.TEN_MAT_HANG=== sanpham);
     }
     if (tukhoa && tukhoa.trim() !== "") {
       danhsach = danhsach.filter(sp => 
@@ -28,9 +28,9 @@ async function getuser(tukhoa=tukhoaHienTai) {
         tranghientai = 1; // Nếu không có sản phẩm nào, vẫn giữ trang 1
     }
     peruser = user.slice((tranghientai - 1) * sosp, tranghientai * sosp);
-    
-    renderpaga();
     renderuser();
+    renderpaga();
+    
   } catch (error) {
     console.log("Lỗi khi lấy dữ liệu:", error);
   }
@@ -40,8 +40,8 @@ function timkiem(key) {
   sanpham = ""; // <--- QUAN TRỌNG: Reset danh mục khi tìm kiếm
     
     // Xóa trạng thái active của menu (nếu có)
-    const thanhphans = document.querySelectorAll(".sanpham");
-    thanhphans.forEach(t => t.classList.remove("active"));
+    // const thanhphans = document.querySelectorAll(".sanpham");
+    // thanhphans.forEach(t => t.classList.remove("active"));
     getuser(key);
 }
 
@@ -96,19 +96,14 @@ function renderpaga() {
 // }
 
 function handle(page) {
-    // TÍNH LẠI tổng số trang dựa trên mảng user đã lọc
-    const tongSoTrang = Math.ceil(user.length / sosp); 
-    
-    // KIỂM TRA nghiêm ngặt: chỉ cho phép chuyển trang trong phạm vi hợp lệ
-    if (page >= 1 && page <= tongSoTrang) { 
-      tranghientai = page;
-      getuser();
-    } else if (page > tongSoTrang && tongSoTrang > 0) {
-      // Nếu cố tình chuyển sang trang > max page, reset về trang cuối
-      tranghientai = tongSoTrang;
-      getuser();
-    }
+  const tongSoTrang = Math.ceil(user.length / sosp);
+  if (page >= 1 && page <= tongSoTrang) {
+    tranghientai = page;
+    // QUAN TRỌNG: Gọi lại getuser và truyền từ khóa tìm kiếm hiện tại
+    getuser(tukhoaHienTai); 
   }
+}
+
 
 
 // async function getData() {
