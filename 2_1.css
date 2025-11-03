@@ -170,9 +170,12 @@
     margin-left: 10px;
     font-size: 16px;
 }
+.taoacc:hover{
+    color: #007bff;
+}
 .taoacc:active{
-    color: violet;
-    transition: .3s;
+    color: blue;
+    transition: 0.3s;
 }
 
 
