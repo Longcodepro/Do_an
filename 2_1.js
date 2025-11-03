@@ -1,19 +1,20 @@
 // mở file json để add dữ liệu vô local
-// fetch('./data.json')
-//     .then(res => res.json())
-//     .then(data =>{
-//         localStorage.setItem('du_lieu', JSON.stringify(data));
-//     });
+if (!localStorage.getItem('du_lieu')) {
+    console.log("⚠️ Không có dữ liệu — đang fetch từ file JSON...");
+    fetch('./data.json')
+        .then(res => res.json())
+        .then(data => {
+            localStorage.setItem('du_lieu', JSON.stringify(data));
+            console.log("✅ Đã lưu dữ liệu vào localStorage!");
+        })
+        .catch(err => console.error('Lỗi khi fetch:', err));
+} else {
+    console.log("✅ Dữ liệu đã có sẵn, không cần fetch lại.");
+}
 
 // lấy dữ liệu từ local và đổi thành object
 const db = JSON.parse(localStorage.getItem('du_lieu'));
 console.log(db);
-// kiểm tra xem lấy được chưa
-if(db){
-  console.log('Đã lấy được dữ liệu');
-}
-else console.log('Không lấy được dữ liệu');
-
 
 // hàm ẩn hiện mật khẩu
 function togglemk() {
@@ -27,6 +28,25 @@ function togglemk() {
         toggle.textContent = "👁"; // icon khi ẩn
     }
 }
+
+// khi load lại vẫn hiện tài khoản
+window.onload = function() {
+    let user = JSON.parse(localStorage.getItem("userLogin"));
+    let nutTK = document.getElementById("nut-tk");
+    let nutDN = document.getElementById("nut-dn");
+
+    if (user) {
+        // đã đăng nhập
+        nutDN.style.display = "none";
+        nutTK.style.display = "flex";
+        document.getElementById("btn-tk").innerHTML =
+            `<i class="fa-regular fa-user"></i> ${user.NAME}`;
+    } else {
+        // chưa đăng nhập
+        nutDN.style.display = "flex";
+        nutTK.style.display = "none";
+    }
+};
 
 function hienForm(idForm) {
     document.getElementById(idForm).style.display = "flex";
@@ -149,24 +169,7 @@ function dangNhap() {
     }
 }
 
-// khi load lại vẫn hiện tài khoản
-window.onload = function() {
-    let user = JSON.parse(localStorage.getItem("userLogin"));
-    let nutTK = document.getElementById("nut-tk");
-    let nutDN = document.getElementById("nut-dn");
 
-    if (user) {
-        // đã đăng nhập
-        nutDN.style.display = "none";
-        nutTK.style.display = "flex";
-        document.getElementById("btn-tk").innerHTML =
-            `<i class="fa-regular fa-user"></i> ${user.NAME}`;
-    } else {
-        // chưa đăng nhập
-        nutDN.style.display = "flex";
-        nutTK.style.display = "none";
-    }
-};
 
 //Hàm đăng xuất
 function logout(){
@@ -194,6 +197,10 @@ function moThongTin(){
     document.getElementById("in-dc").innerText = kh.DIA_CHI;
 
     document.getElementById("form-info").style.display="flex";
+
+    document.getElementById("btn-sua").style.display = "flex";
+    document.getElementById("btn-luu").style.display = "none";
+    document.getElementById("btn-huy").style.display = "none";
 }
 
 
