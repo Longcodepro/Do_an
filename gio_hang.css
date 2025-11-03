@@ -334,10 +334,31 @@
   padding: 12px 20px;
   cursor: pointer;
   transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
 }
 
 .l-menu li:hover {
   background-color: #198dff;
+  transform: scale(1.03);
+}
+
+.nutlogin {
+  background-color: #198dff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.nutlogin:hover {
+  background-color: #0f6cd9;
+  transform: scale(1.1);
 }
 
 /* ===== NÚT 3 GẠCH ===== */
@@ -462,4 +483,52 @@
 .nut-thanh-toan:hover {
   background: #27ae60;
   transform: scale(1.05);
+}
+
+/* ====== LỊCH SỬ MUA HÀNG TRONG MENU ====== */
+.history-container {
+  padding: 10px;
+}
+.history-container a {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.history-container a:hover {
+  color: #ffeb3b;
+}
+
+#orderList {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease;
+}
+
+.order-item {
+  background: white;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.order-item p {
+  margin: 5px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
