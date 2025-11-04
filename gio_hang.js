@@ -9,7 +9,7 @@ function lichSuMuaHang() {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!currentUser) {
-    content.innerHTML = "<p style='color:#ddd;'>Vui lòng đăng nhập để xem lịch sử mua hàng!</p>";
+    content.innerHTML = "<p style='color:#333;'>Vui lòng đăng nhập để xem lịch sử mua hàng!</p>";
     return;
   }
 

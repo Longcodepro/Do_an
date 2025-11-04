@@ -504,24 +504,44 @@
 }
 
 #orderList {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 8px 12px;
-  border-radius: 8px;
-  max-height: 250px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 12px;
+  max-height: 600px; /* tăng chiều cao tối đa */
   overflow-y: auto;
   animation: fadeIn 0.3s ease;
 }
 
 .order-item {
   background: white;
-  border-radius: 8px;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  display: flex;           /* cho nằm ngang */
+  align-items: center;     /* căn giữa theo trục dọc */
+  justify-content: space-between; /* cách đều hai bên */
+  flex-wrap: wrap;         /* tự xuống hàng nếu chật */
+  gap: 10px;               /* khoảng cách giữa các mục */
 }
 
 .order-item p {
-  margin: 5px 0;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 15px;
+}
+
+.order-item b {
+  font-size: 16px;
+}
+
+
+#content h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .hidden {

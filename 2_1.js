@@ -22,7 +22,7 @@ function togglemk() {
     let toggle = document.getElementById("toggle-mk");
     if (mkInput.type === "password") {
         mkInput.type = "text";
-        toggle.textContent = "👁"; // icon khi hiện
+        toggle.textContent = "👁️‍🗨️"; // icon khi hiện
     } else {
         mkInput.type = "password";
         toggle.textContent = "👁"; // icon khi ẩn
@@ -34,17 +34,20 @@ window.onload = function() {
     let user = JSON.parse(localStorage.getItem("currentUser"));
     let nutTK = document.getElementById("nut-tk");
     let nutDN = document.getElementById("nut-dn");
+    let nutGH = document.getElementById("nut-gio-hang");
 
     if (user) {
         // đã đăng nhập
         nutDN.style.display = "none";
         nutTK.style.display = "flex";
+        nutGH.style.display = "flex";
         document.getElementById("btn-tk").innerHTML =
             `<i class="fa-regular fa-user"></i> ${user.NAME}`;
     } else {
         // chưa đăng nhập
         nutDN.style.display = "flex";
         nutTK.style.display = "none";
+        nutGH.style.display = "none";
     }
 };
 
@@ -140,6 +143,7 @@ function dangNhap() {
     let nutTK = document.getElementById("nut-tk");
     let tkInput = document.getElementById("dn-tk");
     let mkInput = document.getElementById("dn-mk");
+    let nutGH = document.getElementById("nut-gio-hang");
 
     const tk = tkInput.value;
     const mk = mkInput.value;
@@ -157,10 +161,14 @@ function dangNhap() {
 
         document.getElementById("nut-dn").style.display="none";
         nutTK.style.display = "flex";
+        nutGH.style.display = "flex";
 
         // Đổi chữ Tài khoản → Thành tên người dùng
         document.getElementById("btn-tk").innerHTML = 
         `<i class="fa-regular fa-user"></i> ${found.NAME}`;
+
+        tkInput.value = "";
+        mkInput.value = "";
 
         dongFormdnhap();
     } 
@@ -176,7 +184,13 @@ function logout(){
     localStorage.removeItem("currentUser"); // XÓA TRẠNG THÁI ĐĂNG NHẬP
     document.getElementById("nut-dn").style.display = "flex"; 
     document.getElementById("nut-tk").style.display = "none"; 
+    document.getElementById("nut-gio-hang").style.display = "none";
     alert("Bạn đã đăng xuất thành công ");
+    // === THÊM DÒNG NÀY ĐỂ XÓA DỮ LIỆU ĐĂNG NHẬP KHI ĐĂNG XUẤT ===
+    if (tkInput && mkInput) {
+        tkInput.value = "";
+        mkInput.value = "";
+    }
 }
 
 function moThongTin(){
