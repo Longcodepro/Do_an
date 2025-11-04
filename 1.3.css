@@ -1,0 +1,64 @@
+/*////////////////////////////////////////*/
+/* ===============================
+   QUẢN LÝ LOẠI SẢN PHẨM
+   =============================== */
+#noi_dung h2 {
+  margin-bottom: 20px;
+  color: #2b7ed7;
+}
+
+#tableLoai {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #f9f9f9;
+  color: #333;
+}
+
+#tableLoai th, 
+#tableLoai td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+#tableLoai th {
+  background-color: #2b7ed7;
+  color: white;
+}
+
+#tableLoai tr:nth-child(even) {
+  background-color: #eef5ff;
+}
+
+#tableLoai tr:hover {
+  background-color: #dbeaff;
+}
+
+.xoa_sua {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.xoa_sua:hover {
+  background-color: #154b8f;
+}
+
+#them_sp, .nutlogin {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#them_sp:hover, .nutlogin:hover {
+  background-color: #154b8f;
+}
