@@ -168,7 +168,9 @@
     position: relative;
     background-color: #4eb09b;
   }
-  
+  .search{
+    overflow: hidden;
+  }
   .search {
     flex: 1;
     /* width: 100%; */
@@ -505,4 +507,24 @@
   color: white;
   border-color: #007bff;
   pointer-events: none;
+}
+@media only screen and (max-width: 750px){
+  .cart>div{
+    display: none;
+  }
+  .user>div{
+    display: none;
+  }
+  .Hotline{
+    display: none;
+  }
+  .product{
+    width: (50%-10px);
+  }
+  
+}
+@media only screen and (max-width: 1050px){
+  .menu-top{
+    display: none;
+  }
 }

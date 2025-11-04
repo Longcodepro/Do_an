@@ -54,7 +54,9 @@
   border: none;
   background-color: #d6d6d6;
 }
-
+.search{
+  overflow: hidden;
+}
 .nav-img {
   /* position: absolute; */
   display: flex;
@@ -276,6 +278,7 @@ display: flex;
   padding: 5px 8px;
   border-radius: 8px;
   
+  
 }
 .product{
   margin: 0 5px;
@@ -327,6 +330,7 @@ display: flex;
   .menu .anh img{
     height: 50px;
     width: 50px;
+    object-fit: cover;
   }
   .menu li:first-child {
     margin-bottom: 20px;
@@ -663,4 +667,17 @@ display: flex;
       /* padding: 8px 15px; */
       left: 0;
     }
-   
+    @media only screen and (max-width: 750px){
+      .cart>div{
+        display: none;
+      }
+      .user>div{
+        display: none;
+      }
+      .Hotline{
+        display: none;
+      }
+      .product{
+        width: (50%-10px);
+      }
+    }
