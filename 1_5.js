@@ -4,20 +4,21 @@ if (!localStorage.getItem('du_lieu')) {
     .then(res => res.json())
     .then(data => {
       localStorage.setItem('du_lieu', JSON.stringify(data));
+      quanLyNhapHang();
     });
 } else {
-    console.log("Đã có dữ liệu");
+  quanLyNhapHang();
 }
 
-// ✅ Truy cập database
+// ✅ Truy cập DB
 function getDB() {
   return JSON.parse(localStorage.getItem("du_lieu"));
 }
-function getBangNhap() {
-  return getDB().find(t => t.name === "nhap_hang").data;
+function getBangNhap(db = getDB()) {
+  return db.find(t => t.name === "nhap_hang").data;
 }
-function getBangCTNH() {
-  return getDB().find(t => t.name === "chi_tiet_nhap_hang").data;
+function getBangCTNH(db = getDB()) {
+  return db.find(t => t.name === "chi_tiet_nhap_hang").data;
 }
 
 // ✅ Hiển thị giao diện
@@ -60,7 +61,7 @@ function renderTable(list) {
   list.forEach(p => {
     const dsCT = bangCT.filter(ct => ct.MA_NHAP_HANG === p.MA_NHAP_HANG);
     const dsMaSP = dsCT.map(ct => ct.MA_SAN_PHAM).join("<br>");
-    const tongGiaTri = Number(p.TONG_GIA_TRI).toString();
+    const tongGiaTri = p.TONG_GIA_TRI;
 
     const tr = document.createElement("tr");
     tr.dataset.maPhieu = p.MA_NHAP_HANG;
@@ -93,7 +94,7 @@ function taoThanhCongCu(noiDung) {
   noiDung.appendChild(box);
 }
 
-// ✅ Form tạo bằng JS
+// ✅ Tạo form nhập phiếu
 function taoFormThem(parent) {
   const f = document.createElement("div");
   f.id = "formThemPhieu";
@@ -130,20 +131,33 @@ function taoFormThem(parent) {
   parent.appendChild(f);
 }
 
-// ✅ Hiển thị form
+// ✅ Mở form
 function hienThiForm() {
   document.getElementById("formThemPhieu").style.display = "block";
   document.getElementById("nutThem").style.display = "none";
 }
 
-// ✅ Ẩn form
+// ✅ Reset và Ẩn form
 function huyThemPhieu() {
+  document.getElementById("maNhap").value = "";
+  document.getElementById("ngayNhap").value = "";
+
+  const ds = document.getElementById("dsSanPham");
+  ds.innerHTML = `
+    <div class="hangSP">
+      <input class="maSP" placeholder="Mã SP">
+      <input type="number" class="soLuong" placeholder="SL" min="1">
+      <input type="number" class="giaNhap" placeholder="Giá nhập">
+      <button onclick="themDongSP(this)">+</button>
+      <button onclick="xoaDongSP(this)" style="display:none">-</button>
+    </div>
+  `;
+
   document.getElementById("formThemPhieu").style.display = "none";
-  document.getElementById("formThemPhieu").querySelector('form');
   document.getElementById("nutThem").style.display = "inline-block";
 }
 
-// ✅ Thêm dòng sản phẩm
+// ✅ Thêm dòng SP
 function themDongSP(btn) {
   const hang = btn.closest(".hangSP");
   const newRow = hang.cloneNode(true);
@@ -183,8 +197,8 @@ function luuPhieuMoi() {
   if (!ma || !ngay) return alert("Nhập đầy đủ!");
 
   const db = getDB();
-  const bangNhap = getBangNhap();
-  const bangCT = getBangCTNH();
+  const bangNhap = getBangNhap(db);
+  const bangCT = getBangCTNH(db);
 
   if (bangNhap.some(p => p.MA_NHAP_HANG === ma))
     return alert("Mã phiếu trùng");
@@ -210,24 +224,24 @@ function luuPhieuMoi() {
   bangNhap.push({
     MA_NHAP_HANG: ma,
     NGAY_NHAP: ngay,
-    TONG_GIA_TRI: tong.toFixed(2),
+    TONG_GIA_TRI: tong.toString(),
     TRANG_THAI: "Chưa hoàn thành"
   });
 
   localStorage.setItem("du_lieu", JSON.stringify(db));
   alert("✅ Thêm thành công!");
-  
-  huyThemPhieu(); // ✅ Ẩn form sau khi thêm
+
+  huyThemPhieu();
   quanLyNhapHang();
 }
 
-// ✅ Sửa phiếu
+// ✅ Chỉnh sửa phiếu
 function suaPhieu(btn) {
   const tr = btn.closest("tr");
   const action = tr.querySelector(".hanh-dong");
 
-  action.querySelectorAll("button")[0].style.display = "none"; // sửa
-  action.querySelectorAll("button")[1].style.display = "none"; // hoàn thành
+  action.querySelectorAll("button")[0].style.display = "none";
+  action.querySelectorAll("button")[1].style.display = "none";
   action.querySelector(".huy").style.display = "inline-block";
   action.querySelector(".luu").style.display = "inline-block";
 
@@ -237,10 +251,8 @@ function suaPhieu(btn) {
   tr.dataset.ngayOld = ngayCell.textContent.trim();
   tr.dataset.giaOld = giaCell.textContent.trim();
 
-  const giaNumber = tr.dataset.giaOld.replace(/\./g, "");
-  giaCell.innerHTML = `<input type="number" min="0" value="${giaNumber}">`;
-
   ngayCell.innerHTML = `<input type="date" value="${tr.dataset.ngayOld}">`;
+  giaCell.innerHTML = `<input type="number" min="0" value="${tr.dataset.giaOld}">`;
 }
 
 function huyPhieu(btn) {
@@ -261,7 +273,7 @@ function luuPhieu(btn) {
   const ma = tr.dataset.maPhieu;
 
   const db = getDB();
-  const bangNhap = db.find(t => t.name === "nhap_hang").data;
+  const bangNhap = getBangNhap(db);
   const p = bangNhap.find(x => x.MA_NHAP_HANG === ma);
 
   p.NGAY_NHAP = tr.querySelector('input[type="date"]').value;
@@ -275,7 +287,7 @@ function luuPhieu(btn) {
 function hoanThanhPhieu(btn) {
   const ma = btn.closest("tr").dataset.maPhieu;
   const db = getDB();
-  const bangNhap = db.find(t => t.name === "nhap_hang").data;
+  const bangNhap = getBangNhap(db);
   const p = bangNhap.find(x => x.MA_NHAP_HANG === ma);
 
   p.TRANG_THAI = "Đã hoàn thành";
@@ -290,5 +302,3 @@ function timPhieuNhap() {
     row.style.display = row.dataset.maPhieu.toLowerCase().includes(txt) ? "" : "none";
   });
 }
-
-
