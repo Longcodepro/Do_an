@@ -1,0 +1,85 @@
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <link href="gio_hang.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="gio_hang.js"></script>
+  </head>
+  <body>
+    <div>
+        <nav id="header">
+            <div class="nav-img">
+                <img src="/Do_an/img/anh2.png" alt="logo">
+            </div>
+            <button class="btn-bar">
+            <i class="nav-bar fa-solid fa-bars-staggered"></i>
+            <div>Danh Mục
+                <ul class="sub-menu">
+                    <li><a href="">may giac</a>
+                        <div class="menu-sub">
+                        <ul class="sub-menu1">
+                            <li><a href="">Máy giặt LG </a> </li>
+                            <li><a href="">Máy giặt TOSHIBA </a> </li>
+                            <li><a href="">Máy giặt banasonic </a> </li>
+                            <li><a href="">Máy giặt samsung </a> </li>
+                            <li><a href="">Máy giặt sony </a> </li>
+                            <li><a href="">Máy giặt sharp </a> </li>
+                    </ul>
+                        </div>
+                </li>
+                    <li><a href="">ban ui</a></li>
+                    <li><a href="">binh dun sieu toc</a></li>
+                    <li><a href="">quat hop</a></li>
+                    <li><a href="">may hut bui</a></li>
+                    <li><a href="">may loc khong khi</a></li>
+                    <li><a href="">may say toc</a></li>
+                    <li><a href="">may xay sinh to</a></li>
+                    <li><a href="">noi com</a></li>
+                    <li><a href="">lo vi song</a></li>
+                </ul>
+            </div>
+            </button>
+            
+            <div class="search">
+                <button class="btn-search" onclick="timkiem(document.getElementById('timkiem').value)"><i class="nav-search fa-solid fa-magnifying-glass"></i></button>
+                
+                <input type="search" name="" id="timkiem" placeholder="tim kiem">
+            
+            </div>
+            <button class="cart" onclick="window.location.href='2_1gop2_2.html'">
+                <i class="fa-solid fa-house  "></i>
+                <div> Về Trang Chủ</div>
+            </button>
+            <button class="Hotline"><i class="fa-solid fa-phone-volume"></i> 1900 1800</button>
+        </nav>
+        <div class="container">
+            <div class="l-menu">
+                <div class="danhmuc" onclick="danhmuc()">
+                        <button class="nutlogin"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div id="menuDanhMuc">
+                    <ul>
+                        <li><i class="fa-solid fa-bag-shopping"></i>Danh Sách Sản Phẩm</li>
+                        <li><i class="fa-solid fa-house"></i>Địa chỉ nhận hàng </li>
+                        <li>
+                            <div class="history-container">
+                                <a onclick="lichSuMuaHang()">
+                                <i class="fa-solid fa-clock-rotate-left"></i> Lịch sử mua hàng</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content" id="content">
+                <!-- Nội Dung -->
+            </div>
+        </div>
+        <footer>
+                <button class="nut-thanh-toan"><i class="fa-solid fa-money-bill-wave"></i> Tiền Mặt</button>
+                <button class="nut-thanh-toan" style="right: 170px;"><i class="fa-solid fa-credit-card"></i> Chuyển Khoản</button>
+        </footer>
+    </div>
+  </body>
+</html>
