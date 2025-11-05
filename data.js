@@ -1,4 +1,4 @@
-export const tatCaSanPham = [
+const tatCaSanPham = [
   // === MÁY GIẶT ===
   {
     maSP: 1,
@@ -620,3 +620,20 @@ export const tatCaSanPham = [
   { maSP: 49, tenSP: "Máy lọc không khí Blueair Blue Pure 411", loaiSP: "may_loc_khong_khi", hinhAnh: "", giaGoc: "3.800.000đ", giamGia: "-10%", giaHienTai: "3.420.000đ", giaSo: 3420000, soLuong: 65, nguongCanhBao: 10, thuongHieu: "Blueair", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=49" },
   { maSP: 50, tenSP: "Máy lọc không khí Levoit Core 300S", loaiSP: "may_loc_khong_khi", hinhAnh: "", giaGoc: "5.000.000đ", giamGia: "-10%", giaHienTai: "4.500.000đ", giaSo: 4500000, soLuong: 60, nguongCanhBao: 10, thuongHieu: "Levoit", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=50" },
 ];
+
+// đẩy lên local
+// truyền vô tên key và object chứa data
+setlocalStorage("product", tatCaSanPham);
+function setlocalStorage(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
+}
+// lấy file từ local
+// truyền vô key để lấy data
+function getlocalStorage(key){
+    return JSON.parse(localStorage.getItem(key));
+}
+
+// const bangSp = getlocalStorage('product');
+// console.log(bangSp);
+
+
