@@ -9,7 +9,7 @@ function lichSuMuaHang() {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!currentUser) {
-    content.innerHTML = "<p style='color:#333;'>Vui lòng đăng nhập để xem lịch sử mua hàng!</p>";
+    content.innerHTML = "<p style='color:red;'>Vui lòng đăng nhập để xem lịch sử mua hàng!</p>";
     return;
   }
 
@@ -31,7 +31,7 @@ function lichSuMuaHang() {
 
       const container = document.getElementById("orderList");
       if (orders.length === 0) {
-        container.innerHTML = `<p style="color:#ddd;">Chưa có đơn hàng nào.</p>`;
+        container.innerHTML = `<p style="color:red;">Chưa có đơn hàng nào.</p>`;
         return;
       }
 
