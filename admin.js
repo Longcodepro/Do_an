@@ -88,6 +88,44 @@ function ensureDataLoaded() {
 }
 ensureDataLoaded();
 
+// ===================== BẮT BUỘC ĐĂNG NHẬP =====================
+document.addEventListener("DOMContentLoaded", () => {
+  const nutLogin = document.getElementById("nutlogin");
+  const nutAccount = document.getElementById("nutaccount");
+  const overlay = document.getElementById("loginOverlay");
+
+  // Nếu chưa đăng nhập thì hiện form login
+  const isLoggedIn = localStorage.getItem("admin_logged_in") === "true";
+
+  if (!isLoggedIn) {
+    overlay.style.display = "flex";
+    setTimeout(() => overlay.classList.add("show"), 10);
+  } else {
+    nutLogin.style.display = "none";
+    nutAccount.style.display = "block";
+  }
+});
+
+// Khi đăng nhập thành công
+function loginSuccess() {
+  document.getElementById("nutlogin").style.display = "none";
+  document.getElementById("nutaccount").style.display = "block";
+  localStorage.setItem("admin_logged_in", "true"); // ✅ Lưu trạng thái đăng nhập
+  closeLogin();
+}
+
+// Khi đăng xuất
+function logout() {
+  document.getElementById("nutlogin").style.display = "block";
+  document.getElementById("nutaccount").style.display = "none";
+  document.getElementById("menuAdmin").style.display = "none";
+  localStorage.removeItem("admin_logged_in"); // ✅ Xóa trạng thái đăng nhập
+  alert("Bạn đã đăng xuất!");
+  // Có thể reload lại trang để bắt đăng nhập lại
+  location.reload();
+}
+
+
 // ===================== Helpers =====================
 function getDB() {
   try {
