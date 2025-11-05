@@ -1,5 +1,6 @@
 /* --- Bố cục tổng thể --- */
 #noi_dung {
+    padding: 0px;
     max-width: 1000px; 
     margin: 0 auto;
     background-color: #fff;
