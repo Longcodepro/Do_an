@@ -62,6 +62,8 @@ function renderTable(list) {
     const dsCT = bangCT.filter(ct => ct.MA_NHAP_HANG === p.MA_NHAP_HANG);
     const dsMaSP = dsCT.map(ct => ct.MA_SAN_PHAM).join("<br>");
     const tongGiaTri = p.TONG_GIA_TRI;
+    const daHoanThanh = p.TRANG_THAI === "Đã hoàn thành"; // Thêm biến kiểm tra
+    const trangThaiHienThi = daHoanThanh ? "Đã hoàn thành" : "Chưa hoàn thành";
 
     const tr = document.createElement("tr");
     tr.dataset.maPhieu = p.MA_NHAP_HANG;
@@ -71,10 +73,10 @@ function renderTable(list) {
       <td>${dsMaSP}</td>
       <td data-cells="NGAY_NHAP">${p.NGAY_NHAP}</td>
       <td data-cells="TONG_GIA_TRI">${tongGiaTri}</td>
-      <td>${p.TRANG_THAI || "Chưa hoàn thành"}</td>
+      <td>${trangThaiHienThi}</td>
       <td class="hanh-dong">
-        <button onclick="suaPhieu(this)">Sửa</button>
-        <button onclick="hoanThanhPhieu(this)">Hoàn thành</button>
+        <button onclick="suaPhieu(this)" ${daHoanThanh ? 'style="display:none"' : ''}>Sửa</button> 
+        <button onclick="hoanThanhPhieu(this)" ${daHoanThanh ? 'style="display:none"' : ''}>Hoàn thành</button>
         <button class="huy" style="display:none" onclick="huyPhieu(this)">Hủy</button>
         <button class="luu" style="display:none" onclick="luuPhieu(this)">Lưu</button>
       </td>`;

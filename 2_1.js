@@ -156,6 +156,13 @@ function dangNhap() {
     let found = danhsach.find(acc => acc.NAME === tk && acc.PASSWORD === mk);
 
     if (found) {
+        if (found.TINH_TRANG === "0" || found.TINH_TRANG === 0) {
+            alert("❌ Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Admin!");
+            // Xóa input sau khi báo lỗi
+            tkInput.value = "";
+            mkInput.value = "";
+            return; // Dừng quá trình đăng nhập
+        }
         alert("Đăng nhập thành công!");
         localStorage.setItem("currentUser", JSON.stringify(found));
 
