@@ -1,4 +1,4 @@
-export const tatCaSanPham = [
+const tatCaSanPham = [
   // === MÁY GIẶT ===
   {
     maSP: 1,
@@ -20,6 +20,7 @@ export const tatCaSanPham = [
     tenSP: "Máy giặt Samsung AddWash 10kg",
     loaiSP: "may_giat",
     hinhAnh: "./img/2. Máy giặt Samsung AddWash 10kg.webp",
+
     giaGoc: "10.200.000đ",
     giamGia: "-12%",
     giaHienTai: "8.976.000đ",
@@ -35,6 +36,7 @@ export const tatCaSanPham = [
     tenSP: "Máy giặt Toshiba Inverter 8.5kg",
     loaiSP: "may_giat",
     hinhAnh: "./img/3.Máy giặt Toshiba Inverter 8.5kg.webp",
+
     giaGoc: "7.900.000đ",
     giamGia: "-7%",
     giaHienTai: "7.347.000đ",
@@ -50,6 +52,7 @@ export const tatCaSanPham = [
     tenSP: "Máy giặt Aqua 9kg cửa trên",
     loaiSP: "may_giat",
     hinhAnh: "./img/4.Máy giặt Aqua 9kg cửa trên.jpg",
+
     giaGoc: "6.800.000đ",
     giamGia: "-5%",
     giaHienTai: "6.460.000đ",
@@ -65,6 +68,7 @@ export const tatCaSanPham = [
     tenSP: "Máy giặt Electrolux 9kg Inverter",
     loaiSP: "may_giat",
     hinhAnh: "./img/5.Máy giặt Electrolux 9kg Inverter.webp",
+
     giaGoc: "9.600.000đ",
     giamGia: "-10%",
     giaHienTai: "8.640.000đ",
@@ -80,6 +84,7 @@ export const tatCaSanPham = [
     tenSP: "Máy giặt Panasonic 10kg",
     loaiSP: "may_giat",
     hinhAnh: "./img/6.Máy giặt Panasonic 10kg.jpg",
+
     giaGoc: "8.000.000đ",
     giamGia: "-8%",
     giaHienTai: "7.360.000đ",
@@ -95,6 +100,7 @@ export const tatCaSanPham = [
     tenSP: "Máy giặt Casper Inverter 8.5kg",
     loaiSP: "may_giat",
     hinhAnh: "./img/7.Máy giặt Casper Inverter 8.5kg.jpg",
+
     giaGoc: "6.500.000đ",
     giamGia: "-9%",
     giaHienTai: "5.915.000đ",
@@ -110,6 +116,7 @@ export const tatCaSanPham = [
     tenSP: "Máy giặt Sharp 9kg cửa trên",
     loaiSP: "may_giat",
     hinhAnh: "./img/8.Máy giặt Sharp 9kg cửa trên.jpg",
+
     giaGoc: "6.000.000đ",
     giamGia: "-7%",
     giaHienTai: "5.580.000đ",
@@ -125,6 +132,7 @@ export const tatCaSanPham = [
     tenSP: "Máy giặt Midea 7.5kg",
     loaiSP: "may_giat",
     hinhAnh: "./img/9.Máy giặt Midea 7.5kg.jpg",
+
     giaGoc: "5.200.000đ",
     giamGia: "-6%",
     giaHienTai: "4.888.000đ",
@@ -140,6 +148,7 @@ export const tatCaSanPham = [
     tenSP: "Máy giặt Beko 8kg Inverter",
     loaiSP: "may_giat",
     hinhAnh: "./img/10.Máy giặt Beko 8kg Inverter.jpg",
+
     giaGoc: "7.300.000đ",
     giamGia: "-10%",
     giaHienTai: "6.570.000đ",
@@ -151,7 +160,7 @@ export const tatCaSanPham = [
     lienKet: "./product-details.html?id=10",
   },
 
-  // === TV ===
+  // === Tv ===
   {
     maSP: 11,
     tenSP: "TV Samsung 43 inch 4K UHD",
@@ -620,3 +629,224 @@ export const tatCaSanPham = [
   { maSP: 49, tenSP: "Máy lọc không khí Blueair Blue Pure 411", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/49.Máy lọc không khí Blueair Blue Pure 411.jpg", giaGoc: "3.800.000đ", giamGia: "-10%", giaHienTai: "3.420.000đ", giaSo: 3420000, soLuong: 65, nguongCanhBao: 10, thuongHieu: "Blueair", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=49" },
   { maSP: 50, tenSP: "Máy lọc không khí Levoit Core 300S", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/50.Máy lọc không khí Levoit Core 300S.jpg", giaGoc: "5.000.000đ", giamGia: "-10%", giaHienTai: "4.500.000đ", giaSo: 4500000, soLuong: 60, nguongCanhBao: 10, thuongHieu: "Levoit", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=50" },
 ];
+
+// kiểm tra xem trên local hiện tại đã có table chưa nếu chưa có thì đẩy lên
+const tableSp = JSON.parse(localStorage.getItem('product'));
+if(tableSp){
+  console.log("Đã có dữ liệu bảng sản phẩm")
+}
+else{
+  localStorage.setItem('product', JSON.stringify(tatCaSanPham));
+}
+
+// bảng đơn hàng
+const donHang = [
+  {
+    maDH: 1,
+    trangThai: "Đang xử lý",
+    tongTien: 26350000,
+    phuongThucThanhToan: "Thanh toán khi nhận hàng",
+    diaChi: "123 Lý Thường Kiệt, Quận 10, TP.HCM",
+  },
+  {
+    maDH: 2,
+    trangThai: "Đang giao",
+    tongTien: 14185000,
+    phuongThucThanhToan: "Ví điện tử Momo",
+    diaChi: "12 Võ Văn Ngân, Thủ Đức, TP.HCM",
+  },
+  {
+    maDH: 3,
+    trangThai: "Đã giao",
+    tongTien: 19750000,
+    phuongThucThanhToan: "Chuyển khoản ngân hàng",
+    diaChi: "456 Nguyễn Huệ, Quận 1, TP.HCM",
+  },
+  {
+    maDH: 4,
+    trangThai: "Đang xử lý",
+    tongTien: 9850000,
+    phuongThucThanhToan: "Thanh toán khi nhận hàng",
+    diaChi: "98 Trần Hưng Đạo, Quận 5, TP.HCM",
+  },
+  {
+    maDH: 5,
+    trangThai: "Đã giao",
+    tongTien: 22890000,
+    phuongThucThanhToan: "Thẻ tín dụng",
+    diaChi: "27 Nguyễn Văn Linh, Quận 7, TP.HCM",
+  },
+];
+
+const tableBill = JSON.parse(localStorage.getItem('Bill'));
+if(tableBill){
+  console.log("Đã có dữ liệu bảng bill")
+}
+else{
+  localStorage.setItem('Bill', JSON.stringify(donHang));
+}
+
+
+// bảng chi tiết đơn hàng
+const chiTietDonHang = [
+  { maCTDH: 1, maDH: 1, maSP: 101, soLuong: 1, tongTien: 7650000 },
+  { maCTDH: 2, maDH: 1, maSP: 102, soLuong: 1, tongTien: 18700000 },
+  { maCTDH: 3, maDH: 2, maSP: 103, soLuong: 2, tongTien: 8190000 },
+  { maCTDH: 4, maDH: 2, maSP: 104, soLuong: 1, tongTien: 5915000 },
+  { maCTDH: 5, maDH: 2, maSP: 105, soLuong: 1, tongTien: 1000000 },
+  { maCTDH: 6, maDH: 3, maSP: 106, soLuong: 1, tongTien: 11440000 },
+  { maCTDH: 7, maDH: 3, maSP: 107, soLuong: 2, tongTien: 1570000 },
+  { maCTDH: 8, maDH: 4, maSP: 108, soLuong: 1, tongTien: 8645000 },
+  { maCTDH: 9, maDH: 4, maSP: 109, soLuong: 1, tongTien: 4400000 },
+  { maCTDH: 10, maDH: 4, maSP: 110, soLuong: 1, tongTien: 800000 },
+  { maCTDH: 11, maDH: 5, maSP: 111, soLuong: 2, tongTien: 6000000 },
+  { maCTDH: 12, maDH: 5, maSP: 112, soLuong: 1, tongTien: 16890000 },
+];
+const tableBillDetail = JSON.parse(localStorage.getItem('BillDetail'));
+if(tableBillDetail){
+  console.log("Đã có dữ liệu bảng bill detail")
+}
+else{
+  localStorage.setItem('BillDetail', JSON.stringify(chiTietDonHang));
+}
+
+// bảng khách hàng
+const khachHang = [
+  {
+    maKH: 1,
+    tenKH: "Nguyễn Văn An",
+    gioiTinh: "Nam",
+    email: "an.nguyen@example.com",
+    diaChi: "12 Nguyễn Trãi, Quận 1, TP.HCM",
+    matKhau: "an123456"
+  },
+  {
+    maKH: 2,
+    tenKH: "Trần Thị Bích",
+    gioiTinh: "Nữ",
+    email: "bich.tran@example.com",
+    diaChi: "45 Lê Lợi, Quận 3, TP.HCM",
+    matKhau: "bich234567"
+  },
+  {
+    maKH: 3,
+    tenKH: "Lê Hoàng Long",
+    gioiTinh: "Nam",
+    email: "long.le@example.com",
+    diaChi: "78 Hai Bà Trưng, TP. Hà Nội",
+    matKhau: "long345678"
+  },
+  {
+    maKH: 4,
+    tenKH: "Phạm Thu Hà",
+    gioiTinh: "Nữ",
+    email: "ha.pham@example.com",
+    diaChi: "23 Trần Phú, TP. Đà Nẵng",
+    matKhau: "ha456789"
+  },
+  {
+    maKH: 5,
+    tenKH: "Đỗ Quang Minh",
+    gioiTinh: "Nam",
+    email: "minh.do@example.com",
+    diaChi: "56 Nguyễn Huệ, TP. Cần Thơ",
+    matKhau: "minh567890"
+  }
+];
+const tableKhachHang = JSON.parse(localStorage.getItem('KhachHang'));
+if(tableKhachHang){
+  console.log("Đã có dữ liệu bảng khach hang")
+}
+else{
+  localStorage.setItem('KhachHang', JSON.stringify(khachHang));
+}
+
+// bảng nhập hàng
+const nhapHang = [
+  {
+    maNhap: 1,
+    maSP: 101,
+    soLuong: 50,
+    ngayNhap: "2025-11-01",
+    trangThai: "Hoàn tất"
+  },
+  {
+    maNhap: 2,
+    maSP: 102,
+    soLuong: 30,
+    ngayNhap: "2025-11-02",
+    trangThai: "Hoàn tất"
+  },
+  {
+    maNhap: 3,
+    maSP: 103,
+    soLuong: 20,
+    ngayNhap: "2025-11-03",
+    trangThai: "Đang xử lý"
+  },
+  {
+    maNhap: 4,
+    maSP: 104,
+    soLuong: 15,
+    ngayNhap: "2025-11-04",
+    trangThai: "Hoàn tất"
+  },
+  {
+    maNhap: 5,
+    maSP: 105,
+    soLuong: 40,
+    ngayNhap: "2025-11-05",
+    trangThai: "Đang xử lý"
+  }
+];
+const tableNhapHang = JSON.parse(localStorage.getItem('NhapHang'));
+if(tableNhapHang){
+  console.log("Đã có dữ liệu bảng nhap hang")
+}
+else{
+  localStorage.setItem('NhapHang', JSON.stringify(nhapHang));
+}
+
+// table mặt hàng
+const matHang = [
+  {
+    maMatHang: 1,
+    tenMatHang: "Máy giặt"
+  },
+  {
+    maMatHang: 2,
+    tenMatHang: "Tủ lạnh",
+  },
+  {
+    maMatHang: 3,
+    tenMatHang: "Tv",
+  }
+  {
+    maMatHang: 4,
+    tenMatHang: "Máy lạnh",
+  },
+  {
+    maMatHang: 5,
+    tenMatHang: "Máy lọc không khí"
+  }
+]
+
+
+
+
+
+// các hàm lấy  và và cập nhập table 
+// đẩy lên local
+// truyền vô tên key và object chứa data
+setlocalStorage("product", tatCaSanPham);
+function setlocalStorage(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
+}
+// lấy file từ local
+// truyền vô key để lấy data
+function getlocalStorage(key){
+    return JSON.parse(localStorage.getItem(key));
+}
+
+
+

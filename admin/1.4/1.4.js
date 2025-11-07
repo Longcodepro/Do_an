@@ -1,39 +1,31 @@
-// lấy dữ liệu từ  local và đổi thành object
-function lay_du_lieu() {
-  const db = JSON.parse(localStorage.getItem('du_lieu'));
-  // kiểm tra xem lấy được chưa
-  if (db) {
-    console.log('Đã lấy được dữ liệu');
-    return db;
-  }
-  else console.log('Không lấy được dữ liệu');
-}
-function cap_nhap_localStorage(db) {
-  localStorage.setItem('du_lieu', JSON.stringify(db));
-  console.log('Đã cập nhập dữ liệu vào localStorage');
-}
-function lay_bang_san_pham(db){
-  const tableSp = db.find(table => table.name == 'san_pham');
-  return tableSp;
-}
-
-// tạo link css
+//tạo link css
 const link = document.createElement('link');
 link.href = './1.4.css';
 link.rel = 'stylesheet';
+// các hàm lấy  và và cập nhập table 
+// đẩy lên local
+// truyền vô tên key và object chứa data
+setlocalStorage("product", tatCaSanPham);
+function setlocalStorage(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
+}
+// lấy file từ local
+// truyền vô key để lấy data
+function getlocalStorage(key){
+    return JSON.parse(localStorage.getItem(key));
+}
+// tạo biến bảng sản phẩm cục bộ
+const rowsSp = getlocalStorage('product');
 // hàm
 function hamChinh() {
-  let db = lay_du_lieu();
-  let rowsSp = lay_bang_san_pham(db).data;
   // tạo div nối với nội thẻ div có id = noi_dung trong html
   const div = document.querySelector('#noi_dung');
   div.innerHTML = '';
-  menu(div, rowsSp);
-  content(div, rowsSp);
-  cap_nhap_localStorage(db);
+  menu(div);
+  content(div);
 }
 // hàm in ra các menu
-function menu(div, rowsSp) {
+function menu(div) {
   // làm phần nút thêm sản phẩm, logo, tìm kiếm,
   const div1 = document.createElement('div');
   div1.id = 'div1';
