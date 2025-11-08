@@ -820,7 +820,7 @@ const matHang = [
   {
     maMatHang: 3,
     tenMatHang: "Tv",
-  }
+  },
   {
     maMatHang: 4,
     tenMatHang: "Máy lạnh",
