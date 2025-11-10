@@ -3,7 +3,7 @@ const tatCaSanPham = [
   {
     maSP: 1,
     tenSP: "Máy giặt LG Inverter 9kg",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/1.Máy giặt LG Inverter 9kg.jpg",
     giaGoc: "8.500.000đ",
     giamGia: "-10%",
@@ -18,7 +18,7 @@ const tatCaSanPham = [
   {
     maSP: 2,
     tenSP: "Máy giặt Samsung AddWash 10kg",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/2. Máy giặt Samsung AddWash 10kg.webp",
 
     giaGoc: "10.200.000đ",
@@ -34,7 +34,7 @@ const tatCaSanPham = [
   {
     maSP: 3,
     tenSP: "Máy giặt Toshiba Inverter 8.5kg",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/3.Máy giặt Toshiba Inverter 8.5kg.webp",
 
     giaGoc: "7.900.000đ",
@@ -50,7 +50,7 @@ const tatCaSanPham = [
   {
     maSP: 4,
     tenSP: "Máy giặt Aqua 9kg cửa trên",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/4.Máy giặt Aqua 9kg cửa trên.jpg",
 
     giaGoc: "6.800.000đ",
@@ -66,7 +66,7 @@ const tatCaSanPham = [
   {
     maSP: 5,
     tenSP: "Máy giặt Electrolux 9kg Inverter",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/5.Máy giặt Electrolux 9kg Inverter.webp",
 
     giaGoc: "9.600.000đ",
@@ -82,7 +82,7 @@ const tatCaSanPham = [
   {
     maSP: 6,
     tenSP: "Máy giặt Panasonic 10kg",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/6.Máy giặt Panasonic 10kg.jpg",
 
     giaGoc: "8.000.000đ",
@@ -98,7 +98,7 @@ const tatCaSanPham = [
   {
     maSP: 7,
     tenSP: "Máy giặt Casper Inverter 8.5kg",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/7.Máy giặt Casper Inverter 8.5kg.jpg",
 
     giaGoc: "6.500.000đ",
@@ -114,7 +114,7 @@ const tatCaSanPham = [
   {
     maSP: 8,
     tenSP: "Máy giặt Sharp 9kg cửa trên",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/8.Máy giặt Sharp 9kg cửa trên.jpg",
 
     giaGoc: "6.000.000đ",
@@ -130,7 +130,7 @@ const tatCaSanPham = [
   {
     maSP: 9,
     tenSP: "Máy giặt Midea 7.5kg",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/9.Máy giặt Midea 7.5kg.jpg",
 
     giaGoc: "5.200.000đ",
@@ -146,7 +146,7 @@ const tatCaSanPham = [
   {
     maSP: 10,
     tenSP: "Máy giặt Beko 8kg Inverter",
-    loaiSP: "may_giat",
+    maMatHang: "1",
     hinhAnh: "./img/10.Máy giặt Beko 8kg Inverter.jpg",
 
     giaGoc: "7.300.000đ",
@@ -164,7 +164,7 @@ const tatCaSanPham = [
   {
     maSP: 11,
     tenSP: "TV Samsung 43 inch 4K UHD",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/11.TV Samsung 43 inch 4K UHD.jpg",
     giaGoc: "10.000.000đ",
     giamGia: "-10%",
@@ -179,7 +179,7 @@ const tatCaSanPham = [
   {
     maSP: 12,
     tenSP: "TV LG 55 inch OLED",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/12.TV LG 55 inch OLED.jpg",
     giaGoc: "22.000.000đ",
     giamGia: "-15%",
@@ -194,7 +194,7 @@ const tatCaSanPham = [
   {
     maSP: 13,
     tenSP: "TV Sony 50 inch 4K HDR",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/13.TV Sony 50 inch 4K HDR.jpg",
     giaGoc: "17.000.000đ",
     giamGia: "-12%",
@@ -209,7 +209,7 @@ const tatCaSanPham = [
   {
     maSP: 14,
     tenSP: "TV TCL 43 inch Smart TV",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/14.TV TCL 43 inch Smart TV.jpg",
     giaGoc: "8.500.000đ",
     giamGia: "-10%",
@@ -224,7 +224,7 @@ const tatCaSanPham = [
   {
     maSP: 15,
     tenSP: "TV Casper 43 inch Full HD",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/15.TV Casper 43 inch Full HD.jpg",
     giaGoc: "7.200.000đ",
     giamGia: "-9%",
@@ -239,7 +239,7 @@ const tatCaSanPham = [
   {
     maSP: 16,
     tenSP: "TV Xiaomi 50 inch 4K",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/16.TV Xiaomi 50 inch 4K.jpg",
     giaGoc: "10.500.000đ",
     giamGia: "-10%",
@@ -254,7 +254,7 @@ const tatCaSanPham = [
   {
     maSP: 17,
     tenSP: "TV Panasonic 55 inch 4K",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/17.TV Panasonic 55 inch 4K.jpg",
     giaGoc: "19.000.000đ",
     giamGia: "-13%",
@@ -269,7 +269,7 @@ const tatCaSanPham = [
   {
     maSP: 18,
     tenSP: "TV Sharp 40 inch HD",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/18.TV Sharp 40 inch HD.jpg",
     giaGoc: "6.500.000đ",
     giamGia: "-8%",
@@ -284,7 +284,7 @@ const tatCaSanPham = [
   {
     maSP: 19,
     tenSP: "TV Toshiba 43 inch Smart",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/19.TV Toshiba 43 inch Smart.jpg",
     giaGoc: "9.000.000đ",
     giamGia: "-11%",
@@ -299,7 +299,7 @@ const tatCaSanPham = [
   {
     maSP: 20,
     tenSP: "TV Beko 43 inch Android",
-    loaiSP: "tv",
+    maMatHang: "3",
     hinhAnh: "./img/20.TV Beko 43 inch Android.jpg",
     giaGoc: "8.000.000đ",
     giamGia: "-10%",
@@ -317,7 +317,7 @@ const tatCaSanPham = [
   {
     maSP: 21,
     tenSP: "Tủ lạnh LG Inverter 315 lít",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/21.Tủ lạnh LG Inverter 315 lít.jpg",
     giaGoc: "12.000.000đ",
     giamGia: "-10%",
@@ -332,7 +332,7 @@ const tatCaSanPham = [
   {
     maSP: 22,
     tenSP: "Tủ lạnh Samsung 2 cửa 340 lít",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/22.Tủ lạnh Samsung 2 cửa 340 lít.jpg",
     giaGoc: "13.000.000đ",
     giamGia: "-12%",
@@ -347,7 +347,7 @@ const tatCaSanPham = [
   {
     maSP: 23,
     tenSP: "Tủ lạnh Toshiba Inverter 280 lít",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/23.Tủ lạnh Toshiba Inverter 280 lít.jpg",
     giaGoc: "10.500.000đ",
     giamGia: "-9%",
@@ -362,7 +362,7 @@ const tatCaSanPham = [
   {
     maSP: 24,
     tenSP: "Tủ lạnh Panasonic 300 lít",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/24.Tủ lạnh Panasonic 300 lít.jpg",
     giaGoc: "11.000.000đ",
     giamGia: "-10%",
@@ -377,7 +377,7 @@ const tatCaSanPham = [
   {
     maSP: 25,
     tenSP: "Tủ lạnh Aqua 260 lít ngăn đá trên",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/25.Tủ lạnh Aqua 260 lít ngăn đá trên.jpg",
     giaGoc: "8.500.000đ",
     giamGia: "-8%",
@@ -392,7 +392,7 @@ const tatCaSanPham = [
   {
     maSP: 26,
     tenSP: "Tủ lạnh Sharp 196 lít",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/26.Tủ lạnh Sharp 196 lít.webp",
     giaGoc: "6.900.000đ",
     giamGia: "-7%",
@@ -407,7 +407,7 @@ const tatCaSanPham = [
   {
     maSP: 27,
     tenSP: "Tủ lạnh Casper Inverter 250 lít",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/27.Tủ lạnh Casper Inverter 250 lít.webp",
     giaGoc: "8.000.000đ",
     giamGia: "-10%",
@@ -422,7 +422,7 @@ const tatCaSanPham = [
   {
     maSP: 28,
     tenSP: "Tủ lạnh Beko 200 lít",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/28.Tủ lạnh Beko 200 lít.webp",
     giaGoc: "6.500.000đ",
     giamGia: "-10%",
@@ -437,7 +437,7 @@ const tatCaSanPham = [
   {
     maSP: 29,
     tenSP: "Tủ lạnh Midea 220 lít ngăn đá dưới",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/29.Tủ lạnh Midea 220 lít ngăn đá dưới.jpg",
     giaGoc: "7.500.000đ",
     giamGia: "-8%",
@@ -452,7 +452,7 @@ const tatCaSanPham = [
   {
     maSP: 30,
     tenSP: "Tủ lạnh Xiaomi 2 cửa 260 lít",
-    loaiSP: "tu_lanh",
+    maMatHang: "2",
     hinhAnh: "./img/30.Tủ lạnh Xiaomi 2 cửa 260 lít.jpg",
     giaGoc: "9.500.000đ",
     giamGia: "-10%",
@@ -469,7 +469,7 @@ const tatCaSanPham = [
   {
     maSP: 31,
     tenSP: "Máy lạnh LG Inverter 1.5HP",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/31.Máy lạnh LG Inverter 1.5HP.jpg",
     giaGoc: "11.000.000đ",
     giamGia: "-12%",
@@ -484,7 +484,7 @@ const tatCaSanPham = [
   {
     maSP: 32,
     tenSP: "Máy lạnh Daikin Inverter 1HP",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/32.Máy lạnh Daikin Inverter 1HP.jpg",
     giaGoc: "10.500.000đ",
     giamGia: "-10%",
@@ -499,7 +499,7 @@ const tatCaSanPham = [
   {
     maSP: 33,
     tenSP: "Máy lạnh Panasonic Inverter 1.5HP",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/33.Máy lạnh Panasonic Inverter 1.5HP.webp",
     giaGoc: "12.000.000đ",
     giamGia: "-10%",
@@ -514,7 +514,7 @@ const tatCaSanPham = [
   {
     maSP: 34,
     tenSP: "Máy lạnh Casper Inverter 1.5HP",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/34.Máy lạnh Casper Inverter 1.5HP.jpg",
     giaGoc: "8.800.000đ",
     giamGia: "-8%",
@@ -529,7 +529,7 @@ const tatCaSanPham = [
   {
     maSP: 35,
     tenSP: "Máy lạnh Toshiba 1HP Inverter",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/35.Máy lạnh Toshiba 1HP Inverter.webp",
     giaGoc: "9.500.000đ",
     giamGia: "-9%",
@@ -544,7 +544,7 @@ const tatCaSanPham = [
   {
     maSP: 36,
     tenSP: "Máy lạnh Samsung WindFree 1HP",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/36.Máy lạnh Samsung WindFree 1HP.webp",
     giaGoc: "11.500.000đ",
     giamGia: "-11%",
@@ -559,7 +559,7 @@ const tatCaSanPham = [
   {
     maSP: 37,
     tenSP: "Máy lạnh Midea Inverter 1HP",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/37.Máy lạnh Midea Inverter 1HP.jpg",
     giaGoc: "7.500.000đ",
     giamGia: "-10%",
@@ -574,7 +574,7 @@ const tatCaSanPham = [
   {
     maSP: 38,
     tenSP: "Máy lạnh Beko Inverter 1.5HP",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/38.Máy lạnh Beko Inverter 1.5HP.webp",
     giaGoc: "8.200.000đ",
     giamGia: "-9%",
@@ -589,7 +589,7 @@ const tatCaSanPham = [
   {
     maSP: 39,
     tenSP: "Máy lạnh Aqua Inverter 1HP",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/39.Máy lạnh Aqua Inverter 1HP.webp",
     giaGoc: "8.000.000đ",
     giamGia: "-10%",
@@ -604,7 +604,7 @@ const tatCaSanPham = [
   {
     maSP: 40,
     tenSP: "Máy lạnh Sharp Inverter 1HP",
-    loaiSP: "may_lanh",
+    maMatHang: "4",
     hinhAnh: "./img/40.Máy lạnh Sharp Inverter 1HP.jpg",
     giaGoc: "7.800.000đ",
     giamGia: "-8%",
@@ -618,25 +618,25 @@ const tatCaSanPham = [
   },
 
   // === MÁY LỌC KHÔNG KHÍ ===
-  { maSP: 41, tenSP: "Máy lọc không khí Sharp FP-J40E-W", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/41.Máy lọc không khí Sharp FP-J40E-W.jpg", giaGoc: "4.000.000đ", giamGia: "-15%", giaHienTai: "3.400.000đ", giaSo: 3400000, soLuong: 100, nguongCanhBao: 10, thuongHieu: "Sharp", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=41" },
-  { maSP: 42, tenSP: "Máy lọc không khí Daikin MC30VVM-A", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/42.Máy lọc không khí Daikin MC30VVM-A.jpg", giaGoc: "3.200.000đ", giamGia: "-10%", giaHienTai: "2.880.000đ", giaSo: 2880000, soLuong: 80, nguongCanhBao: 10, thuongHieu: "Daikin", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=42" },
-  { maSP: 43, tenSP: "Máy lọc không khí Xiaomi Air Purifier 4 Pro", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/43.Máy lọc không khí Xiaomi Air Purifier 4 Pro.jpg", giaGoc: "5.000.000đ", giamGia: "-12%", giaHienTai: "4.400.000đ", giaSo: 4400000, soLuong: 60, nguongCanhBao: 5, thuongHieu: "Xiaomi", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=43" },
-  { maSP: 44, tenSP: "Máy lọc không khí Philips AC1215/10", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/44.Máy lọc không khí Philips AC1215 10.jpg", giaGoc: "4.200.000đ", giamGia: "-10%", giaHienTai: "3.780.000đ", giaSo: 3780000, soLuong: 90, nguongCanhBao: 10, thuongHieu: "Philips", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=44" },
-  { maSP: 45, tenSP: "Máy lọc không khí Coway AP-1009CH", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/45.Máy lọc không khí Coway AP-1009CH.jpg", giaGoc: "6.500.000đ", giamGia: "-8%", giaHienTai: "5.980.000đ", giaSo: 5980000, soLuong: 50, nguongCanhBao: 5, thuongHieu: "Coway", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=45" },
-  { maSP: 46, tenSP: "Máy lọc không khí LG PuriCare AS65GDW0", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/46.Máy lọc không khí LG PuriCare AS65GDW0.jpg", giaGoc: "8.900.000đ", giamGia: "-10%", giaHienTai: "8.010.000đ", giaSo: 8010000, soLuong: 40, nguongCanhBao: 5, thuongHieu: "LG", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=46" },
-  { maSP: 47, tenSP: "Máy lọc không khí Panasonic F-PXJ30A", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/47.Máy lọc không khí Panasonic F-PXJ30A.jpg", giaGoc: "4.500.000đ", giamGia: "-9%", giaHienTai: "4.095.000đ", giaSo: 4095000, soLuong: 70, nguongCanhBao: 10, thuongHieu: "Panasonic", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=47" },
-  { maSP: 48, tenSP: "Máy lọc không khí Hitachi EP-A3000", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/48.Máy lọc không khí Hitachi EP-A3000.jpg", giaGoc: "6.200.000đ", giamGia: "-12%", giaHienTai: "5.456.000đ", giaSo: 5456000, soLuong: 55, nguongCanhBao: 5, thuongHieu: "Hitachi", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=48" },
-  { maSP: 49, tenSP: "Máy lọc không khí Blueair Blue Pure 411", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/49.Máy lọc không khí Blueair Blue Pure 411.jpg", giaGoc: "3.800.000đ", giamGia: "-10%", giaHienTai: "3.420.000đ", giaSo: 3420000, soLuong: 65, nguongCanhBao: 10, thuongHieu: "Blueair", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=49" },
-  { maSP: 50, tenSP: "Máy lọc không khí Levoit Core 300S", loaiSP: "may_loc_khong_khi", hinhAnh: "./img/50.Máy lọc không khí Levoit Core 300S.jpg", giaGoc: "5.000.000đ", giamGia: "-10%", giaHienTai: "4.500.000đ", giaSo: 4500000, soLuong: 60, nguongCanhBao: 10, thuongHieu: "Levoit", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=50" },
+  { maSP: 41, tenSP: "Máy lọc không khí Sharp FP-J40E-W", maMatHang: "5", hinhAnh: "./img/41.Máy lọc không khí Sharp FP-J40E-W.jpg", giaGoc: "4.000.000đ", giamGia: "-15%", giaHienTai: "3.400.000đ", giaSo: 3400000, soLuong: 100, nguongCanhBao: 10, thuongHieu: "Sharp", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=41" },
+  { maSP: 42, tenSP: "Máy lọc không khí Daikin MC30VVM-A", maMatHang: "5", hinhAnh: "./img/42.Máy lọc không khí Daikin MC30VVM-A.jpg", giaGoc: "3.200.000đ", giamGia: "-10%", giaHienTai: "2.880.000đ", giaSo: 2880000, soLuong: 80, nguongCanhBao: 10, thuongHieu: "Daikin", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=42" },
+  { maSP: 43, tenSP: "Máy lọc không khí Xiaomi Air Purifier 4 Pro", maMatHang: "5", hinhAnh: "./img/43.Máy lọc không khí Xiaomi Air Purifier 4 Pro.jpg", giaGoc: "5.000.000đ", giamGia: "-12%", giaHienTai: "4.400.000đ", giaSo: 4400000, soLuong: 60, nguongCanhBao: 5, thuongHieu: "Xiaomi", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=43" },
+  { maSP: 44, tenSP: "Máy lọc không khí Philips AC1215/10", maMatHang: "5", hinhAnh: "./img/44.Máy lọc không khí Philips AC1215 10.jpg", giaGoc: "4.200.000đ", giamGia: "-10%", giaHienTai: "3.780.000đ", giaSo: 3780000, soLuong: 90, nguongCanhBao: 10, thuongHieu: "Philips", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=44" },
+  { maSP: 45, tenSP: "Máy lọc không khí Coway AP-1009CH", maMatHang: "5", hinhAnh: "./img/45.Máy lọc không khí Coway AP-1009CH.jpg", giaGoc: "6.500.000đ", giamGia: "-8%", giaHienTai: "5.980.000đ", giaSo: 5980000, soLuong: 50, nguongCanhBao: 5, thuongHieu: "Coway", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=45" },
+  { maSP: 46, tenSP: "Máy lọc không khí LG PuriCare AS65GDW0", maMatHang: "5", hinhAnh: "./img/46.Máy lọc không khí LG PuriCare AS65GDW0.jpg", giaGoc: "8.900.000đ", giamGia: "-10%", giaHienTai: "8.010.000đ", giaSo: 8010000, soLuong: 40, nguongCanhBao: 5, thuongHieu: "LG", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=46" },
+  { maSP: 47, tenSP: "Máy lọc không khí Panasonic F-PXJ30A", maMatHang: "5", hinhAnh: "./img/47.Máy lọc không khí Panasonic F-PXJ30A.jpg", giaGoc: "4.500.000đ", giamGia: "-9%", giaHienTai: "4.095.000đ", giaSo: 4095000, soLuong: 70, nguongCanhBao: 10, thuongHieu: "Panasonic", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=47" },
+  { maSP: 48, tenSP: "Máy lọc không khí Hitachi EP-A3000", maMatHang: "5", hinhAnh: "./img/48.Máy lọc không khí Hitachi EP-A3000.jpg", giaGoc: "6.200.000đ", giamGia: "-12%", giaHienTai: "5.456.000đ", giaSo: 5456000, soLuong: 55, nguongCanhBao: 5, thuongHieu: "Hitachi", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=48" },
+  { maSP: 49, tenSP: "Máy lọc không khí Blueair Blue Pure 411", maMatHang: "5", hinhAnh: "./img/49.Máy lọc không khí Blueair Blue Pure 411.jpg", giaGoc: "3.800.000đ", giamGia: "-10%", giaHienTai: "3.420.000đ", giaSo: 3420000, soLuong: 65, nguongCanhBao: 10, thuongHieu: "Blueair", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=49" },
+  { maSP: 50, tenSP: "Máy lọc không khí Levoit Core 300S", maMatHang: "5", hinhAnh: "./img/50.Máy lọc không khí Levoit Core 300S.jpg", giaGoc: "5.000.000đ", giamGia: "-10%", giaHienTai: "4.500.000đ", giaSo: 4500000, soLuong: 60, nguongCanhBao: 10, thuongHieu: "Levoit", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=50" },
 ];
 
 // kiểm tra xem trên local hiện tại đã có table chưa nếu chưa có thì đẩy lên
-const tableSp = JSON.parse(localStorage.getItem('product'));
+const tableSp = JSON.parse(localStorage.getItem('roduct'));
 if(tableSp){
   console.log("Đã có dữ liệu bảng sản phẩm")
 }
 else{
-  localStorage.setItem('product', JSON.stringify(tatCaSanPham));
+  localStorage.setItem('product', JSON.stringify(tatCaSanPham));  // nếu chưa có thì đẩy lên local
 }
 
 // bảng đơn hàng
@@ -678,12 +678,12 @@ const donHang = [
   },
 ];
 
-const tableBill = JSON.parse(localStorage.getItem('Bill'));
+const tableBill = JSON.parse(localStorage.getItem('bill'));
 if(tableBill){
   console.log("Đã có dữ liệu bảng bill")
 }
 else{
-  localStorage.setItem('Bill', JSON.stringify(donHang));
+  localStorage.setItem('bill', JSON.stringify(donHang));
 }
 
 
@@ -702,12 +702,12 @@ const chiTietDonHang = [
   { maCTDH: 11, maDH: 5, maSP: 111, soLuong: 2, tongTien: 6000000 },
   { maCTDH: 12, maDH: 5, maSP: 112, soLuong: 1, tongTien: 16890000 },
 ];
-const tableBillDetail = JSON.parse(localStorage.getItem('BillDetail'));
+const tableBillDetail = JSON.parse(localStorage.getItem('billDetail'));
 if(tableBillDetail){
   console.log("Đã có dữ liệu bảng bill detail")
 }
 else{
-  localStorage.setItem('BillDetail', JSON.stringify(chiTietDonHang));
+  localStorage.setItem('billDetail', JSON.stringify(chiTietDonHang));
 }
 
 // bảng khách hàng
@@ -753,12 +753,12 @@ const khachHang = [
     matKhau: "minh567890"
   }
 ];
-const tableKhachHang = JSON.parse(localStorage.getItem('KhachHang'));
+const tableKhachHang = JSON.parse(localStorage.getItem('khachHang'));
 if(tableKhachHang){
   console.log("Đã có dữ liệu bảng khach hang")
 }
 else{
-  localStorage.setItem('KhachHang', JSON.stringify(khachHang));
+  localStorage.setItem('khachHang', JSON.stringify(khachHang));
 }
 
 // bảng nhập hàng
@@ -799,12 +799,12 @@ const nhapHang = [
     trangThai: "Đang xử lý"
   }
 ];
-const tableNhapHang = JSON.parse(localStorage.getItem('NhapHang'));
+const tableNhapHang = JSON.parse(localStorage.getItem('nhapHang'));
 if(tableNhapHang){
   console.log("Đã có dữ liệu bảng nhap hang")
 }
 else{
-  localStorage.setItem('NhapHang', JSON.stringify(nhapHang));
+  localStorage.setItem('nhapHang', JSON.stringify(nhapHang));
 }
 
 // table mặt hàng
@@ -819,7 +819,7 @@ const matHang = [
   },
   {
     maMatHang: 3,
-    tenMatHang: "Tv",
+    tenMatHang: "TV",
   },
   {
     maMatHang: 4,
@@ -830,23 +830,28 @@ const matHang = [
     tenMatHang: "Máy lọc không khí"
   }
 ]
-
-
-
-
-
-// các hàm lấy  và và cập nhập table 
-// đẩy lên local
-// truyền vô tên key và object chứa data
-setlocalStorage("product", tatCaSanPham);
-function setlocalStorage(key, value){
-    localStorage.setItem(key, JSON.stringify(value));
+const tableMatHang = JSON.parse(localStorage.getItem('matHang'));
+if(tableNhapHang){
+  console.log("Đã có dữ liệu bảng mat hang")
 }
-// lấy file từ local
-// truyền vô key để lấy data
-function getlocalStorage(key){
-    return JSON.parse(localStorage.getItem(key));
+else{
+  localStorage.setItem('matHang', JSON.stringify(MatHang));
 }
+
+
+
+// // các hàm lấy  và và cập nhập table 
+// // đẩy lên local
+// // truyền vô tên key và object chứa data
+// setlocalStorage("product", tatCaSanPham);
+// function setlocalStorage(key, value){
+//     localStorage.setItem(key, JSON.stringify(value));
+// }
+// // lấy file từ local
+// // truyền vô key để lấy data
+// function getlocalStorage(key){
+//     return JSON.parse(localStorage.getItem(key));
+// }
 
 
 
