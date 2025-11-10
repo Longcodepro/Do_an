@@ -424,14 +424,14 @@ function content(div){
     stt.classList.add('du_lieu');
     stt.textContent = row.maSP;
     const nameSp = document.createElement('td');   // ô name sp
-    nameSp.textContent = row.tenSp;
+    nameSp.textContent = row.tenSP;
     nameSp.classList.add('du_lieu');  //add class
     const soLuong = document.createElement('td'); // ô số lượng
     soLuong.classList.add('du_lieu');
     soLuong.textContent = row.soLuong;
     const gia = document.createElement('td'); // ô giá bán
     gia.classList.add('du_lieu');
-    gia.textContent = row.GIA_BAN + ' VND';
+    gia.textContent = row.giaHienTai + ' VND';
     const hien_an = document.createElement('td'); // ô hiện/ẩn
     hien_an.classList.add('du_lieu');
     // tạo hộp checkbox
@@ -441,7 +441,7 @@ function content(div){
       checkbox.checked = true;
     }
     checkbox.addEventListener('change', () => {
-      nut_hien_an(row.maSP, rowsSp);
+      nut_hien_an(row.maSP);
     });
 
 
@@ -452,7 +452,7 @@ function content(div){
     xoa.textContent = 'Xóa';
     xoa.addEventListener('click', () =>{
     if( confirm("Bạn muốn xóa sản phẩm")){
-      xoaSp(row.maSP, rowsSp);
+      xoaSp(row.maSP);
     }
     });
     const sua = document.createElement('button'); //nút sửa
@@ -460,7 +460,7 @@ function content(div){
     sua.textContent = 'Sửa';
     sua.style.marginLeft = '5%';
     sua.addEventListener('click', () => {
-      suaSp(row.maSP, rowsSp);
+      suaSp(row.maSP);
     });
     tr1.appendChild(stt);
     tr1.appendChild(nameSp);
@@ -479,16 +479,16 @@ function content(div){
 // hiện thị
 function nut_hien_an(idSp){
   const row = rowsSp.find( row => row.maSP === idSp);
-  if( row.TINH_TRANG === '1'){
-    row.TINH_TRANG = '0';
+  if( row.tinhTrang === '1'){
+    row.tinhTrang = '0';
   }
-  else row.TINH_TRANG = '1';
+  else row.tinhTrang = '1';
   console.log('Nhấn nút hiện/ẩn sản phẩm có mã: ' + idSp);
-  console.log('Hien/an: '+ row.TINH_TRANG);
+  console.log('Hien/an: '+ row.tinhTrang);
 
   const rowsSp1 = getlocalStorage("product");
   const row1 = rowsSp1.find(row => row.maSP === idSp);
-  row1.TINH_TRANG = row.TINH_TRANG;
+  row1.tinhTrang = row.tinhTrang;
   setlocalStorage("product", rowsSp1);
   const div2 = document.querySelector('#div2');
   div2.remove();
@@ -571,7 +571,7 @@ function suaSp(idSp){
   // giá bán
   const giaBan = document.createElement('input');
   giaBan.type = 'number';
-  giaBan.value = row.GIA_BAN; // đặt sẵn giá trị
+  giaBan.value = row.giaHienTai; // đặt sẵn giá trị
   giaBan.placeholder = "Giá bán";
   giaBan.style.marginLeft = '5%';
   giaBan.id = 'giaBan';
@@ -585,17 +585,17 @@ function suaSp(idSp){
   const rowsMh = getlocalStorage("matHang");
   for (let i = 0; i < rowsMh.length; i++) {
     const op = document.createElement('option');
-    op.textContent = rowsMh[i].TEN_MAT_HANG;
-    op.value = rowsMh[i].MA_MAT_HANG;
+    op.textContent = rowsMh[i].tenMatHang;
+    op.value = rowsMh[i].maMatHang;
     matHang.appendChild(op);
   }
-  matHang.value = row.MA_MAT_HANG;// thay đổi thành giá trị mặc định
+  matHang.value = row.maMatHang;// thay đổi thành giá trị mặc định
   // tạo text nhập thông tin sản phẩm
   const thongTinSanPham = document.createElement('textarea'); // dùng thẻ này có thể nhập nhiều hơn thay vì dùng input
   thongTinSanPham.classList.add('special');
   thongTinSanPham.style.marginLeft = '5%';
   thongTinSanPham.placeholder = 'Thông tin sản phẩm';
-  thongTinSanPham.value = row.THONG_TIN_SP; //thay đổi thành giá trị mặc định
+  thongTinSanPham.value = row.lienKet; //thay đổi thành giá trị mặc định
   thongTinSanPham.id = 'thongTinSanPham';
   d.appendChild(thongTinSanPham);
   // tạo ô thêm ảnh
@@ -612,8 +612,8 @@ function suaSp(idSp){
   xem_anh.style.border = '1px solid #ccc';
   xem_anh.style.marginLeft = '5%';
   xem_anh.alt = 'Chưa có ảnh được tải lên';
-  xem_anh.src = row.HINH_ANH; //gắn sẵn giá trị
-  let truyenAnh = row.HINH_ANH; // gắn để vượt khỏi hàm check 
+  xem_anh.src = row.hinhAnh; //gắn sẵn giá trị
+  let truyenAnh = row.hinhAnh; // gắn để vượt khỏi hàm check 
   const divBaoAnh = document.createElement('div');
   divBaoAnh.id = 'divBaoAnh';
   divBaoAnh.appendChild(anh);
@@ -687,7 +687,7 @@ function suaSpVoDanhSach(idSp, thong_tin){
   const rowIndex1 = rowsSp1.findIndex( row => row.maSP === idSp);
   rowsSp1.splice( rowIndex1, 1);
   rowsSp1.push(thong_tin);
-  cap_nhap_localStorage(db1);
+  setlocalStorage("product", rowsSp1);
 }
 
 
