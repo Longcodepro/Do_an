@@ -14,7 +14,7 @@ const tatCaSanPham = [
     thuongHieu: "LG",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=1",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 2,
@@ -30,8 +30,8 @@ const tatCaSanPham = [
     nguongCanhBao: 5,
     thuongHieu: "Samsung",
     tinhTrang: "Còn hàng",
-    lienKet: "./product-details.html?id=2"
-    hienAn = "1",
+    lienKet: "./product-details.html?id=2",
+    hienAn : "1"
   },
   {
     maSP: 3,
@@ -48,7 +48,7 @@ const tatCaSanPham = [
     thuongHieu: "Toshiba",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=3",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 4,
@@ -65,7 +65,7 @@ const tatCaSanPham = [
     thuongHieu: "Aqua",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=4",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 5,
@@ -82,7 +82,7 @@ const tatCaSanPham = [
     thuongHieu: "Electrolux",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=5",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 6,
@@ -99,7 +99,7 @@ const tatCaSanPham = [
     thuongHieu: "Panasonic",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=6",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 7,
@@ -111,13 +111,12 @@ const tatCaSanPham = [
     giamGia: "-9%",
     giaHienTai: "5.915.000đ",
     giaSo: 5915000,
-    hienAn = "1";
     soLuong: 27,
     nguongCanhBao: 5,
     thuongHieu: "Casper",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=7",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 8,
@@ -134,7 +133,7 @@ const tatCaSanPham = [
     thuongHieu: "Sharp",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=8",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 9,
@@ -151,7 +150,7 @@ const tatCaSanPham = [
     thuongHieu: "Midea",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=9",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 10,
@@ -168,7 +167,7 @@ const tatCaSanPham = [
     thuongHieu: "Beko",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=10",
-    hienAn = "1",
+    hienAn : "1"
   },
 
   // === Tv ===
@@ -186,7 +185,7 @@ const tatCaSanPham = [
     thuongHieu: "Samsung",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=11",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 12,
@@ -202,7 +201,7 @@ const tatCaSanPham = [
     thuongHieu: "LG",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=12",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 13,
@@ -218,7 +217,7 @@ const tatCaSanPham = [
     thuongHieu: "Sony",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=13",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 14,
@@ -234,7 +233,7 @@ const tatCaSanPham = [
     thuongHieu: "TCL",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=14",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 15,
@@ -250,7 +249,7 @@ const tatCaSanPham = [
     thuongHieu: "Casper",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=15",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 16,
@@ -266,7 +265,7 @@ const tatCaSanPham = [
     thuongHieu: "Xiaomi",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=16",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 17,
@@ -282,7 +281,7 @@ const tatCaSanPham = [
     thuongHieu: "Panasonic",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=17",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 18,
@@ -298,7 +297,7 @@ const tatCaSanPham = [
     thuongHieu: "Sharp",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=18",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 19,
@@ -314,7 +313,7 @@ const tatCaSanPham = [
     thuongHieu: "Toshiba",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=19",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 20,
@@ -330,7 +329,7 @@ const tatCaSanPham = [
     thuongHieu: "Beko",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=20",
-    hienAn = "1",
+    hienAn : "1"
   },
   
   // === (CÒN: TỦ LẠNH, MÁY LẠNH, MÁY LỌC KHÔNG KHÍ) ===
@@ -349,7 +348,7 @@ const tatCaSanPham = [
     thuongHieu: "LG",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=21",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 22,
@@ -365,7 +364,7 @@ const tatCaSanPham = [
     thuongHieu: "Samsung",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=22",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 23,
@@ -381,7 +380,7 @@ const tatCaSanPham = [
     thuongHieu: "Toshiba",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=23",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 24,
@@ -397,7 +396,7 @@ const tatCaSanPham = [
     thuongHieu: "Panasonic",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=24",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 25,
@@ -413,7 +412,7 @@ const tatCaSanPham = [
     thuongHieu: "Aqua",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=25",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 26,
@@ -429,7 +428,7 @@ const tatCaSanPham = [
     thuongHieu: "Sharp",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=26",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 27,
@@ -445,7 +444,7 @@ const tatCaSanPham = [
     thuongHieu: "Casper",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=27",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 28,
@@ -461,7 +460,7 @@ const tatCaSanPham = [
     thuongHieu: "Beko",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=28",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 29,
@@ -477,7 +476,7 @@ const tatCaSanPham = [
     thuongHieu: "Midea",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=29",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 30,
@@ -493,7 +492,7 @@ const tatCaSanPham = [
     thuongHieu: "Xiaomi",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=30",
-    hienAn = "1",
+    hienAn : "1"
   },
 
   // === MÁY LẠNH ===
@@ -511,7 +510,7 @@ const tatCaSanPham = [
     thuongHieu: "LG",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=31",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 32,
@@ -527,7 +526,7 @@ const tatCaSanPham = [
     thuongHieu: "Daikin",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=32",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 33,
@@ -543,7 +542,7 @@ const tatCaSanPham = [
     thuongHieu: "Panasonic",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=33",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 34,
@@ -559,7 +558,7 @@ const tatCaSanPham = [
     thuongHieu: "Casper",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=34",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 35,
@@ -575,7 +574,7 @@ const tatCaSanPham = [
     thuongHieu: "Toshiba",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=35",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 36,
@@ -591,7 +590,7 @@ const tatCaSanPham = [
     thuongHieu: "Samsung",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=36",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 37,
@@ -607,7 +606,7 @@ const tatCaSanPham = [
     thuongHieu: "Midea",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=37",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 38,
@@ -623,7 +622,7 @@ const tatCaSanPham = [
     thuongHieu: "Beko",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=38",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 39,
@@ -639,7 +638,7 @@ const tatCaSanPham = [
     thuongHieu: "Aqua",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=39",
-    hienAn = "1",
+    hienAn : "1"
   },
   {
     maSP: 40,
@@ -655,20 +654,20 @@ const tatCaSanPham = [
     thuongHieu: "Sharp",
     tinhTrang: "Còn hàng",
     lienKet: "./product-details.html?id=40",
-    hienAn = "1",
+    hienAn : "1"
   },
 
   // === MÁY LỌC KHÔNG KHÍ ===
-  { maSP: 41, tenSP: "Máy lọc không khí Sharp FP-J40E-W", maMatHang: "5", hinhAnh: "./img/41.Máy lọc không khí Sharp FP-J40E-W.jpg", giaGoc: "4.000.000đ", giamGia: "-15%", giaHienTai: "3.400.000đ", giaSo: 3400000, soLuong: 100, nguongCanhBao: 10, thuongHieu: "Sharp", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=41", hienAn = "1" },
-  { maSP: 42, tenSP: "Máy lọc không khí Daikin MC30VVM-A", maMatHang: "5", hinhAnh: "./img/42.Máy lọc không khí Daikin MC30VVM-A.jpg", giaGoc: "3.200.000đ", giamGia: "-10%", giaHienTai: "2.880.000đ", giaSo: 2880000, soLuong: 80, nguongCanhBao: 10, thuongHieu: "Daikin", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=42", hienAn = "1" },
-  { maSP: 43, tenSP: "Máy lọc không khí Xiaomi Air Purifier 4 Pro", maMatHang: "5", hinhAnh: "./img/43.Máy lọc không khí Xiaomi Air Purifier 4 Pro.jpg", giaGoc: "5.000.000đ", giamGia: "-12%", giaHienTai: "4.400.000đ", giaSo: 4400000, soLuong: 60, nguongCanhBao: 5, thuongHieu: "Xiaomi", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=43", hienAn = "1" },
-  { maSP: 44, tenSP: "Máy lọc không khí Philips AC1215/10", maMatHang: "5", hinhAnh: "./img/44.Máy lọc không khí Philips AC1215 10.jpg", giaGoc: "4.200.000đ", giamGia: "-10%", giaHienTai: "3.780.000đ", giaSo: 3780000, soLuong: 90, nguongCanhBao: 10, thuongHieu: "Philips", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=44", hienAn = "1" },
-  { maSP: 45, tenSP: "Máy lọc không khí Coway AP-1009CH", maMatHang: "5", hinhAnh: "./img/45.Máy lọc không khí Coway AP-1009CH.jpg", giaGoc: "6.500.000đ", giamGia: "-8%", giaHienTai: "5.980.000đ", giaSo: 5980000, soLuong: 50, nguongCanhBao: 5, thuongHieu: "Coway", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=45", hienAn = "1" },
-  { maSP: 46, tenSP: "Máy lọc không khí LG PuriCare AS65GDW0", maMatHang: "5", hinhAnh: "./img/46.Máy lọc không khí LG PuriCare AS65GDW0.jpg", giaGoc: "8.900.000đ", giamGia: "-10%", giaHienTai: "8.010.000đ", giaSo: 8010000, soLuong: 40, nguongCanhBao: 5, thuongHieu: "LG", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=46", hienAn = "1" },
-  { maSP: 47, tenSP: "Máy lọc không khí Panasonic F-PXJ30A", maMatHang: "5", hinhAnh: "./img/47.Máy lọc không khí Panasonic F-PXJ30A.jpg", giaGoc: "4.500.000đ", giamGia: "-9%", giaHienTai: "4.095.000đ", giaSo: 4095000, soLuong: 70, nguongCanhBao: 10, thuongHieu: "Panasonic", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=47", hienAn = "1" },
-  { maSP: 48, tenSP: "Máy lọc không khí Hitachi EP-A3000", maMatHang: "5", hinhAnh: "./img/48.Máy lọc không khí Hitachi EP-A3000.jpg", giaGoc: "6.200.000đ", giamGia: "-12%", giaHienTai: "5.456.000đ", giaSo: 5456000, soLuong: 55, nguongCanhBao: 5, thuongHieu: "Hitachi", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=48", hienAn = "1" },
-  { maSP: 49, tenSP: "Máy lọc không khí Blueair Blue Pure 411", maMatHang: "5", hinhAnh: "./img/49.Máy lọc không khí Blueair Blue Pure 411.jpg", giaGoc: "3.800.000đ", giamGia: "-10%", giaHienTai: "3.420.000đ", giaSo: 3420000, soLuong: 65, nguongCanhBao: 10, thuongHieu: "Blueair", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=49", hienAn = "1" },
-  { maSP: 50, tenSP: "Máy lọc không khí Levoit Core 300S", maMatHang: "5", hinhAnh: "./img/50.Máy lọc không khí Levoit Core 300S.jpg", giaGoc: "5.000.000đ", giamGia: "-10%", giaHienTai: "4.500.000đ", giaSo: 4500000, soLuong: 60, nguongCanhBao: 10, thuongHieu: "Levoit", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=50", hienAn = "1" },
+  { maSP: 41, tenSP: "Máy lọc không khí Sharp FP-J40E-W", maMatHang: "5", hinhAnh: "./img/41.Máy lọc không khí Sharp FP-J40E-W.jpg", giaGoc: "4.000.000đ", giamGia: "-15%", giaHienTai: "3.400.000đ", giaSo: 3400000, soLuong: 100, nguongCanhBao: 10, thuongHieu: "Sharp", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=41", hienAn : "1" },
+  { maSP: 42, tenSP: "Máy lọc không khí Daikin MC30VVM-A", maMatHang: "5", hinhAnh: "./img/42.Máy lọc không khí Daikin MC30VVM-A.jpg", giaGoc: "3.200.000đ", giamGia: "-10%", giaHienTai: "2.880.000đ", giaSo: 2880000, soLuong: 80, nguongCanhBao: 10, thuongHieu: "Daikin", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=42", hienAn : "1" },
+  { maSP: 43, tenSP: "Máy lọc không khí Xiaomi Air Purifier 4 Pro", maMatHang: "5", hinhAnh: "./img/43.Máy lọc không khí Xiaomi Air Purifier 4 Pro.jpg", giaGoc: "5.000.000đ", giamGia: "-12%", giaHienTai: "4.400.000đ", giaSo: 4400000, soLuong: 60, nguongCanhBao: 5, thuongHieu: "Xiaomi", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=43", hienAn : "1" },
+  { maSP: 44, tenSP: "Máy lọc không khí Philips AC1215/10", maMatHang: "5", hinhAnh: "./img/44.Máy lọc không khí Philips AC1215 10.jpg", giaGoc: "4.200.000đ", giamGia: "-10%", giaHienTai: "3.780.000đ", giaSo: 3780000, soLuong: 90, nguongCanhBao: 10, thuongHieu: "Philips", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=44", hienAn : "1" },
+  { maSP: 45, tenSP: "Máy lọc không khí Coway AP-1009CH", maMatHang: "5", hinhAnh: "./img/45.Máy lọc không khí Coway AP-1009CH.jpg", giaGoc: "6.500.000đ", giamGia: "-8%", giaHienTai: "5.980.000đ", giaSo: 5980000, soLuong: 50, nguongCanhBao: 5, thuongHieu: "Coway", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=45", hienAn : "1" },
+  { maSP: 46, tenSP: "Máy lọc không khí LG PuriCare AS65GDW0", maMatHang: "5", hinhAnh: "./img/46.Máy lọc không khí LG PuriCare AS65GDW0.jpg", giaGoc: "8.900.000đ", giamGia: "-10%", giaHienTai: "8.010.000đ", giaSo: 8010000, soLuong: 40, nguongCanhBao: 5, thuongHieu: "LG", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=46", hienAn : "1" },
+  { maSP: 47, tenSP: "Máy lọc không khí Panasonic F-PXJ30A", maMatHang: "5", hinhAnh: "./img/47.Máy lọc không khí Panasonic F-PXJ30A.jpg", giaGoc: "4.500.000đ", giamGia: "-9%", giaHienTai: "4.095.000đ", giaSo: 4095000, soLuong: 70, nguongCanhBao: 10, thuongHieu: "Panasonic", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=47", hienAn : "1" },
+  { maSP: 48, tenSP: "Máy lọc không khí Hitachi EP-A3000", maMatHang: "5", hinhAnh: "./img/48.Máy lọc không khí Hitachi EP-A3000.jpg", giaGoc: "6.200.000đ", giamGia: "-12%", giaHienTai: "5.456.000đ", giaSo: 5456000, soLuong: 55, nguongCanhBao: 5, thuongHieu: "Hitachi", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=48", hienAn : "1" },
+  { maSP: 49, tenSP: "Máy lọc không khí Blueair Blue Pure 411", maMatHang: "5", hinhAnh: "./img/49.Máy lọc không khí Blueair Blue Pure 411.jpg", giaGoc: "3.800.000đ", giamGia: "-10%", giaHienTai: "3.420.000đ", giaSo: 3420000, soLuong: 65, nguongCanhBao: 10, thuongHieu: "Blueair", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=49", hienAn : "1" },
+  { maSP: 50, tenSP: "Máy lọc không khí Levoit Core 300S", maMatHang: "5", hinhAnh: "./img/50.Máy lọc không khí Levoit Core 300S.jpg", giaGoc: "5.000.000đ", giamGia: "-10%", giaHienTai: "4.500.000đ", giaSo: 4500000, soLuong: 60, nguongCanhBao: 10, thuongHieu: "Levoit", tinhTrang: "Còn hàng", lienKet: "./product-details.html?id=50", hienAn : "1" },
 ];
 
 // kiểm tra xem trên local hiện tại đã có table chưa nếu chưa có thì đẩy lên

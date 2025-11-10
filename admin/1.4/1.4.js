@@ -36,7 +36,7 @@ function menu(div) {
   div.appendChild(div1);
   // logo
   const logo = document.createElement('img');
-  logo.src = "./img/sgu.png";
+  logo.src = "../img/sgu.jpg";
   logo.alt = "Logo";
   logo.id = 'logo';
   div1.appendChild(logo);
@@ -369,7 +369,7 @@ function check(truyenAnh, text, ma_cu) {
     hinhAnh: truyenAnh,
     lienKet: thongtin.value.trim(),
     giaHienTai: gia.value.trim(),
-    tinhTrang: "1",
+    hienAn: "1",
     maMatHang: mathang.value.trim(),
   }
   if( text === "Thêm"){
@@ -437,7 +437,7 @@ function content(div){
     // tạo hộp checkbox
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    if (row.TINH_TRANG == "1") {  // nếu nó bằng 1 thì tức là hiện nên đánh dấu tích
+    if (row.hienAn == "1") {  // nếu nó bằng 1 thì tức là hiện nên đánh dấu tích
       checkbox.checked = true;
     }
     checkbox.addEventListener('change', () => {
@@ -479,16 +479,16 @@ function content(div){
 // hiện thị
 function nut_hien_an(idSp){
   const row = rowsSp.find( row => row.maSP === idSp);
-  if( row.tinhTrang === '1'){
-    row.tinhTrang = '0';
+  if( row.hienAn === '1'){
+    row.hienAn = '0';
   }
-  else row.tinhTrang = '1';
+  else row.hienAn = '1';
   console.log('Nhấn nút hiện/ẩn sản phẩm có mã: ' + idSp);
-  console.log('Hien/an: '+ row.tinhTrang);
+  console.log('Hien/an: '+ row.hienAn);
 
   const rowsSp1 = getlocalStorage("product");
   const row1 = rowsSp1.find(row => row.maSP === idSp);
-  row1.tinhTrang = row.tinhTrang;
+  row1.hienAn = row.hienAn;
   setlocalStorage("product", rowsSp1);
   const div2 = document.querySelector('#div2');
   div2.remove();
