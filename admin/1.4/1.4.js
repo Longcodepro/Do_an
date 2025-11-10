@@ -2,6 +2,7 @@
 const link = document.createElement('link');
 link.href = './1.4.css';
 link.rel = 'stylesheet';
+document.head.appendChild(link);
 // các hàm lấy  và và cập nhập table 
 // đẩy lên local
 // truyền vô tên key và object chứa data
@@ -40,9 +41,7 @@ function menu(div) {
   const theo_loai = document.createElement('select');
   theo_loai.id = 'tim_theo_loai';
   div1.appendChild(theo_loai);
-  const db = lay_du_lieu();
-  const tableMh = db.find(db => db.name === "mat_hang");
-  const rowsMh = tableMh.data;
+  const rowsMh = getlocalStorage('matHang');
   const tat_ca = document.createElement('option');
   tat_ca.textContent = 'Tất cả';
   tat_ca.value = '';
