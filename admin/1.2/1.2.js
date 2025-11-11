@@ -55,12 +55,12 @@ function quanLyKhachHang() {
 
     // Tên KH
     const tdTen = document.createElement("td");
-    tdTen.textContent = kh.TEN_KHACH_HANG;
+    tdTen.textContent = kh.tenKH;
     tr.appendChild(tdTen);
 
     // Giới tính
     const tdGioi = document.createElement("td");
-    tdGioi.textContent = kh.GIOI_TINH == 1 ? "Nam" : "Nữ";
+    tdGioi.textContent = kh.gioiTinh == 1 ? "Nam" : "Nữ";
     tr.appendChild(tdGioi);
 
     // Năm sinh
@@ -133,7 +133,7 @@ btnReset.addEventListener("click", () => {
   // Cập nhật cột hiển thị mật khẩu ngay lập tức
   tdPass.textContent = rowNow.PASSWORD;
 
-  alert(`Đã reset mật khẩu của ${kh.TEN_KHACH_HANG} về mặc định: 123456`);
+  alert(`Đã reset mật khẩu của ${kh.tenKH} về mặc định: 123456`);
 });
 
     // 🔁 Khóa / Mở khóa tài khoản
