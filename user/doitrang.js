@@ -80,3 +80,19 @@ document.addEventListener("DOMContentLoaded", () => {
       searchButton.addEventListener("click", handleSearchAndNavigate);
   }
 });
+window.handleLoadPage = (pageName, maMatHang = null) => {
+  // 1. Lưu mã mặt hàng (nếu có)
+  if (maMatHang) {
+      localStorage.setItem("filterMaMH", maMatHang);
+  } else {
+      localStorage.removeItem("filterMaMH");
+  }
+  
+  // 2. Chuyển trang
+  if (typeof loadpage === 'function') {
+      loadpage(pageName);
+  } else {
+      console.error("Lỗi: Hàm loadpage không thể truy cập được!");
+  }
+};
+
