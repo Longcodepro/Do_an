@@ -756,44 +756,46 @@ const khachHang = [
   {
     maKH: 1,
     tenKH: "Nguyễn Văn An",
+    tenTaiKhoan: "an.nguyen",
     gioiTinh: "Nam",
     email: "an.nguyen@example.com",
+    soDienThoai: "0901234567",
     diaChi: "12 Nguyễn Trãi, Quận 1, TP.HCM",
-    matKhau: "an123456"
+    matKhau: "an123456",
+    trangThai: 1
   },
   {
     maKH: 2,
     tenKH: "Trần Thị Bích",
+    tenTaiKhoan: "bich.tran",
     gioiTinh: "Nữ",
     email: "bich.tran@example.com",
+    soDienThoai: "0902345678",
     diaChi: "45 Lê Lợi, Quận 3, TP.HCM",
-    matKhau: "bich234567"
+    matKhau: "bich234567",
+    trangThai: 1
   },
   {
     maKH: 3,
     tenKH: "Lê Hoàng Long",
+    tenTaiKhoan: "long.le",
     gioiTinh: "Nam",
     email: "long.le@example.com",
+    soDienThoai: "0913456789",
     diaChi: "78 Hai Bà Trưng, TP. Hà Nội",
-    matKhau: "long345678"
+    matKhau: "long345678",
+    trangThai: 0
   },
   {
     maKH: 4,
     tenKH: "Phạm Thu Hà",
+    tenTaiKhoan: "ha.pham",
     gioiTinh: "Nữ",
     email: "ha.pham@example.com",
-    diaChi: "23 Trần Phú, TP. Đà Nẵng",
-    matKhau: "ha456789"
-  },
-  {
-    maKH: 5,
-    tenKH: "Đỗ Quang Minh",
-    gioiTinh: "Nam",
-    email: "minh.do@example.com",
-    diaChi: "56 Nguyễn Huệ, TP. Cần Thơ",
-    matKhau: "minh567890"
+    soDienThoai: "0934567890",
   }
 ];
+
 const tableKhachHang = JSON.parse(localStorage.getItem('khachHang'));
 if(tableKhachHang){
   console.log("Đã có dữ liệu bảng khach hang")
