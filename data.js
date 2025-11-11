@@ -793,6 +793,185 @@ const khachHang = [
     gioiTinh: "Nữ",
     email: "ha.pham@example.com",
     soDienThoai: "0934567890",
+    diaChi: "10 Tô Hiến Thành, TP. Đà Nẵng",
+    matKhau: "ha456789",
+    trangThai: 1
+  },
+  // THÊM 16 KHÁCH HÀNG MỚI (MAKH TỪ 5 ĐẾN 20)
+  {
+    maKH: 5,
+    tenKH: "Võ Minh Đức",
+    tenTaiKhoan: "duc.vo",
+    gioiTinh: "Nam",
+    email: "duc.vo@example.com",
+    soDienThoai: "0945678901",
+    diaChi: "22 Trần Hưng Đạo, TP. Cần Thơ",
+    matKhau: "duc567890",
+    trangThai: 1
+  },
+  {
+    maKH: 6,
+    tenKH: "Đỗ Mai Chi",
+    tenTaiKhoan: "chi.do",
+    gioiTinh: "Nữ",
+    email: "chi.do@example.com",
+    soDienThoai: "0956789012",
+    diaChi: "88 Lý Thường Kiệt, TP. Hải Phòng",
+    matKhau: "chi678901",
+    trangThai: 1
+  },
+  {
+    maKH: 7,
+    tenKH: "Bùi Thanh Hải",
+    tenTaiKhoan: "hai.bui",
+    gioiTinh: "Nam",
+    email: "hai.bui@example.com",
+    soDienThoai: "0967890123",
+    diaChi: "35 Phan Chu Trinh, TP. Huế",
+    matKhau: "hai789012",
+    trangThai: 0
+  },
+  {
+    maKH: 8,
+    tenKH: "Nguyễn Kim Ngân",
+    tenTaiKhoan: "ngan.nguyen",
+    gioiTinh: "Nữ",
+    email: "ngan.nguyen@example.com",
+    soDienThoai: "0978901234",
+    diaChi: "50 Hoàng Diệu, TP. Nha Trang",
+    matKhau: "ngan890123",
+    trangThai: 1
+  },
+  {
+    maKH: 9,
+    tenKH: "Huỳnh Quốc Đạt",
+    tenTaiKhoan: "dat.huynh",
+    gioiTinh: "Nam",
+    email: "dat.huynh@example.com",
+    soDienThoai: "0989012345",
+    diaChi: "99 Nguyễn Huệ, Quận 7, TP.HCM",
+    matKhau: "dat901234",
+    trangThai: 1
+  },
+  {
+    maKH: 10,
+    tenKH: "Trịnh Thúy Loan",
+    tenTaiKhoan: "loan.trinh",
+    gioiTinh: "Nữ",
+    email: "loan.trinh@example.com",
+    soDienThoai: "0910123456",
+    diaChi: "15 Hùng Vương, TP. Đà Lạt",
+    matKhau: "loan12345",
+    trangThai: 0
+  },
+  {
+    maKH: 11,
+    tenKH: "Phan Văn Cường",
+    tenTaiKhoan: "cuong.phan",
+    gioiTinh: "Nam",
+    email: "cuong.phan@example.com",
+    soDienThoai: "0921234567",
+    diaChi: "67 Điện Biên Phủ, TP. Biên Hòa",
+    matKhau: "cuong23456",
+    trangThai: 1
+  },
+  {
+    maKH: 12,
+    tenKH: "Lâm Thị Yến",
+    tenTaiKhoan: "yen.lam",
+    gioiTinh: "Nữ",
+    email: "yen.lam@example.com",
+    soDienThoai: "0932345678",
+    diaChi: "8 Lạc Long Quân, TP. Quy Nhơn",
+    matKhau: "yen34567",
+    trangThai: 1
+  },
+  {
+    maKH: 13,
+    tenKH: "Hoàng Gia Bảo",
+    tenTaiKhoan: "bao.hoang",
+    gioiTinh: "Nam",
+    email: "bao.hoang@example.com",
+    soDienThoai: "0943456789",
+    diaChi: "5 Chu Văn An, TP. Vũng Tàu",
+    matKhau: "bao45678",
+    trangThai: 1
+  },
+  {
+    maKH: 14,
+    tenKH: "Ngô Thanh Tâm",
+    tenTaiKhoan: "tam.ngo",
+    gioiTinh: "Nữ",
+    email: "tam.ngo@example.com",
+    soDienThoai: "0954567890",
+    diaChi: "100 Lê Duẩn, TP. Vinh",
+    matKhau: "tam56789",
+    trangThai: 0
+  },
+  {
+    maKH: 15,
+    tenKH: "Đào Văn Khoa",
+    tenTaiKhoan: "khoa.dao",
+    gioiTinh: "Nam",
+    email: "khoa.dao@example.com",
+    soDienThoai: "0965678901",
+    diaChi: "25 Phan Bội Châu, TP. Buôn Ma Thuột",
+    matKhau: "khoa67890",
+    trangThai: 1
+  },
+  {
+    maKH: 16,
+    tenKH: "Kiều Thị Loan",
+    tenTaiKhoan: "loan.kieu",
+    gioiTinh: "Nữ",
+    email: "loan.kieu@example.com",
+    soDienThoai: "0976789012",
+    diaChi: "40 Trần Phú, TP. Đà Lạt",
+    matKhau: "loan78901",
+    trangThai: 1
+  },
+  {
+    maKH: 17,
+    tenKH: "Mai Công Vinh",
+    tenTaiKhoan: "vinh.mai",
+    gioiTinh: "Nam",
+    email: "vinh.mai@example.com",
+    soDienThoai: "0987890123",
+    diaChi: "111 Trường Chinh, Quận Tân Bình, TP.HCM",
+    matKhau: "vinh89012",
+    trangThai: 1
+  },
+  {
+    maKH: 18,
+    tenKH: "Trần Bảo Ngọc",
+    tenTaiKhoan: "ngoc.tran",
+    gioiTinh: "Nữ",
+    email: "ngoc.tran@example.com",
+    soDienThoai: "0998901234",
+    diaChi: "7 Bùi Thị Xuân, Quận Hai Bà Trưng, TP. Hà Nội",
+    matKhau: "ngoc90123",
+    trangThai: 0
+  },
+  {
+    maKH: 19,
+    tenKH: "Lý Thành Nam",
+    tenTaiKhoan: "nam.ly",
+    gioiTinh: "Nam",
+    email: "nam.ly@example.com",
+    soDienThoai: "0900011223",
+    diaChi: "333 Cao Thắng, Quận 10, TP.HCM",
+    matKhau: "nam011223",
+    trangThai: 1
+  },
+  {
+    maKH: 20,
+    tenKH: "Châu Tuyết Vân",
+    tenTaiKhoan: "van.chau",
+    gioiTinh: "Nữ",
+    email: "van.chau@example.com",
+    soDienThoai: "0900022334",
+    diaChi: "6 Phan Xích Long, Quận Phú Nhuận, TP.HCM",
+    matKhau: "van022334",
     trangThai: 1
   }
 ];
