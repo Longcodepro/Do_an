@@ -4,7 +4,7 @@ const tatCaSanPham = [
     maSP: 1,
     tenSP: "Máy giặt LG Inverter 9kg",
     maMatHang: "1",
-    hinhAnh: "./img/1.Máy giặt LG Inverter 9kg.jpg",
+    hinhAnh: "../img/1.Máy giặt LG Inverter 9kg.jpg",
     giaGoc: "8.500.000đ",
     giamGia: "-10%",
     giaHienTai: "7.650.000đ",
@@ -20,7 +20,7 @@ const tatCaSanPham = [
     maSP: 2,
     tenSP: "Máy giặt Samsung AddWash 10kg",
     maMatHang: "1",
-    hinhAnh: "./img/2. Máy giặt Samsung AddWash 10kg.webp",
+    hinhAnh: "../img/2. Máy giặt Samsung AddWash 10kg.webp",
 
     giaGoc: "10.200.000đ",
     giamGia: "-12%",
@@ -37,7 +37,7 @@ const tatCaSanPham = [
     maSP: 3,
     tenSP: "Máy giặt Toshiba Inverter 8.5kg",
     maMatHang: "1",
-    hinhAnh: "./img/3.Máy giặt Toshiba Inverter 8.5kg.webp",
+    hinhAnh: "../img/3.Máy giặt Toshiba Inverter 8.5kg.webp",
 
     giaGoc: "7.900.000đ",
     giamGia: "-7%",
@@ -54,7 +54,7 @@ const tatCaSanPham = [
     maSP: 4,
     tenSP: "Máy giặt Aqua 9kg cửa trên",
     maMatHang: "1",
-    hinhAnh: "./img/4.Máy giặt Aqua 9kg cửa trên.jpg",
+    hinhAnh: "../img/4.Máy giặt Aqua 9kg cửa trên.jpg",
 
     giaGoc: "6.800.000đ",
     giamGia: "-5%",
