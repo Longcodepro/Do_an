@@ -50,7 +50,7 @@ function quanLyKhachHang() {
 
     // Mã KH
     const tdMa = document.createElement("td");
-    tdMa.textContent = kh.MA_KHACH_HANG;
+    tdMa.textContent = kh.maKH;
     tr.appendChild(tdMa);
 
     // Tên KH
@@ -81,7 +81,7 @@ function quanLyKhachHang() {
     // Password
     const tdPass = document.createElement("td");
     const loginRow = dangNhapTable.data.find(
-      (dn) => dn.MA_KHACH_HANG === kh.MA_KHACH_HANG
+      (dn) => dn.maKH === kh.maKH
     );
     tdPass.textContent = loginRow ? loginRow.PASSWORD : "";
     tr.appendChild(tdPass);
@@ -122,7 +122,7 @@ btnReset.addEventListener("click", () => {
   }
 
   const rowNow = dnNow.data.find(
-    (x) => x.MA_KHACH_HANG === kh.MA_KHACH_HANG
+    (x) => x.maKH === kh.maKH
   );
   if (!rowNow) return;
 
@@ -143,7 +143,7 @@ btnReset.addEventListener("click", () => {
       if (!dnNow) return;
 
       const rowNow = dnNow.data.find(
-        (x) => x.MA_KHACH_HANG === kh.MA_KHACH_HANG
+        (x) => x.maKH === kh.maKH
       );
       if (!rowNow) return;
 

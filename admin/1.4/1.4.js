@@ -1,29 +1,27 @@
-//tạo link css
-const link = document.createElement('link');
-link.href = './1.4.css';
-link.rel = 'stylesheet';
 // các hàm lấy  và và cập nhập table 
 // đẩy lên local
 // truyền vô tên key và object chứa data
-setlocalStorage("product", tatCaSanPham);
-function setlocalStorage(key, value){
-    localStorage.setItem(key, JSON.stringify(value));
-}
+// setlocalStorage("product", tatCaSanPham);
+// function setlocalStorage(key, value){
+//     localStorage.setItem(key, JSON.stringify(value));
+// }
 // lấy file từ local
 // truyền vô key để lấy data
 function getlocalStorage(key){
     return JSON.parse(localStorage.getItem(key));
 }
-// tạo biến bảng sản phẩm cục bộ
-const rowsSp = getlocalStorage('product');
-// hàm
+
+let rowsSp = getlocalStorage('product');  // tạo biến bảng sản phẩm cục bộ
+
+// hàm chính
 function hamChinh() {
-  // tạo div nối với nội thẻ div có id = noi_dung trong html
+  // tạo div nối với nội thẻ div có id = noi_dung trong html admin
   const div = document.querySelector('#noi_dung');
   div.innerHTML = '';
   menu(div);
   content(div);
 }
+
 // hàm in ra các menu
 function menu(div) {
   // làm phần nút thêm sản phẩm, logo, tìm kiếm,
@@ -32,7 +30,7 @@ function menu(div) {
   div.appendChild(div1);
   // logo
   const logo = document.createElement('img');
-  logo.src = "./img/sgu.png";
+  logo.src = "../img/sgu.jpg";
   logo.alt = "Logo";
   logo.id = 'logo';
   div1.appendChild(logo);
@@ -40,17 +38,15 @@ function menu(div) {
   const theo_loai = document.createElement('select');
   theo_loai.id = 'tim_theo_loai';
   div1.appendChild(theo_loai);
-  const db = lay_du_lieu();
-  const tableMh = db.find(db => db.name === "mat_hang");
-  const rowsMh = tableMh.data;
+  const rowsMh = getlocalStorage('matHang');
   const tat_ca = document.createElement('option');
   tat_ca.textContent = 'Tất cả';
   tat_ca.value = '';
   theo_loai.appendChild(tat_ca);
   rowsMh.forEach(row => {
     const option =  document.createElement('option');
-    option.textContent = row.TEN_MAT_HANG;
-    option.value = row.MA_MAT_HANG;
+    option.textContent = row.tenMatHang
+    option.value = row.maMatHang;
     theo_loai.appendChild(option);
   });
   // xử lí tim_theo_loai
@@ -58,19 +54,16 @@ function menu(div) {
     const div2 = document.querySelector('#div2');
     div2.remove();
     if(theo_loai.value === ''){
-      const db1 = lay_du_lieu();
-      const rowsSp1 = lay_bang_san_pham(db1).data;
       const divTong = document.querySelector('#noi_dung');
-      content(divTong, rowsSp1);
-      rowsSp = rowsSp1; // gán lại cho rowsSp để kh dùng sort cho đúng
+      rowsSp = getlocalStorage("product");  // gán lại toàn bộ sản phẩm vô bảng sản phẩm
+      content(divTong);
     }
     else{
-      let db1 = lay_du_lieu();  // đổi thành let để có thể gán lại bằng filter ở dưới
-      let rowsSp1 = lay_bang_san_pham(db1).data;
-      rowsSp1 = rowsSp1.filter(row => row.MA_MAT_HANG === theo_loai.value);
-      const divTong = document.querySelector('#noi_dung');
-      content(divTong, rowsSp1);
+      let rowsSp1 = getlocalStorage("product");
+      rowsSp1 = rowsSp1.filter(row => row.maMatHang === theo_loai.value);
+      const divTong = document.querySelector('#noi_dung'); 
       rowsSp = rowsSp1;
+      content(divTong);
     }
   });
   // box tìm kiếm
@@ -85,15 +78,14 @@ function menu(div) {
   div1.appendChild(kinh_lup);
   kinh_lup.addEventListener('click', () => {
     // gọi hàm tìm kiếm sản phẩm
-    let db1 = lay_du_lieu();
-    let rowsSp1 = lay_bang_san_pham(db1).data;
+    let rowsSp1 = getlocalStorage("product");
     const tu_khoa = document.querySelector('#searchBox').value.trim().toLowerCase();  // xóa khoảng trắng bằng trim và chuyển thành chữ thường
-    rowsSp1 = rowsSp1.filter(row => row.TEN_SP.toLowerCase().includes(tu_khoa) || row.MA_SAN_PHAM.toLowerCase().includes(tu_khoa)); // Có thể tìm theo mã hoặc tên sản phẩm
+    rowsSp1 = rowsSp1.filter(row => String(row.maSP).toLowerCase().includes(tu_khoa) || row.tenSP.toLowerCase().includes(tu_khoa)); // Có thể tìm theo mã hoặc tên sản phẩm
     const div2 = document.querySelector('#div2');
     div2.remove();
     const divTong = document.querySelector('#noi_dung');  
-    content(divTong, rowsSp1);
-    rowsSp = rowsSp1; // gán lại cho rowsSp để kh dùng sort cho đúng
+    rowsSp = rowsSp1;
+    content(divTong);
   });
   // thêm sản phẩm
   const themSp = document.createElement('button');
@@ -104,24 +96,23 @@ function menu(div) {
   themSp.onclick = function () {
     console.log('Nhấn nút thêm sản phẩm');
     if(confirm('Bạn muốn thêm sản phẩm')){
-      themSanPham(rowsSp);
+      themSanPham();
     }
   }
   // sắp xếp tăng dần hoặc giảm dần
   const tang_giam = document.createElement('button');
-  // tang_giam.type = 'button';
   tang_giam.id = 'tang_giam';
   div1.appendChild(tang_giam);
   tang_giam.textContent = 'Giảm';
   tang_giam.onclick = function () {
     console.log('Nhấn nút sắp xếp tăng/giảm');
-    rowsSp = sort(rowsSp, tang_giam.textContent);
+    sort(tang_giam.textContent);
     tang_giam.textContent = doi_chieu(tang_giam.textContent);
     const div2 = document.querySelector('#div2');
     div2.remove();  /// xóa table cũ 
     // bắt div tổng
     const divTong = document.querySelector('#noi_dung');
-    content(divTong, rowsSp); // truyền vô divTong để tạo bảng mới
+    content(divTong); // truyền vô divTong để tạo bảng mới
   };
 }
 // hàm đổi chữ tăng/giảm
@@ -135,22 +126,21 @@ function doi_chieu(chieu) {
   return chieu;
 }
 // sort bảng theo mã sản phẩm
-function sort(rowsSp, chieu) {
+function sort(chieu) {
   console.log('sort theo mã sản phẩm');
   if (chieu === "Tăng") {
     rowsSp.sort((a, b) => {
-      return parseInt(a.MA_SAN_PHAM) - parseInt(b.MA_SAN_PHAM);
+      return parseInt(a.maSP) - parseInt(b.maSP);
     });
   }
   else {
     rowsSp.sort((a, b) => {
-      return parseInt(b.MA_SAN_PHAM) - parseInt(a.MA_SAN_PHAM);
+      return parseInt(b.maSP) - parseInt(a.maSP);
     });
   }
-  return rowsSp;
 }
 // hàm thêm sản phẩm
-function themSanPham(rowsSp) {
+function themSanPham() {
   const d = document.querySelector('#div2');
   d.innerHTML = '';
   d.classList = 'khungThemSp';
@@ -163,7 +153,7 @@ function themSanPham(rowsSp) {
     if(confirm('Bạn muốn thoát khoải form thêm sản phẩm')){
       d.remove();
       const divTong = document.querySelector('#noi_dung');
-      content(divTong, rowsSp);
+      content(divTong);
     }
   });
   //tạo tiêu đề
@@ -203,24 +193,34 @@ function themSanPham(rowsSp) {
   const matHang = document.createElement('select');
   matHang.classList = 'selectMatHang';
   matHang.id = 'matHang';
-  matHang.size = '5'; // giúp tạo cuộn và hiện ra option thôi
+  matHang.size = 2;// giúp tạo cuộn và hiện ra option thôi
   d.appendChild(matHang);
-  const data = lay_du_lieu();
-  const tableMh = data.find(data => data.name === "mat_hang");
-  const rowsMh = tableMh.data;
+  const rowsMh = getlocalStorage("matHang");
   for (let i = 0; i < rowsMh.length; i++) {
     const op = document.createElement('option');
-    op.textContent = rowsMh[i].TEN_MAT_HANG;
-    op.value = rowsMh[i].MA_MAT_HANG;
+    op.textContent = rowsMh[i].tenMatHang;
+    op.value = rowsMh[i].maMatHang;
     matHang.appendChild(op);
   }
-  // tạo text nhập thông tin sản phẩm
-  const thongTinSanPham = document.createElement('textarea'); // dùng thẻ này có thể nhập nhiều hơn thay vì dùng input
-  thongTinSanPham.classList.add('special');
-  thongTinSanPham.style.marginLeft = '5%';
-  thongTinSanPham.placeholder = 'Thông tin sản phẩm';
-  thongTinSanPham.id = 'thongTinSanPham';
-  d.appendChild(thongTinSanPham);
+  // tạo text 
+  // const thongTinSanPham = document.createElement('textarea'); // dùng thẻ này có thể nhập nhiều hơn thay vì dùng input
+  // thongTinSanPham.classList.add('special');
+  // thongTinSanPham.style.marginLeft = '5%';
+  // thongTinSanPham.placeholder = 'Thông tin sản phẩm';
+  // thongTinSanPham.id = 'thongTinSanPham';
+  // d.appendChild(thongTinSanPham);
+
+  // text nhập phần trăm giảm
+  const giamGia = document.createElement('input');
+  d.appendChild(giamGia);
+  giamGia.classList.add('phanTramGiam');
+  giamGia.type = 'number';
+  giamGia.min = '0';
+  giamGia.max = '100';
+  giamGia.placeholder = 'Nhập phần trăm giảm giá (%)...';
+  giamGia.id = 'giamGia';
+
+
   // tạo ô thêm ảnh
   const anh = document.createElement('input');
   anh.type = 'file';
@@ -267,24 +267,27 @@ function themSanPham(rowsSp) {
     alert("Vui lòng chọn một file hình ảnh.");
   } 
   });
+
   // div bao reset và xác nhận
   const bao = document.createElement('div');
   d.appendChild(bao);
   bao.classList.add('divBao');
+
   // nút button xác nhận
   const xac_nhan = document.createElement('button');
   xac_nhan.textContent = "Xác nhận";
   xac_nhan.classList.add('xac_nhan');
   bao.appendChild(xac_nhan);
+
   // xử lí nút
   xac_nhan.addEventListener('click', () => {
     if ( check(truyenAnh, "Thêm", null) === 0) return;
     d.innerHTML = '';
-    const rowsSp1 = lay_bang_san_pham(lay_du_lieu()).data;
+    rowsSp = getlocalStorage("product");
     const div2 = document.querySelector('#div2');
     div2.remove();
     const divTong = document.querySelector('#noi_dung');
-    content(divTong, rowsSp1);
+    content(divTong);
   })
   // nút button reset
   const reset = document.createElement('button');
@@ -298,8 +301,7 @@ function themSanPham(rowsSp) {
 // hàm kiểm tra nội dung nhập vào
 function check(truyenAnh, text, ma_cu) {  
   // lấy dữ liệu
-  const db1 = lay_du_lieu();
-  const rowsSp1 = lay_bang_san_pham(db1).data;
+  const rowsSp1 = getlocalStorage('product');
   // kiểm tra xem đã có nội dùng chưa
   const ma = document.querySelector('#maSp');
   if (ma.value.trim() === '') {  // trim là xóa khoảng trắng thừa
@@ -309,8 +311,8 @@ function check(truyenAnh, text, ma_cu) {
   }
   // kiểm tra xem mã sản phẩm có bị trùng không
   for (let i = 0; i < rowsSp1.length; i++) {
-    if (ma.value.trim() === rowsSp1[i].MA_SAN_PHAM) {
-      if( ma.value === rowsSp1[i].MA_SAN_PHAM){
+    if (ma.value.trim() === rowsSp1[i].maSP) {
+      if( ma.value === rowsSp1[i].maSP){
         if( text === "Thêm"){
           alert('Mã sản phẩm này đã tồn tại, hãy nhập mã khác cho sản phẩm mới');
           ma.focus();
@@ -366,31 +368,31 @@ function check(truyenAnh, text, ma_cu) {
   }
 
   const thong_tin = {
-    MA_SAN_PHAM: ma.value.trim(),
-    SO_LUONG: so_luong.value.trim(),
-    TEN_SP: ten.value.trim(),
-    HINH_ANH: truyenAnh,
-    THONG_TIN_SP: thongtin.value.trim(),
-    GIA_BAN: gia.value.trim(),
-    TINH_TRANG: "1",
-    MA_MAT_HANG: mathang.value.trim(),
+    maSP: ma.value.trim(),
+    soLuong: so_luong.value.trim(),
+    tenSp: ten.value.trim(),
+    hinhAnh: truyenAnh,
+    lienKet: thongtin.value.trim(),
+    giaHienTai: gia.value.trim(),
+    hienAn: "1",
+    maMatHang: mathang.value.trim(),
   }
   if( text === "Thêm"){
-    themSpVoDanhSach(thong_tin, rowsSp1, db1);
+    themSpVoDanhSach(thong_tin, rowsSp1);
   }
   else{
     return thong_tin;
   }
 }
 // hàm thêm sản phẩm vô list sản phẩm
-function themSpVoDanhSach(thong_tin, rowsSp1, db1) {
-  rowsSp1.push(thong_tin);  // đẩy thêm một phần tử vô cuối mảng
-  cap_nhap_localStorage(db1);
+function themSpVoDanhSach(thong_tin, rowsSp1) {
+  rowsSp1.push(thong_tin);  // đẩy thêm một phần tử vô cuối mảng 
+  setlocalStorage("product", rowsSp1);
   console.log('Đã thêm sản phẩm này vô danh sach: ' + JSON.stringify(thong_tin));  // in ra thông tin trong console để kiểm tra 
 }
 
 // hàm in ra content
-function content(div, rowsSp){
+function content(div){
   // tạo div2 để bao
   const div2 = document.createElement('div');
   div2.id = 'div2';
@@ -425,26 +427,26 @@ function content(div, rowsSp){
     const tr1 = document.createElement('tr');
     const stt = document.createElement('td'); // ô mã sản phẩm
     stt.classList.add('du_lieu');
-    stt.textContent = row.MA_SAN_PHAM;
+    stt.textContent = row.maSP;
     const nameSp = document.createElement('td');   // ô name sp
-    nameSp.textContent = row.TEN_SP;
+    nameSp.textContent = row.tenSP;
     nameSp.classList.add('du_lieu');  //add class
     const soLuong = document.createElement('td'); // ô số lượng
     soLuong.classList.add('du_lieu');
-    soLuong.textContent = row.SO_LUONG;
+    soLuong.textContent = row.soLuong;
     const gia = document.createElement('td'); // ô giá bán
     gia.classList.add('du_lieu');
-    gia.textContent = row.GIA_BAN + ' VND';
+    gia.textContent = row.giaHienTai + ' VND';
     const hien_an = document.createElement('td'); // ô hiện/ẩn
     hien_an.classList.add('du_lieu');
     // tạo hộp checkbox
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    if (row.TINH_TRANG == "1") {  // nếu nó bằng 1 thì tức là hiện nên đánh dấu tích
+    if (row.hienAn == "1") {  // nếu nó bằng 1 thì tức là hiện nên đánh dấu tích
       checkbox.checked = true;
     }
     checkbox.addEventListener('change', () => {
-      nut_hien_an(row.MA_SAN_PHAM, rowsSp);
+      nut_hien_an(row.maSP);
     });
 
 
@@ -455,7 +457,7 @@ function content(div, rowsSp){
     xoa.textContent = 'Xóa';
     xoa.addEventListener('click', () =>{
     if( confirm("Bạn muốn xóa sản phẩm")){
-      xoaSp(row.MA_SAN_PHAM, rowsSp);
+      xoaSp(row.maSP);
     }
     });
     const sua = document.createElement('button'); //nút sửa
@@ -463,7 +465,7 @@ function content(div, rowsSp){
     sua.textContent = 'Sửa';
     sua.style.marginLeft = '5%';
     sua.addEventListener('click', () => {
-      suaSp(row.MA_SAN_PHAM, rowsSp);
+      suaSp(row.maSP);
     });
     tr1.appendChild(stt);
     tr1.appendChild(nameSp);
@@ -480,53 +482,52 @@ function content(div, rowsSp){
 
 // xử lí các nút bấm của table
 // hiện thị
-function nut_hien_an(idSp, rowsSp){
-  const row = rowsSp.find( row => row.MA_SAN_PHAM === idSp);
-  if( row.TINH_TRANG === '1'){
-    row.TINH_TRANG = '0';
+function nut_hien_an(idSp){
+  const row = rowsSp.find( row => row.maSP === idSp);
+  if( row.hienAn === '1'){
+    row.hienAn = '0';
   }
-  else row.TINH_TRANG = '1';
+  else row.hienAn = '1';
   console.log('Nhấn nút hiện/ẩn sản phẩm có mã: ' + idSp);
-  console.log('Hien/an: '+ row.TINH_TRANG);
-  const db1 = lay_du_lieu();
-  const rowsSp1 = lay_bang_san_pham(db1).data;
-  const row1 = rowsSp1.find(row => row.MA_SAN_PHAM === idSp);
-  row1.TINH_TRANG = row.TINH_TRANG;
-  cap_nhap_localStorage(db1);
+  console.log('Hien/an: '+ row.hienAn);
+
+  const rowsSp1 = getlocalStorage("product");
+  const row1 = rowsSp1.find(row => row.maSP === idSp);
+  row1.hienAn = row.hienAn;
+  setlocalStorage("product", rowsSp1);
   const div2 = document.querySelector('#div2');
   div2.remove();
   const divTong = document.querySelector('#noi_dung');
-  content(divTong, rowsSp);
+  content(divTong);
 }
 // xóa
-function xoaSp(idSp, rowsSp){
-  const row = rowsSp.find( row => row.MA_SAN_PHAM === idSp);
+function xoaSp(idSp){
+  const row = rowsSp.find( row => row.maSP === idSp);
   const indexRow = rowsSp.indexOf(row); 
   console.log(indexRow);
   // xóa theo vị trí
   rowsSp.splice(indexRow, 1);  // tham số thứ nhất là vị trí bắt đầu, tham số thứ hai là xóa n phần tử từ vị trí bắt đầu
   console.log("Đã xóa một sản phẩm");
   // cập nhập vô local
-  const db1 = lay_du_lieu();
-  const rowsSp1 = lay_bang_san_pham(db1).data;
-  const row1 = rowsSp1.find( row => row.MA_SAN_PHAM === idSp);
+  const rowsSp1 = getlocalStorage("product");
+  const row1 = rowsSp1.find( row => row.maSP === idSp);
   const indexRow1 = rowsSp1.indexOf(row1);
   rowsSp1.splice(indexRow1, 1);
-  cap_nhap_localStorage(db1);
+  setlocalStorage("product", rowsSp1);
 
   // cập nhập lại bảng
   const div2 = document.querySelector('#div2');
   div2.remove();
   const divTong = document.querySelector('#noi_dung');
-  content(divTong, rowsSp);
+  content(divTong);
 }
 
 
 // sửa
 // lấy hàm thêm sản phẩm và chỉnh sửa lại một chút
-function suaSp(idSp, rowsSp){
+function suaSp(idSp){
   //lấy hàng cần sửa
-  const row = rowsSp.find( row => row.MA_SAN_PHAM === idSp);
+  const row = rowsSp.find( row => row.maSp === idSp);
 
   const d = document.querySelector('#div2');
   d.innerHTML = '';
@@ -539,10 +540,8 @@ function suaSp(idSp, rowsSp){
   thoat.addEventListener('click', () => {
     if(confirm('Bạn muốn thoát khoải form chỉnh sửa sản phẩm')){
       d.remove();
-      const db = lay_du_lieu();
-      const rowsSp = lay_bang_san_pham(db).data;
       const divTong = document.querySelector('#noi_dung');
-      content(divTong, rowsSp);
+      content(divTong);
     }
   });
   //tạo tiêu đề
@@ -554,14 +553,14 @@ function suaSp(idSp, rowsSp){
   // mã sản phẩm
   const maSp = document.createElement('input');
   maSp.placeholder = "Mã sản phẩm";
-  maSp.value = row.MA_SAN_PHAM; // đặt sẵn giá trị
+  maSp.value = row.maSP; // đặt sẵn giá trị
   maSp.type = 'text'; 
   maSp.id = 'maSp';
   d.appendChild(maSp);
   // tên sản phẩm
   const tenSp = document.createElement('input');
   tenSp.type = 'text';
-  tenSp.value = row.TEN_SP;  // đặt sẵn giá trị
+  tenSp.value = row.tenSp;  // đặt sẵn giá trị
   tenSp.placeholder = "Tên sản phẩm";
   tenSp.style.marginLeft = '5%';
   tenSp.id = 'tenSp';
@@ -570,14 +569,14 @@ function suaSp(idSp, rowsSp){
   const soLuong = document.createElement('input');
   soLuong.type = 'number';
   soLuong.min = '1'; // tối thiểu là 1
-  soLuong.value = row.SO_LUONG;  // đặt sẵn giá trị
+  soLuong.value = row.soLuong;  // đặt sẵn giá trị
   soLuong.placeholder = "Số lượng";
   soLuong.id = 'soLuong';
   d.appendChild(soLuong);
   // giá bán
   const giaBan = document.createElement('input');
   giaBan.type = 'number';
-  giaBan.value = row.GIA_BAN; // đặt sẵn giá trị
+  giaBan.value = row.giaHienTai; // đặt sẵn giá trị
   giaBan.placeholder = "Giá bán";
   giaBan.style.marginLeft = '5%';
   giaBan.id = 'giaBan';
@@ -588,22 +587,20 @@ function suaSp(idSp, rowsSp){
   matHang.id = 'matHang';
   matHang.size = '5'; // giúp tạo cuộn và hiện ra option thôi
   d.appendChild(matHang);
-  const data = lay_du_lieu();
-  const tableMh = data.find(data => data.name === "mat_hang");
-  const rowsMh = tableMh.data;
+  const rowsMh = getlocalStorage("matHang");
   for (let i = 0; i < rowsMh.length; i++) {
     const op = document.createElement('option');
-    op.textContent = rowsMh[i].TEN_MAT_HANG;
-    op.value = rowsMh[i].MA_MAT_HANG;
+    op.textContent = rowsMh[i].tenMatHang;
+    op.value = rowsMh[i].maMatHang;
     matHang.appendChild(op);
   }
-  matHang.value = row.MA_MAT_HANG;// thay đổi thành giá trị mặc định
+  matHang.value = row.maMatHang;// thay đổi thành giá trị mặc định
   // tạo text nhập thông tin sản phẩm
   const thongTinSanPham = document.createElement('textarea'); // dùng thẻ này có thể nhập nhiều hơn thay vì dùng input
   thongTinSanPham.classList.add('special');
   thongTinSanPham.style.marginLeft = '5%';
   thongTinSanPham.placeholder = 'Thông tin sản phẩm';
-  thongTinSanPham.value = row.THONG_TIN_SP;
+  thongTinSanPham.value = row.lienKet; //thay đổi thành giá trị mặc định
   thongTinSanPham.id = 'thongTinSanPham';
   d.appendChild(thongTinSanPham);
   // tạo ô thêm ảnh
@@ -620,8 +617,8 @@ function suaSp(idSp, rowsSp){
   xem_anh.style.border = '1px solid #ccc';
   xem_anh.style.marginLeft = '5%';
   xem_anh.alt = 'Chưa có ảnh được tải lên';
-  xem_anh.src = row.HINH_ANH; //gắn sẵn giá trị
-  let truyenAnh = row.HINH_ANH; // gắn để vượt khỏi hàm check 
+  xem_anh.src = row.hinhAnh; //gắn sẵn giá trị
+  let truyenAnh = row.hinhAnh; // gắn để vượt khỏi hàm check 
   const divBaoAnh = document.createElement('div');
   divBaoAnh.id = 'divBaoAnh';
   divBaoAnh.appendChild(anh);
@@ -666,14 +663,14 @@ function suaSp(idSp, rowsSp){
   bao.appendChild(xac_nhan);
   // xử lí nút
   xac_nhan.addEventListener('click', () => {
-    if ( check(truyenAnh, "Sửa", row.MA_SAN_PHAM) === 0) return;
-    const thong_tin = check(truyenAnh, "Sửa", row.MA_SAN_PHAM);
+    if ( check(truyenAnh, "Sửa", row.maSP) === 0) return;
+    const thong_tin = check(truyenAnh, "Sửa", row.maSP);
     suaSpVoDanhSach(idSp, thong_tin, rowsSp);
     alert("Đã sửa sản phẩm");
     const div2 = document.querySelector('#div2')
     div2.remove();
     const divTong = document.querySelector('#noi_dung');
-    content(divTong, rowsSp);
+    content(divTong);
   })
   // nút button reset
   const reset = document.createElement('button');
@@ -681,20 +678,22 @@ function suaSp(idSp, rowsSp){
   reset.classList.add('reset');
   bao.appendChild(reset);
   reset.addEventListener('click', () => {
-    suaSp(idSp, rowsSp);
+    suaSp(idSp);
   })
 }
 
-function suaSpVoDanhSach(idSp, thong_tin, rowsSp){
+function suaSpVoDanhSach(idSp, thong_tin){
   // cập nhập vô mảnh hiện tại
-  const rowIndex = rowsSp.findIndex( row => row.MA_SAN_PHAM === idSp);
-  rowsSp.splice( rowIndex, 1);
+  const rowIndex = rowsSp.findIndex( row => row.maSP === idSp);
+  rowsSp.splice(rowIndex, 1);
   rowsSp.push(thong_tin);
   // cập nhập vô local
-  const db1 = lay_du_lieu();
-  const rowsSp1 = lay_bang_san_pham(db1).data;
-  const rowIndex1 = rowsSp1.findIndex( row => row.MA_SAN_PHAM === idSp);
+  const rowsSp1 = getlocalStorage("product");
+  const rowIndex1 = rowsSp1.findIndex( row => row.maSP === idSp);
   rowsSp1.splice( rowIndex1, 1);
   rowsSp1.push(thong_tin);
-  cap_nhap_localStorage(db1);
+  setlocalStorage("product", rowsSp1);
 }
+
+
+

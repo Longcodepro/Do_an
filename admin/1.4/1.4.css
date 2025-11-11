@@ -49,7 +49,13 @@
     color:blue;
     font-size: larger;
     border: 2px solid blue;
+    border-radius: 20px;
+    width: 10%;
 }
+/* #tang_giam:hover {
+    background-color: rgba(55, 150, 200, 0.845); 
+    border-color: darkblue;
+} */
 #div2{
     overflow-y: auto;
     height: 79%
@@ -120,9 +126,19 @@
     height: 91px;
     border-radius: 5px;
     margin-top: 10px;
-    white-space: normal;
-    resize: none;   /*không cho ô kéo giãn*/
+    padding: 5px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
 }
+.phanTramGiam{
+    height: 10%;
+    margin-left: 5%;
+}
+
 #divBaoAnh{
     width: 100%;
     display:flex;
