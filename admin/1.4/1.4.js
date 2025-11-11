@@ -2,10 +2,10 @@
 // đẩy lên local
 // truyền vô tên key và object chứa data
 // setlocalStorage("product", tatCaSanPham);
-// function setlocalStorage(key, value){
-//     localStorage.setItem(key, JSON.stringify(value));
-// }
-// lấy file từ local
+function setlocalStorage(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
 // truyền vô key để lấy data
 function getlocalStorage(key){
     return JSON.parse(localStorage.getItem(key));
@@ -521,7 +521,6 @@ function xoaSp(idSp){
   const divTong = document.querySelector('#noi_dung');
   content(divTong);
 }
-
 
 // sửa
 // lấy hàm thêm sản phẩm và chỉnh sửa lại một chút

@@ -793,6 +793,7 @@ const khachHang = [
     gioiTinh: "Nữ",
     email: "ha.pham@example.com",
     soDienThoai: "0934567890",
+    trangThai: 1
   }
 ];
 
