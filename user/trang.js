@@ -1,65 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="trangchu.css">
-    <script src="/Do_an/data.js"></script>
-    <script src="trang.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <title>Document</title>
-  </head>
-  <body>     <nav id="header">
-    <div class="nav-img">
-      <img src="/Do_an/img/anh2.png" alt="logo" />
-    </div>
-    <button class="btn-bar">
-      <i class="nav-bar fa-solid fa-bars-staggered"></i>
-      <div onclick="loadpage('sanpham')">
-        SẢN PHẨM
-        <ul class="sub-menu">
-          <li class="sp" data-mamh="may_giat">
-            <a href="" >may giac</a>
-          </li>
-          <!-- <li><a href="">ban ui</a></li> -->
-          <!-- <li><a href="">binh dun sieu toc</a></li>
-          <li><a href="">quat hop</a></li> -->
-          <li class="sp" data-mamh="tu_lanh"><a href="">tủ lạnh</a></li>
-          <li class="sp" data-mamh="tv"><a href="">TV</a></li>
-          <li class="sp" data-mamh="may_lanh"><a href="">máy lạnh</a></li>
-          <li class="sp" data-mamh="may_loc_khong_khi"><a href="">máy lọc không khí</a></li>
-          <!-- <li><a href="">noi com</a></li>
-          <li><a href="">lo vi song</a></li> -->
-        </ul>
-      </div>
-    </button>
-    <button class="home" >
-      <i class="nav-home fa-solid fa-cart-shopping"></i>
-      <div onclick="loadpage('trangchu')">TRANG CHỦ</div>
-      </button>
-    <button class="cart" onclick="window.location.href='gio_hang.html'">
-      <i class="nav-cart fa-solid fa-cart-shopping"></i>
-      <div>GIỎ HÀNG</div>
-    </button>
-    <button class="user">
-      <i class="nav-user fa-solid fa-circle-user"></i>
-      <div>ĐĂNG NHẬP</div>
-    </button>
-    <button class="Hotline">
-      <i class="fa-solid fa-phone-volume"></i> 1900 1800
-    </button>
-  </nav>
-  <div class="search">
-    <button class="btn-search">
-      <i class="nav-search fa-solid fa-magnifying-glass"></i>
-    </button>
-
-    <input type="search" name="" id="timkiem" placeholder="tim kiem" />
-  </div>    
-    <div id="noi_dung">
-        <div class="lon">
-          
+const trang={
+    trangchu:`
+     <div class="lon">
+             
             <div class="lon1">
               <div class="slide">
                 <div class="anh">
@@ -434,33 +376,56 @@
                     </div> -->
                   </div>
     </div>
-          
-        
-      
+    `,
+    sanpham:`
+     <div class="khonglo" >
      
-      
-      <div class="footer">
-        <div>
-          tổng đài hỗ trợ
-          <div>1900 1800</div>
-        </div>
-        <div>website cùng tập đoàn</div>
-        <div class="diachi">
-          <div>địa chỉ</div>
-          <div class="adiachi">
-            <div>
-              273 An Dương Vương, <br />Phường Chợ Quán, Thành phố Hồ Chí Minh
-              700000, Việt Nam
+        <div class="sanpham">
+            <div class="menu-top">
+                <ul class="loai">
+                    <li >
+              <div class="anh">
+                <img src="/Do_an/img/4.png" alt="may giac" />
+              </div>
+              <p>Máy Giặc</p>
+            </li>
+             
+                </ul>
             </div>
-            <img src="/Do_an/img/diachi.png" alt="" />
-          </div>
+           
+            <div class="menu-conten" id="products">
+                <div class="product" id="thongtin"  data-id="001">
+                    <div class="anh1">
+                        <img src="/Do_an/img/4.png" alt="">
+                    </div>
+                    <h4>Máy giặt LG FV1410S3B 10 kg Inverter</h4>
+                    <div>
+                        <div class="price">
+                            <span class="price-new">5.990.000đ</span>
+                            <span class="price-old">8.990.000đ </span>
+                            <small>-25%</small>
+                           </div>
+                           <div class="tuongtac">
+                            
+                            <div class="sao"><i class="fa-solid fa-star"></i> 5.0</div> 
+                            <div class="chitiet"> <i class="fa-regular fa-square-plus"  ></i>
+                                <div class="note">Chi Tiết</div>
+                            </div>
+                           </div>
+                           <div class="hang">
+                            <div class="mua"> Mua </div>
+                            <div><i class="nav-cart fa-solid fa-cart-shopping" style="margin-left: 7px;"></i></div>
+                           </div>
+                    </div>
+                       
+            </div>
+           
+           
         </div>
-      </div>
+        <ul id="phantrang" class="phantrang"></ul>
+        <div id="chitiet" style="display:none;"></div>
+        
     </div>
-    <!-- <script src="sanpham.js"></script> -->
-    <script src="doitrang.js"></script>
+    `
 
-    <!-- <script src="test.js"></script> -->
-    <!-- <script src="2,2.js"></script> -->
-  </body>
-</html>
+};
