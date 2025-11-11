@@ -730,18 +730,18 @@ else{
 
 // bảng chi tiết đơn hàng
 const chiTietDonHang = [
-  { maCTDH: 1, maDH: 1, maSP: 101, soLuong: 1, tongTien: 7650000 },
-  { maCTDH: 2, maDH: 1, maSP: 102, soLuong: 1, tongTien: 18700000 },
-  { maCTDH: 3, maDH: 2, maSP: 103, soLuong: 2, tongTien: 8190000 },
-  { maCTDH: 4, maDH: 2, maSP: 104, soLuong: 1, tongTien: 5915000 },
-  { maCTDH: 5, maDH: 2, maSP: 105, soLuong: 1, tongTien: 1000000 },
-  { maCTDH: 6, maDH: 3, maSP: 106, soLuong: 1, tongTien: 11440000 },
-  { maCTDH: 7, maDH: 3, maSP: 107, soLuong: 2, tongTien: 1570000 },
-  { maCTDH: 8, maDH: 4, maSP: 108, soLuong: 1, tongTien: 8645000 },
-  { maCTDH: 9, maDH: 4, maSP: 109, soLuong: 1, tongTien: 4400000 },
-  { maCTDH: 10, maDH: 4, maSP: 110, soLuong: 1, tongTien: 800000 },
-  { maCTDH: 11, maDH: 5, maSP: 111, soLuong: 2, tongTien: 6000000 },
-  { maCTDH: 12, maDH: 5, maSP: 112, soLuong: 1, tongTien: 16890000 },
+  { maCTDH: 1, maDH: 1, maSP: 1, soLuong: 1, tongTien: 7650000 },
+  { maCTDH: 2, maDH: 1, maSP: 2, soLuong: 1, tongTien: 18700000 },
+  { maCTDH: 3, maDH: 2, maSP: 7, soLuong: 2, tongTien: 8190000 },
+  { maCTDH: 4, maDH: 2, maSP: 34, soLuong: 1, tongTien: 5915000 },
+  { maCTDH: 5, maDH: 2, maSP: 12, soLuong: 1, tongTien: 1000000 },
+  { maCTDH: 6, maDH: 3, maSP: 15, soLuong: 1, tongTien: 11440000 },
+  { maCTDH: 7, maDH: 3, maSP: 20, soLuong: 2, tongTien: 1570000 },
+  { maCTDH: 8, maDH: 4, maSP: 25, soLuong: 1, tongTien: 8645000 },
+  { maCTDH: 9, maDH: 4, maSP: 36, soLuong: 1, tongTien: 4400000 },
+  { maCTDH: 10, maDH: 4, maSP: 13, soLuong: 1, tongTien: 800000 },
+  { maCTDH: 11, maDH: 5, maSP: 23, soLuong: 2, tongTien: 6000000 },
+  { maCTDH: 12, maDH: 5, maSP: 34, soLuong: 1, tongTien: 16890000 },
 ];
 const tableBillDetail = JSON.parse(localStorage.getItem('billDetail'));
 if(tableBillDetail){
