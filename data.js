@@ -671,12 +671,13 @@ const tatCaSanPham = [
 ];
 
 // kiểm tra xem trên local hiện tại đã có table chưa nếu chưa có thì đẩy lên
-const tableSp = JSON.parse(localStorage.getItem('roduct'));
+const tableSp = JSON.parse(localStorage.getItem('product'));
 if(tableSp){
   console.log("Đã có dữ liệu bảng sản phẩm")
 }
 else{
   localStorage.setItem('product', JSON.stringify(tatCaSanPham));  // nếu chưa có thì đẩy lên local
+  console.log("test");
 }
 
 // bảng đơn hàng
