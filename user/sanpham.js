@@ -301,20 +301,22 @@
         phantrang1.style.display = "none";
         thitiet1.style.display = "block";
 
-        thitiet1.innerHTML = `
-            <div class="chitiet-sanpham">
-                <button id="backBtn">← Quay lại</button>
-                <div class="chitiet-content">
-                    <img src="${sp.hinhAnh}" alt="${sp.tenSP}">
-                    <div class="info">
-                        <h2>${sp.tenSP}</h2>
-                        <p><b>Giá Gốc:</b> ${sp.giaGoc}</p>
-                        <p><b>Giá Khuyến Mãi:</b> ${sp.giaHienTai}</p>
-                        <p><b>Mã mặt hàng:</b> ${sp.maMatHang}</p>
-                    </div>
-                </div>
-            </div>
-        `;
+      // LƯU Ý: Trong dữ liệu gốc, các thuộc tính là: tenSP, hinhAnh, giaHienTai, maMatHang.
+      // Cần sửa các thuộc tính hiển thị trong chi tiết
+      thitiet1.innerHTML = `
+          <div class="chitiet-sanpham">
+              <button id="backBtn">← Quay lại</button>
+              <div class="chitiet-content">
+                  <img src="${sp.hinhAnh}" alt="${sp.tenSP}">
+                  <div class="info">
+                      <h2>${sp.tenSP}</h2>
+                      <p><b>Giá Gốc:</b> ${sp.giaGoc}</p>
+                      <p><b>Giá Khuyến Mãi:</b> ${sp.giaHienTai}</p>
+                      <p><b>Mã mặt hàng:</b> ${sp.maMatHang}</p>
+                  </div>
+              </div>
+          </div>
+      `;
 
         document.getElementById("backBtn").addEventListener("click", () => {
             thitiet1.style.display = "none";
