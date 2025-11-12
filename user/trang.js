@@ -5,87 +5,11 @@ const trang={
             <div class="lon1">
               <div class="slide">
                 <div class="anh">
-                  <!-- <img src="/Do_an//img/ande.jpg" alt=""> -->
-                  <!-- <img src="/Do_an/img/de.avif" alt="">
-                      <img src="/Do_an/img/de1.jpg" alt=""> -->
-                  <img src="/Do_an/img/de2.jpg" alt="" />
+                  <img src="../img/de2.jpg" alt="" />
                 </div>
               </div>
             </div>
-            <!-- <div class="lon2">
-              <div class="menu">
-                <ul class="nho">
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/4.png" alt="may giac" />
-                    </div>
-                    <p>Máy Giặc</p>
-                  </li>
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/mlkk.png" alt="may loc khong khi" />
-                    </div>
-                    <p>Máy Lộc Không Khí</p>
-                  </li>
-                </ul>
-                <ul class="nho">
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/banui.png" alt="ban ui" />
-                    </div>
-                    <p>Bàn Ủi</p>
-                  </li>
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/maysay.png" alt="may say toc" />
-                    </div>
-                    <p>Máy sấy Tóc</p>
-                  </li>
-                </ul>
-                <ul class="nho">
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/bst.png" alt="may giac" />
-                    </div>
-                    <p>Bình Đun Siêu Tóc</p>
-                  </li>
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/mayxay.png" alt="may giac" />
-                    </div>
-                    <p>Máy Xay Sinh Tố</p>
-                  </li>
-                </ul>
-                <ul class="nho">
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/quathop.png" alt="quat hop" />
-                    </div>
-                    <p>Quạt Hộp</p>
-                  </li>
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/noicom.png" alt="noi com" />
-                    </div>
-                    <p>Nồi Cơm</p>
-                  </li>
-                </ul>
-                <ul class="nho">
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/mayhut.png" alt="may hut bui" />
-                    </div>
-                    <p>Máy Hút Bụi</p>
-                  </li>
-                  <li>
-                    <div class="anh">
-                      <img src="/Do_an/img/lovisong.png" alt="lo vi song" />
-                    </div>
-                    <p>Lò Vi Sóng</p>
-                  </li>
-                </ul>
-              </div>
-            </div> -->
+            
             <div class="lon3">
               <div class="uudai">
                 <h3 id="tieude">Ưu Đãi</h3>
@@ -93,7 +17,7 @@ const trang={
                   <div class="menu-conten" >
                     <div class="product" >
                         <div class="anh1">
-                            <img src="/Do_an/img/4.png" alt="">
+                            <img src="../img/4.png" alt="">
                         </div>
                         <h4>Máy giặt LG FV1410S3B 10 kg Inverter</h4>
                         <div class="price">
@@ -116,7 +40,7 @@ const trang={
                 </div>
                 <div class="product">
                   <div class="anh1">
-                    <img src="/Do_an/img/lovisong.png" alt="">
+                    <img src="../img/lovisong.png" alt="">
                   </div>
                   <h4>LÒ VI SÓNG TOSHIBA MW2-MM20P(WH)</h4>
                   <div class="price">
@@ -135,14 +59,11 @@ const trang={
                     <div class="mua">
                       <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                     </div>
-                    <!-- <div class="tuihang">
-                                
-                            </div> -->
                   </div>
                 </div>
                 <div class="product">
                   <div class="anh1">
-                    <img src="/Do_an/img/mayhut.png" alt="">
+                    <img src="../img/mayhut.png" alt="">
                   </div>
                   <h4>Máy hút bụi công nghiệp Panasonic MC YL635TN46</h4>
                   <div class="price">
@@ -161,14 +82,11 @@ const trang={
                     <div class="mua">
                       <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                     </div>
-                    <!-- <div class="tuihang">
-                                
-                            </div> -->
                   </div>
                 </div>
                 <div class="product">
                   <div class="anh1">
-                    <img src="/Do_an/img/banui.png" alt="">
+                    <img src="../img/banui.png" alt="">
                   </div>
                   <h4>Bàn ủi khô Philips HD1172 1100W</h4>
                   <div class="price">
@@ -187,14 +105,11 @@ const trang={
                     <div class="mua">
                       <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                     </div>
-                    <!-- <div class="tuihang">
-                                
-                            </div> -->
                   </div>
                 </div>
                 <div class="product">
                   <div class="anh1">
-                    <img src="/Do_an/img/quathop.png" alt="">
+                    <img src="../img/quathop.png" alt="">
                   </div>
                   <h4>Quạt hộp tản gió điện cơ Thống Nhất QH350 41W</h4>
                   <div class="price">
@@ -213,15 +128,12 @@ const trang={
                     <div class="mua">
                       <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                     </div>
-                    <!-- <div class="tuihang">
-                                
-                            </div> -->
                   </div>
                 </div>
                 
                   <div class="product">
                     <div class="anh1">
-                      <img src="/Do_an/img/maysay.png" alt="">
+                      <img src="../img/maysay.png" alt="">
                     </div>
                     <h4>Máy Sấy Tóc 2200W ROLER RHD-1115</h4>
                     <div class="price">
@@ -240,14 +152,11 @@ const trang={
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
-                      <!-- <div class="tuihang">
-                                  
-                              </div> -->
                     </div>
                   </div>
                   <div class="product">
                     <div class="anh1">
-                      <img src="/Do_an/img/mlkk.png" alt="">
+                      <img src="../img/mlkk.png" alt="">
                     </div>
                     <h4>Máy lọc không khí Nature Cool FC-AP152C</h4>
                     <div class="price">
@@ -266,14 +175,11 @@ const trang={
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
-                      <!-- <div class="tuihang">
-                                  
-                              </div> -->
                     </div>
                   </div>
                   <div class="product">
                     <div class="anh1">
-                      <img src="/Do_an/img/mayxay.png" alt="">
+                      <img src="../img/mayxay.png" alt="">
                     </div>
                     <h4>Máy xay sinh tố Elmich BLE-8763</h4>
                     <div class="price">
@@ -292,14 +198,11 @@ const trang={
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
-                      <!-- <div class="tuihang">
-                                  
-                              </div> -->
                     </div>
                   </div>
                   <div class="product">
                     <div class="anh1">
-                      <img src="/Do_an/img/noicom.png" alt="">
+                      <img src="../img/noicom.png" alt="">
                     </div>
                     <h4>Nồi cơm điện cao cấp 1.8L Kalpen R5</h4>
                     <div class="price">
@@ -318,14 +221,11 @@ const trang={
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
-                      <!-- <div class="tuihang">
-                                  
-                              </div> -->
                     </div>
                   </div>
                   <div class="product">
                     <div class="anh1">
-                      <img src="/Do_an/img/bst.png" alt="">
+                      <img src="../img/bst.png" alt="">
                     </div>
                     <h4>Bình đun siêu tốc Delites 1.8 lít ST18S05</h4>
                     <div class="price">
@@ -344,9 +244,6 @@ const trang={
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
-                      <!-- <div class="tuihang">
-                                  
-                              </div> -->
                     </div>
                   </div>
                 
@@ -358,23 +255,13 @@ const trang={
               <div class="lon4">
                 <div class="anhthan">
                   <div class="anhlon">
-                    <img src="/Do_an/img/de.avif" alt="" />
-                    <img src="/Do_an/img/anh3.webp" alt="" />
+                    <img src="../img/de.avif" alt="" />
+                    <img src="../img/anh3.webp" alt="" />
                   </div>
                 </div>
               </div>  
              
-                <!-- <div class="lon3">
-                  <div class="uudai">
-                    <h3 id="tieude">Hàng mới về</h3>
-                    <div class="col">
-                      <div class="product-list" id="products" style="display: flex; flex-wrap: wrap;">
-                      </div>
-                       
-                    </div>
                 </div>
-                    </div> -->
-                  </div>
     </div>
     `,
     sanpham:`
@@ -385,7 +272,7 @@ const trang={
                 <ul class="loai">
                     <li >
               <div class="anh">
-                <img src="/Do_an/img/4.png" alt="may giac" />
+                <img src="../img/4.png" alt="may giac" />
               </div>
               <p>Máy Giặc</p>
             </li>
@@ -396,7 +283,7 @@ const trang={
             <div class="menu-conten" id="products">
                 <div class="product" id="thongtin"  data-id="001">
                     <div class="anh1">
-                        <img src="/Do_an/img/4.png" alt="">
+                        <img src="../img/4.png" alt="">
                     </div>
                     <h4>Máy giặt LG FV1410S3B 10 kg Inverter</h4>
                     <div>
@@ -429,3 +316,136 @@ const trang={
     `
 
 };
+
+// =========================================================
+// BỔ SUNG CÁC HÀM HỖ TRỢ BỊ THIẾU
+// (Lấy từ data.js hoặc định nghĩa mới)
+// =========================================================
+function setlocalStorage(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getlocalStorage(key){
+    return JSON.parse(localStorage.getItem(key));
+}
+
+function formatCurrency(number) {
+    if (isNaN(number)) return "Giá không xác định";
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
+}
+
+// Ví dụ hàm tăng/giảm số lượng
+function changeQuantity(maSP, delta) {
+    let cart = getlocalStorage('cart') || [];
+    const itemIndex = cart.findIndex(item => item.maSP === maSP);
+
+    if (itemIndex > -1) {
+        cart[itemIndex].soLuong += delta;
+        
+        // Kiểm tra số lượng không nhỏ hơn 1
+        if (cart[itemIndex].soLuong < 1) {
+            cart[itemIndex].soLuong = 1; 
+        }
+
+        setlocalStorage('cart', cart);
+        renderCart(); // Cập nhật lại giao diện
+    }
+}
+
+// Ví dụ hàm xóa sản phẩm
+function removeItem(maSP) {
+    if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) return;
+    
+    let cart = getlocalStorage('cart') || [];
+    // Lọc ra các sản phẩm không phải là sản phẩm cần xóa
+    const newCart = cart.filter(item => item.maSP !== maSP); 
+
+    setlocalStorage('cart', newCart);
+    renderCart(); // Cập nhật lại giao diện
+}
+
+
+// =========================================================
+// HÀM 1: BẬT/TẮT GIỎ HÀNG OVERLAY
+// =========================================================
+function toggleCart(show = true) {
+    const cartOverlay = document.getElementById('cartOverlay');
+    if (show) {
+        cartOverlay.classList.add('active');
+        renderCart(); // Gọi hàm hiển thị dữ liệu mỗi khi bật giỏ hàng
+    } else {
+        cartOverlay.classList.remove('active');
+    }
+}
+
+
+// =========================================================
+// HÀM 2: HIỂN THỊ DỮ LIỆU GIỎ HÀNG TRONG OVERLAY
+// =========================================================
+function renderCart() {
+    const cartItems = getlocalStorage('cart') || [];
+    const allProducts = getlocalStorage('product'); // Dữ liệu sản phẩm gốc
+
+    // Kiểm tra nếu không lấy được sản phẩm (lỗi data.js)
+    if (!allProducts) {
+        console.error("Không thể tải dữ liệu sản phẩm từ localStorage (key: 'product')");
+        const cartContentDiv = document.getElementById('cartContent');
+        cartContentDiv.innerHTML = "<p style='color: red; text-align: center; padding: 20px;'>Lỗi: Không tải được dữ liệu sản phẩm.</p>";
+        return;
+    }
+
+    const cartContentDiv = document.getElementById('cartContent');
+    const cartSummaryDiv = document.getElementById('cartSummary');
+    let itemsHtml = '';
+    let totalAmount = 0;
+
+    if (cartItems.length === 0) {
+        itemsHtml = `
+            <p style="text-align: center; padding: 30px;">Giỏ hàng của bạn đang trống.</p>
+        `;
+        cartSummaryDiv.innerHTML = '';
+    } else {
+        cartItems.forEach(item => {
+            const product = allProducts.find(p => p.maSP === item.maSP);
+            if (product) {
+                const subTotal = product.giaSo * item.soLuong;
+                totalAmount += subTotal;
+
+                // Cấu trúc HTML đơn giản cho từng mục trong giỏ hàng
+                // SỬA LỖI 2: Đường dẫn ảnh cho sản phẩm trong giỏ
+                itemsHtml += `
+                    <div class="small-cart-item">
+                        <img src="${product.hinhAnh.replace('./img/', '../img/')}" alt="${product.tenSP}" class="small-item-img">
+                        <div class="small-item-info">
+                            <strong>${product.tenSP}</strong>
+                            <p>${formatCurrency(product.giaSo)} x ${item.soLuong}</p>
+                            <div class="quantity-controls">
+                                <button onclick="changeQuantity(${product.maSP}, -1)">-</button>
+                                <span>${item.soLuong}</span>
+                                <button onclick="changeQuantity(${product.maSP}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-btn" onclick="removeItem(${product.maSP})"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+            } else {
+                console.warn(`Không tìm thấy sản phẩm với maSP: ${item.maSP} trong giỏ hàng.`);
+            }
+        });
+
+        // Cập nhật phần tổng tiền và nút thanh toán
+        cartSummaryDiv.innerHTML = `
+            <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">
+                Tổng cộng: ${formatCurrency(totalAmount)}
+            </div>
+            <button class="checkout-btn" onclick="window.location.href='gio_hang.html'">
+                Tiến hành Thanh Toán
+            </button>
+        `;
+    }
+    
+    cartContentDiv.innerHTML = itemsHtml;
+}
+
+// (Phần comment hướng dẫn bên dưới đã được thực hiện)
+// SỬA LỖI 3: Xóa dấu } thừa ở cuối file

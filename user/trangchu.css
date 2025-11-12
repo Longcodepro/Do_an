@@ -237,8 +237,6 @@
   }
   .slide .anh{
   display: flex;
-  /* width: 100%; */
-  /* animation: slides 15s infinite; */
   }
   .anh img{
     width: 1180px;
@@ -249,29 +247,9 @@
     height: 100%;
       margin-top: 7px;
       display: flex;
-      /* align-items: center; */
       justify-content: center;
   }
-  /* @keyframes slides {
-    0% {
-      transform: translateX(0);
-    }
-    20% {
-      transform: translateX(-800px);
-    }
-    40% {
-      transform: translateX(-1600px);
-    }
-    60% {
-      transform: translateX(-2400px);
-    }
-    80% {
-      transform: translateX(-3200px);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }  */
+   
     .menu{
       width: 1180px;
       height: 200px;
@@ -285,7 +263,6 @@
       align-items: center;
       flex-wrap: wrap; 
       box-sizing: border-box;
-      /* border: 3px solid red; */
     }
     .menu-conten{
       height: 100%;
@@ -304,7 +281,6 @@
     cursor: pointer;
     height: 100%;
     width: 210px;
-    /* border: 4px solid green; */
     position: relative;
     padding: 5px 8px;
     border-radius: 8px;
@@ -334,7 +310,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-     /* border: 2px solid blue; */
      
     }
     .menu .nho li{
@@ -352,10 +327,6 @@
     .menu li{
       list-style: none;
       display: block;
-      /* display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap; */
       width: 150px;
     }
     .menu .anh img{
@@ -369,19 +340,12 @@
     .menu .nho{
       height: 100%;
       width: calc(100%-20px);
-      /* border: 2px solid green; */
     }
-    /* .menu li:last-child{
-      width: 150px;
-    } */
      .lon3{
       display: flex;
       justify-content: center;
       align-items: center;
       margin-top: 15px;
-      /* border: 3px solid blue; */
-      /* margin-bottom: 5px; */
-      /* margin-top: 10px; */
      }
      .uudai #tieude{
       margin-left: 10px;
@@ -398,21 +362,15 @@
       box-sizing: border-box;
      }
      .col{
-      /* border: 2px solid red; */
      height: 90%;
       width: 100%;
      }
      .col-product {
-      
-      /* border: 3px solid purple; */
-      /* gap: 10px; */
-      
      }
     
      .anh1{
       height: 100%;
       width: 100%;
-      /* border: 2px solid paleturquoise; */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -432,29 +390,20 @@
       border: 1px solid black;
       margin-top: 10px;
       border-radius: 5px;
-      /* display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center; */
       box-shadow: 0 5px 2px 4px rgba(0, 0, 0, .1);
       box-sizing: border-box;
       align-items: stretch;
      }
      .price{
-      /* position: relative;
-       */margin-top: 5px;
-       /* max-width: 130px; */
+       margin-top: 5px;
        display: flex;
-       /* flex-wrap: wrap; */
        box-sizing: border-box;
        
      }
      .product h4{
       line-height: 19px;
       text-align: left;
-      /* text-transform: lowercase; */
       margin-top: 5px;
-     /* padding: 2px; */
      }
      .row-product{
       height: 100%;
@@ -465,9 +414,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      /* position: absolute;
-      bottom: 0;
-      left: 0; */
      }
      .price-new{
       margin-right: 8px;
@@ -493,7 +439,6 @@
       width: 100%;
       height: 30px;
       border-radius: 5px;
-      /* border: 3px solid red; */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -511,7 +456,6 @@
      right: 0;
      z-index: 1;
      display: none;
-     /* background-color: #4eb09b; */
     transition: all 0.5s linear;
      }
      .chitiet:hover .note{
@@ -559,7 +503,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      /* width: 20%; */
       background-color: red;
      
      }
@@ -576,20 +519,16 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      /* margin-top: 20px; */
      }
      .anhthan{
       width: 1180px;
       height: 100%;
-      /* border: 3px solid red; */
       display: flex;
      }
      .anhlon{
       display: flex;
       justify-content: space-around;
       align-items: center;
-      /* border: 2px solid blue; */
-      /* width: 50%; */
      }
      .anhlon img{
       height: 80%;
@@ -598,11 +537,6 @@
       border-radius: 8px;
       box-shadow: 0 5px 2px 4px rgba(0, 0, 0, .1);
      }
-     /* .anhlon img{
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-     } */
       .footer{
         margin-top: 15px;
         background-color: #65acea;
@@ -613,7 +547,6 @@
         font-size: 20px;
       }
       .diachi>div{
-        /* display: flex; */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -641,9 +574,7 @@
       list-style: none;
       display: flex;
       line-height: 20px;
-      /* border: 2px solid blue;   */
       margin-top: 3px;
-      /* position: absolute; */
       width: 130px;
       border-bottom: 2px solid black;
       position: relative;
@@ -661,10 +592,6 @@
       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       transform: translateY(-2px);
      }
-     /* ul.sub-menu li .sub-menu{
-      left: 138px;
-      top: -18px;
-     } */
      .btn-bar:hover .sub-menu{
       display: block;
      }
@@ -681,7 +608,6 @@
         
         width: 100%;
         background-color: rgba(129, 235, 203,1);
-        /* border-bottom: 2px solid black; */
         padding: 10px;
         border-radius: 8px;
       }
@@ -695,7 +621,6 @@
       }
       
       .sub-menu li a{
-        /* padding: 8px 15px; */
         left: 0;
       }
       @media only screen and (max-width: 750px){
@@ -715,3 +640,70 @@
       .search{
         margin-top: 10px;
       }
+
+/* CSS Cho Giỏ Hàng Overlay (Đã Sửa Lỗi) */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    
+    /* SỬA LỖI: Xóa 'display: flex;' ở đây. 
+       Chỉ giữ 'display: none;' để ẩn nó đi theo mặc định. */
+    display: none;  
+    
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+/* Khi active, 'display: flex;' sẽ ghi đè 'display: none;' để hiện ra */
+.cart-overlay.active {
+    display: flex;
+}
+
+.cart-container {
+    width: 400px;
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-overlay.active .cart-container {
+    transform: translateX(0);
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.cart-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px 0;
+}
+
+.cart-footer {
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
