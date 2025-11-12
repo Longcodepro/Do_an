@@ -7,19 +7,6 @@ function getlocalStorage(key) {
     return JSON.parse(localStorage.getItem(key));
 }
 
-// hàm ẩn hiện mật khẩu
-function togglemk() {
-    let mkInput = document.getElementById("dn-mk");
-    let toggle = document.getElementById("toggle-mk");
-    if (mkInput.type === "password") {
-        mkInput.type = "text";
-        toggle.textContent = "👁️‍🗨️"; // icon khi hiện
-    } else {
-        mkInput.type = "password";
-        toggle.textContent = "👁"; // icon khi ẩn
-    }
-}
-
 // Kiểm tra input (tài khoản/mật khẩu)
 function kiemTraNhap(tk, mk) {
     if (tk.trim() === "") {
@@ -201,6 +188,9 @@ function moThongTin() {
     document.getElementById("btn-huy").style.display = "none";
 }
 
+function dongThongTin() {
+    document.getElementById("form-info").style.display = "none";
+}
 // Hàm mở form chỉnh sửa
 function SuaThongTin() {
     let user = JSON.parse(localStorage.getItem("currentUser"));
@@ -237,17 +227,21 @@ function HuyChinhSua() {
         return;
     }
 
-    // Hiện lại dữ liệu cũ 
+    // --- BẮT ĐẦU SỬA: PHỤC HỒI LẠI NỘI DUNG CHỈ XEM ---
+    let gtHienThi = (user.gioiTinh == "Nam" || user.gioiTinh == "1") ? "Nam" : "Nữ";
+
+    // Phục hồi lại các trường thành dạng text (<div>...</div>) thay vì <input>
     document.getElementById("in-name").innerText = user.tenTaiKhoan;
     document.getElementById("in-mk").innerText = user.matKhau;
     document.getElementById("in-ten").innerText = user.tenKH;
-    document.getElementById("in-gt").innerText = (user.gioiTinh == "Nam" || user.gioiTinh == "1") ? "Nam" : "Nữ";
-    document.getElementById("in-ns").innerText = user.namSinh || "N/A";
+    document.getElementById("in-gt").innerText = gtHienThi; // Phục hồi Giới tính
+    // document.getElementById("in-ns").innerText = user.namSinh || "N/A"; // Dòng này không có trong HTML
     document.getElementById("in-email").innerText = user.email;
     document.getElementById("in-sdt").innerText = user.soDienThoai;
     document.getElementById("in-dc").innerText = user.diaChi;
+    // --- KẾT THÚC SỬA ---
 
-    // Đổi hai nút Lưu + Hủy lại thành nút Sửa
+    // Đổi hai nút Lưu + Hủy lại thành nút Sửa (Đoạn này đã đúng)
     document.getElementById("btn-sua").style.display = "flex";
     document.getElementById("btn-luu").style.display = "none";
     document.getElementById("btn-huy").style.display = "none";
