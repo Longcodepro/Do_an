@@ -1,29 +1,21 @@
-/* --- Bố cục tổng thể --- */
-#noi_dung {
-    padding: 0px;
-    max-width: 1000px; 
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 h2 {
     text-align: center;
     margin-bottom: 25px;
     color: #333;
-    font-size: 24px;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 10px;
+    font-size: 26px; /* Kích thước lớn hơn */
+    border-bottom: 3px solid #007bff; /* Viền dày hơn */
+    padding-bottom: 12px;
 }
 
+/* --------------------------------- */
 /* --- Thanh Công Cụ (filter-box) --- */
+/* --------------------------------- */
 .filter-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -36,121 +28,196 @@ h2 {
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 14px;
-    max-width: 300px;
 }
 
-.filter-box button {
-    background: #007bff;
-    color: white;
+/* --- Nút chung cho filter-box và form --- */
+.filter-box button,
+#hai-nut button {
+    padding: 8px 15px;
     border: none;
     border-radius: 6px;
-    padding: 8px 15px;
     cursor: pointer;
-    white-space: nowrap;
-    transition: background-color 0.25s;
+    font-weight: 600;
+    transition: background-color 0.3s;
 }
 
-.filter-box button:hover {
-    background: #339bff;
+/* Nút Tìm */
+.filter-box button:first-of-type { /* Nút Tìm */
+    background: #6c757d;
+    color: white;
+}
+.filter-box button:first-of-type:hover {
+    background: #5a6268;
 }
 
+/* Nút Thêm phiếu */
+#nutThem {
+    background: #007bff;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+#nutThem:hover {
+    background: #0056b3;
+}
+
+
 /* --------------------------------- */
-/* --- FORM THÊM PHIẾU (#formThemPhieu) --- */
+/* --- Form Thêm Phiếu (#formThemPhieu) --- */
 /* --------------------------------- */
+
 #formThemPhieu {
-    display: flex;
-    flex-direction: column; /* Xếp các form-row theo chiều dọc */
-    gap: 15px;
     padding: 20px;
-    margin-bottom: 20px;
     border: 1px solid #007bff;
     border-radius: 8px;
-    background-color: #f8faff;
+    margin-bottom: 25px;
+    background-color: #f8f9fa;
 }
 
-#formThemPhieu .form-row {
-    display: flex;
-    flex-direction: column;
-}
-
-#formThemPhieu label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #007bff;
-}
-
-#formThemPhieu input[type="text"],
-#formThemPhieu input[type="date"] {
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 100%;
-}
-
-/* --- Sản phẩm trong Form (dsSanPham) --- */
-#dsSanPham {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.hangSP {
+.form-row {
     display: flex;
     align-items: center;
-    gap: 6px;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.form-row label {
+    font-weight: bold;
+    min-width: 120px;
+    color: #495057;
+}
+
+#formThemPhieu input[type="number"],
+#formThemPhieu input[type="date"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    flex-grow: 1;
+    max-width: 300px;
+}
+#maNhap {
+    max-width: 150px;
+}
+
+/* --- Nhập Sản Phẩm (dsSanPham) --- */
+
+#dsSanPham {
+    flex-grow: 1;
+}
+.hangSP {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
 }
 
 .hangSP input {
-    padding: 6px;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    border: 1px solid #ddd;
+    font-size: 14px;
 }
 
-/* Phân chia kích thước input trong hangSP */
-.hangSP .maSP { flex: 3; }
-.hangSP .soLuong { flex: 1.5; max-width: 80px; }
-.hangSP .giaNhap { flex: 2; }
+/* --- Khung Chọn SP (chonSP-wrap) ĐÃ CẬP NHẬT RẤT NHIỀU --- */
+.chonSP-wrap {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-grow: 1;
+}
 
-/* Nút + và - trong dòng sản phẩm */
-.hangSP button {
+.chonSP-wrap .maSP-input {
+    flex-grow: 0;
+    width: 100px; /* Chiều rộng cố định cho Mã SP */
+}
+
+/* Nút kiểm tra (✔) */
+.kiem-tra-btn {
+    padding: 8px 10px;
     background: #28a745;
     color: white;
     border: none;
     border-radius: 4px;
-    padding: 6px 10px;
     cursor: pointer;
+    font-weight: bold;
+}
+.kiem-tra-btn:hover {
+    background: #218838;
+}
+
+/* Khung hiển thị tên sản phẩm (span) - GIỐNG INPUT */
+.tenSP-hienThi {
+    /* Đảm bảo style giống hệt input */
+    border: 1px solid #ccc; 
+    padding: 8px 10px; 
+    line-height: 20px; 
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #f1f1f1; /* Màu nền xám nhẹ để phân biệt */
+    flex-grow: 1;
+    /* Dùng display: block khi hiện ra để chiếm không gian */
+}
+
+
+/* Input Số Lượng và Giá Nhập */
+.soLuong, .giaNhap {
+    width: 80px;
+    text-align: center;
+}
+.giaNhap {
+    background-color: #f7f7f7; /* Tùy chọn */
+}
+
+/* Nút Thêm/Xóa dòng SP */
+.hangSP button:not(.kiem-tra-btn) { 
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    width: 35px;
     line-height: 1;
-    font-weight: bold;
 }
-.hangSP button[onclick*="xoaDongSP"] {
-    background: #dc3545; /* Đỏ */
+.hangSP button:not(.kiem-tra-btn):first-of-type { /* Nút + */
+    background: #17a2b8;
 }
-.hangSP button:hover {
-    opacity: 0.8;
+.hangSP button:not(.kiem-tra-btn):first-of-type:hover {
+    background: #138496;
+}
+.hangSP button:not(.kiem-tra-btn):last-of-type { /* Nút - */
+    background: #dc3545;
+}
+.hangSP button:not(.kiem-tra-btn):last-of-type:hover {
+    background: #c82333;
 }
 
-/* Nút Thêm/Hủy ở cuối Form */
-#hai-nut button {
+
+/* --- Hai nút Lưu/Hủy cuối form --- */
+#hai-nut {
+    margin-top: 20px;
+    justify-content: flex-end; /* Đẩy ra cuối */
+}
+
+/* Nút Hủy */
+#hai-nut button:last-child { 
+    background: #6c757d;
+    color: white;
+}
+#hai-nut button:last-child:hover {
+    background: #5a6268;
+}
+
+/* Nút Thêm (Lưu) */
+#hai-nut button:first-child { 
     background: #28a745;
     color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-weight: bold;
-    transition: background-color 0.25s;
 }
-
-#hai-nut button[onclick="huyThemPhieu()"] {
-    background: #6c757d;
-}
-
-#hai-nut button[onclick="huyThemPhieu()"]:hover {
-    background: #868e96;
-}
-
-#hai-nut button[onclick="luuPhieuMoi()"]:hover {
+#hai-nut button:first-child:hover {
     background: #218838;
 }
 
@@ -166,6 +233,7 @@ h2 {
     width: 100%;
     border-collapse: collapse;
     min-width: 800px;
+    margin-top: 20px;
 }
 
 #bangNhap th, #bangNhap td {
@@ -173,7 +241,7 @@ h2 {
     padding: 12px 8px;
     text-align: center;
     border-bottom: 1px solid #eee;
-    vertical-align: top; /* Quan trọng để Mã SP hiển thị tốt */
+    vertical-align: top; 
 }
 
 #bangNhap th {
@@ -198,24 +266,40 @@ h2 {
     padding: 6px 10px;
     border-radius: 5px;
     cursor: pointer;
-    margin: 2px;
-    transition: opacity 0.25s;
-}
-.hanh-dong button:hover {
-    opacity: 0.85;
+    margin: 3px;
+    font-size: 13px;
+    transition: background-color 0.3s;
 }
 
-.hanh-dong button[onclick*="suaPhieu"] { background: orange; }
-.hanh-dong button[onclick*="hoanThanhPhieu"] { background: #1ee74d; }
-.hanh-dong .huy { background: #6c757d; }
-.hanh-dong .luu { background: #007bff; }
+/* Nút Sửa */
+.hanh-dong button:nth-child(1) { 
+    background: #ffc107;
+    color: #333;
+}
+.hanh-dong button:nth-child(1):hover {
+    background: #e0a800;
+}
 
-/* Input khi ở chế độ chỉnh sửa trong bảng */
-#bangNhap td input[type="date"],
-#bangNhap td input[type="number"] {
-    width: 100%;
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+/* Nút Hoàn thành */
+.hanh-dong button:nth-child(2) { 
+    background: #17a2b8;
+}
+.hanh-dong button:nth-child(2):hover {
+    background: #138496;
+}
+
+/* Nút Hủy */
+.hanh-dong .huy { 
+    background: #dc3545;
+}
+.hanh-dong .huy:hover {
+    background: #c82333;
+}
+
+/* Nút Lưu */
+.hanh-dong .luu { 
+    background: #28a745;
+}
+.hanh-dong .luu:hover {
+    background: #218838;
 }
