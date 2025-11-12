@@ -86,7 +86,8 @@ function quanLyLoaiSanPham() {
       const btnAnHien = document.createElement("button");
       btnAnHien.textContent = hien ? "Ẩn" : "Hiện";
       btnAnHien.classList.add("xoa_sua");
-btnAnHien.style.marginLeft = "8px";
+      btnAnHien.style.marginLeft = "8px";
+      btnAnHien.style.marginLeft = "8px";
       btnAnHien.onclick = () => {
         row.hienThi = !hien;
         localStorage.setItem("matHang", JSON.stringify(rowsLoai));
