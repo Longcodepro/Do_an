@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <title>Document</title>
   </head>
-  <body>     
-    <nav id="header">
+  <body>     <nav id="header">
     <div class="nav-img">
-      <img src="../img/anh2.png" alt="logo" />
+      <img src="/Do_an/img/anh2.png" alt="logo" />
     </div>
     <button class="btn-bar">
       <i class="nav-bar fa-solid fa-bars-staggered"></i>
@@ -24,9 +23,9 @@
             
           </li>
           <li class="sp" data-mamh="2" onclick="event.stopPropagation(); handleLoadPage('sanpham', '2');">tủ lạnh</li>
-          <li class="sp" data-mamh="3">TV</li>
-          <li class="sp" data-mamh="4">máy lạnh</li>
-          <li class="sp" data-mamh="5">máy lọc không khí</li>
+          <li class="sp" data-mamh="3" onclick="event.stopPropagation(); handleLoadPage('sanpham', '3');">TV</li>
+          <li class="sp" data-mamh="4" onclick="event.stopPropagation(); handleLoadPage('sanpham', '4');">máy lạnh</li>
+          <li class="sp" data-mamh="5" onclick="event.stopPropagation(); handleLoadPage('sanpham', '5');">máy lọc không khí</li>
           <!-- <li><a href="">noi com</a></li>
           <li><a href="">lo vi song</a></li> -->
         </ul>
@@ -36,9 +35,9 @@
       <i class="nav-home fa-solid fa-cart-shopping"></i>
       <div onclick="loadpage('trangchu')">TRANG CHỦ</div>
       </button>
-    <button class="cart" onclick="toggleCart(true)">
-      <i class="fa-solid fa-cart-shopping "></i>
-      <div>Giỏ Hàng</div>
+    <button class="cart" onclick="window.location.href='gio_hang.html'">
+      <i class="nav-cart fa-solid fa-cart-shopping"></i>
+      <div>GIỎ HÀNG</div>
     </button>
     <button class="user">
       <i class="nav-user fa-solid fa-circle-user"></i>
@@ -61,11 +60,87 @@
             <div class="lon1">
               <div class="slide">
                 <div class="anh">
-                  <img src="../img/de2.jpg" alt="" />
+                  <!-- <img src="/Do_an//img/ande.jpg" alt=""> -->
+                  <!-- <img src="/Do_an/img/de.avif" alt="">
+                      <img src="/Do_an/img/de1.jpg" alt=""> -->
+                  <img src="/Do_an/img/de2.jpg" alt="" />
                 </div>
               </div>
             </div>
-            
+            <!-- <div class="lon2">
+              <div class="menu">
+                <ul class="nho">
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/4.png" alt="may giac" />
+                    </div>
+                    <p>Máy Giặc</p>
+                  </li>
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/mlkk.png" alt="may loc khong khi" />
+                    </div>
+                    <p>Máy Lộc Không Khí</p>
+                  </li>
+                </ul>
+                <ul class="nho">
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/banui.png" alt="ban ui" />
+                    </div>
+                    <p>Bàn Ủi</p>
+                  </li>
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/maysay.png" alt="may say toc" />
+                    </div>
+                    <p>Máy sấy Tóc</p>
+                  </li>
+                </ul>
+                <ul class="nho">
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/bst.png" alt="may giac" />
+                    </div>
+                    <p>Bình Đun Siêu Tóc</p>
+                  </li>
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/mayxay.png" alt="may giac" />
+                    </div>
+                    <p>Máy Xay Sinh Tố</p>
+                  </li>
+                </ul>
+                <ul class="nho">
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/quathop.png" alt="quat hop" />
+                    </div>
+                    <p>Quạt Hộp</p>
+                  </li>
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/noicom.png" alt="noi com" />
+                    </div>
+                    <p>Nồi Cơm</p>
+                  </li>
+                </ul>
+                <ul class="nho">
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/mayhut.png" alt="may hut bui" />
+                    </div>
+                    <p>Máy Hút Bụi</p>
+                  </li>
+                  <li>
+                    <div class="anh">
+                      <img src="/Do_an/img/lovisong.png" alt="lo vi song" />
+                    </div>
+                    <p>Lò Vi Sóng</p>
+                  </li>
+                </ul>
+              </div>
+            </div> -->
             <div class="lon3">
               <div class="uudai">
                 <h3 id="tieude">Ưu Đãi</h3>
@@ -73,7 +148,7 @@
                   <div class="menu-conten" >
                     <div class="product" >
                         <div class="anh1">
-                            <img src="../img/4.png" alt="">
+                            <img src="/Do_an/img/4.png" alt="">
                         </div>
                         <h4>Máy giặt LG FV1410S3B 10 kg Inverter</h4>
                         <div class="price">
@@ -96,7 +171,7 @@
                 </div>
                 <div class="product">
                   <div class="anh1">
-                    <img src="../img/lovisong.png" alt="">
+                    <img src="/Do_an/img/lovisong.png" alt="">
                   </div>
                   <h4>LÒ VI SÓNG TOSHIBA MW2-MM20P(WH)</h4>
                   <div class="price">
@@ -115,11 +190,14 @@
                     <div class="mua">
                       <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                     </div>
+                    <!-- <div class="tuihang">
+                                
+                            </div> -->
                   </div>
                 </div>
                 <div class="product">
                   <div class="anh1">
-                    <img src="../img/mayhut.png" alt="">
+                    <img src="/Do_an/img/mayhut.png" alt="">
                   </div>
                   <h4>Máy hút bụi công nghiệp Panasonic MC YL635TN46</h4>
                   <div class="price">
@@ -138,11 +216,14 @@
                     <div class="mua">
                       <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                     </div>
+                    <!-- <div class="tuihang">
+                                
+                            </div> -->
                   </div>
                 </div>
                 <div class="product">
                   <div class="anh1">
-                    <img src="../img/banui.png" alt="">
+                    <img src="/Do_an/img/banui.png" alt="">
                   </div>
                   <h4>Bàn ủi khô Philips HD1172 1100W</h4>
                   <div class="price">
@@ -161,11 +242,14 @@
                     <div class="mua">
                       <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                     </div>
+                    <!-- <div class="tuihang">
+                                
+                            </div> -->
                   </div>
                 </div>
                 <div class="product">
                   <div class="anh1">
-                    <img src="../img/quathop.png" alt="">
+                    <img src="/Do_an/img/quathop.png" alt="">
                   </div>
                   <h4>Quạt hộp tản gió điện cơ Thống Nhất QH350 41W</h4>
                   <div class="price">
@@ -184,12 +268,15 @@
                     <div class="mua">
                       <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                     </div>
+                    <!-- <div class="tuihang">
+                                
+                            </div> -->
                   </div>
                 </div>
                 
                   <div class="product">
                     <div class="anh1">
-                      <img src="../img/maysay.png" alt="">
+                      <img src="/Do_an/img/maysay.png" alt="">
                     </div>
                     <h4>Máy Sấy Tóc 2200W ROLER RHD-1115</h4>
                     <div class="price">
@@ -208,11 +295,14 @@
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
+                      <!-- <div class="tuihang">
+                                  
+                              </div> -->
                     </div>
                   </div>
                   <div class="product">
                     <div class="anh1">
-                      <img src="../img/mlkk.png" alt="">
+                      <img src="/Do_an/img/mlkk.png" alt="">
                     </div>
                     <h4>Máy lọc không khí Nature Cool FC-AP152C</h4>
                     <div class="price">
@@ -231,11 +321,14 @@
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
+                      <!-- <div class="tuihang">
+                                  
+                              </div> -->
                     </div>
                   </div>
                   <div class="product">
                     <div class="anh1">
-                      <img src="../img/mayxay.png" alt="">
+                      <img src="/Do_an/img/mayxay.png" alt="">
                     </div>
                     <h4>Máy xay sinh tố Elmich BLE-8763</h4>
                     <div class="price">
@@ -254,11 +347,14 @@
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
+                      <!-- <div class="tuihang">
+                                  
+                              </div> -->
                     </div>
                   </div>
                   <div class="product">
                     <div class="anh1">
-                      <img src="../img/noicom.png" alt="">
+                      <img src="/Do_an/img/noicom.png" alt="">
                     </div>
                     <h4>Nồi cơm điện cao cấp 1.8L Kalpen R5</h4>
                     <div class="price">
@@ -277,11 +373,14 @@
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
+                      <!-- <div class="tuihang">
+                                  
+                              </div> -->
                     </div>
                   </div>
                   <div class="product">
                     <div class="anh1">
-                      <img src="../img/bst.png" alt="">
+                      <img src="/Do_an/img/bst.png" alt="">
                     </div>
                     <h4>Bình đun siêu tốc Delites 1.8 lít ST18S05</h4>
                     <div class="price">
@@ -300,6 +399,9 @@
                       <div class="mua">
                         <i class="nav-cart fa-solid fa-cart-shopping"></i> Mua
                       </div>
+                      <!-- <div class="tuihang">
+                                  
+                              </div> -->
                     </div>
                   </div>
                 
@@ -311,28 +413,28 @@
               <div class="lon4">
                 <div class="anhthan">
                   <div class="anhlon">
-                    <img src="../img/de.avif" alt="" />
-                    <img src="../img/anh3.webp" alt="" />
+                    <img src="/Do_an/img/de.avif" alt="" />
+                    <img src="/Do_an/img/anh3.webp" alt="" />
                   </div>
                 </div>
               </div>  
              
+                <!-- <div class="lon3">
+                  <div class="uudai">
+                    <h3 id="tieude">Hàng mới về</h3>
+                    <div class="col">
+                      <div class="product-list" id="products" style="display: flex; flex-wrap: wrap;">
+                      </div>
+                       
+                    </div>
+                </div>
+                    </div> -->
                   </div>
+    </div>
+          
         
-      </div>
       
-      <div id="cartOverlay" class="cart-overlay">
-        <div class="cart-container">
-            <div class="cart-header">
-                <h2>🛒 Giỏ Hàng Của Bạn</h2>
-                <button class="close-cart" onclick="toggleCart(false)"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div id="cartContent" class="cart-body">
-                </div>
-            <div id="cartSummary" class="cart-footer">
-                </div>
-          </div>
-        </div>
+     
       
       <div class="footer">
         <div>
@@ -347,14 +449,16 @@
               273 An Dương Vương, <br />Phường Chợ Quán, Thành phố Hồ Chí Minh
               700000, Việt Nam
             </div>
-            <img src="../img/diachi.png" alt="" />
+            <img src="/Do_an/img/diachi.png" alt="" />
           </div>
         </div>
       </div>
     </div>
-    
+    <!-- <script src="sanpham.js"></script> -->
     <script src="doitrang.js"></script>
     <script src="sanpham.js"></script>
 
+    <!-- <script src="test.js"></script> -->
+    <!-- <script src="2,2.js"></script> -->
   </body>
 </html>
