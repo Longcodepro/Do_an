@@ -98,7 +98,8 @@ function renderTable(list) {
       <thead>
         <tr>
           <th>Mã nhập</th>
-          <th>Sản phẩm & Số lượng</th>
+          <th>Mã Sản phẩm </th>
+          <th>Số lượng</th>
           <th>Ngày nhập</th>
           <th>Trạng thái</th>
           <th>Hành động</th>
@@ -116,6 +117,8 @@ function renderTable(list) {
     if (!phieuGroup[item.maNhap]) {
         phieuGroup[item.maNhap] = {
             maNhap: item.maNhap,
+            maSP: item.maSP,
+            soLuong: item.soLuong,
             ngayNhap: item.ngayNhap,
             trangThai: item.trangThai,
             items: [],
