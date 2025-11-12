@@ -1,170 +1,165 @@
-// ===================== Hiển thị danh sách khách hàng =====================
+// CÁC HÀM LẤY VÀ CẬP NHẬP DỮ LIỆU TỪ LOCAL STORAGE
+function setlocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getlocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key));
+}
+
+// TẠO BIẾN BẢNG KHÁCH HÀNG CỤC BỘ
+let rowsKhachHang = getlocalStorage('khachHang'); 
+
 function quanLyKhachHang() {
-  const db = getDB();
-  if (!db || db.length === 0) {
-    ensureDataLoaded();
-    setTimeout(quanLyKhachHang, 250);
-    return;
-  }
+    const rows = getlocalStorage("khachHang"); 
 
-  const khachHangTable = getTable("khach_hang");
-  const dangNhapTable = getTable("dang_nhap");
-  if (!khachHangTable || !dangNhapTable) {
-    alert("Không tìm thấy bảng khách hàng hoặc đăng nhập trong data.json");
-    return;
-  }
+    if (!rows) {
+        alert("Không tìm thấy dữ liệu khách hàng trong Local Storage (Key: khachHang).");
+        return;
+    }
 
-  const rows = khachHangTable.data;
-  const noiDung = document.getElementById("noi_dung");
-  noiDung.innerHTML = "<h2 style='color:#333'>Quản Lí Khách Hàng</h2>";
+    const noiDung = document.getElementById("noi_dung");
+    noiDung.innerHTML = "<h2 style='color:#333'>Quản Lí Khách Hàng</h2>";
 
-  const wrap = document.createElement("div");
-  wrap.className = "table-wrap";
+    const wrap = document.createElement("div");
+    wrap.className = "table-wrap";
 
-  const table = document.createElement("table");
-  const thead = document.createElement("thead");
-  const trHead = document.createElement("tr");
-  const headers = [
-    "Mã KH",
-    "Tên KH",
-    "Giới tính",
-    "Năm sinh",
-    "Cấp độ",
-    "SĐT",
-    "Password",
-    "Trạng thái",
-    "Thao tác",
-  ];
-  headers.forEach((h) => {
-    const th = document.createElement("th");
-    th.textContent = h;
-    trHead.appendChild(th);
-  });
-  thead.appendChild(trHead);
-  table.appendChild(thead);
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const trHead = document.createElement("tr");
 
-  const tbody = document.createElement("tbody");
+    // Thứ tự tiêu đề bảng: Mã KH, Tên KH, Giới tính, Địa chỉ, SĐT, Password, Trạng thái, Thao tác
+    const headers = [
+        "Mã KH",
+        "Tên KH",
+        "Giới tính",
+        "Địa chỉ",
+        "SĐT",
+        "Password", 
+        "Trạng thái",
+        "Thao tác",
+    ];
+    headers.forEach((h) => {
+        const th = document.createElement("th");
+        th.textContent = h;
+        trHead.appendChild(th);
+    });
+    thead.appendChild(trHead);
+    table.appendChild(thead);
 
-  rows.forEach((kh) => {
-    const tr = document.createElement("tr");
+    const tbody = document.createElement("tbody");
 
-    // Mã KH
-    const tdMa = document.createElement("td");
-    tdMa.textContent = kh.MA_KHACH_HANG;
-    tr.appendChild(tdMa);
+    rows.forEach((kh) => {
+        const tr = document.createElement("tr");
 
-    // Tên KH
-    const tdTen = document.createElement("td");
-    tdTen.textContent = kh.TEN_KHACH_HANG;
-    tr.appendChild(tdTen);
+        // 1. Mã KH
+        const tdMa = document.createElement("td");
+        tdMa.textContent = kh.maKH;
+        tr.appendChild(tdMa);
 
-    // Giới tính
-    const tdGioi = document.createElement("td");
-    tdGioi.textContent = kh.GIOI_TINH == 1 ? "Nam" : "Nữ";
-    tr.appendChild(tdGioi);
+        // 2. Tên KH
+        const tdTen = document.createElement("td");
+        tdTen.textContent = kh.tenKH;
+        tr.appendChild(tdTen);
 
-    // Năm sinh
-    const tdNs = document.createElement("td");
-    tdNs.textContent = kh.NAM_SINH;
-    tr.appendChild(tdNs);
+        // 3. Giới tính
+        const tdGioi = document.createElement("td");
+        tdGioi.textContent = kh.gioiTinh || "N/A";
+        tr.appendChild(tdGioi);
 
-    // Cấp độ
-    const tdCap = document.createElement("td");
-    tdCap.textContent = kh.CAP_DO_THANH_VIEN;
-    tr.appendChild(tdCap);
+        // 4. Địa chỉ
+        const tdDiaChi = document.createElement("td");
+        tdDiaChi.textContent = kh.diaChi || "Chưa có";
+        tr.appendChild(tdDiaChi);
 
-    // SĐT
-    const tdSdt = document.createElement("td");
-    tdSdt.textContent = kh.SO_DIEN_THOAI;
-    tr.appendChild(tdSdt);
+        // 5. SĐT (ĐÃ SỬA VỊ TRÍ VÀ DỮ LIỆU KHỚP VỚI HEADERS)
+        const tdSdt = document.createElement("td");
+        tdSdt.textContent = kh.soDienThoai; // Lấy dữ liệu SĐT
+        tr.appendChild(tdSdt);
+        
+        // 6. Password
+        const tdPass = document.createElement("td");
+        tdPass.textContent = kh.matKhau || "N/A"; // Lấy dữ liệu mật khẩu
+        tr.appendChild(tdPass);
 
-    // Password
-    const tdPass = document.createElement("td");
-    const loginRow = dangNhapTable.data.find(
-      (dn) => dn.MA_KHACH_HANG === kh.MA_KHACH_HANG
-    );
-    tdPass.textContent = loginRow ? loginRow.PASSWORD : "";
-    tr.appendChild(tdPass);
+        // 7. Trạng thái 
+        const tdStatus = document.createElement("td");
+        const currentTrangThai = kh.trangThai === 0 ? 0 : 1; 
+        const trangThaiText = currentTrangThai == 1 ? "Đang hoạt động" : "Bị khóa";
+        tdStatus.textContent = trangThaiText;
+        tdStatus.style.color = currentTrangThai == 1 ? "green" : "red";
+        tr.appendChild(tdStatus);
 
-    // Trạng thái
-    const tdTrang = document.createElement("td");
-    const tinhTrang =
-      loginRow && (loginRow.TINH_TRANG === "0" || loginRow.TINH_TRANG === 0)
-        ? "0"
-        : "1";
-    tdTrang.textContent = tinhTrang === "1" ? "Hoạt động" : "Đã khóa";
-    tr.appendChild(tdTrang);
+        // 8. Thao tác 
+        const tdActions = document.createElement("td");
+        const divActions = document.createElement("div");
+        divActions.style.display = 'flex';
+        divActions.style.gap = '5px';
+        divActions.style.justifyContent = 'center';
 
-    // Nút thao tác
-    const tdAction = document.createElement("td");
-    const btnReset = document.createElement("button");
-    btnReset.textContent = "Reset MK";
-    btnReset.className = "reset small";
+        const btnReset = document.createElement("button");
+        btnReset.textContent = "Reset";
+        btnReset.className = "reset";
 
-    const btnToggle = document.createElement("button");
-    btnToggle.textContent = tinhTrang === "1" ? "Khóa" : "Mở";
-    btnToggle.className = (tinhTrang === "1" ? "khoa" : "mo") + " small";
-    btnToggle.style.marginLeft = "8px";
+        const btnToggle = document.createElement("button");
+        const buttonText = currentTrangThai == 1 ? "Khóa" : "Mở";
+        btnToggle.textContent = buttonText;
+        btnToggle.className = currentTrangThai == 1 ? "khoa" : "mo";
 
-    tdAction.appendChild(btnReset);
-    tdAction.appendChild(btnToggle);
-    tr.appendChild(tdAction);
+        btnReset.addEventListener("click", () => {
+            if (!confirm(`Bạn có chắc muốn RESET mật khẩu của ${kh.tenKH} về mặc định: 123456?`)) return;
+            
+            const khachHangNow = getlocalStorage("khachHang");
+            if (!khachHangNow) return;
 
-    // ====== SỰ KIỆN ======
-    // ✅ Reset mật khẩu — cập nhật ngay trên bảng
-    // ✅ Reset mật khẩu — cập nhật ngay trên bảng
-btnReset.addEventListener("click", () => {
-  const dbNow = getDB();
-  const dnNow = dbNow.find((t) => t.name === "dang_nhap");
-  if (!dnNow) {
-    alert("Không tìm thấy bảng đăng nhập để reset.");
-    return;
-  }
+            const khachHangIndex = khachHangNow.findIndex((x) => x.maKH === kh.maKH);
+            if (khachHangIndex === -1) return;
 
-  const rowNow = dnNow.data.find(
-    (x) => x.MA_KHACH_HANG === kh.MA_KHACH_HANG
-  );
-  if (!rowNow) return;
+            khachHangNow[khachHangIndex].matKhau = "123456";
+            setlocalStorage("khachHang", khachHangNow);
 
-  // Gán lại mật khẩu mặc định
-  rowNow.PASSWORD = "123456";
-  saveDB(dbNow);
+            tdPass.textContent = "123456";
+            alert(`Đã reset mật khẩu của ${kh.tenKH} về mặc định: 123456`);
+        });
 
-  // Cập nhật cột hiển thị mật khẩu ngay lập tức
-  tdPass.textContent = rowNow.PASSWORD;
+        btnToggle.addEventListener("click", () => {
+            const action = btnToggle.textContent.toLowerCase();
+            if (!confirm(`Bạn có chắc muốn ${action} tài khoản của ${kh.tenKH}?`)) return;
+            
+            const khachHangNow = getlocalStorage("khachHang");
+            if (!khachHangNow) return;
 
-  alert(`Đã reset mật khẩu của ${kh.TEN_KHACH_HANG} về mặc định: 123456`);
-});
+            const khachHangIndex = khachHangNow.findIndex((x) => x.maKH === kh.maKH);
+            if (khachHangIndex === -1) return;
 
-    // 🔁 Khóa / Mở khóa tài khoản
-    btnToggle.addEventListener("click", () => {
-      const dbNow = getDB();
-      const dnNow = dbNow.find((t) => t.name === "dang_nhap");
-      if (!dnNow) return;
+            const newTrangThai = khachHangNow[khachHangIndex].trangThai == 1 ? 0 : 1;
+            khachHangNow[khachHangIndex].trangThai = newTrangThai;
+            
+            setlocalStorage("khachHang", khachHangNow);
 
-      const rowNow = dnNow.data.find(
-        (x) => x.MA_KHACH_HANG === kh.MA_KHACH_HANG
-      );
-      if (!rowNow) return;
+            const newStatusText = newTrangThai == 1 ? "Đang hoạt động" : "Bị khóa";
+            tdStatus.textContent = newStatusText;
+            tdStatus.style.color = newTrangThai == 1 ? "green" : "red";
 
-      // Đảo trạng thái
-      rowNow.TINH_TRANG =
-        rowNow.TINH_TRANG === "1" || rowNow.TINH_TRANG === 1 ? "0" : "1";
-      saveDB(dbNow);
+            const newButtonText = newTrangThai == 1 ? "Khóa" : "Mở";
+            btnToggle.textContent = newButtonText;
+            btnToggle.className = newTrangThai == 1 ? "khoa" : "mo";
 
-      // Cập nhật hiển thị ngay
-      tdTrang.textContent =
-        rowNow.TINH_TRANG === "1" ? "Hoạt động" : "Đã khóa";
-      btnToggle.textContent =
-        rowNow.TINH_TRANG === "1" ? "Khóa" : "Mở";
-      btnToggle.className =
-        (rowNow.TINH_TRANG === "1" ? "khoa" : "mo") + " small";
+            const actionText = newTrangThai == 1 ? "mở" : "khóa"; // Nếu newTrangThai là 1 (Đã mở), thì thông báo là "Đã mở"
+            alert(`Đã ${actionText} tài khoản của ${kh.tenKH}`);
+
+            kh.trangThai = newTrangThai;
+        });
+
+        divActions.appendChild(btnReset);
+        divActions.appendChild(btnToggle);
+        tdActions.appendChild(divActions);
+        tr.appendChild(tdActions);
+        
+        tbody.appendChild(tr);
     });
 
-    tbody.appendChild(tr);
-  });
-
-  table.appendChild(tbody);
-  wrap.appendChild(table);
-  noiDung.appendChild(wrap);
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    noiDung.appendChild(wrap);
 }

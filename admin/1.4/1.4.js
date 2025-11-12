@@ -1,17 +1,11 @@
-//tạo link css
-const link = document.createElement('link');
-link.href = './1.4.css';
-link.rel = 'stylesheet';
-document.head.appendChild(link);
-
 // các hàm lấy  và và cập nhập table 
 // đẩy lên local
 // truyền vô tên key và object chứa data
-setlocalStorage("product", tatCaSanPham);
+// setlocalStorage("product", tatCaSanPham);
 function setlocalStorage(key, value){
     localStorage.setItem(key, JSON.stringify(value));
 }
-// lấy file từ local
+
 // truyền vô key để lấy data
 function getlocalStorage(key){
     return JSON.parse(localStorage.getItem(key));
@@ -44,16 +38,18 @@ function menu(div) {
   const theo_loai = document.createElement('select');
   theo_loai.id = 'tim_theo_loai';
   div1.appendChild(theo_loai);
-  const rowsMh = getlocalStorage('product');
+  const rowsMh = getlocalStorage('matHang');
   const tat_ca = document.createElement('option');
   tat_ca.textContent = 'Tất cả';
   tat_ca.value = '';
   theo_loai.appendChild(tat_ca);
   rowsMh.forEach(row => {
-    const option =  document.createElement('option');
-    option.textContent = row.tenMatHang
-    option.value = row.maMatHang;
-    theo_loai.appendChild(option);
+    if(row.hienThi){
+      const option =  document.createElement('option');
+      option.textContent = row.tenMatHang
+      option.value = row.maMatHang;
+      theo_loai.appendChild(option);
+    }
   });
   // xử lí tim_theo_loai
   theo_loai.addEventListener('change', () => {
@@ -86,7 +82,7 @@ function menu(div) {
     // gọi hàm tìm kiếm sản phẩm
     let rowsSp1 = getlocalStorage("product");
     const tu_khoa = document.querySelector('#searchBox').value.trim().toLowerCase();  // xóa khoảng trắng bằng trim và chuyển thành chữ thường
-    rowsSp1 = rowsSp1.filter(row => row.tenSp.toLowerCase().includes(tu_khoa) || row.maSP.toLowerCase().includes(tu_khoa)); // Có thể tìm theo mã hoặc tên sản phẩm
+    rowsSp1 = rowsSp1.filter(row => String(row.maSP).toLowerCase().includes(tu_khoa) || row.tenSP.toLowerCase().includes(tu_khoa)); // Có thể tìm theo mã hoặc tên sản phẩm
     const div2 = document.querySelector('#div2');
     div2.remove();
     const divTong = document.querySelector('#noi_dung');  
@@ -107,7 +103,6 @@ function menu(div) {
   }
   // sắp xếp tăng dần hoặc giảm dần
   const tang_giam = document.createElement('button');
-  // tang_giam.type = 'button';
   tang_giam.id = 'tang_giam';
   div1.appendChild(tang_giam);
   tang_giam.textContent = 'Giảm';
@@ -200,7 +195,7 @@ function themSanPham() {
   const matHang = document.createElement('select');
   matHang.classList = 'selectMatHang';
   matHang.id = 'matHang';
-  matHang.size = '5'; // giúp tạo cuộn và hiện ra option thôi
+  matHang.size = 2;// giúp tạo cuộn và hiện ra option thôi
   d.appendChild(matHang);
   const rowsMh = getlocalStorage("matHang");
   for (let i = 0; i < rowsMh.length; i++) {
@@ -209,13 +204,25 @@ function themSanPham() {
     op.value = rowsMh[i].maMatHang;
     matHang.appendChild(op);
   }
-  // tạo text nhập thông tin sản phẩm
-  const thongTinSanPham = document.createElement('textarea'); // dùng thẻ này có thể nhập nhiều hơn thay vì dùng input
-  thongTinSanPham.classList.add('special');
-  thongTinSanPham.style.marginLeft = '5%';
-  thongTinSanPham.placeholder = 'Thông tin sản phẩm';
-  thongTinSanPham.id = 'thongTinSanPham';
-  d.appendChild(thongTinSanPham);
+  // tạo text 
+  // const thongTinSanPham = document.createElement('textarea'); // dùng thẻ này có thể nhập nhiều hơn thay vì dùng input
+  // thongTinSanPham.classList.add('special');
+  // thongTinSanPham.style.marginLeft = '5%';
+  // thongTinSanPham.placeholder = 'Thông tin sản phẩm';
+  // thongTinSanPham.id = 'thongTinSanPham';
+  // d.appendChild(thongTinSanPham);
+
+  // text nhập phần trăm giảm
+  const giamGia = document.createElement('input');
+  d.appendChild(giamGia);
+  giamGia.classList.add('phanTramGiam');
+  giamGia.type = 'number';
+  giamGia.min = '0';
+  giamGia.max = '100';
+  giamGia.placeholder = 'Nhập phần trăm giảm giá (%)...';
+  giamGia.id = 'giamGia';
+
+
   // tạo ô thêm ảnh
   const anh = document.createElement('input');
   anh.type = 'file';
@@ -516,7 +523,6 @@ function xoaSp(idSp){
   const divTong = document.querySelector('#noi_dung');
   content(divTong);
 }
-
 
 // sửa
 // lấy hàm thêm sản phẩm và chỉnh sửa lại một chút

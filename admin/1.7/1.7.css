@@ -32,41 +32,71 @@
   border: 1px solid #ddd;
 }
 
-/* Thanh tra cứu */
+
+
+/* ===================== Cập nhật Lọc và Button ===================== */
+
+/* Thanh tra cứu (filter-box) */
 .filter-box {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 12px;
-  border-radius: 10px;
-  margin-bottom: 12px;
+  background: #f0f4f8; /* Màu nền nhẹ */
+  border: 1px solid #cce0ff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
   align-items: center;
-  gap: 8px;
+  gap: 15px; /* Khoảng cách giữa các thành phần */
 }
 
 .filter-box label {
-  font-weight: 500;
-  color: #333;
+  font-weight: 600;
+  color: #2b7ed7;
+  white-space: nowrap;
 }
 
-.filter-box input,
+.filter-box input[type="date"],
 .filter-box select {
-  padding: 6px 10px;
+  padding: 8px 10px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 150px;
 }
 
-.filter-box button {
-  padding: 6px 12px;
-  border: none;
-  background: #1e90ff;
+/* Nút Chi Tiết và Áp dụng Lọc */
+.detail {
+  background-color: #007bff; /* Màu xanh dương */
   color: white;
+  border: none;
+  padding: 8px 15px;
   border-radius: 6px;
   cursor: pointer;
-  transition: 0.2s;
+  font-weight: 500;
+  transition: background-color 0.2s;
 }
 
-.filter-box button:hover {
-  background: #0c7cd5;
+.detail:hover {
+  background-color: #0056b3;
+}
+
+/* Nút Quay lại */
+.back-button {
+    background-color: #6c757d; /* Màu xám */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}
+
+/* Đảm bảo div chứa bảng có thể cuộn */
+.table-wrap {
+    overflow-x: auto;
 }
