@@ -52,10 +52,10 @@
     border-radius: 20px;
     width: 10%;
 }
-/* #tang_giam:hover {
+#tang_giam:hover {
     background-color: rgba(55, 150, 200, 0.845); 
     border-color: darkblue;
-} */
+}
 #div2{
     overflow-y: auto;
     height: 79%

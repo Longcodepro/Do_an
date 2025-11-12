@@ -399,6 +399,7 @@ function check(truyenAnh, text, ma_cu) {
     maSP: ma.value.trim(),
     soLuong: so_luong.value.trim(),
     tenSp: ten.value.trim(),
+    
     hinhAnh: truyenAnh,
     lienKet: thongtin.value.trim(),
     giaHienTai: gia.value.trim(),
