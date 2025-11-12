@@ -44,12 +44,10 @@ function menu(div) {
   tat_ca.value = '';
   theo_loai.appendChild(tat_ca);
   rowsMh.forEach(row => {
-    if(row.hienThi){
-      const option =  document.createElement('option');
-      option.textContent = row.tenMatHang
-      option.value = row.maMatHang;
-      theo_loai.appendChild(option);
-    }
+    const option =  document.createElement('option');
+    option.textContent = row.tenMatHang
+    option.value = row.maMatHang;
+    theo_loai.appendChild(option);
   });
   // xử lí tim_theo_loai
   theo_loai.addEventListener('change', () => {
@@ -383,10 +381,10 @@ function check(truyenAnh, text, ma_cu) {
     return 0;
   }
   // kiểm tra thông tin sản phẩm
-  const thongtin = document.querySelector('#thongTinSanPham');
-  if (thongtin.value.trim() === '') {
-    alert('Bạn chưa nhập thông tin sản phẩm');
-    thongtin.focus();
+  const giamGia = document.querySelector('#giamGia');
+  if (giamGia.value.trim() === '') {
+    alert('Bạn chưa nhập phan tram giam gia');
+    giamGia.focus();
     return 0;
   }
   // hàm kiểm tra ảnh
@@ -398,12 +396,15 @@ function check(truyenAnh, text, ma_cu) {
   const thong_tin = {
     maSP: ma.value.trim(),
     soLuong: so_luong.value.trim(),
-    tenSp: ten.value.trim(),
-    
+    tenSP: ten.value.trim(),
     hinhAnh: truyenAnh,
-    lienKet: thongtin.value.trim(),
-    giaHienTai: gia.value.trim(),
+    gsgg: gia.value.trim(),
+    giaGoc: gia.value.toLocaleString('vi-VN'),
+    gsht: gia.value * (100-giamGia.value) / 100,
+    giaHienTai: (gia.value * (100-giamGia.value) / 100).toLocaleString('vi-VN'),
     hienAn: "1",
+    nguongCanhBao: 4,
+    giamGia: giamGia.value.trim(),
     maMatHang: mathang.value.trim(),
   }
   if( text === "Thêm"){
@@ -555,7 +556,7 @@ function xoaSp(idSp){
 // lấy hàm thêm sản phẩm và chỉnh sửa lại một chút
 function suaSp(idSp){
   //lấy hàng cần sửa
-  const row = rowsSp.find( row => row.maSp === idSp);
+  const row = rowsSp.find( row => row.maSP === idSp);
 
   const d = document.querySelector('#div2');
   d.innerHTML = '';
@@ -581,14 +582,14 @@ function suaSp(idSp){
   // mã sản phẩm
   const maSp = document.createElement('input');
   maSp.placeholder = "Mã sản phẩm";
-  maSp.value = row.maSP; // đặt sẵn giá trị
+  maSp.value = row.maSP;  // đặt sẵn giá trị
   maSp.type = 'text'; 
   maSp.id = 'maSp';
   d.appendChild(maSp);
   // tên sản phẩm
   const tenSp = document.createElement('input');
   tenSp.type = 'text';
-  tenSp.value = row.tenSp;  // đặt sẵn giá trị
+  tenSp.value = row.tenSP;  // đặt sẵn giá trị
   tenSp.placeholder = "Tên sản phẩm";
   tenSp.style.marginLeft = '5%';
   tenSp.id = 'tenSp';
@@ -604,7 +605,7 @@ function suaSp(idSp){
   // giá bán
   const giaBan = document.createElement('input');
   giaBan.type = 'number';
-  giaBan.value = row.giaHienTai; // đặt sẵn giá trị
+  giaBan.value = row.gsgg; // đặt sẵn giá trị
   giaBan.placeholder = "Giá bán";
   giaBan.style.marginLeft = '5%';
   giaBan.id = 'giaBan';
@@ -623,14 +624,19 @@ function suaSp(idSp){
     matHang.appendChild(op);
   }
   matHang.value = row.maMatHang;// thay đổi thành giá trị mặc định
-  // tạo text nhập thông tin sản phẩm
-  const thongTinSanPham = document.createElement('textarea'); // dùng thẻ này có thể nhập nhiều hơn thay vì dùng input
-  thongTinSanPham.classList.add('special');
-  thongTinSanPham.style.marginLeft = '5%';
-  thongTinSanPham.placeholder = 'Thông tin sản phẩm';
-  thongTinSanPham.value = row.lienKet; //thay đổi thành giá trị mặc định
-  thongTinSanPham.id = 'thongTinSanPham';
-  d.appendChild(thongTinSanPham);
+
+  // text nhập phần trăm giảm
+  const giamGia = document.createElement('input');
+  d.appendChild(giamGia);
+  giamGia.classList.add('phanTramGiam');
+  giamGia.type = 'number';
+  giamGia.min = '0';
+  giamGia.max = '100';
+  giamGia.value = parseInt(row.giamGia);
+  giamGia.placeholder = 'Nhập phần trăm giảm giá (%)...';
+  giamGia.id = 'giamGia';
+
+
   // tạo ô thêm ảnh
   const anh = document.createElement('input');
   anh.type = 'file';
