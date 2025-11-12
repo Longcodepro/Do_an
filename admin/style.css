@@ -14,7 +14,7 @@ body {
     flex-direction: column;
 
     height: 100vh;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 .overlay{

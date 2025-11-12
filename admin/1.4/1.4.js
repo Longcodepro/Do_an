@@ -68,27 +68,53 @@ function menu(div) {
       content(divTong);
     }
   });
-  // box tìm kiếm
+  // box tìm kiếm theo mã sản phẩm
   const searchBox = document.createElement('input');
   searchBox.type = 'text';
   searchBox.id = 'searchBox';
+  searchBox.classList.add('searchBox');
   div1.appendChild(searchBox);
-  searchBox.placeholder = "Tìm kiếm sản phẩm ...";
+  searchBox.placeholder = "Tìm kiếm sản phẩm theo mã ...";
   const kinh_lup = document.createElement('button');
   kinh_lup.id = 'kinh_lup';
   kinh_lup.textContent = '🔍';
   div1.appendChild(kinh_lup);
   kinh_lup.addEventListener('click', () => {
-    // gọi hàm tìm kiếm sản phẩm
+    // gọi hàm tìm kiếm sản phẩm theo mã sản phẩm
     let rowsSp1 = getlocalStorage("product");
     const tu_khoa = document.querySelector('#searchBox').value.trim().toLowerCase();  // xóa khoảng trắng bằng trim và chuyển thành chữ thường
-    rowsSp1 = rowsSp1.filter(row => String(row.maSP).toLowerCase().includes(tu_khoa) || row.tenSP.toLowerCase().includes(tu_khoa)); // Có thể tìm theo mã hoặc tên sản phẩm
+    rowsSp1 = rowsSp1.filter(row => String(row.maSP).toLowerCase().includes(tu_khoa)); // Có thể tìm theo mã hoặc tên sản phẩm
     const div2 = document.querySelector('#div2');
     div2.remove();
     const divTong = document.querySelector('#noi_dung');  
     rowsSp = rowsSp1;
     content(divTong);
   });
+
+  // box tìm kiếm theo tên sản phẩm
+  const searchBoxName = document.createElement('input');
+  searchBox.type = 'text';
+  searchBoxName.id = 'searchBoxName';
+  searchBoxName.classList.add('searchBox');
+  div1.appendChild(searchBoxName);
+  searchBoxName.placeholder = "Tìm kiếm sản phẩm theo tên ...";
+  const kinh_lup1 = document.createElement('button');
+  kinh_lup1.id = 'kinh_lup';
+  kinh_lup1.textContent = '🔍';
+  div1.appendChild(kinh_lup1);
+  kinh_lup1.addEventListener('click', () => {
+    // gọi hàm tìm kiếm sản phẩm theo tên sản phẩm
+    let rowsSp1 = getlocalStorage("product");
+    const tu_khoa1 = document.querySelector('#searchBoxName').value.trim().toLowerCase();  // xóa khoảng trắng bằng trim và chuyển thành chữ thường
+    rowsSp1 = rowsSp1.filter(row => String(row.tenSP).toLowerCase().includes(tu_khoa1)); // Có thể tìm theo mã hoặc tên sản phẩm
+    const div2 = document.querySelector('#div2');
+    div2.remove();
+    const divTong = document.querySelector('#noi_dung');  
+    rowsSp = rowsSp1;
+    content(divTong);
+  });
+
+
   // thêm sản phẩm
   const themSp = document.createElement('button');
   // themSp.type = 'button';

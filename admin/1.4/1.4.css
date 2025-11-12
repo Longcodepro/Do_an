@@ -22,10 +22,10 @@
     margin-left: 10px;
     border: 2px solid blue;
 }
-#searchBox{
+.searchBox{
     margin-left: 10px;
     background-color: rgba(79, 179, 229, 0.845);
-    width: 70%;
+    width: 35%;
     border: 2px solid blue;
 }
 #kinh_lup{
