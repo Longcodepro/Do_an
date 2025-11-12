@@ -1,34 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="data:,">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link href="2_1.css" rel="stylesheet">
         <script src="2_1.js"></script>
-        <script src="data.json"></script>
+        <script src="data.js"></script>
     </head>
     <body>
         <div id="overlay"></div>
-
-        <div style="position: relative;">
-            <div class="action-item" id="nut-dn">
-                <button id="btn-login" onclick="moFormdnhap()" class="nutlogin">
-                    <i class="fa-regular fa-user"></i>Đăng Nhập
-                </button>
-            </div>
-            <div class="action-item" id="nut-tk" style="display: none; position: absolute;">
-                <button id="btn-tk" class="nutlogin"></button>
-                
-                <!-- Menu Khách Hàng -->
-                <div id="menu-user" class="menu-user">
-                    <p id="xem-thongtin" onclick="moThongTin()">Thông tin cá nhân</p>
-                    <p id="dang-xuat" onclick="logout()">Đăng xuất</p>
-                </div>
-            </div>
-        </div>  
-
         <!-- form đăng nhập -->
         <form id="formdnhap" class="form-animation" style="display: none">
             <div>
@@ -59,22 +37,22 @@
                 <label>Tên đăng nhập</label>
             </div>
             <div class="inputdk">
-                <input type="text" id="dk-hoten" placeholder=" " required>
-                <label>Họ tên</label>
-            </div>
-            <div class="inputdk">
                 <input type="password" id="dk-mk" placeholder=" " required>
                 <label>Mật khẩu</label>
                 <span class="toggle-mk" onclick="togglemk()">👁️‍🗨️</span>
+            </div>
+            <div class="inputdk">
+                <input type="text" id="dk-hoten" placeholder=" " required>
+                <label>Họ tên</label>
             </div>
             <div class="gioitinh">
                 <label><span>Giới tính</span></label>
                 <label><input type="radio" name="sex" value="1">Nam</label>
                 <label><input type="radio" name="sex" value="0">Nữ</label>
             </div>
-            <div class="inputdk" >
-                <input type="number" placeholder=" " required id="dk-namsinh" min="1950" max="2025">
-                <label>Năm sinh</label>
+            <div class="inputdk">
+                <input type="email" id="dk-email" placeholder=" " required>
+                <label>Email</label>
             </div>
             <div class="inputdk">
                 <input type="tel" placeholder=" " required id="dk-sdt">
@@ -100,6 +78,10 @@
                     <div id="in-name"></div>
                 </div>
                 <div class="row-info">
+                    <div>Mật khẩu:</div> 
+                    <div id="in-mk"></div>
+                </div>
+                <div class="row-info">
                     <div>Họ Tên:</div> 
                     <div id="in-ten"></div>
                 </div>
@@ -108,8 +90,8 @@
                     <div id="in-gt"></div>
                 </div>
                 <div class="row-info">
-                    <div>Năm sinh:</div> 
-                    <div id="in-ns"></div>
+                    <div>Email</div> 
+                    <div id="in-email"></div>
                 </div>
                 <div class="row-info">
                     <div>Số điện thoại:</div> 
@@ -126,26 +108,23 @@
                 </div>
             </div>
         </div>
-        <button class="cart" id="nut-gio-hang" onclick="window.location.href='gio_hang.html'" style="display: none;">
+        <!-- <button class="cart" id="nut-gio-hang" onclick="window.location.href='gio_hang.html'" style="display: none;">
           <i class="nav-cart fa-solid fa-cart-shopping"></i>
           <div>Gio Hang</div>
-        </button>
-
-        <div id="overlay"></div>
+        </button> -->
         <div class="user" id="nut-dn">
             <button id="btn-login" onclick="moFormdnhap()" style="background-color: transparent; border: none;">
                     <i class="fa-regular fa-user"></i>Đăng Nhập
             </button>
         </div>
         <div class="user" id="nut-tk" style="display: none;">
-                <button id="btn-tk" style="background-color: transparent; border: none;"></button>
-                
+            <button id="btn-tk" style="background-color: transparent; border: none;"></button>
                 <!-- Menu Khách Hàng -->
                 <div id="menu-user" class="menu-user">
                     <p id="xem-thongtin" onclick="moThongTin()">Thông tin cá nhân</p>
                     <p id="dang-xuat" onclick="logout()">Đăng xuất</p>
                 </div>
-                </button>
+            </button>
         </div>
     </body>
 </html>

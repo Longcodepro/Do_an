@@ -10,10 +10,9 @@ function getlocalStorage(key) {
 // FORMAT TIỀN TỆ VỚI DẤU CHẤM VÀ ĐƠN VỊ ĐỒNG
 function formatCurrency(number) {
     if (typeof number !== 'number') {
-        // Chuyển chuỗi định dạng (ví dụ: "1.250.000đ") thành số nguyên
         let str = number.toString().replace(/[\.đ]/g, '');
         number = parseInt(str);
-        if (isNaN(number)) return number.toLocaleString('vi-VN') + 'đ'; // Trả về nếu vẫn là NaN
+        if (isNaN(number)) return number.toLocaleString('vi-VN') + 'đ';
     }
     return number.toLocaleString('vi-VN') + 'đ';
 }
@@ -24,9 +23,9 @@ function getStatusColor(status) {
         case "Hoàn thành":
             return "green";
         case "Đã giao":
-            return "#007bff"; // Màu xanh dương
+            return "#007bff";
         case "Đang vận chuyển":
-            return "#ffc107"; // Màu vàng
+            return "#ffc107";
         case "Đang xử lý":
             return "orange";
         case "Đã hủy":
@@ -36,9 +35,8 @@ function getStatusColor(status) {
     }
 }
 
-// ===================== 1. HIỂN THỊ DANH SÁCH ĐƠN HÀNG =====================
+// ===================== 1. HÀM CHÍNH: HIỂN THỊ GIAO DIỆN LỌC VÀ GỌI HIỂN THỊ BẢNG =====================
 function quanLyDonHang() {
-    // Lấy dữ liệu Đơn hàng (key: bill)
     const rows = getlocalStorage("bill"); 
 
     if (!rows) {
@@ -46,13 +44,98 @@ function quanLyDonHang() {
         return;
     }
 
-    // Hiển thị nội dung vào div chính
     const noiDung = document.getElementById("noi_dung");
     noiDung.innerHTML = "<h2 style='color:#333'>Quản Lí Đơn Hàng</h2>";
 
-    const wrap = document.createElement("div");
-    wrap.className = "table-wrap";
+    // ===================== Thêm Thanh tra cứu/lọc =====================
+    const filterBox = document.createElement("div");
+    filterBox.className = "filter-box";
+    filterBox.innerHTML = `
+        <label for="fromDate">Từ ngày:</label>
+        <input type="date" id="fromDate">
+        <label for="toDate">Đến ngày:</label>
+        <input type="date" id="toDate">
+        <label for="statusFilter">Trạng thái:</label>
+        <select id="statusFilter">
+            <option value="">Tất cả trạng thái</option>
+            <option value="Hoàn thành">Hoàn thành</option>
+            <option value="Đã giao">Đã giao</option>
+            <option value="Đang vận chuyển">Đang vận chuyển</option>
+            <option value="Đang xử lý">Đang xử lý</option>
+            <option value="Đã hủy">Đã hủy</option>
+        </select>
+        <button id="applyFilter" class="detail">Áp dụng Lọc</button>
+    `;
+    noiDung.appendChild(filterBox);
+    
+    // Thêm div chứa bảng để có thể cập nhật
+    const tableContainer = document.createElement("div");
+    tableContainer.id = "tableContainer";
+    tableContainer.className = "table-wrap"; // Dùng class để style
+    noiDung.appendChild(tableContainer);
 
+    // Gán sự kiện Lọc
+    document.getElementById("applyFilter").addEventListener('click', () => {
+        const fromDateStr = document.getElementById('fromDate').value;
+        const toDateStr = document.getElementById('toDate').value;
+        const status = document.getElementById('statusFilter').value;
+        displayDonHang(rows, fromDateStr, toDateStr, status);
+    });
+
+    // Hiển thị lần đầu với toàn bộ dữ liệu
+    displayDonHang(rows);
+}
+
+// ===================== 2. HÀM THỰC HIỆN LỌC VÀ HIỂN THỊ BẢNG =====================
+function displayDonHang(allRows, fromDateStr = null, toDateStr = null, statusFilter = "") {
+    let filteredRows = allRows;
+
+    // Lọc theo Trạng thái
+    if (statusFilter) {
+        filteredRows = filteredRows.filter(dh => dh.trangThai === statusFilter);
+    }
+    
+    // Lọc theo Khoảng thời gian
+    if (fromDateStr || toDateStr) {
+        // Chuyển chuỗi YYYY-MM-DD từ input date thành đối tượng Date
+        const fromDate = fromDateStr ? new Date(fromDateStr) : null;
+        const toDate = toDateStr ? new Date(toDateStr) : null;
+        
+        filteredRows = filteredRows.filter(dh => {
+            // Chuẩn hóa ngày đặt sang đối tượng Date chỉ lấy phần YYYY-MM-DD
+            const orderDateStr = dh.ngayDat.split(' ')[0]; // Lấy "YYYY-MM-DD"
+            const orderDate = new Date(orderDateStr);
+            
+            let isAfterFrom = true;
+            let isBeforeTo = true;
+
+            // Kiểm tra Từ ngày (phải >=)
+            if (fromDate) {
+                // Thêm 1 ngày cho fromDate để đảm bảo nó bao gồm ngày đó
+                isAfterFrom = orderDate >= fromDate; 
+            }
+
+            // Kiểm tra Đến ngày (phải <=)
+            if (toDate) {
+                // Thêm 1 ngày cho toDate để đảm bảo nó bao gồm ngày đó
+                const endOfDayToDate = new Date(toDate);
+                endOfDayToDate.setDate(endOfDayToDate.getDate() + 1); // Đặt thành ngày tiếp theo
+                isBeforeTo = orderDate < endOfDayToDate;
+            }
+
+            return isAfterFrom && isBeforeTo;
+        });
+    }
+
+    const tableContainer = document.getElementById("tableContainer");
+    tableContainer.innerHTML = ''; // Xóa bảng cũ
+
+    if (filteredRows.length === 0) {
+        tableContainer.innerHTML = "<p style='text-align:center; color:red; margin-top: 20px;'>Không tìm thấy đơn hàng nào phù hợp với điều kiện lọc.</p>";
+        return;
+    }
+    
+    // Tạo bảng mới
     const table = document.createElement("table");
     const thead = document.createElement("thead");
     const trHead = document.createElement("tr");
@@ -78,7 +161,7 @@ function quanLyDonHang() {
 
     const tbody = document.createElement("tbody");
 
-    rows.forEach((dh) => {
+    filteredRows.forEach((dh) => {
         const tr = document.createElement("tr");
 
         // Các cột dữ liệu
@@ -102,7 +185,7 @@ function quanLyDonHang() {
             tr.appendChild(td);
         });
 
-        // 8. Cột Thao tác 
+        // Cột Thao tác 
         const tdActions = document.createElement("td");
         const divActions = document.createElement("div");
         divActions.style.display = 'flex';
@@ -111,7 +194,7 @@ function quanLyDonHang() {
 
         const btnDetail = document.createElement("button");
         btnDetail.textContent = "Chi Tiết";
-        btnDetail.className = "detail"; // Cần thêm style cho class .detail trong 1.7.css
+        btnDetail.className = "detail";
 
         btnDetail.addEventListener("click", () => {
             showChiTietDonHang(dh.maDH, dh.khachHang);
@@ -125,15 +208,12 @@ function quanLyDonHang() {
     });
 
     table.appendChild(tbody);
-    wrap.appendChild(table);
-    noiDung.appendChild(wrap);
+    tableContainer.appendChild(table);
 }
 
-// ===================== 2. HIỂN THỊ CHI TIẾT ĐƠN HÀNG =====================
+// ===================== 3. HIỂN THỊ CHI TIẾT ĐƠN HÀNG =====================
 function showChiTietDonHang(maDH, tenKH) {
-    // Lấy dữ liệu Chi tiết đơn hàng (key: billDetail)
     const chiTietRows = getlocalStorage("billDetail");
-    // Giả sử bảng sản phẩm là 'tatCaSanPham' trong data.js, được lưu dưới key 'product'
     const matHangRows = getlocalStorage("product"); 
 
     if (!chiTietRows) {
@@ -141,7 +221,6 @@ function showChiTietDonHang(maDH, tenKH) {
         return;
     }
 
-    // Lọc chi tiết theo Mã đơn hàng
     const filteredDetails = chiTietRows.filter(ct => ct.maDH === maDH);
 
     if (filteredDetails.length === 0) {
@@ -155,13 +234,7 @@ function showChiTietDonHang(maDH, tenKH) {
     // Nút quay lại
     const btnBack = document.createElement("button");
     btnBack.textContent = "← Quay lại danh sách đơn hàng";
-    btnBack.style.marginBottom = '20px';
-    btnBack.style.padding = '10px';
-    btnBack.style.backgroundColor = '#6c757d';
-    btnBack.style.color = 'white';
-    btnBack.style.border = 'none';
-    btnBack.style.borderRadius = '5px';
-    btnBack.style.cursor = 'pointer';
+    btnBack.className = "back-button"; // Thêm class để style trong CSS
     btnBack.addEventListener("click", quanLyDonHang);
     noiDung.appendChild(btnBack);
 
@@ -198,11 +271,9 @@ function showChiTietDonHang(maDH, tenKH) {
     filteredDetails.forEach((ct) => {
         const tr = document.createElement("tr");
 
-        // Tìm tên sản phẩm (Giả sử bạn dùng key 'product' cho bảng sản phẩm)
         const product = matHangRows ? matHangRows.find(sp => sp.maSP === ct.maSP) : null;
         const tenSP = product ? product.tenSP : "Không tìm thấy";
 
-        // Dữ liệu chi tiết
         const tdFields = [
             ct.maCTDH,
             ct.maSP,

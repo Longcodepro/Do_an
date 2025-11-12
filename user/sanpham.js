@@ -150,34 +150,35 @@
             return;
         }
 
-        mangHienThi.forEach((sp) => {
-            const productHTML = `
-                <div class="product" data-id="${sp.maSP}">
-                    <div class="anh1">
-                        <img src="${sp.hinhAnh}" alt="${sp.tenSP}">
-                        <h4 style="">${sp.tenSP}</h4>
-                    </div>
-                    
-                    <div class="nho">
-                        <div class="price">
-                            <span class="price-old">${sp.giaGoc}</span> 
-                            <span class="price-new">${sp.giaHienTai}</span> 
-                        </div >
-                        <div class="tuongtac">
-                            <div class="sao"><i class="fa-solid fa-star"></i> 5.0</div>
-                            <div class="chitiet"><i class="fa-regular fa-square-plus"></i>
-                                <div class="note">Chi Tiết</div>
-                            </div>
-                        </div>
-                        <div class="hang">
-                            <div onclick="" class="mua">Mua</div>
-                            <div><i class="nav-cart fa-solid fa-cart-shopping" style="margin-left:7px;"></i></div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            sanphan1.insertAdjacentHTML("beforeend", productHTML);
-        });
+      mangHienThi.forEach((sp) => {
+          // LƯU Ý: Đổi giaGoc và giaHienTai để hiển thị đúng giá Gốc và giá Giảm
+          const productHTML = `
+              <div class="product" data-id="${sp.maSP}">
+                  <div class="anh1">
+                      <img src="${sp.hinhAnh}" alt="${sp.tenSP}">
+                      <h4 style="">${sp.tenSP}</h4>
+                  </div>
+                  
+                  <div class="nho">
+                      <div class="price">
+                          <span class="price-old">${sp.giaGoc}</span> 
+                          <span class="price-new">${sp.giaHienTai}</span> 
+                      </div >
+                      <div class="tuongtac">
+                          <div class="sao"><i class="fa-solid fa-star"></i> 5.0</div>
+                          <div class="chitiet"><i class="fa-regular fa-square-plus"></i>
+                              <div class="note">Chi Tiết</div>
+                          </div>
+                      </div>
+                      <div class="hang">
+                          <div onclick="" class="mua">Mua</div>
+                          <div><i class="nav-cart fa-solid fa-cart-shopping" style="margin-left:7px;"></i></div>
+                      </div>
+                  </div>
+              </div>
+          `;
+          sanphan1.insertAdjacentHTML("beforeend", productHTML);
+      });
 
         taoPhanTrang();
     }
