@@ -70,3 +70,17 @@
 .filter-box button:hover {
   background: #0c7cd5;
 }
+
+.detail {
+  background-color: #007bff; /* Màu xanh dương */
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.detail:hover {
+  background-color: #0056b3;
+}

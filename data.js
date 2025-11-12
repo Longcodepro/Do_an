@@ -265,28 +265,56 @@ else{
 }
 
 
-// bảng chi tiết đơn hàng
 const chiTietDonHang = [
-  { maCTDH: 1, maDH: 1, maSP: 1, soLuong: 1, tongTien: 7650000 },
-  { maCTDH: 2, maDH: 1, maSP: 2, soLuong: 1, tongTien: 18700000 },
-  { maCTDH: 3, maDH: 2, maSP: 7, soLuong: 2, tongTien: 8190000 },
-  { maCTDH: 4, maDH: 2, maSP: 34, soLuong: 1, tongTien: 5915000 },
-  { maCTDH: 5, maDH: 2, maSP: 12, soLuong: 1, tongTien: 1000000 },
-  { maCTDH: 6, maDH: 3, maSP: 15, soLuong: 1, tongTien: 11440000 },
-  { maCTDH: 7, maDH: 3, maSP: 20, soLuong: 2, tongTien: 1570000 },
-  { maCTDH: 8, maDH: 4, maSP: 25, soLuong: 1, tongTien: 8645000 },
-  { maCTDH: 9, maDH: 4, maSP: 36, soLuong: 1, tongTien: 4400000 },
-  { maCTDH: 10, maDH: 4, maSP: 13, soLuong: 1, tongTien: 800000 },
-  { maCTDH: 11, maDH: 5, maSP: 23, soLuong: 2, tongTien: 6000000 },
-  { maCTDH: 12, maDH: 5, maSP: 34, soLuong: 1, tongTien: 16890000 },
+  { maCTDH: 1,  maDH: "DH001", maSP: 1,  soLuong: 1, tongTien: 7650000 },
+  { maCTDH: 2,  maDH: "DH001", maSP: 2,  soLuong: 2, tongTien: 15800000 },
+  { maCTDH: 3,  maDH: "DH002", maSP: 3,  soLuong: 1, tongTien: 3250000 },
+  { maCTDH: 4,  maDH: "DH002", maSP: 4,  soLuong: 3, tongTien: 9780000 },
+  { maCTDH: 5,  maDH: "DH003", maSP: 5,  soLuong: 1, tongTien: 2890000 },
+  { maCTDH: 6,  maDH: "DH003", maSP: 6,  soLuong: 2, tongTien: 5760000 },
+  { maCTDH: 7,  maDH: "DH004", maSP: 7,  soLuong: 1, tongTien: 1990000 },
+  { maCTDH: 8,  maDH: "DH004", maSP: 8,  soLuong: 2, tongTien: 4980000 },
+  { maCTDH: 9,  maDH: "DH005", maSP: 9,  soLuong: 3, tongTien: 8370000 },
+  { maCTDH: 10, maDH: "DH005", maSP: 10, soLuong: 1, tongTien: 1200000 },
+  { maCTDH: 11, maDH: "DH006", maSP: 11, soLuong: 1, tongTien: 4560000 },
+  { maCTDH: 12, maDH: "DH006", maSP: 12, soLuong: 4, tongTien: 18400000 },
+  { maCTDH: 13, maDH: "DH007", maSP: 13, soLuong: 1, tongTien: 3500000 },
+  { maCTDH: 14, maDH: "DH007", maSP: 14, soLuong: 2, tongTien: 7400000 },
+  { maCTDH: 15, maDH: "DH008", maSP: 15, soLuong: 1, tongTien: 2390000 },
+  { maCTDH: 16, maDH: "DH008", maSP: 16, soLuong: 2, tongTien: 4780000 },
+  { maCTDH: 17, maDH: "DH009", maSP: 17, soLuong: 2, tongTien: 6200000 },
+  { maCTDH: 18, maDH: "DH009", maSP: 18, soLuong: 1, tongTien: 3190000 },
+  { maCTDH: 19, maDH: "DH010", maSP: 19, soLuong: 3, tongTien: 9570000 },
+  { maCTDH: 20, maDH: "DH010", maSP: 20, soLuong: 1, tongTien: 2690000 },
+  { maCTDH: 21, maDH: "DH011", maSP: 21, soLuong: 1, tongTien: 3890000 },
+  { maCTDH: 22, maDH: "DH011", maSP: 22, soLuong: 2, tongTien: 7780000 },
+  { maCTDH: 23, maDH: "DH012", maSP: 23, soLuong: 1, tongTien: 2450000 },
+  { maCTDH: 24, maDH: "DH012", maSP: 24, soLuong: 3, tongTien: 7350000 },
+  { maCTDH: 25, maDH: "DH013", maSP: 25, soLuong: 1, tongTien: 1950000 },
+  { maCTDH: 26, maDH: "DH013", maSP: 26, soLuong: 2, tongTien: 3900000 },
+  { maCTDH: 27, maDH: "DH014", maSP: 27, soLuong: 1, tongTien: 5490000 },
+  { maCTDH: 28, maDH: "DH014", maSP: 28, soLuong: 2, tongTien: 10980000 },
+  { maCTDH: 29, maDH: "DH015", maSP: 29, soLuong: 3, tongTien: 12600000 },
+  { maCTDH: 30, maDH: "DH015", maSP: 30, soLuong: 1, tongTien: 3850000 },
+  { maCTDH: 31, maDH: "DH016", maSP: 31, soLuong: 2, tongTien: 7200000 },
+  { maCTDH: 32, maDH: "DH016", maSP: 32, soLuong: 1, tongTien: 3550000 },
+  { maCTDH: 33, maDH: "DH017", maSP: 33, soLuong: 2, tongTien: 6480000 },
+  { maCTDH: 34, maDH: "DH017", maSP: 34, soLuong: 1, tongTien: 3290000 },
+  { maCTDH: 35, maDH: "DH018", maSP: 35, soLuong: 3, tongTien: 9750000 },
+  { maCTDH: 36, maDH: "DH018", maSP: 36, soLuong: 1, tongTien: 3190000 },
+  { maCTDH: 37, maDH: "DH019", maSP: 37, soLuong: 1, tongTien: 2690000 },
+  { maCTDH: 38, maDH: "DH019", maSP: 38, soLuong: 2, tongTien: 5380000 },
+  { maCTDH: 39, maDH: "DH020", maSP: 39, soLuong: 1, tongTien: 4850000 },
+  { maCTDH: 40, maDH: "DH020", maSP: 40, soLuong: 2, tongTien: 9700000 },
 ];
+
 const tableBillDetail = JSON.parse(localStorage.getItem('billDetail'));
-if(tableBillDetail){
-  console.log("Đã có dữ liệu bảng bill detail")
-}
-else{
+if (tableBillDetail) {
+  console.log("Đã có dữ liệu bảng bill detail");
+} else {
   localStorage.setItem('billDetail', JSON.stringify(chiTietDonHang));
 }
+
 
 // bảng khách hàng
 const khachHang = [
