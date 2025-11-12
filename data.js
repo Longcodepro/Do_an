@@ -552,35 +552,35 @@ else{
 const nhapHang = [
   {
     maNhap: 1,
-    maSP: 101,
+    maSP: 1,
     soLuong: 50,
     ngayNhap: "2025-11-01",
     trangThai: "Hoàn tất"
   },
   {
     maNhap: 2,
-    maSP: 102,
+    maSP: 12,
     soLuong: 30,
     ngayNhap: "2025-11-02",
     trangThai: "Hoàn tất"
   },
   {
     maNhap: 3,
-    maSP: 103,
+    maSP: 3,
     soLuong: 20,
     ngayNhap: "2025-11-03",
     trangThai: "Đang xử lý"
   },
   {
     maNhap: 4,
-    maSP: 104,
+    maSP: 5,
     soLuong: 15,
     ngayNhap: "2025-11-04",
     trangThai: "Hoàn tất"
   },
   {
     maNhap: 5,
-    maSP: 105,
+    maSP: 14,
     soLuong: 40,
     ngayNhap: "2025-11-05",
     trangThai: "Đang xử lý"
