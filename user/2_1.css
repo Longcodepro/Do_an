@@ -154,6 +154,7 @@
     padding: 8px 16px;
     color: #333;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .btndnhap button:hover{
@@ -287,4 +288,8 @@
 
 .text{
     font-size: 30px;
+}
+
+.quenmk {
+    margin-top: 15px;
 }
