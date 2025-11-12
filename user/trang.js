@@ -278,13 +278,6 @@ const trang={
             </li>
              
                 </ul>
-                <select id="locGia" class="chon-gia"> 
-            <option value="all">Giá bán: Tất cả</option>
-            <option value="duoi5">Dưới 5.000.000 VNĐ</option>
-            <option value="5den10">Từ 5.000.000 - 10.000.000 VNĐ</option>
-            <option value="10den20">Từ 10.000.000 - 20.000.000 VNĐ</option>
-            <option value="tren20">Trên 20.000.000 VNĐ</option>
-        </select>
             </div>
            
             <div class="menu-conten" id="products">
@@ -549,57 +542,46 @@ function toggleCart(show = true) {
 // HÀM 2: HIỂN THỊ DỮ LIỆU GIỎ HÀNG TRONG OVERLAY
 // =========================================================
 function renderCart() {
-    const cartItems = getlocalStorage('cart') || [];
-    const allProducts = getlocalStorage('product'); // Dữ liệu sản phẩm gốc
-
-    // Kiểm tra nếu không lấy được sản phẩm (lỗi data.js)
-    if (!allProducts) {
-        console.error("Không thể tải dữ liệu sản phẩm từ localStorage (key: 'product')");
-        const cartContentDiv = document.getElementById('cartContent');
-        cartContentDiv.innerHTML = "<p style='color: red; text-align: center; padding: 20px;'>Lỗi: Không tải được dữ liệu sản phẩm.</p>";
-        return;
-    }
-
     const cartContentDiv = document.getElementById('cartContent');
     const cartSummaryDiv = document.getElementById('cartSummary');
+    const cart = getlocalStorage('cart') || [];
+    const allProducts = getlocalStorage('product') || [];
     let itemsHtml = '';
     let totalAmount = 0;
 
-    if (cartItems.length === 0) {
-        itemsHtml = `
-            <p style="text-align: center; padding: 30px;">Giỏ hàng của bạn đang trống.</p>
-        `;
-        cartSummaryDiv.innerHTML = '';
+    if (cart.length === 0) {
+        itemsHtml = '<p style="text-align: center; color: #555;">Giỏ hàng của bạn đang trống.</p>';
+        cartSummaryDiv.innerHTML = '<button class="checkout-btn" disabled>Giỏ hàng trống</button>';
     } else {
-        cartItems.forEach(item => {
-            const product = allProducts.find(p => p.maSP === item.maSP);
+        cart.forEach(item => {
+            const product = allProducts.find(p => p.maSP == item.maSP);
             if (product) {
-                const subTotal = product.giaSo * item.soLuong;
+                // dùng gsht (giá hiện tại) từ data.js
+                const price = product.gsht || 0;
+                const subTotal = price * item.soLuong;
                 totalAmount += subTotal;
 
-                // Cấu trúc HTML đơn giản cho từng mục trong giỏ hàng
-                // SỬA LỖI 2: Đường dẫn ảnh cho sản phẩm trong giỏ
                 itemsHtml += `
-                    <div class="small-cart-item">
-                        <img src="${product.hinhAnh.replace('./img/', '../img/')}" alt="${product.tenSP}" class="small-item-img">
+                    <div class="cart-item">
+                        <img src="${product.hinhAnh}" alt="${product.tenSP}" class="small-item-image">
                         <div class="small-item-info">
                             <strong>${product.tenSP}</strong>
-                            <p>${formatCurrency(product.giaSo)} x ${item.soLuong}</p>
-                            <dizv class="quantity-controls">
+                            <p>${formatCurrency(price)} x ${item.soLuong}</p>
+                            <div class="quantity-controls">
                                 <button onclick="changeQuantity(${product.maSP}, -1)">-</button>
                                 <span>${item.soLuong}</span>
                                 <button onclick="changeQuantity(${product.maSP}, 1)">+</button>
-                            </dizv>
+                            </div>
                         </div>
-                        <button class="remove-btn" onclick="removeItem(${product.maSP})"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="remove-btn" onclick="removeItem(${product.maSP})">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
                     </div>
                 `;
-            } else {
-                console.warn(`Không tìm thấy sản phẩm với maSP: ${item.maSP} trong giỏ hàng.`);
             }
         });
 
-        // Cập nhật phần tổng tiền và nút thanh toán
+        // Cập nhật tổng tiền và nút thanh toán
         cartSummaryDiv.innerHTML = `
             <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">
                 Tổng cộng: ${formatCurrency(totalAmount)}
@@ -609,9 +591,6 @@ function renderCart() {
             </button>
         `;
     }
-    
+
     cartContentDiv.innerHTML = itemsHtml;
 }
-
-// (Phần comment hướng dẫn bên dưới đã được thực hiện)
-// SỬA LỖI 3: Xóa dấu } thừa ở cuối file
