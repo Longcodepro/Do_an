@@ -598,23 +598,28 @@ else{
 const matHang = [
   {
     maMatHang: 1,
-    tenMatHang: "Máy giặt"
+    tenMatHang: "Máy giặt",
+    hienThi: true
   },
   {
     maMatHang: 2,
     tenMatHang: "Tủ lạnh",
+    hienThi: true
   },
   {
     maMatHang: 3,
     tenMatHang: "TV",
+    hienThi: false
   },
   {
     maMatHang: 4,
     tenMatHang: "Máy lạnh",
+    hienThi: false
   },
   {
     maMatHang: 5,
-    tenMatHang: "Máy lọc không khí"
+    tenMatHang: "Máy lọc không khí",
+    hienThi: true
   }
 ]
 const tableMatHang = JSON.parse(localStorage.getItem('matHang'));

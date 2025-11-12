@@ -44,10 +44,12 @@ function menu(div) {
   tat_ca.value = '';
   theo_loai.appendChild(tat_ca);
   rowsMh.forEach(row => {
-    const option =  document.createElement('option');
-    option.textContent = row.tenMatHang
-    option.value = row.maMatHang;
-    theo_loai.appendChild(option);
+    if(row.hienThi){
+      const option =  document.createElement('option');
+      option.textContent = row.tenMatHang
+      option.value = row.maMatHang;
+      theo_loai.appendChild(option);
+    }
   });
   // xử lí tim_theo_loai
   theo_loai.addEventListener('change', () => {
