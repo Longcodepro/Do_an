@@ -112,7 +112,7 @@
                           </div>
                       </div>
                       <div class="hang">
-                          <div class="mua">Mua</div>
+                          <div onclick="" class="mua">Mua</div>
                           <div><i class="nav-cart fa-solid fa-cart-shopping" style="margin-left:7px;"></i></div>
                       </div>
                   </div>
@@ -254,7 +254,6 @@
                       <h2>${sp.tenSP}</h2>
                       <p><b>Giá Gốc:</b> ${sp.giaGoc}</p>
                       <p><b>Giá Khuyến Mãi:</b> ${sp.giaHienTai}</p>
-                      <p><b>Thương hiệu:</b> ${sp.thuongHieu}</p>
                       <p><b>Mã mặt hàng:</b> ${sp.maMatHang}</p>
                   </div>
               </div>
