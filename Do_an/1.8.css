@@ -6,6 +6,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
+
 }
 
 .bo-loc input, .bo-loc select {
@@ -17,9 +18,10 @@
 
 #bangTon {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: auto;
   background: #fff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding-bottom: 50px;
 }
 
 #bangTon th, #bangTon td {
