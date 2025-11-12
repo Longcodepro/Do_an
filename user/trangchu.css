@@ -490,6 +490,7 @@
       justify-content: space-between;
       font-size: 19px;
       margin-top: 7px;
+      cursor: pointer;
      }
      .hang .mua{
       width: 100%;
