@@ -145,7 +145,8 @@ function quanLyKhachHang() {
             btnToggle.textContent = newButtonText;
             btnToggle.className = newTrangThai == 1 ? "khoa" : "mo";
 
-            alert(`Đã ${newButtonText.toLowerCase()} tài khoản của ${kh.tenKH}`);
+            const actionText = newTrangThai == 1 ? "mở" : "khóa"; // Nếu newTrangThai là 1 (Đã mở), thì thông báo là "Đã mở"
+            alert(`Đã ${actionText} tài khoản của ${kh.tenKH}`);
 
             kh.trangThai = newTrangThai;
         });
