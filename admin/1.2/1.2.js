@@ -29,13 +29,22 @@ function quanLyKhachHang() {
     const trHead = document.createElement("tr");
 
     // Thứ tự tiêu đề bảng: Mã KH, Tên KH, Giới tính, Địa chỉ, SĐT, Password, Trạng thái, Thao tác
+    // const headers = [
+    //     "Mã KH",
+    //     "Tên KH",
+    //     "Giới tính",
+    //     "Địa chỉ",
+    //     "SĐT",
+    //     "Password", 
+    //     "Trạng thái",
+    //     "Thao tác",
+    // ];
     const headers = [
         "Mã KH",
         "Tên KH",
         "Giới tính",
         "Địa chỉ",
         "SĐT",
-        "Password", 
         "Trạng thái",
         "Thao tác",
     ];
@@ -77,10 +86,10 @@ function quanLyKhachHang() {
         tdSdt.textContent = kh.soDienThoai; // Lấy dữ liệu SĐT
         tr.appendChild(tdSdt);
         
-        // 6. Password
-        const tdPass = document.createElement("td");
-        tdPass.textContent = kh.matKhau || "N/A"; // Lấy dữ liệu mật khẩu
-        tr.appendChild(tdPass);
+        // // 6. Password
+        // const tdPass = document.createElement("td");
+        // tdPass.textContent = kh.matKhau || "N/A"; // Lấy dữ liệu mật khẩu
+        // tr.appendChild(tdPass);
 
         // 7. Trạng thái 
         const tdStatus = document.createElement("td");
@@ -107,7 +116,7 @@ function quanLyKhachHang() {
         btnToggle.className = currentTrangThai == 1 ? "khoa" : "mo";
 
         btnReset.addEventListener("click", () => {
-            if (!confirm(`Bạn có chắc muốn RESET mật khẩu của ${kh.tenKH} về mặc định: 123456?`)) return;
+            if (!confirm(`Bạn có chắc muốn RESET mật khẩu của ${kh.tenKH}?`)) return;
             
             const khachHangNow = getlocalStorage("khachHang");
             if (!khachHangNow) return;
@@ -118,8 +127,8 @@ function quanLyKhachHang() {
             khachHangNow[khachHangIndex].matKhau = "123456";
             setlocalStorage("khachHang", khachHangNow);
 
-            tdPass.textContent = "123456";
-            alert(`Đã reset mật khẩu của ${kh.tenKH} về mặc định: 123456`);
+            // tdPass.textContent = "123456";
+            alert(`Đã reset mật khẩu của ${kh.tenKH} và đã gửi qua email`);
         });
 
         btnToggle.addEventListener("click", () => {
