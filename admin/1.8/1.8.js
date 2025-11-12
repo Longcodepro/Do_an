@@ -11,6 +11,8 @@ function quanLySoLuongTon() {
   const dsMatHang = typeof tableMatHang !== 'undefined' ? tableMatHang : [];
 
   noiDung.innerHTML = `
+  <div>
+    <h2 style="color:#333">Quản Lí Số Lượng Tồn Của Sản Phẩm</h2>
     <div class="bo-loc">
       <input type="text" id="timKiemMaSP" placeholder="🔍 Tìm theo mã sản phẩm...">
       <input type="text" id="timKiemTon" placeholder="🔍 Tìm kiếm theo tên sản phẩm...">
@@ -25,9 +27,10 @@ function quanLySoLuongTon() {
         <option value="Đủ hàng">Đủ hàng</option>
       </select>
       <button id="nutLocTon">Lọc</button>
+    
     </div>
-
-    <table border="1" width="100%" style="border-collapse:collapse; text-align:center; margin-top:10px;">
+    <div>
+    <table border="1" width="100%" style="border-collapse:auto; text-align:center; margin-top:10px;; margin-bottom:10%">
       <thead>
         <tr style="background-color:#009879; color:white;">
           <th>Mã sản phẩm</th>
@@ -40,6 +43,8 @@ function quanLySoLuongTon() {
       </thead>
       <tbody id="bangTon"></tbody>
     </table>
+    </div>
+    </div>
   `;
 
   hienThiSoLuongTon();
