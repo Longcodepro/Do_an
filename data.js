@@ -630,7 +630,16 @@ else{
   localStorage.setItem('matHang', JSON.stringify(matHang));
 }
 
-
+// =========================================================
+// HÀM HỖ TRỢ TÌM SẢN PHẨM THEO MÃ
+// =========================================================
+function findProductById(maSP) {
+    // Đảm bảo maSP là số
+    const numericMaSP = parseInt(maSP); 
+    
+    // Tìm và trả về sản phẩm trong mảng tatCaSanPham
+    return tatCaSanPham.find(product => product.maSP === numericMaSP);
+}
 
 // // các hàm lấy  và và cập nhập table 
 // // đẩy lên local
