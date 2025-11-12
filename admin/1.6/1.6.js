@@ -30,6 +30,7 @@ function quanLyGiaBan() {
   const dsLoai = loaiTable.data.map((l) => ({
     MA_MAT_HANG: l.maMatHang,
     TEN_MAT_HANG: l.tenMatHang,
+    
   }));
 
   const noiDung = document.getElementById("noi_dung");

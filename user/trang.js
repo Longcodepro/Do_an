@@ -278,6 +278,13 @@ const trang={
             </li>
              
                 </ul>
+                <select id="locGia" class="chon-gia"> 
+            <option value="all">Giá bán: Tất cả</option>
+            <option value="duoi5">Dưới 5.000.000 VNĐ</option>
+            <option value="5den10">Từ 5.000.000 - 10.000.000 VNĐ</option>
+            <option value="10den20">Từ 10.000.000 - 20.000.000 VNĐ</option>
+            <option value="tren20">Trên 20.000.000 VNĐ</option>
+        </select>
             </div>
            
             <div class="menu-conten" id="products">

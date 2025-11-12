@@ -84,7 +84,7 @@
   }
   .anh1 img{
     height: 180px;
-    width: 100%;
+    /* width: 100%; */
     object-fit: contain;
   }
   .anh1{
