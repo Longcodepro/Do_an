@@ -111,7 +111,7 @@
                               <div class="note">Chi Tiết</div>
                           </div>
                       </div>
-                      <div class="hang">
+                      <div class="hang" onclick="addToCart(${sp.maSP})">
                           <div onclick="" class="mua">Mua</div>
                           <div><i class="nav-cart fa-solid fa-cart-shopping" style="margin-left:7px;"></i></div>
                       </div>

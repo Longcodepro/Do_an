@@ -642,7 +642,7 @@
         margin-top: 10px;
       }
 
-/* CSS Cho Giỏ Hàng Overlay (Đã Sửa Lỗi) */
+/* CSS Cho Giỏ Hàng Overlay */
 .cart-overlay {
     position: fixed;
     top: 0;
@@ -651,32 +651,30 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
-    
-    /* SỬA LỖI: Xóa 'display: flex;' ở đây. 
-       Chỉ giữ 'display: none;' để ẩn nó đi theo mặc định. */
-    display: none;  
-    
-    justify-content: flex-end;
+    display: none; /* Ẩn theo mặc định */
+    justify-content: flex-end; /* Đẩy hộp giỏ hàng sang phải */
     align-items: flex-start;
 }
 
-/* Khi active, 'display: flex;' sẽ ghi đè 'display: none;' để hiện ra */
+/* Hiển thị Overlay khi có class 'active' */
 .cart-overlay.active {
     display: flex;
 }
 
+/* Hộp chứa nội dung Giỏ hàng (Sidebar) */
 .cart-container {
-    width: 400px;
+    width: 400px; 
     height: 100%;
     background-color: white;
     padding: 20px;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-    transform: translateX(100%);
+    transform: translateX(100%); /* Ẩn ra ngoài màn hình */
     transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
 }
 
+/* Khi overlay active thì hộp giỏ hàng trượt vào */
 .cart-overlay.active .cart-container {
     transform: translateX(0);
 }
@@ -685,26 +683,79 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 10px;
     border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-.close-cart {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #333;
 }
 
 .cart-body {
-    flex-grow: 1;
+    flex-grow: 1; /* Cho phép cuộn */
     overflow-y: auto;
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
 .cart-footer {
     padding-top: 15px;
     border-top: 1px solid #eee;
     text-align: right;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.checkout-btn {
+    padding: 10px 20px;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Chi tiết sản phẩm trong giỏ */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ddd;
+    /* Rất quan trọng: Đảm bảo khoảng cách giữa các phần tử là tối đa */
+    justify-content: space-between;
+}
+
+.small-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 10px;
+    /* Đảm bảo nó không bị co lại */
+    flex-shrink: 0;
+}
+
+.small-item-info {
+    flex-grow: 1;
+    /* Đặt lề bên phải để nó không chạm vào nút xóa */
+    margin-right: 15px;
+}
+
+.quantity-controls button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    padding: 2px 8px;
+    margin: 0 5px;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #ff4d4f;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1.1em;
+    flex-shrink: 0; 
+    margin-left: 10px;
 }
