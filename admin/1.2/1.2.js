@@ -107,7 +107,7 @@ function quanLyKhachHang() {
         divActions.style.justifyContent = 'center';
 
         const btnReset = document.createElement("button");
-        btnReset.textContent = "Reset";
+        btnReset.textContent = "Reset mật khẩu";
         btnReset.className = "reset";
 
         const btnToggle = document.createElement("button");
