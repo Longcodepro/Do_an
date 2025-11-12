@@ -612,3 +612,41 @@ function renderCart() {
 
 // (Phần comment hướng dẫn bên dưới đã được thực hiện)
 // SỬA LỖI 3: Xóa dấu } thừa ở cuối file
+
+
+// ... (Các hàm hỗ trợ khác như setlocalStorage, getlocalStorage, v.v.)
+
+// =========================================================
+// HÀM MỚI: THÊM SẢN PHẨM VÀO GIỎ
+// =========================================================
+function addToCart(maSP) {
+    // 1. Lấy giỏ hàng hiện tại từ localStorage
+    let cart = getlocalStorage('cart') || [];
+
+    // 2. Kiểm tra xem sản phẩm đã có trong giỏ chưa
+    const existingItemIndex = cart.findIndex(item => item.maSP === maSP);
+
+    if (existingItemIndex > -1) {
+        // 3. Nếu đã có, tăng số lượng lên 1
+        cart[existingItemIndex].soLuong += 1;
+    } else {
+        // 4. Nếu chưa có, thêm sản phẩm mới vào giỏ với số lượng là 1
+        cart.push({
+            maSP: maSP,
+            soLuong: 1
+        });
+    }
+
+    // 5. Lưu giỏ hàng mới trở lại localStorage
+    setlocalStorage('cart', cart);
+
+    // 6. Mở giỏ hàng overlay để người dùng thấy sản phẩm vừa thêm
+    toggleCart(true);
+}
+
+// =========================================================
+// HÀM 1: BẬT/TẮT GIỎ HÀNG OVERLAY (Hàm này bạn đã có)
+// =========================================================
+function toggleCart(show = true) {
+    // ... (code của bạn)
+}
