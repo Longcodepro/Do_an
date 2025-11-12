@@ -549,79 +549,27 @@ else{
 }
 
 // bảng nhập hàng
-const nhapHang = [
-  {
-    maNhap: 1,
-    maSP: 1,
-    soLuong: 50,
-    ngayNhap: "2025-11-01",
-    trangThai: "Hoàn tất"
-  },
-  {
-    maNhap: 2,
-    maSP: 12,
-    soLuong: 30,
-    ngayNhap: "2025-11-02",
-    trangThai: "Hoàn tất"
-  },
-  {
-    maNhap: 3,
-    maSP: 3,
-    soLuong: 20,
-    ngayNhap: "2025-11-03",
-    trangThai: "Đang xử lý"
-  },
-  {
-    maNhap: 4,
-    maSP: 5,
-    soLuong: 15,
-    ngayNhap: "2025-11-04",
-    trangThai: "Hoàn tất"
-  },
-  {
-    maNhap: 5,
-    maSP: 14,
-    soLuong: 40,
-    ngayNhap: "2025-11-05",
-    trangThai: "Đang xử lý"
-  }
-];
-const tableNhapHang = JSON.parse(localStorage.getItem('nhapHang'));
-if(tableNhapHang){
-  console.log("Đã có dữ liệu bảng nhap hang")
-}
-else{
-  localStorage.setItem('nhapHang', JSON.stringify(nhapHang));
-}
+
 
 // table mặt hàng
-const matHang = [
-  {
-    maMatHang: 1,
-    tenMatHang: "Máy giặt",
-    hienThi: true
-  },
-  {
-    maMatHang: 2,
-    tenMatHang: "Tủ lạnh",
-    hienThi: true
-  },
-  {
-    maMatHang: 3,
-    tenMatHang: "TV",
-    hienThi: false
-  },
-  {
-    maMatHang: 4,
-    tenMatHang: "Máy lạnh",
-    hienThi: false
-  },
-  {
-    maMatHang: 5,
-    tenMatHang: "Máy lọc không khí",
-    hienThi: true
-  }
-]
+// bảng nhập hàng
+const nhapHang = [
+  { maPhieu: "PN01", maSP: 1, soLuong: 10, giaNhap: 13500000, ngayNhap: "2025-10-01", trangThai: false },
+  { maPhieu: "PN02", maSP: 2, soLuong: 8, giaNhap: 15200000, ngayNhap: "2025-10-03", trangThai: true },
+  { maPhieu: "PN03", maSP: 10, soLuong: 50, giaNhap: 180000, ngayNhap: "2025-10-05", trangThai: true },
+  { maPhieu: "PN04", maSP: 12, soLuong: 20, giaNhap: 950000, ngayNhap: "2025-10-07", trangThai: true },
+  { maPhieu: "PN05", maSP: 15, soLuong: 15, giaNhap: 2700000, ngayNhap: "2025-10-08", trangThai: true },
+  { maPhieu: "PN06", maSP: 18, soLuong: 30, giaNhap: 950000, ngayNhap: "2025-10-10", trangThai: true },
+  { maPhieu: "PN07", maSP: 22, soLuong: 25, giaNhap: 950000, ngayNhap: "2025-10-12", trangThai: true },
+  { maPhieu: "PN08", maSP: 25, soLuong: 40, giaNhap: 750000, ngayNhap: "2025-10-13", trangThai: true },
+  { maPhieu: "PN09", maSP: 30, soLuong: 7, giaNhap: 14300000, ngayNhap: "2025-10-15", trangThai: true },
+  { maPhieu: "PN10", maSP: 33, soLuong: 9, giaNhap: 15500000, ngayNhap: "2025-10-18", trangThai: true  },
+  { maPhieu: "PN11", maSP: 35, soLuong: 12, giaNhap: 4200000, ngayNhap: "2025-10-19", trangThai: true  },
+  { maPhieu: "PN12", maSP: 38, soLuong: 60, giaNhap: 160000, ngayNhap: "2025-10-21", trangThai: true  },
+  { maPhieu: "PN13", maSP: 41, soLuong: 35, giaNhap: 320000, ngayNhap: "2025-10-23", trangThai: true  },
+  { maPhieu: "PN14", maSP: 45, soLuong: 25, giaNhap: 550000, ngayNhap: "2025-10-24", trangThai: true  },
+  { maPhieu: "PN15", maSP: 49, soLuong: 18, giaNhap: 1100000, ngayNhap: "2025-10-26", trangThai: true  },
+];
 const tableMatHang = JSON.parse(localStorage.getItem('matHang'));
 if(tableMatHang){
   console.log("Đã có dữ liệu bảng mat hang")
