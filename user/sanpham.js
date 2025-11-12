@@ -255,6 +255,10 @@
                       <p><b>Giá Gốc:</b> ${sp.giaGoc}</p>
                       <p><b>Giá Khuyến Mãi:</b> ${sp.giaHienTai}</p>
                       <p><b>Mã mặt hàng:</b> ${sp.maMatHang}</p>
+                      <div class="hang" onclick="addToCart(${sp.maSP})">
+                          <div onclick="" class="mua">Mua</div>
+                          <div><i class="nav-cart fa-solid fa-cart-shopping" style="margin-left:7px;"></i></div>
+                      </div>
                   </div>
               </div>
           </div>
