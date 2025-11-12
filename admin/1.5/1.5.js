@@ -15,6 +15,20 @@ function getBangSP() {
 }
 
 /**
+ * Hàm tự động tạo mã nhập hàng (maNhap) tiếp theo
+ * @returns {number} Mã nhập hàng tiếp theo
+ */
+function getNextMaNhap() {
+    const bangNhap = getBangNhap();
+    if (bangNhap.length === 0) {
+        return 1;
+    }
+    // Tìm mã lớn nhất và cộng thêm 1
+    const maxMa = Math.max(...bangNhap.map(p => p.maNhap));
+    return maxMa + 1;
+}
+
+/**
  * Kiểm tra Mã SP vừa nhập, hiển thị tên sản phẩm nếu tìm thấy.
  * Lấy element từ event.target (vì function được gọi qua onclick).
  */
@@ -148,8 +162,13 @@ function renderTable(list) {
     const tr = document.createElement("tr");
     tr.dataset.maPhieu = p.maNhap;
     
-    // Lưu tạm dữ liệu cần thiết cho chức năng Sửa (chỉ cần Mã SP và Số lượng)
-    tr.dataset.maSPSl = JSON.stringify(p.dsMaSP.map((ma, index) => ({ maSP: ma, soLuong: p.dsSoLuong[index] })));
+    // Lấy dữ liệu chi tiết, bao gồm cả giá nhập, để lưu vào dataset
+    const chiTietPhieu = list.filter(item => item.maNhap === p.maNhap).map(item => ({ 
+        maSP: item.maSP, 
+        soLuong: item.soLuong,
+        giaNhap: item.giaNhap || 0 // Thêm giaNhap
+    }));
+    tr.dataset.maSPSl = JSON.stringify(chiTietPhieu);
 
     tr.innerHTML = `
       <td>${p.maNhap}</td>
@@ -179,7 +198,7 @@ function taoThanhCongCu(noiDung) {
   noiDung.appendChild(box);
 }
 
-// ✅ Tạo form nhập phiếu (ĐÃ CẬP NHẬT CẤU TRÚC CHỌN SP)
+// ✅ Tạo form nhập phiếu (ĐÃ SỬA CẤU TRÚC NÚT + và -)
 function taoFormThem(parent) {
   const f = document.createElement("div");
   f.id = "formThemPhieu";
@@ -187,7 +206,12 @@ function taoFormThem(parent) {
   f.innerHTML = `
     <div class="form-row">
       <label>Mã nhập hàng:</label>
-      <input type="number" id="maNhap" placeholder=" ">
+      <input type="text" id="maNhapHienThi" value="(Tự động cấp)" disabled style="border: none; background: #eee;">
+      <input type="hidden" id="maNhap"> </div>
+
+    <div class="form-row">
+      <label>Ngày nhập:</label>
+      <input type="date" id="ngayNhap" required>
     </div>
 
     <div class="form-row">
@@ -200,14 +224,10 @@ function taoFormThem(parent) {
             <span class="tenSP-hienThi" data-ma-sp="" style="display:none; border: 1px solid #ccc; padding: 6px 12px; line-height: 20px; min-width: 250px;"></span> 
           </div>
           <input type="number" class="soLuong" placeholder="SL" min="1">
-          <input type="number" class="giaNhap" placeholder="Giá nhập"> <button onclick="themDongSP(this)">+</button>
-          <button onclick="xoaDongSP(this)" style="display:none">-</button>
-        </div>
+          <input type="number" class="giaNhap" placeholder="Giá nhập"> 
+          <button onclick="themDongSP(this)">+</button>
+          <button onclick="xoaDongSP(this)" style="display:none">-</button> </div>
       </div>
-    </div>
-
-    <div class="form-row" style="display:none;"> <label>Ngày nhập:</label>
-      <input type="date" id="ngayNhap">
     </div>
 
     <div id="hai-nut" style="display:flex; gap:8px;">
@@ -218,21 +238,28 @@ function taoFormThem(parent) {
   parent.appendChild(f);
 }
 
-// ✅ Mở form (BỎ QUA GẮN SỰ KIỆN TÌM KIẾM)
+// ✅ Mở form (ĐÃ CHỈNH SỬA)
 function hienThiForm() {
   document.getElementById("formThemPhieu").style.display = "block";
   document.getElementById("nutThem").style.display = "none";
-  // Gán ngày hiện tại cho Ngày nhập (Mặc dù ẩn nhưng vẫn cần giá trị)
+  
+  // 1. Tự động cấp mã và hiển thị
+  const newMa = getNextMaNhap();
+  document.getElementById("maNhapHienThi").value = newMa;
+  document.getElementById("maNhap").value = newMa; // Lưu mã vào input ẩn
+  
+  // 2. Gán ngày hiện tại cho Ngày nhập
   document.getElementById("ngayNhap").valueAsDate = new Date();
-  // BỎ QUA ganSuKienTimKiem();
 }
 
-// ✅ Reset và Ẩn form (ĐÃ CẬP NHẬT CẤU TRÚC SP)
+// ✅ Reset và Ẩn form (ĐÃ SỬA CẤU TRÚC NÚT + và -)
 function huyThemPhieu() {
+  document.getElementById("maNhapHienThi").value = "";
   document.getElementById("maNhap").value = "";
   document.getElementById("ngayNhap").value = "";
 
   const ds = document.getElementById("dsSanPham");
+  // Cấu trúc mặc định của dòng sản phẩm đầu tiên
   ds.innerHTML = `
     <div class="hangSP">
       <div class="chonSP-wrap">
@@ -241,17 +268,16 @@ function huyThemPhieu() {
         <span class="tenSP-hienThi" data-ma-sp="" style="display:none; border: 1px solid #ccc; padding: 6px 12px; line-height: 20px; min-width: 250px;"></span>
       </div>
       <input type="number" class="soLuong" placeholder="SL" min="1">
-      <input type="number" class="giaNhap" placeholder="Giá nhập (tạm bỏ qua)" style="display:none;">
+      <input type="number" class="giaNhap" placeholder="Giá nhập"> 
       <button onclick="themDongSP(this)">+</button>
-      <button onclick="xoaDongSP(this)" style="display:none">-</button>
-    </div>
+      <button onclick="xoaDongSP(this)" style="display:none">-</button> </div>
   `;
   
   document.getElementById("formThemPhieu").style.display = "none";
   document.getElementById("nutThem").style.display = "inline-block";
 }
 
-// ✅ Thêm dòng SP (ĐÃ CẬP NHẬT RESET)
+// ✅ Thêm dòng SP (ĐÃ SỬA LOGIC HIỂN THỊ NÚT)
 function themDongSP(btn) {
   const hang = btn.closest(".hangSP");
   const newRow = hang.cloneNode(true);
@@ -266,12 +292,13 @@ function themDongSP(btn) {
   newRow.querySelector('.tenSP-hienThi').textContent = '';
   newRow.querySelector('.tenSP-hienThi').dataset.maSp = '';
 
-  // Chỉnh lại nút + và -
-  hang.querySelectorAll("button")[0].style.display = "none";
-  hang.querySelectorAll("button")[1].style.display = "inline-block";
+  // 1. ẨN nút '+' và HIỆN nút '-' trên dòng HIỆN TẠI (dòng vừa nhân bản)
+  hang.querySelector("button:nth-last-child(2)").style.display = "none"; // Nút +
+  hang.querySelector("button:nth-last-child(1)").style.display = "inline-block"; // Nút -
 
-  newRow.querySelectorAll("button")[0].style.display = "inline-block";
-  newRow.querySelectorAll("button")[1].style.display = "none";
+  // 2. Thiết lập nút cho dòng MỚI
+  newRow.querySelector("button:nth-last-child(2)").style.display = "inline-block"; // Nút +
+  newRow.querySelector("button:nth-last-child(1)").style.display = "none"; // Nút - ẩn (sẽ được hiện khi thêm dòng tiếp theo)
 
   document.getElementById("dsSanPham").appendChild(newRow);
 }
@@ -284,101 +311,85 @@ function xoaDongSP(btn) {
 
   const hang = btn.closest(".hangSP");
   const isLast = !hang.nextElementSibling;
+  
   hang.remove();
 
+  // Nếu dòng cuối bị xóa, phải hiện lại nút '+' ở dòng áp cuối
   if (isLast) {
     const cuoi = ds.lastElementChild;
-    cuoi.querySelectorAll("button")[0].style.display = "inline-block";
+    // Hiện lại nút '+' (nút thứ 2 tính từ cuối) và ẩn nút '-' (nút cuối)
+    cuoi.querySelector("button:nth-last-child(2)").style.display = "inline-block"; 
+    cuoi.querySelector("button:nth-last-child(1)").style.display = "none";
   }
 }
 
-// ✅ Lưu phiếu mới (LẤY MÃ SP CHỈ TỪ DATA ATTRIBUTE ĐÃ XÁC THỰC)
+// ✅ Lưu phiếu mới (Giữ nguyên logic Giá nhập)
 function luuPhieuMoi() {
-  const maInput = document.getElementById("maNhap");
+  const maInput = document.getElementById("maNhap"); 
   const ngayInput = document.getElementById("ngayNhap");
   const rows = document.querySelectorAll("#dsSanPham .hangSP");
     
-  const ma = parseInt(maInput.value);
-  const ngay = ngayInput.value.trim() || new Date().toISOString().slice(0, 10); // Dùng ngày hiện tại nếu không có
+  const ma = parseInt(maInput.value); 
+  const ngay = ngayInput.value.trim(); 
 
-  if (isNaN(ma)) return alert("Vui lòng nhập Mã nhập hàng (số)!");
+  if (isNaN(ma) || ma <= 0) return alert("Lỗi hệ thống: Mã nhập hàng không hợp lệ!");
+  if (!ngay) return alert("Vui lòng chọn Ngày nhập hàng!");
     
   let bangNhap = getBangNhap(); 
   let bangSP = getBangSP(); 
 
-  // Kiểm tra trùng mã nhập
-  if (bangNhap.some(p => p.maNhap === ma))
-    return alert(`Mã phiếu nhập ${ma} đã tồn tại! Vui lòng chọn mã khác.`);
-
-  let daCapNhatSP = true; 
-  let coSPHopLe = false; // Biến kiểm tra có ít nhất 1 SP được chọn VÀ ĐÃ XÁC THỰC
+  let sanPhamBiLoi = false; 
+  let coSPHopLe = false; 
   let newEntries = [];
 
   rows.forEach(r => {
-    // LẤY MÃ SP TỪ SPAN ĐÃ CHỌN VÀ ĐƯỢC XÁC THỰC
     const maSP_span = r.querySelector('.tenSP-hienThi');
-    // Chỉ lấy mã SP nếu đã được gán (sau khi kiểm tra thành công)
     let maSP_str = maSP_span.dataset.maSp; 
     
-    // Bỏ qua logic lấy từ input
-    
     const sl = +r.querySelector('.soLuong').value;
+    const giaNhap = +r.querySelector('.giaNhap').value; // LẤY GIÁ NHẬP
 
-    if (maSP_str && sl > 0) {
+    if (maSP_str && sl > 0 && giaNhap >= 0) { // Kiểm tra giá nhập không âm
       coSPHopLe = true;
       const maSP_num = parseInt(maSP_str); 
       
-      // Thêm entry vào bảng 'nhapHang'
+      if (!bangSP.some(sp => sp.maSP === maSP_num)) {
+          sanPhamBiLoi = true;
+      }
+      
       newEntries.push({
           maNhap: ma,
           maSP: maSP_num,
           soLuong: sl,
+          giaNhap: giaNhap, // LƯU GIÁ NHẬP
           ngayNhap: ngay,
           trangThai: "Đang xử lý" 
       });
-
-      // CẬP NHẬT BẢNG 'product' (TỒN KHO)
-      const index = bangSP.findIndex(sp => sp.maSP === maSP_num);
-      
-      if (index !== -1) {
-          // Cộng dồn số lượng
-          bangSP[index].soLuong = parseInt(bangSP[index].soLuong) + sl;
-          // Cập nhật tình trạng
-          if (bangSP[index].tinhTrang !== "Còn hàng") {
-              bangSP[index].tinhTrang = "Còn hàng";
-          }
-      } else {
-          console.warn(`Sản phẩm có mã ${maSP_str} không tồn tại trong bảng 'product'.`);
-          daCapNhatSP = false;
-      }
+    } else if (maSP_str || sl > 0 || giaNhap > 0) {
+        // Cảnh báo nếu một trong 3 trường có giá trị nhưng không hợp lệ (ví dụ: SL < 1 hoặc Giá < 0)
+        return alert("Lỗi nhập liệu: Mã SP, Số lượng phải là số dương và Giá nhập phải là số không âm.");
     }
   });
   
-  // Kiểm tra nếu form không có sản phẩm nào hợp lệ
   if (!coSPHopLe) {
-      return alert("Vui lòng **nhập Mã SP, nhấn nút kiểm tra (✔)** và nhập số lượng hợp lệ cho ít nhất một sản phẩm!");
+      return alert("Vui lòng **nhập Mã SP, nhấn nút kiểm tra (✔)** và nhập Số lượng, Giá nhập hợp lệ cho ít nhất một sản phẩm!");
   }
 
-  // 1. Thêm các entry mới vào bảng nhập
+  // Cập nhật bảng nhập hàng
   bangNhap = bangNhap.concat(newEntries);
-
-
-  // 3. LƯU CẢ 2 BẢNG VÀO LOCALSTORAGE
   setlocalStorage("nhapHang", bangNhap); 
-  setlocalStorage("product", bangSP); // LƯU BẢNG SẢN PHẨM ĐÃ CẬP NHẬT
   
-  // Hiển thị thông báo
-  alert(daCapNhatSP ? "✅ Thêm phiếu nhập và cập nhật số lượng sản phẩm thành công!" : "⚠️ Đã thêm phiếu nhập, nhưng có sản phẩm không tồn tại trong bảng sản phẩm.");
+  alert(sanPhamBiLoi ? "⚠️ Đã thêm phiếu nhập (Đang xử lý), nhưng có sản phẩm không tồn tại trong bảng sản phẩm. Vui lòng kiểm tra lại trước khi 'Hoàn thành'." : "✅ Thêm phiếu nhập thành công! (Trạng thái: Đang xử lý. Tồn kho chưa được cập nhật)");
 
   huyThemPhieu();
   quanLyNhapHang();
 }
 
 // =================================================================
-// CÁC HÀM SỬA VÀ CẬP NHẬT TRẠNG THÁI (ĐÃ CHỈNH SỬA)
+// CÁC HÀM SỬA VÀ CẬP NHẬT TRẠNG THÁI (Giữ nguyên)
 // =================================================================
 
-// Helper: Tìm tên SP dựa vào mã
+// Helper: Tìm tên SP dựa vào mã (Giữ nguyên)
 function getTenSPById(maSP) {
     const bangSP = getBangSP();
     const sanPham = bangSP.find(sp => sp.maSP === maSP);
@@ -386,9 +397,14 @@ function getTenSPById(maSP) {
 }
 
 
-// ✅ Chỉnh sửa phiếu (Chỉ cho sửa Mã SP và Số lượng)
+// ✅ Chỉnh sửa phiếu (Giữ nguyên)
 function suaPhieu(btn) {
   const tr = btn.closest("tr");
+  // Cấm sửa nếu đã hoàn tất
+  if (tr.querySelector('td:nth-child(5)').textContent.trim() === 'Hoàn tất') {
+      return alert("Không thể sửa phiếu đã 'Hoàn tất'.");
+  }
+    
   const action = tr.querySelector(".hanh-dong");
 
   action.querySelectorAll("button")[0].style.display = "none"; // Ẩn Sửa
@@ -399,7 +415,6 @@ function suaPhieu(btn) {
   const maSPCell = tr.querySelector('[data-cells="MA_SP"]');
   const slCell = tr.querySelector('[data-cells="SO_LUONG"]');
   
-  // Lấy dữ liệu sản phẩm chi tiết đã lưu trong dataset
   const currentItems = JSON.parse(tr.dataset.maSPSl);
   
   // Lưu trạng thái cũ để hủy
@@ -407,19 +422,17 @@ function suaPhieu(btn) {
   tr.dataset.maSPHtmlOld = maSPCell.innerHTML;
   tr.dataset.slHtmlOld = slCell.innerHTML;
   
-  // Bắt đầu tạo HTML input cho từng sản phẩm chi tiết
   let htmlMaSP = '';
-  let htmlSL = '';
+  let htmlSL = ''; 
 
-  currentItems.forEach((item, index) => {
-    // Để đơn giản, ta chỉ cho nhập lại mã SP và số lượng
+  currentItems.forEach((item) => {
     htmlMaSP += `<div class="edit-sp-row" data-old-ma-sp="${item.maSP}">
                     <input type="number" class="maSP-edit" value="${item.maSP}" style="width: 80px; display: inline-block;">
                     <span class="tenSP-info">${getTenSPById(item.maSP)}</span>
                     <br>
                  </div>`;
                  
-    htmlSL += `<div class="edit-sl-row" data-old-sl="${item.soLuong}">
+    htmlSL += `<div class="edit-sl-row" data-old-sl="${item.soLuong}" data-old-gia-nhap="${item.giaNhap}"> 
                   <input type="number" class="soLuong-edit" value="${item.soLuong}" min="1" style="width: 50px;">
                </div>`;
   });
@@ -428,7 +441,7 @@ function suaPhieu(btn) {
   slCell.innerHTML = htmlSL;
 }
 
-// ✅ Hủy sửa phiếu
+// ✅ Hủy sửa phiếu (Giữ nguyên)
 function huyPhieu(btn) {
   const tr = btn.closest("tr");
   const action = tr.querySelector(".hanh-dong");
@@ -443,119 +456,120 @@ function huyPhieu(btn) {
   tr.querySelector('[data-cells="SO_LUONG"]').innerHTML = tr.dataset.slHtmlOld;
 }
 
-// Hàm cập nhật tồn kho (Cộng/Trừ tồn kho)
-function capNhatTonKho(maSP, soLuongMoi, soLuongCu, isHuy) {
-    let bangSP = getBangSP();
-    const index = bangSP.findIndex(sp => sp.maSP === maSP);
-    
-    if (index !== -1) {
-        let tonKhoHienTai = parseInt(bangSP[index].soLuong) || 0;
 
-        if (isHuy) {
-            // Trường hợp Hủy (quay về trạng thái ban đầu), chỉ cần trừ số lượng cũ
-            bangSP[index].soLuong = tonKhoHienTai - soLuongCu;
-        } else {
-            // Trường hợp Lưu: Trừ số lượng cũ, cộng số lượng mới
-            bangSP[index].soLuong = tonKhoHienTai - soLuongCu + soLuongMoi;
-        }
-        
-        // Cập nhật tình trạng nếu cần (đơn giản: nếu SL > 0 là Còn hàng)
-        if (bangSP[index].soLuong <= 0) {
-            bangSP[index].tinhTrang = "Hết hàng";
-            bangSP[index].soLuong = 0; // Đảm bảo không âm
-        } else {
-            bangSP[index].tinhTrang = "Còn hàng";
-        }
-        
-        setlocalStorage("product", bangSP);
-        return true;
-    }
-    return false;
-}
-
-
-// ✅ Lưu phiếu (Cập nhật tất cả các dòng có cùng maNhap) - PHỨC TẠP HƠN
+// ✅ Lưu phiếu (Giữ nguyên logic Giá nhập)
 function luuPhieu(btn) {
   const tr = btn.closest("tr");
   const maNhap = parseInt(tr.dataset.maPhieu); // maNhap
   
   const maSPInputs = tr.querySelectorAll('[data-cells="MA_SP"] .maSP-edit');
-  const slInputs = tr.querySelectorAll('[data-cells="SO_LUONG"] .soLuong-edit');
+  const slRows = tr.querySelectorAll('[data-cells="SO_LUONG"] .edit-sl-row');
   
   let bangNhap = getBangNhap();
-  const maSPSL_Old = JSON.parse(tr.dataset.maSPSlOld);
 
   // 1. Chuẩn bị dữ liệu mới và kiểm tra hợp lệ
-  let newItems = [];
+  let newEntries = [];
+  const bangSP = getBangSP(); 
+  
   for (let i = 0; i < maSPInputs.length; i++) {
     const maSPMoi = parseInt(maSPInputs[i].value);
-    const soLuongMoi = parseInt(slInputs[i].value);
+    const soLuongMoi = parseInt(slRows[i].querySelector('.soLuong-edit').value);
+    const giaNhapCu = parseFloat(slRows[i].dataset.oldGiaNhap) || 0; // LẤY GIÁ NHẬP CŨ
 
     if (isNaN(maSPMoi) || maSPMoi <= 0 || isNaN(soLuongMoi) || soLuongMoi <= 0) {
         return alert(`Giá trị mới tại dòng ${i+1} không hợp lệ. Vui lòng kiểm tra Mã SP (số nguyên dương) và Số lượng (số nguyên dương).`);
     }
     
-    // Kiểm tra Mã SP mới có tồn tại trong bảng product không
-    const bangSP = getBangSP();
     if (!bangSP.some(sp => sp.maSP === maSPMoi)) {
         return alert(`Mã SP mới: ${maSPMoi} tại dòng ${i+1} không tồn tại trong danh sách sản phẩm. Vui lòng kiểm tra lại.`);
     }
 
-    newItems.push({
-        maSPMoi: maSPMoi,
-        soLuongMoi: soLuongMoi,
-        maSPCu: maSPSL_Old[i].maSP,
-        soLuongCu: maSPSL_Old[i].soLuong
+    newEntries.push({
+        maNhap: maNhap,
+        maSP: maSPMoi,
+        soLuong: soLuongMoi,
+        giaNhap: giaNhapCu, // GIỮ NGUYÊN GIÁ NHẬP CŨ
     });
   }
   
-  // Lấy Ngày nhập cũ (vì ta không sửa Ngày nhập nữa)
-  const ngayNhap = bangNhap.find(p => p.maNhap === maNhap)?.ngayNhap || new Date().toISOString().slice(0, 10);
-  const trangThai = bangNhap.find(p => p.maNhap === maNhap)?.trangThai || "Đang xử lý";
+  const phieuCu = bangNhap.find(p => p.maNhap === maNhap);
+  const ngayNhap = phieuCu?.ngayNhap || new Date().toISOString().slice(0, 10);
+  const trangThai = phieuCu?.trangThai || "Đang xử lý";
 
 
-  // 2. Cập nhật Tồn kho (Bảng 'product'):
-  newItems.forEach(item => {
-    // Hoàn tác tồn kho cũ (Trừ tồn kho theo số lượng cũ)
-    capNhatTonKho(item.maSPCu, 0, item.soLuongCu, true); 
-    // Áp dụng tồn kho mới (Cộng tồn kho theo số lượng mới)
-    capNhatTonKho(item.maSPMoi, item.soLuongMoi, 0, false); 
-  });
+  // 2. Cập nhật Bảng 'nhapHang':
   
-  
-  // 3. Cập nhật Bảng 'nhapHang':
-  
-  // Xóa các entry cũ của phiếu nhập này
   bangNhap = bangNhap.filter(p => p.maNhap !== maNhap);
   
-  // Thêm các entry mới đã được sửa
-  newItems.forEach(item => {
+  newEntries.forEach(item => {
     bangNhap.push({
         maNhap: maNhap,
-        maSP: item.maSPMoi,
-        soLuong: item.soLuongMoi,
-        ngayNhap: ngayNhap, // Giữ nguyên ngày nhập cũ
-        trangThai: trangThai // Giữ nguyên trạng thái cũ
+        maSP: item.maSP,
+        soLuong: item.soLuong,
+        giaNhap: item.giaNhap, 
+        ngayNhap: ngayNhap, 
+        trangThai: trangThai 
     });
-  });
-  alert("✅ Cập nhật phiếu nhập thành công!");
-  quanLyNhapHang();
-}
-
-// ✅ Hoàn thành phiếu (Cập nhật tất cả các dòng có cùng maNhap)
-function hoanThanhPhieu(btn) {
-  const ma = parseInt(btn.closest("tr").dataset.maPhieu);
-  
-  let bangNhap = getBangNhap();
-  
-  // Duyệt và cập nhật TRANG_THAI cho tất cả các dòng có cùng mã phiếu nhập
-  bangNhap.forEach(p => {
-    if (p.maNhap === ma) {
-      p.trangThai = "Hoàn tất"; 
-    }
   });
 
   setlocalStorage("nhapHang", bangNhap); 
+  alert("✅ Cập nhật phiếu nhập thành công! (Tồn kho chưa được cập nhật)");
+  quanLyNhapHang();
+}
+
+
+// ✅ Hoàn thành phiếu (Giữ nguyên)
+function hoanThanhPhieu(btn) {
+  const maNhap = parseInt(btn.closest("tr").dataset.maPhieu);
+  
+  let bangNhap = getBangNhap();
+  let bangSP = getBangSP(); 
+  
+  const itemsCanHoanThanh = bangNhap.filter(p => p.maNhap === maNhap && p.trangThai !== 'Hoàn tất');
+
+  if (itemsCanHoanThanh.length === 0) {
+      if (bangNhap.some(p => p.maNhap === maNhap && p.trangThai === 'Hoàn tất')) {
+           return alert("Phiếu nhập này đã được hoàn thành trước đó.");
+      }
+      return alert("Lỗi: Không tìm thấy chi tiết phiếu nhập để hoàn thành.");
+  }
+  
+  let capNhatThanhCong = true;
+  
+  // 1. CẬP NHẬT TỒN KHO TRƯỚC (Cộng dồn)
+  itemsCanHoanThanh.forEach(item => {
+      const index = bangSP.findIndex(sp => sp.maSP === item.maSP);
+
+      if (index === -1) {
+          console.error(`Sản phẩm có mã ${item.maSP} không tồn tại trong bảng 'product'. Không cập nhật tồn kho.`);
+          capNhatThanhCong = false;
+      } else {
+          // Cộng dồn số lượng
+          let tonKhoHienTai = parseInt(bangSP[index].soLuong) || 0;
+          bangSP[index].soLuong = tonKhoHienTai + item.soLuong;
+          
+          // Cập nhật tình trạng
+          if (bangSP[index].tinhTrang !== "Còn hàng") {
+              bangSP[index].tinhTrang = "Còn hàng";
+          }
+      }
+  });
+  
+  // 2. LƯU BẢNG TỒN KHO ĐÃ CẬP NHẬT
+  setlocalStorage("product", bangSP);
+
+  // 3. CẬP NHẬT TRẠNG THÁI PHIẾU NHẬP
+  bangNhap = bangNhap.map(p => {
+    if (p.maNhap === maNhap) {
+      p.trangThai = "Hoàn tất"; 
+    }
+    return p;
+  });
+
+  setlocalStorage("nhapHang", bangNhap); 
+  
+  alert(capNhatThanhCong ? "✅ Hoàn thành phiếu nhập và cập nhật tồn kho thành công!" : "⚠️ Hoàn thành phiếu nhập, nhưng có sản phẩm không tồn tại trong bảng sản phẩm nên tồn kho chưa được cập nhật đầy đủ.");
+  
   quanLyNhapHang();
 }
 

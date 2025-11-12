@@ -122,14 +122,29 @@ function dangNhap() {
         return;
     }
 
-    // Tìm kiếm khách hàng (user) bằng tenTaiKhoan và matKhau
-    let user = bangKH.find(u => u.tenTaiKhoan === tk && u.matKhau === mk);
+    // Tìm kiếm khách hàng (user) bằng tenTaiKhoan
+    let user = bangKH.find(u => u.tenTaiKhoan === tk);
 
     if (user) {
-        // Lưu toàn bộ thông tin user vào currentUser
-        localStorage.setItem("currentUser", JSON.stringify(user));
-        alert("✅ Đăng nhập thành công!");
-        window.location.reload();
+        // --- BẮT ĐẦU PHẦN SỬA ĐỂ ĐỒNG BỘ HÓA TRẠNG THÁI VÀ MẬT KHẨU ---
+
+        // 1. Kiểm tra trạng thái tài khoản (Đồng bộ với Khoá/Mở trong 1.2.js)
+        if (user.trangThai == 0) {
+            alert("❌ Tài khoản của bạn đã bị khóa! Vui lòng liên hệ quản trị viên.");
+            return;
+        }
+
+        // 2. Kiểm tra Mật khẩu (Đồng bộ với Reset trong 1.2.js)
+        if (user.matKhau === mk) {
+            // Lưu toàn bộ thông tin user vào currentUser (đảm bảo luôn là bản mới nhất)
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            alert("✅ Đăng nhập thành công!");
+            window.location.reload();
+        } else {
+            alert("❌ Sai tài khoản hoặc mật khẩu!");
+        }
+        
+        // --- KẾT THÚC PHẦN SỬA ---
     } else {
         alert("❌ Sai tài khoản hoặc mật khẩu!");
     }
