@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="trangchu.css">
     <script src="trang.js"></script>
+    <link rel="stylesheet" href="2_1.css">
+    <script src="2_1.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <title>Document</title>
   </head>
@@ -39,14 +41,122 @@
       <i class="fa-solid fa-cart-shopping "></i>
       <div>Giỏ Hàng</div>
     </button>
-    <button class="user">
+    <button class="user" id="nut-dn">
       <i class="nav-user fa-solid fa-circle-user"></i>
-      <div>ĐĂNG NHẬP</div>
+      <div onclick="moFormdnhap()" >ĐĂNG NHẬP</div>
+    </button>
+    <button class="user" id="nut-tk" style="display: none; position: relative;">
+            <span id="btn-tk" style="background-color: transparent; border: none;"></span>
+                <!-- Menu Khách Hàng -->
+                <div id="menu-user" class="menu-user">
+                    <p id="xem-thongtin" onclick="moThongTin()">Thông tin cá nhân</p>
+                    <p id="dang-xuat" onclick="logout()">Đăng xuất</p>
+                </div>
     </button>
     <button class="Hotline">
       <i class="fa-solid fa-phone-volume"></i> 1900 1800
     </button>
   </nav>
+  <div id="overlay"></div>
+        <!-- form đăng nhập -->
+        <form id="formdnhap" class="form-animation" style="display: none">
+            <div>
+                <span class="closeX" onclick="dongFormdnhap()">✕</span>
+            </div>
+            <div class="inputdn">
+                <input type="text" id="dn-tk" placeholder=" " required>
+                <label>Tài Khoản</label>
+            </div>
+            <div class="inputdn">
+                <input type="password" id="dn-mk" placeholder=" " required>
+                <label>Mật Khẩu</label> 
+            </div>
+            <div class="btndnhap">
+                <button type="button" onclick="dangNhap()">Đăng nhập</button>
+                <p class="cauhoi">Bạn chưa có tài khoản?<span class="taoacc" onclick="moFormdky()">Đăng ký</span></p>
+            </div>
+        </form>
+            
+        <!-- form dăng ký -->
+        <form id="formdky" class="form-animation" style="display: none;">
+            <div>
+                <span class="closeX" onclick="dongFormdky()">✕</span>
+            </div>
+            <div class="inputdk">
+                <input type="text" id="dk-tk" placeholder=" " required>
+                <label>Tên đăng nhập</label>
+            </div>
+            <div class="inputdk">
+                <input type="password" id="dk-mk" placeholder=" " required>
+                <label>Mật khẩu</label>
+            </div>
+            <div class="inputdk">
+                <input type="text" id="dk-hoten" placeholder=" " required>
+                <label>Họ tên</label>
+            </div>
+            <div class="gioitinh">
+                <label><span>Giới tính</span></label>
+                <label><input type="radio" name="sex" value="1">Nam</label>
+                <label><input type="radio" name="sex" value="0">Nữ</label>
+            </div>
+            <div class="inputdk">
+                <input type="email" id="dk-email" placeholder=" " required>
+                <label>Email</label>
+            </div>
+            <div class="inputdk">
+                <input type="tel" placeholder=" " required id="dk-sdt">
+                <label>Số điện thoại</label>
+            </div>
+            <div class="inputdk" >
+                <input type="text" placeholder=" " required id="dk-diachi">
+                <label>Địa chỉ</label>
+            </div>
+            <div class="btndky">
+                <button type="button" onclick="dangKy()">Đăng ký</button>
+            </div>
+        </form> 
+        
+        <!-- Form Thông Tin Cá Nhân -->
+        <div id="form-info" class="form-info">
+            <div class="info-box">
+                <span class="closeX" onclick="dongThongTin()">✕</span>
+                <h2 class="text"><i class="fa-regular fa-circle-user"></i> Thông Tin Cá Nhân</h2>
+
+                <div class="row-info">
+                    <div>Tài khoản:</div> 
+                    <div id="in-name"></div>
+                </div>
+                <div class="row-info">
+                    <div>Mật khẩu:</div> 
+                    <div id="in-mk"></div>
+                </div>
+                <div class="row-info">
+                    <div>Họ Tên:</div> 
+                    <div id="in-ten"></div>
+                </div>
+                <div class="row-info">
+                    <div>Giới Tính:</div> 
+                    <div id="in-gt"></div>
+                </div>
+                <div class="row-info">
+                    <div>Email</div> 
+                    <div id="in-email"></div>
+                </div>
+                <div class="row-info">
+                    <div>Số điện thoại:</div> 
+                    <div id="in-sdt"></div>
+                </div>
+                <div class="row-info">
+                    <div>Địa chỉ:</div> 
+                    <div id="in-dc"></div>
+                </div>
+                <div class="nut-group">
+                    <button id="btn-sua" class="nut nut-sua" style="display:none" onclick="SuaThongTin()"><i class="fa-solid fa-gears"></i> Sửa thông tin</button>
+                    <button id="btn-luu" class="nut nut-luu" style="display:none" onclick="LuuThongTin()">Lưu</button>
+                    <button id="btn-huy" class="nut nut-huy" style="display:none" onclick="HuyChinhSua()">Hủy</button>
+                </div>
+            </div>
+        </div>
   <div class="search">
     <button class="btn-search">
       <i class="nav-search fa-solid fa-magnifying-glass"></i>
@@ -331,8 +441,21 @@
             <div id="cartSummary" class="cart-footer">
                 </div>
           </div>
-        </div>
+      </div>
       
+      <div id="cartOverlay" class="cart-overlay">
+          <div class="cart-container">
+              <div class="cart-header">
+                  <h2>🛒 Giỏ Hàng Của Bạn</h2>
+                  <button class="close-cart" onclick="toggleCart(false)"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+              <div id="cartContent" class="cart-body">
+                  </div>
+              <div id="cartSummary" class="cart-footer">
+                  </div>
+          </div>
+      </div>
+
       <div class="footer">
         <div>
           tổng đài hỗ trợ
