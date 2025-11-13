@@ -593,11 +593,198 @@ function renderCart() {
             <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">
                 Tổng cộng: ${formatCurrency(totalAmount)}
             </div>
-            <button class="checkout-btn" onclick="window.location.href='gio_hang.html'">
+            <button class="checkout-btn" onclick="openCheckoutForm()">
                 Tiến hành Thanh Toán
             </button>
         `;
     }
 
     cartContentDiv.innerHTML = itemsHtml;
+}
+
+
+
+// ========== HÀM MỞ FORM THANH TOÁN ==========
+function openCheckoutForm() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    
+    // Kiểm tra đăng nhập
+    if (!user) {
+        alert('❌ Vui lòng đăng nhập để thanh toán!');
+        moFormdnhap(); // Mở form đăng nhập
+        return;
+    }
+
+    const cart = getlocalStorage('cart') || [];
+    if (cart.length === 0) {
+        alert('❌ Giỏ hàng trống!');
+        return;
+    }
+
+    // Tính tổng tiền
+    const allProducts = getlocalStorage('product');
+    let totalAmount = 0;
+    let orderSummary = '';
+
+    cart.forEach(item => {
+        const product = allProducts.find(p => p.maSP === item.maSP);
+        if (product) {
+            const subTotal = product.gsht * item.soLuong;
+            totalAmount += subTotal;
+            orderSummary += `
+                <div class="summary-row">
+                    <span>${product.tenSP} (x${item.soLuong})</span>
+                    <span>${formatCurrency(subTotal)}</span>
+                </div>
+            `;
+        }
+    });
+
+    // Tạo HTML form thanh toán
+    const checkoutHTML = `
+        <div class="checkout-overlay active" id="checkoutOverlay">
+            <div class="checkout-container">
+                <div class="checkout-header">
+                    <h2>🛒 Thanh Toán</h2>
+                    <button class="close-cart" onclick="closeCheckoutForm()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="checkout-body">
+                    <!-- Thông tin đơn hàng -->
+                    <div class="checkout-summary">
+                        <h3>📦 Đơn hàng của bạn</h3>
+                        ${orderSummary}
+                        <div class="summary-row">
+                            <span>TỔNG CỘNG:</span>
+                            <span>${formatCurrency(totalAmount)}</span>
+                        </div>
+                    </div>
+
+                    <!-- Địa chỉ giao hàng -->
+                    <div class="form-group">
+                        <label for="checkout-address">
+                            <i class="fa-solid fa-location-dot"></i> Địa chỉ giao hàng
+                        </label>
+                        <input 
+                            type="text" 
+                            id="checkout-address" 
+                            value="${user.diaChi || ''}" 
+                            placeholder="Nhập địa chỉ giao hàng"
+                            required
+                        >
+                    </div>
+
+                    <!-- Phương thức thanh toán -->
+                    <div class="form-group">
+                        <label for="checkout-payment">
+                            <i class="fa-solid fa-credit-card"></i> Phương thức thanh toán
+                        </label>
+                        <select id="checkout-payment" required>
+                            <option value="Tiền mặt">💵 Tiền mặt (COD)</option>
+                            <option value="Chuyển khoản">🏦 Chuyển khoản ngân hàng</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Nút xác nhận / Hủy -->
+                <div class="checkout-actions">
+                    <button class="btn-confirm" onclick="confirmCheckout(${totalAmount})">
+                        <i class="fa-solid fa-check"></i> Xác Nhận Đặt Hàng
+                    </button>
+                    <button class="btn-cancel" onclick="closeCheckoutForm()">
+                        <i class="fa-solid fa-times"></i> Hủy
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Thêm form vào body
+    document.body.insertAdjacentHTML('beforeend', checkoutHTML);
+}
+
+// ========== HÀM ĐÓNG FORM THANH TOÁN ==========
+function closeCheckoutForm() {
+    const overlay = document.getElementById('checkoutOverlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}
+
+// ========== HÀM XÁC NHẬN THANH TOÁN ==========
+function confirmCheckout(totalAmount) {
+    const address = document.getElementById('checkout-address').value.trim();
+    const paymentMethod = document.getElementById('checkout-payment').value;
+    const cart = getlocalStorage('cart') || [];
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+
+    // Validate địa chỉ
+    if (!address) {
+        alert('❌ Vui lòng nhập địa chỉ giao hàng!');
+        document.getElementById('checkout-address').focus();
+        return;
+    }
+
+    // Dữ liệu đơn hàng
+    const orderData = {
+        cart: cart,
+        totalAmount: totalAmount,
+        address: address,
+        paymentMethod: paymentMethod,
+        customerInfo: {
+            maKH: user.maKH,
+            tenKH: user.tenKH,
+            soDienThoai: user.soDienThoai,
+            email: user.email
+        },
+        orderDate: new Date().toISOString()
+    };
+
+    // Lưu đơn hàng
+    saveOrderToLocalStorage(orderData);
+
+    // Xóa giỏ hàng
+    localStorage.removeItem('cart');
+
+    // Đóng form
+    closeCheckoutForm();
+    toggleCart(false);
+
+    alert(`✅ Đặt hàng thành công!\n\n📦 Tổng tiền: ${formatCurrency(totalAmount)}\n📍 Địa chỉ: ${address}\n💳 Thanh toán: ${paymentMethod}`);
+    
+    renderCart();
+}
+
+// ========== HÀM LƯU ĐƠN HÀNG ==========
+function saveOrderToLocalStorage(orderData) {
+    let bills = getlocalStorage('bill') || [];
+    let billDetails = getlocalStorage('billDetail') || [];
+    
+    const newOrderId = `DH${String(bills.length + 1).padStart(3, '0')}`;
+    
+    bills.push({
+        maDH: newOrderId,
+        ngayDat: new Date().toLocaleString('vi-VN'),
+        giaTri: orderData.totalAmount,
+        trangThai: 'Đang xử lý',
+        hinhThucThanhToan: orderData.paymentMethod,
+        donViVanChuyen: 'Giao Hàng Nhanh',
+        khachHang: orderData.customerInfo.tenKH
+    });
+    
+    orderData.cart.forEach(item => {
+        const product = tatCaSanPham.find(p => p.maSP === item.maSP);
+        billDetails.push({
+            maCTDH: billDetails.length + 1,
+            maDH: newOrderId,
+            maSP: item.maSP,
+            soLuong: item.soLuong,
+            tongTien: product.gsht * item.soLuong
+        });
+    });
+    
+    setlocalStorage('bill', bills);
+    setlocalStorage('billDetail', billDetails);
 }
