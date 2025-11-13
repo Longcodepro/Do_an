@@ -44,10 +44,12 @@ function menu(div) {
   tat_ca.value = '';
   theo_loai.appendChild(tat_ca);
   rowsMh.forEach(row => {
-    const option =  document.createElement('option');
-    option.textContent = row.tenMatHang
-    option.value = row.maMatHang;
-    theo_loai.appendChild(option);
+    if(row.hienThi){
+      const option =  document.createElement('option');
+      option.textContent = row.tenMatHang
+      option.value = row.maMatHang;
+      theo_loai.appendChild(option);
+    }
   });
   // xử lí tim_theo_loai
   theo_loai.addEventListener('change', () => {
@@ -452,62 +454,67 @@ function content(div){
   thead.appendChild(tr); // chồng thể tr trong thead
   table.appendChild(thead); // chồng thẻ thead bên trong table
 
+  // lay table mat hang
+  const tableMh = getlocalStorage("matHang");
   // lấy dữ liệu từng dòng để đưa vô table
   rowsSp.forEach(row => {
-    const tr1 = document.createElement('tr');
-    const stt = document.createElement('td'); // ô mã sản phẩm
-    stt.classList.add('du_lieu');
-    stt.textContent = row.maSP;
-    const nameSp = document.createElement('td');   // ô name sp
-    nameSp.textContent = row.tenSP;
-    nameSp.classList.add('du_lieu');  //add class
-    const soLuong = document.createElement('td'); // ô số lượng
-    soLuong.classList.add('du_lieu');
-    soLuong.textContent = row.soLuong;
-    const gia = document.createElement('td'); // ô giá bán
-    gia.classList.add('du_lieu');
-    gia.textContent = row.giaHienTai + ' VND';
-    const hien_an = document.createElement('td'); // ô hiện/ẩn
-    hien_an.classList.add('du_lieu');
-    // tạo hộp checkbox
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    if (row.hienAn == "1") {  // nếu nó bằng 1 thì tức là hiện nên đánh dấu tích
-      checkbox.checked = true;
-    }
-    checkbox.addEventListener('change', () => {
-      nut_hien_an(row.maSP);
-    });
+    const rowMh = tableMh.find( row1 => row1.maMatHang == row.maMatHang);
+    if(rowMh.hienThi){
+      const tr1 = document.createElement('tr');
+      const stt = document.createElement('td'); // ô mã sản phẩm
+      stt.classList.add('du_lieu');
+      stt.textContent = row.maSP;
+      const nameSp = document.createElement('td');   // ô name sp
+      nameSp.textContent = row.tenSP;
+      nameSp.classList.add('du_lieu');  //add class
+      const soLuong = document.createElement('td'); // ô số lượng
+      soLuong.classList.add('du_lieu');
+      soLuong.textContent = row.soLuong;
+      const gia = document.createElement('td'); // ô giá bán
+      gia.classList.add('du_lieu');
+      gia.textContent = row.giaHienTai + ' VND';
+      const hien_an = document.createElement('td'); // ô hiện/ẩn
+      hien_an.classList.add('du_lieu');
+      // tạo hộp checkbox
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      if (row.hienAn == "1") {  // nếu nó bằng 1 thì tức là hiện nên đánh dấu tích
+        checkbox.checked = true;
+      }
+      checkbox.addEventListener('change', () => {
+        nut_hien_an(row.maSP);
+      });
 
 
-    const xoa_sua = document.createElement('td')  // ô sửa/xóa
-    xoa_sua.classList.add('du_lieu');
-    const xoa = document.createElement('button'); //nút xóa
-    xoa.classList.add('xoa_sua');
-    xoa.textContent = 'Xóa';
-    xoa.addEventListener('click', () =>{
-    if( confirm("Bạn muốn xóa sản phẩm")){
-      xoaSp(row.maSP);
+      const xoa_sua = document.createElement('td')  // ô sửa/xóa
+      xoa_sua.classList.add('du_lieu');
+      const xoa = document.createElement('button'); //nút xóa
+      xoa.classList.add('xoa_sua');
+      xoa.textContent = 'Xóa';
+      xoa.addEventListener('click', () =>{
+      if( confirm("Bạn muốn xóa sản phẩm")){
+        xoaSp(row.maSP);
+      }
+      });
+      const sua = document.createElement('button'); //nút sửa
+      sua.classList.add('xoa_sua');
+      sua.textContent = 'Sửa';
+      sua.style.marginLeft = '5%';
+      sua.addEventListener('click', () => {
+        suaSp(row.maSP);
+      });
+      tr1.appendChild(stt);
+      tr1.appendChild(nameSp);
+      tr1.appendChild(soLuong);
+      tr1.appendChild(gia);
+      tr1.appendChild(hien_an);
+      hien_an.appendChild(checkbox);
+      tr1.appendChild(xoa_sua);
+      xoa_sua.appendChild(xoa);
+      xoa_sua.appendChild(sua);
+      table.appendChild(tr1);
     }
     });
-    const sua = document.createElement('button'); //nút sửa
-    sua.classList.add('xoa_sua');
-    sua.textContent = 'Sửa';
-    sua.style.marginLeft = '5%';
-    sua.addEventListener('click', () => {
-      suaSp(row.maSP);
-    });
-    tr1.appendChild(stt);
-    tr1.appendChild(nameSp);
-    tr1.appendChild(soLuong);
-    tr1.appendChild(gia);
-    tr1.appendChild(hien_an);
-    hien_an.appendChild(checkbox);
-    tr1.appendChild(xoa_sua);
-    xoa_sua.appendChild(xoa);
-    xoa_sua.appendChild(sua);
-    table.appendChild(tr1);
-  });
 }
 
 // xử lí các nút bấm của table
