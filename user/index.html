@@ -4,10 +4,10 @@
     <script src="../data.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./trangchu.css">
-    <script src="./trang.js"></script>
-    <link rel="stylesheet" href="./2_1.css">
-    <script src="./2_1.js"></script>
+    <link rel="stylesheet" href="trangchu.css">
+    <script src="trang.js"></script>
+    <link rel="stylesheet" href="2_1.css">
+    <script src="2_1.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <title>Document</title>
   </head>
@@ -34,7 +34,7 @@
       </div>
     </button>
     <button class="home" >
-      <i class="nav-home fa-solid fa-cart-shopping"></i>
+      <i class="fa-solid fa-house"></i>
       <div onclick="loadpage('trangchu')">TRANG CHỦ</div>
       </button>
     <button class="cart" onclick="toggleCart(true)">
@@ -50,6 +50,7 @@
                 <!-- Menu Khách Hàng -->
                 <div id="menu-user" class="menu-user">
                     <p id="xem-thongtin" onclick="moThongTin()">Thông tin cá nhân</p>
+                    <p onclick="handleLoadPage('lichSuMuaHang'); toggleUserMenu(false);">Lịch Sử Đơn Hàng</p>
                     <p id="dang-xuat" onclick="logout()">Đăng xuất</p>
                 </div>
     </button>
@@ -71,11 +72,9 @@
                 <input type="password" id="dn-mk" placeholder=" " required>
                 <label>Mật Khẩu</label> 
             </div>
-            
             <div class="btndnhap">
                 <button type="button" onclick="dangNhap()">Đăng nhập</button>
-                <p>Bạn chưa có tài khoản?<span class="taoacc" onclick="moFormdky()">Đăng ký</span></p>
-                <p class="quenmk">Quên mật khẩu? Liên hệ tổng đài: 1900 1800</p>
+                <p class="cauhoi">Bạn chưa có tài khoản?<span class="taoacc" onclick="moFormdky()">Đăng ký</span></p>
             </div>
         </form>
             
