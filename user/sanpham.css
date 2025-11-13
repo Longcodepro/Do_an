@@ -16,9 +16,7 @@
   }
   
   .menu-top{
-    height: 100%;
-    width: 100%;
-    width: 20%;
+    
     /* border: 3px solid blue; */
   }
   .menu-top .loai{
@@ -26,7 +24,7 @@
     /* display: flex; */
     justify-content: center;
     align-items: center;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     border-radius: 8px;
     
     /* border: 2px solid red; */
@@ -36,12 +34,14 @@
     display: flex;
     align-items: center;
     /* justify-content: center;
-     */
+     /* */ 
+     background-color: aquamarine;
     padding: 5px 1px;
     border: 2px solid orange;
     border-radius: 8px;
-    margin: 4px;
-    white-space: nowrap;  width: 100%;
+    margin: 10px 0;
+    /* margin: 4px; */
+    white-space: nowrap;  
   }
   .product{
     border: 1px solid black;
@@ -665,4 +665,63 @@
     transform: scale(1.02);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
+  /* CSS cho Select Lọc Giá */
+#locGia {
+  /* Đổi font chữ và kích cỡ */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  
+  /* Khoảng đệm (padding) bên trong */
+  padding: 10px 30px 10px 15px; /* Thêm padding bên phải để dành chỗ cho icon */
+  
+  /* Viền và bo góc */
+  border: 1px solid #ccc; /* Viền nhẹ nhàng */
+  border-radius: 8px; /* Bo góc mềm mại */
+  
+  /* Màu nền */
+  background-color: #f8f8f8;
+  color: #333;
+  
+  /* Xóa bỏ icon mũi tên mặc định của trình duyệt và thêm icon riêng */
+  appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  /* Vị trí tương đối để định vị icon tùy chỉnh */
+  position: relative;
+  cursor: pointer; /* Biến con trỏ thành bàn tay khi rê chuột */
+  
+  /* Chiều rộng */
+  min-width: 250px;
+  margin-bottom: 20px; /* Tạo khoảng cách với các phần tử bên dưới */
+}
+
+/* Thêm hiệu ứng khi hover hoặc focus */
+#locGia:hover {
+  border-color: #007bff; /* Đổi màu viền khi hover */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Thêm đổ bóng nhẹ */
+}
+
+#locGia:focus {
+  outline: none; /* Xóa bỏ outline mặc định */
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Gợi ý: Dùng một div bao bọc để thêm icon mũi tên tùy chỉnh đẹp hơn */
+.chon-gia-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.chon-gia-wrapper::after {
+  content: '\25BC'; /* Ký tự mũi tên xuống */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #555;
+  font-size: 10px;
+  pointer-events: none; /* Đảm bảo click qua được icon */
+}
     
