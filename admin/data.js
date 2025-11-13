@@ -3338,12 +3338,12 @@ const matHang = [
   {
     maMatHang: 3,
     tenMatHang: "TV",
-    hienThi: false,
+    hienThi: true,
   },
   {
     maMatHang: 4,
     tenMatHang: "Máy lạnh",
-    hienThi: false,
+    hienThi: true,
   },
   {
     maMatHang: 5,

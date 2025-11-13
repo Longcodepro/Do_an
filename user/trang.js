@@ -316,6 +316,7 @@ const trang={
            
            
         </div>
+        
         <ul id="phantrang" class="phantrang"></ul>
         <div id="chitiet" style="display:none;"></div>
         
