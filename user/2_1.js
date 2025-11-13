@@ -54,19 +54,47 @@ function dongFormdky() {
     document.getElementById("overlay").style.display = "none";
 }
 
+// Kiểm tra định dạng SĐT (10 số, bắt đầu bằng 0)
+function kiemTraSDT(sdt) {
+    // Regex: ^ (bắt đầu) 0 (phải là số 0) \d{9} (9 chữ số từ 0-9) $ (kết thúc)
+    const sdtRegex = /^0\d{9}$/;
+    return sdtRegex.test(sdt);
+}
+
+function kiemTraEmail(email) {
+    // Regex đơn giản: Bất kỳ ký tự nào (trừ khoảng trắng) + @ + Bất kỳ ký tự nào (trừ khoảng trắng) + . + Bất kỳ ký tự nào (trừ khoảng trắng)
+    // Thực tế chỉ cần có @ và trc sau @ có chữ/số/ký tự khác khoảng trắng là đủ cho kiểm tra cơ bản.
+    const emailRegex = /^[^\s@]+@[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 // hàm lưu dữ liệu khi đăng ký
 function dangKy() {
     let tkInput = document.getElementById("dk-tk");
     let ten = document.getElementById("dk-hoten").value;
     let mkInput = document.getElementById("dk-mk");
     let gt = document.querySelector('input[name="sex"]:checked')?.value || "Nam"; 
-    let email = document.getElementById("dk-email").value;
+    let email = document.getElementById("dk-email").value; // Lấy email
     let sdt = document.getElementById("dk-sdt").value;
     let dc = document.getElementById("dk-diachi").value;
 
     const tk = tkInput.value;
     const mk = mkInput.value;
     if (!kiemTraNhap(tk, mk)) return;
+
+    // --- BẮT ĐẦU THÊM LOGIC KIỂM TRA EMAIL ---
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("❌ Định dạng Email không hợp lệ (Ví dụ: user@example.com)!");
+        document.getElementById("dk-email").focus();
+        return; // Dừng hàm nếu email không hợp lệ
+    }
+
+    if (!kiemTraSDT(sdt)) {
+        alert("❌ Số điện thoại không hợp lệ (Phải là 10 số và bắt đầu bằng 0)!");
+        document.getElementById("dk-sdt").focus();
+        return; // Dừng hàm nếu SĐT không hợp lệ
+    }
 
     // LẤY BẢNG KHÁCH HÀNG TRỰC TIẾP TỪ LOCALSTORAGE
     let bangKH = getlocalStorage("khachHang");

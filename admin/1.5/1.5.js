@@ -2,12 +2,12 @@
 // === CÁC HÀM XỬ LÝ LOCALSTORAGE (DỮ LIỆU) ===
 // ===============================================
 
-function luuLocalStorage(khoa, giaTri) {
-    localStorage.setItem(khoa, JSON.stringify(giaTri));
+function luuLocalStorage(key, giaTri) {
+    localStorage.setItem(key, JSON.stringify(giaTri));
 }
 
-function layLocalStorage(khoa) {
-    const giaTri = localStorage.getItem(khoa);
+function layLocalStorage(key) {
+    const giaTri = localStorage.getItem(key);
     return giaTri ? JSON.parse(giaTri) : null;
 }
 
@@ -62,7 +62,7 @@ function layTenSPTheoMa(maSP) {
 
 /**
  * Helper: Tạo một dòng sản phẩm mới
- * Đảm bảo tất cả các thành phần luôn hiển thị. (Đã loại bỏ div.chonSP-wrap)
+ * Đảm bảo tất cả các thành phần luôn hiển thị.
  * @param {number|string} maSP Mã SP (nếu có)
  * @param {number} soLuong Số lượng (nếu có)
  * @param {number} giaNhap Giá nhập (nếu có)
@@ -79,18 +79,12 @@ function taoDongSanPham(maSP = '', soLuong = '', giaNhap = '') {
 
     return `
     <div class="hangSP">
-      <input class="maSP-input" type="number" placeholder="Mã SP" value="${maSP}">
-      
+      <input class="maSP-input" type="number" placeholder="Mã SP (ID)" value="${maSP}">
       <button class="kiem-tra-btn" onclick="kiemTraVaHienThiSP()">✔</button> 
-      
       <span class="tenSP-hienThi" data-ma-sp="${maSP}">${tenSPDisplay}</span> 
-
       <input type="number" class="soLuong" placeholder="SL" min="1" value="${soLuong}">
-      
       <input type="number" class="giaNhap" placeholder="Giá nhập" min="0" value="${giaNhap}"> 
-      
       <button class="nut-them" onclick="themDongSanPham(this)" ${nutThemDisplay}>+</button>
-      
       <button onclick="xoaDongSanPham(this)" ${nutXoaDisplay}>-</button>
     </div>
     `;
@@ -352,7 +346,14 @@ function hoanThanhPhieu(nut) {
             console.error(`Sản phẩm có mã ${item.maSP} không tồn tại trong bảng 'product'. Không cập nhật tồn kho.`);
             capNhatThanhCong = false;
         } else {
-            let tonKhoHienTai = parseInt(bangSP[index].soLuong) || 0;
+            // ✅ SỬA LỖI TỒN KHO KHÔNG CỘNG LÊN
+            let tonKhoHienTai = bangSP[index].soLuong === undefined ? 0 : bangSP[index].soLuong;
+            tonKhoHienTai = Number(tonKhoHienTai);
+            if (isNaN(tonKhoHienTai)) {
+                tonKhoHienTai = 0;
+            }
+            // END SỬA LỖI TỒN KHO KHÔNG CỘNG LÊN
+            
             bangSP[index].soLuong = tonKhoHienTai + item.soLuong;
             
             if (bangSP[index].tinhTrang !== "Còn hàng") {
@@ -377,6 +378,25 @@ function hoanThanhPhieu(nut) {
     alert(capNhatThanhCong ? "✅ Hoàn thành phiếu nhập và cập nhật tồn kho thành công!" : "⚠️ Hoàn thành phiếu nhập, nhưng có sản phẩm không tồn tại trong bảng sản phẩm nên tồn kho chưa được cập nhật đầy đủ.");
     
     quanLyNhapHang();
+}
+
+// ✅ Xóa phiếu (chỉ phiếu chưa Hoàn thành) - HÀM MỚI
+function xoaPhieu(nut) {
+    const maPhieu = nut.closest("tr").dataset.maPhieu;
+
+    if (confirm(`Bạn có chắc chắn muốn xóa phiếu nhập [${maPhieu}] này không? Thao tác này sẽ xóa tất cả các sản phẩm thuộc phiếu này.`)) {
+        let bangNhap = layBangNhap();
+        
+        // Lấy lại các item KHÔNG thuộc phiếu cần xóa
+        bangNhap = bangNhap.filter(p => p.maPhieu !== maPhieu);
+        
+        luuLocalStorage("nhapHang", bangNhap); 
+        
+        alert(`✅ Đã xóa phiếu nhập [${maPhieu}] thành công!`);
+
+        // Cập nhật lại giao diện
+        quanLyNhapHang();
+    }
 }
 
 // ✅ Tìm phiếu
@@ -421,7 +441,7 @@ function veBang(danhSach) {
               <th>Mã nhập</th>
               <th>Sản phẩm</th> 
               <th>Số lượng</th> 
-              <th>Ngày nhập</th>
+              <th>Giá nhập</th> <th>Ngày nhập</th>
               <th>Trạng thái</th>
               <th>Hành động</th>
             </tr>
@@ -442,10 +462,12 @@ function veBang(danhSach) {
                 trangThai: item.trangThai === true || item.trangThai === "Hoàn tất" ? true : false, 
                 dsMaSP: [], 
                 dsSoLuong: [],
+                dsGiaNhap: [], 
             };
         }
         phieuGroup[item.maPhieu].dsMaSP.push(item.maSP);
         phieuGroup[item.maPhieu].dsSoLuong.push(item.soLuong);
+        phieuGroup[item.maPhieu].dsGiaNhap.push(item.giaNhap); 
     });
     
     // 2. Render dữ liệu đã nhóm
@@ -453,6 +475,10 @@ function veBang(danhSach) {
         
         const dsSP = p.dsMaSP.map(ma => `Mã ${ma}: ${layTenSPTheoMa(ma)}`).join("<br>");
         const dsSL = p.dsSoLuong.join("<br>");
+        
+        // ✅ CẬP NHẬT: Hiển thị giá nhập đơn vị là số thuần
+        const dsGiaNhap = p.dsGiaNhap.join("<br>"); 
+        
         const daHoanThanh = p.trangThai === true; 
         const trangThaiHienThi = daHoanThanh ? "Hoàn tất" : "Đang xử lý";
 
@@ -470,11 +496,13 @@ function veBang(danhSach) {
             <td>${p.maPhieu}</td>
             <td data-cells="MA_SP">${dsSP}</td> 
             <td data-cells="SO_LUONG">${dsSL}</td>
+            <td data-cells="GIA_NHAP">${dsGiaNhap}</td> 
             <td>${p.ngayNhap}</td>
             <td>${trangThaiHienThi}</td>
             <td class="hanh-dong">
                 <button onclick="suaPhieu(this)" ${daHoanThanh ? 'style="display:none"' : ''}>Sửa</button> 
                 <button onclick="hoanThanhPhieu(this)" ${daHoanThanh ? 'style="display:none"' : ''}>Hoàn thành</button>
+                <button onclick="xoaPhieu(this)" class="nut-xoa-phieu" ${daHoanThanh ? 'style="display:none"' : ''}>Xóa</button> 
             </td>`;
         tbody.appendChild(tr);
     });
