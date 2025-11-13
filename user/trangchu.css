@@ -759,3 +759,94 @@
     flex-shrink: 0; 
     margin-left: 10px;
 }
+
+/* trangchu.css */
+
+/* ========================================================= */
+/* LỊCH SỬ MUA HÀNG STYLES */
+/* ========================================================= */
+
+.purchase-history-page {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.history-table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+/* Các styles cơ bản cho thẻ đơn hàng đã có trong snippet */
+.invoice-header, .invoice-footer {
+    font-size: 1em;
+    color: #333;
+}
+
+.invoice-id {
+    font-weight: bold;
+    color: #1e90ff;
+}
+
+.invoice-customer {
+    font-style: italic;
+    color: #666;
+}
+
+.history-item-info strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.history-item-info p {
+    font-size: 0.85em;
+    color: #777;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+/* Màu cho các trạng thái */
+.hoan-thanh { /* áp dụng cho cả "Đã giao" và "Hoàn thành" */
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.dang-van-chuyen {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.da-huy {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.total {
+    font-size: 1.1em;
+    color: #000;
+}
+
+.total strong {
+    color: #d9534f; 
+}
+
+.history-product-image {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 5px;
+}

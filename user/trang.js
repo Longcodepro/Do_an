@@ -320,8 +320,16 @@ const trang={
         <div id="chitiet" style="display:none;"></div>
         
     </div>
-    `
+    `,
 
+
+    lichSuMuaHang: `
+        <div class="purchase-history-page">
+            <h2 style="text-align: center; margin-bottom: 20px;">Lịch Sử Mua Hàng</h2>
+            <div id="historyTableContainer" class="history-table-container">
+                </div>
+        </div>
+    `,
 }
 // =========================================================
 // HÀM HỖ TRỢ (Lưu/Lấy localStorage, Định dạng tiền tệ)
@@ -593,11 +601,176 @@ function renderCart() {
             <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">
                 Tổng cộng: ${formatCurrency(totalAmount)}
             </div>
-            <button class="checkout-btn" onclick="window.location.href='gio_hang.html'">
+            <button class="checkout-btn" onclick="">
                 Tiến hành Thanh Toán
             </button>
         `;
     }
 
     cartContentDiv.innerHTML = itemsHtml;
+}
+
+
+function lichSuMuaHang() {
+    const mainContentDiv = document.getElementById('content'); // <== PHẢI CÓ ID 'content'
+    if (mainContentDiv) {
+        mainContentDiv.innerHTML = trang.lichSuMuaHang; 
+        renderPurchaseHistory(); 
+    } else {
+        console.error("Lỗi: Không tìm thấy div có id='content' để chèn nội dung.");
+    }
+}
+
+// Hàm render chi tiết từng đơn hàng
+function renderPurchaseHistory() {
+    // Sử dụng trực tiếp mảng donHang từ data.js
+    const donHangHienThi = donHang || []; 
+    // Sử dụng trực tiếp mảng chiTietDonHang từ data.js
+    const chiTiet = chiTietDonHang || []; 
+    
+    let html = '';
+
+    if (donHangHienThi.length === 0) {
+        html = '<p style="text-align: center; margin-top: 50px; font-size: 1.2em;">Bạn chưa có đơn hàng nào.</p>';
+    } else {
+        // Hiển thị đơn hàng mới nhất trước (Sắp xếp theo ngày đặt)
+        // Tạo bản sao và sắp xếp ngược lại theo maDH nếu mã có số thứ tự tăng dần
+        const sortedDonHang = [...donHangHienThi].sort((a, b) => {
+            // Sắp xếp ngược lại (mới nhất lên đầu)
+            return b.ngayDat.localeCompare(a.ngayDat);
+        });
+
+        sortedDonHang.forEach(dh => { 
+            // Lọc chi tiết đơn hàng cho từng mã đơn hàng (maDH)
+            const chiTietCuaDH = chiTiet.filter(ct => ct.maDH === dh.maDH);
+            
+            let chiTietHtml = chiTietCuaDH.map(item => {
+                // Giả định hàm findProductById(maSP) đã có trong data.js
+                // LƯU Ý: maSP trong chiTietDonHang là số, cần đảm bảo findProductById xử lý đúng
+                const sp = findProductById(item.maSP); 
+                const tenSP = sp ? sp.tenSP : `Sản phẩm (Mã: ${item.maSP})`;
+                const hinhAnh = sp ? sp.hinhAnh : '../img/placeholder.png'; // Ảnh mặc định
+                
+                // Tiền là tổng tiền cho số lượng đó, cần tính lại đơn giá nếu cần.
+                // Nếu muốn hiển thị đơn giá/sản phẩm: đơn giá = item.tongTien / item.soLuong
+                
+                // Giả định hàm formatCurrency(amount) đã có
+                return `
+                    <div class="history-item-detail">
+                        <img src="${hinhAnh}" alt="${tenSP}" class="history-product-image">
+                        <div class="history-item-info">
+                            <strong>${tenSP}</strong>
+                            <p>${formatCurrency(item.tongTien / item.soLuong)} x ${item.soLuong}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Thêm class dựa trên trạng thái để dễ dàng CSS
+            const statusClass = dh.trangThai.replace(/\s/g, '-').toLowerCase().replace('đã-giao', 'hoan-thanh'); // Gộp "Đã giao" vào "Hoàn thành" cho CSS
+            const ngayGio = dh.ngayDat.split(' '); // Tách Ngày và Giờ
+
+            html += `
+                <div class="invoice-card">
+                    <div class="invoice-header">
+                        <span class="invoice-id">Mã Đơn: #${dh.maDH}</span>
+                        <span class="invoice-date">Ngày Đặt: ${ngayGio[0]} (${ngayGio[1]})</span>
+                    </div>
+                    <div class="invoice-body">
+                        ${chiTietHtml}
+                    </div>
+                    <div class="invoice-footer">
+                        <span class="status ${statusClass}">Trạng Thái: ${dh.trangThai}</span>
+                        <span class="total">Tổng Tiền: <strong>${formatCurrency(dh.giaTri)}</strong></span>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    const container = document.getElementById('historyTableContainer');
+    if (container) {
+        container.innerHTML = html;
+    }
+}
+
+// =========================================================
+// HÀM HỖ TRỢ ĐỊNH DẠNG TIỀN TỆ (NẾU CHƯA CÓ)
+// =========================================================
+function formatCurrency(amount) {
+    if (typeof amount !== 'number' || isNaN(amount)) return '0đ';
+    // Đảm bảo hàm này sử dụng số nguyên (gsht, gsgg) từ data.js
+    return amount.toLocaleString('vi-VN') + 'đ';
+}
+
+// =========================================================
+// HÀM RENDER LỊCH SỬ MUA HÀNG
+// =========================================================
+function renderPurchaseHistory() {
+    // Lấy dữ liệu đơn hàng (ưu tiên từ localStorage 'bill' nếu đã có)
+    // Giả định getlocalStorage() là hàm bạn đã định nghĩa để lấy dữ liệu từ localStorage
+    const donHangHienThi = getlocalStorage('bill') || donHang; 
+    
+    // chiTietDonHang và tatCaSanPham là các mảng global từ data.js
+    const chiTietDonHangToanBo = chiTietDonHang; 
+    
+    let html = '';
+
+    if (donHangHienThi.length === 0) {
+        html = '<p style="text-align: center; margin-top: 50px; font-size: 1.2em; color: #555;">Bạn chưa có đơn hàng nào.</p>';
+    } else {
+        // Duyệt qua từng đơn hàng, sắp xếp đơn hàng mới nhất lên đầu
+        donHangHienThi.slice().reverse().forEach(dh => { 
+            // Lọc chi tiết đơn hàng cho mã đơn hàng hiện tại
+            const chiTiet = chiTietDonHangToanBo.filter(ct => ct.maDH === dh.maDH);
+
+            let chiTietHtml = '';
+
+            // Duyệt qua chi tiết từng sản phẩm trong đơn hàng
+            chiTiet.forEach(item => {
+                // Giả định hàm findProductById(maSP) đã có trong data.js
+                const product = findProductById(item.maSP); 
+                const tenSP = product ? product.tenSP : 'Sản phẩm không rõ (Mã: ' + item.maSP + ')';
+                const hinhAnh = product ? product.hinhAnh : '../img/default.png'; 
+                // Đơn giá = Tổng tiền chi tiết / Số lượng
+                const donGia = item.tongTien / item.soLuong; 
+
+                chiTietHtml += `
+                    <div class="history-item-detail">
+                        <img src="${hinhAnh}" alt="${tenSP}" class="history-product-image">
+                        <div class="history-item-info">
+                            <strong>${tenSP}</strong>
+                            <p>${formatCurrency(donGia)} x ${item.soLuong}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Xử lý trạng thái để tạo class CSS (Hoàn thành/Đang vận chuyển/Đã hủy)
+            const statusClass = dh.trangThai.replace(/\s/g, '-').toLowerCase().replace('đã-giao', 'hoan-thanh'); 
+            const ngayGio = dh.ngayDat.split(' '); // Tách Ngày và Giờ
+
+            html += `
+                <div class="invoice-card">
+                    <div class="invoice-header">
+                        <span class="invoice-id">Mã Đơn: #${dh.maDH}</span>
+                        <span class="invoice-date">Ngày Đặt: ${ngayGio[0]} (${ngayGio[1]})</span>
+                        <span class="invoice-customer">Khách Hàng: ${dh.khachHang}</span>
+                    </div>
+                    <div class="invoice-body">
+                        ${chiTietHtml}
+                    </div>
+                    <div class="invoice-footer">
+                        <span class="status ${statusClass}">Trạng Thái: ${dh.trangThai}</span>
+                        <span class="total">Tổng Tiền: <strong>${formatCurrency(dh.giaTri)}</strong></span>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    const container = document.getElementById('historyTableContainer');
+    if (container) {
+        container.innerHTML = html;
+    }
 }
