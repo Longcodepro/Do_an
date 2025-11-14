@@ -16,6 +16,7 @@
   let currentKeyword = "";
   let currentMaLoai = "all";
   let giaLocHienTai = "all";
+  let matHang = [];
 
   // ======== LƯU / LẤY LOCAL STORAGE (Giữ nguyên) =========
   const tableSp = localStorage.getItem("product");
@@ -84,8 +85,6 @@
         sp.tenSP.toLowerCase().includes(currentKeyword)
       );
     }
-    
-    setlocalStore("product", tatCaSanPham); 
 
     sanPhamLoc = dsLoc;
     trangHienTai = 1;
@@ -94,18 +93,23 @@
 
   // ======== LẤY DỮ LIỆU VÀ KHỞI TẠO BỘ LỌC =========
   function getData() {
-    const spLocal = getlocalStore("product");
+    let spLocal = getlocalStore("product");
     let keywordFromHome = localStorage.getItem("searchKeyword");
     let maMHToFilter = localStorage.getItem("filterMaMH");
+    let matHangLocal = getlocalStore("matHang") || [];
 
     if (!spLocal || spLocal.length === 0) {
       sanphan1.innerHTML = `<p>⚠️ Không có dữ liệu trong localStorage. Vui lòng thêm sản phẩm trước.</p>`;
       return;
     }
+    spLocal=spLocal.map(sp =>({...sp,
+      maSP:Number(sp.maSP),
+      maMatHang:sp.maMatHang?Number(sp.maMatHang):null
+    }))
 
     // 1. Lấy toàn bộ sản phẩm và lọc ẩn/hiện
     mangsanpham = spLocal.filter((sp) => sp.hienAn === "1");
-
+    matHang = matHangLocal;
     // 2. Thiết lập trạng thái lọc từ localStorage
     if (maMHToFilter) {
       currentMaLoai = maMHToFilter;
@@ -114,6 +118,15 @@
       currentKeyword = keywordFromHome;
       localStorage.removeItem("searchKeyword");
     }
+    // const spDaChuyenDoi = spLocal.map(sp => {
+    //     // Đảm bảo maSP là số. Sử dụng Number() hoặc parseInt().
+    //     sp.maSP = Number(sp.maSP); 
+    //     // Đảm bảo maMatHang cũng là số (nếu cần thiết cho việc lọc)
+    //     if (sp.maMatHang) {
+    //         sp.maMatHang = Number(sp.maMatHang);
+    //     }
+    //     return sp;
+    // });
 
     // 3. Thực hiện lọc và hiển thị
     locSanPhamTongHop();
@@ -221,7 +234,6 @@
         trangHienTai = 1;
         hienThiSanPham(trangHienTai);
       });
-<<<<<<< HEAD
       phantrang1.appendChild(dau);
     }
     if (batdau > 2) {
@@ -271,117 +283,6 @@
   function locTheoLoai(maLoai) {
     currentMaLoai = String(maLoai);
     currentKeyword = ""; // Reset từ khóa khi lọc theo loại
-=======
-
-        taoPhanTrang();
-    }
-
-    // ======== CÁC HÀM KHÁC (Giữ nguyên) =========
-    // ... (bao gồm taoPhanTrang, locTheoLoai, event listeners cho submenu, chi tiết sản phẩm, v.v...)
-
-    // ======== TẠO PHÂN TRANG (Giữ nguyên) =========
-    function taoPhanTrang(){
-        phantrang1.innerHTML="";
-        const tongTrang=Math.ceil(sanPhamLoc.length/soSanPhamMoiTrang);
-        if(tongTrang<=1) return;
-        const truoc=document.createElement("li");
-        truoc.innerHTML="&laquo;";
-        truoc.classList.add("arrow");
-        truoc.addEventListener("click",()=>{
-            if(trangHienTai>1){
-                trangHienTai--;
-                hienThiSanPham(trangHienTai);
-            }
-        });
-        phantrang1.appendChild(truoc);
-        const maxtrang=3;
-        let batdau=Math.max(1,trangHienTai-maxtrang);
-        let ketThuc=Math.min(tongTrang,trangHienTai+maxtrang);
-        if(trangHienTai<=maxtrang){
-            ketThuc=Math.min(tongTrang,maxtrang*2+1);
-        }
-        if(trangHienTai>=tongTrang-maxtrang){
-            batdau=Math.max(1,tongTrang-maxtrang*2);
-        }
-        if(batdau>1){
-            const dau=document.createElement("li");
-            dau.textContent=1;
-            dau.addEventListener("click", () =>{
-                trangHienTai=1;
-                hienThiSanPham(trangHienTai);
-            })
-            phantrang1.appendChild(dau);
-        }
-        if(batdau>2){
-            const thu3=document.createElement("li");
-            thu3.textContent="...";
-            thu3.classList.add("Thu3");
-            phantrang1.appendChild(thu3);
-        }
-        for(let i=batdau; i<=ketThuc;i++){
-            const li=document.createElement("li");
-            li.textContent=i;
-            if(i==trangHienTai) li.classList.add("active");
-            li.addEventListener("click", ()=>
-            {
-                trangHienTai=i;
-                hienThiSanPham(trangHienTai);
-            })
-            phantrang1.appendChild(li);
-        }
-        if(ketThuc<tongTrang){
-            if(ketThuc<tongTrang-1){
-                const thu3=document.createElement("li");
-                thu3.textContent='...';
-                thu3.classList.add("thu3");
-                phantrang1.appendChild(thu3);
-            }
-            const cuoi=document.createElement("li");
-            cuoi.textContent=tongTrang;
-            cuoi.addEventListener("click", () =>{
-                trangHienTai=tongTrang;
-                hienThiSanPham(trangHienTai);
-            })
-            phantrang1.appendChild(cuoi);
-        }
-        const sau=document.createElement("li");
-        sau.textContent="&raquo;";
-        sau.classList.add("arrow");
-        sau.addEventListener("click", ()=>{
-            if(trangHienTai<tongTrang){
-                trangHienTai++;
-                hienThiSanPham(trangHienTai);
-            }
-        })
-        phantrang1.appendChild(sau);
-    }
-
-    // ======== LỌC THEO LOẠI (Cập nhật để gọi hàm lọc tổng hợp) =========
-    function locTheoLoai(maLoai) {
-        currentMaLoai = String(maLoai); 
-        currentKeyword = ""; // Reset từ khóa khi lọc theo loại
-
-        const danhMucItems = document.querySelectorAll(".sanpham1");
-        danhMucItems.forEach(item => {
-            item.classList.toggle("active", String(item.dataset.mamh) === currentMaLoai);
-        });
-        
-        locSanPhamTongHop();
-    }
-    
-    
-    submenu1.addEventListener("click", (e) => {
-        const danhMucClick = e.target.closest(".sanpham1"); 
-        if (danhMucClick) {
-            e.preventDefault();
-            locTheoLoai(danhMucClick.dataset.mamh); 
-        }
-    });
-    
-    
-
-    // ======== XEM CHI TIẾT (Giữ nguyên) =========
->>>>>>> 79e6def4b93db6db550c7622050edecf2288d197
 
     const danhMucItems = document.querySelectorAll(".sanpham1");
     danhMucItems.forEach((item) => {
@@ -450,27 +351,11 @@
     locSanPhamTongHop();
   }
 
-<<<<<<< HEAD
   // ======== THÊM SẢN PHẨM MỚI (Giữ nguyên) =========
   function themSpVoDanhSach(spMoi) {
     // 1. Cập nhật mảng gốc và Local Storage
     mangsanpham.push(spMoi);
     setlocalStore("product", mangsanpham);
-=======
-    // ======== THÊM SẢN PHẨM MỚI (Giữ nguyên) =========
-    function themSpVoDanhSach(spMoi) {
-        mangsanpham.push(spMoi); 
-        setlocalStore("product", mangsanpham);
-        sanPhamLoc = mangsanpham;
-        hienThiSanPham(trangHienTai);
-        console.log("Đã thêm sản phẩm mới:", spMoi);
-    }
-    
-    // SỬA LỖI HIỂN THỊ DANH MỤC (Giữ nguyên)
-    function hienThiDanhMuc() {
-        const danhmuc = document.querySelector(".loai");
-        if (!danhmuc) return;
->>>>>>> 79e6def4b93db6db550c7622050edecf2288d197
 
     // 2. Thực hiện lọc tổng hợp để cập nhật sanPhamLoc và hiển thị sản phẩm
     // Điều này đảm bảo sản phẩm mới tuân theo mọi bộ lọc (Loại, Giá, Từ khóa) đang được áp dụng.
@@ -479,17 +364,10 @@
     console.log("Đã thêm sản phẩm mới và áp dụng bộ lọc:", spMoi);
   }
 
-<<<<<<< HEAD
   // SỬA LỖI HIỂN THỊ DANH MỤC (Giữ nguyên)
   function hienThiDanhMuc() {
     const danhmuc = document.querySelector(".loai");
     if (!danhmuc) return;
-=======
-        const tenMatHang = (ma) => {
-            const item = matHang.find(mh => String(mh.maMatHang).toLowerCase() === String(ma).toLowerCase());
-            return item ? item.tenMatHang : 'Khác';
-        };
->>>>>>> 79e6def4b93db6db550c7622050edecf2288d197
 
     const data = mangsanpham || [];
     danhmuc.innerHTML = "";
@@ -520,7 +398,6 @@
                 <p>${tenDM}</p>
             `;
 
-<<<<<<< HEAD
       danhmuc.appendChild(li);
     });
   }
@@ -537,22 +414,3 @@
 
   getData();
 })();
-=======
-            danhmuc.appendChild(li);
-        });
-    }
-    const menusub = document.querySelector(".sub-menu");
-    if(menusub){
-        menusub.addEventListener("click", (e)=>
-        {
-            const danhmucn=e.target.closest(".sp");
-            if(danhmucn){
-                e.preventDefault();
-                locTheoLoai(danhmucn.dataset.mamh);
-            }
-        })
-    }
-    
-    getData();
-})();
->>>>>>> 79e6def4b93db6db550c7622050edecf2288d197
