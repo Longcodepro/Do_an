@@ -19,7 +19,7 @@
 //     noiDung.innerHTML = trang[page];
 //   };
 
-function loadpage(page){
+function loadpage(page,callback){
     const noidung=document.getElementById("noi_dung");
     const java=document.createElement("script");
     const css=document.createElement("link");
@@ -28,6 +28,9 @@ function loadpage(page){
       noidung.innerHTML=trang[page];
       java.src=`${page}.js`;
       java.dataset.page = page;
+      java.onload = () => {
+        if (typeof callback === "function") callback();
+    };
       document.body.appendChild(java);
       css.rel="stylesheet";
     css.href=`${page}.css`
@@ -39,7 +42,9 @@ function loadpage(page){
     console.log("da tai tran len",page);
   }
   window.addEventListener("DOMContentLoaded",()=>{
-    loadpage("trangchu");
+    loadpage("trangchu", () => {
+      hienthiloai();   // GỌI HIỂN THỊ LOẠI SAU KHI ĐÃ TẢI TRANG
+  });
   })
   // File: trangchu.js
 
@@ -89,10 +94,30 @@ window.handleLoadPage = (pageName, maMatHang = null) => {
   }
   
   // 2. Chuyển trang
-  if (typeof loadpage === 'function') {
-      loadpage(pageName);
-  } else {
-      console.error("Lỗi: Hàm loadpage không thể truy cập được!");
-  }
+ loadpage(pageName, () => {
+        if (pageName === "trangchu")
+          hienthiloai();
+    });
 };
 
+function hienthiloai(){
+  const menu=document.getElementById("menuMatHang");
+  if(!menu) return;
+const dsmathang=JSON.parse(localStorage.getItem("matHang")) || [];
+const hienthi=dsmathang.filter(mh => mh.hienThi===true);
+menu.innerHTML=``;
+hienthi.forEach(mh=>{
+const li=document.createElement("li");
+li.classList.add("sp");
+li.dataset.mamh=mh.maMatHang;
+li.innerHTML=mh.tenMatHang;
+li.addEventListener("click", e =>{
+  e.stopPropagation();
+  handleLoadPage("sanpham",mh.maMatHang);
+
+});
+menu.appendChild(li);
+})
+
+
+}
