@@ -110,6 +110,12 @@
     // 1. Lấy toàn bộ sản phẩm và lọc ẩn/hiện
     mangsanpham = spLocal.filter((sp) => sp.hienAn === "1");
     matHang = matHangLocal;
+    const maMatHangDuocHienThi = matHang
+        .filter(mh => mh.hienThi === true)
+        .map(mh => String(mh.maMatHang));
+        mangsanpham = spLocal
+        .filter((sp) => sp.hienAn === "1") // Lọc theo trạng thái sản phẩm
+        .filter((sp) => maMatHangDuocHienThi.includes(String(sp.maMatHang)));
     // 2. Thiết lập trạng thái lọc từ localStorage
     if (maMHToFilter) {
       currentMaLoai = maMHToFilter;
@@ -373,32 +379,37 @@
     danhmuc.innerHTML = "";
 
     const loaiKhacNhau = [...new Set(data.map((sp) => sp.maMatHang))];
-
+   
     const tenMatHang = (ma) => {
       const item = matHang.find(
         (mh) => String(mh.maMatHang).toLowerCase() === String(ma).toLowerCase()
       );
       return item ? item.tenMatHang : "Khác";
     };
+  //   const maMHCanHienThi = loaiKhacNhau.filter(maMH => 
+  //     matHangDuocHienThi.some(mh => String(mh.maMatHang) === String(maMH))
+  // );
 
     loaiKhacNhau.forEach((maMH) => {
       const spDaiDien = data.find((sp) => sp.maMatHang === maMH);
       const tenDM = tenMatHang(maMH);
-
-      const li = document.createElement("li");
-      li.classList.add("sanpham1");
-      li.dataset.mamh = maMH;
-
-      li.innerHTML = `
-                <div class="anh">
-                    <img src="${
-                      spDaiDien?.hinhAnh || "./img/default.png"
-                    }" alt="${tenDM}">
-                </div>
-                <p>${tenDM}</p>
-            `;
-
-      danhmuc.appendChild(li);
+     
+        const li = document.createElement("li");
+        li.classList.add("sanpham1");
+        li.dataset.mamh = maMH;
+  
+        li.innerHTML = `
+                  <div class="anh">
+                      <img src="${
+                        spDaiDien?.hinhAnh || "./img/default.png"
+                      }" alt="${tenDM}">
+                  </div>
+                  <p>${tenDM}</p>
+              `;
+  
+        danhmuc.appendChild(li);
+    
+      
     });
   }
   const menusub = document.querySelector(".sub-menu");
