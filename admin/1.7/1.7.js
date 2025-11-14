@@ -65,8 +65,8 @@ function quanLyDonHang() {
         <option value="Đã hủy">Đã hủy</option>
     </select>
     <button id="applyFilter" class="detail">Áp dụng Lọc</button>
-    <button id="showAll" class="back-button">Hiển thị tất cả</button>
-`;
+    <button id="showAll" class="show-all-button">Hiển thị tất cả</button>
+`; // <-- THAY ĐỔI TẠI ĐÂY
     noiDung.appendChild(filterBox);
     
     // Thêm div chứa bảng để có thể cập nhật

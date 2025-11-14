@@ -14,22 +14,15 @@
   <body>     
     <nav id="header">
     <div class="nav-img">
-      <img src="../img/sgu.jpg" alt="logo" />
+      <img src="../img/sgu-Photoroom.png" alt="logo" />
     </div>
     <button class="btn-bar">
       <i class="nav-bar fa-solid fa-bars-staggered"></i>
       <div >
         <p onclick="handleLoadPage('sanpham')">SẢN PHẨM</p>
-        <ul class="sub-menu">
-          <li class="sp" data-mamh="1" onclick="event.stopPropagation(); handleLoadPage('sanpham', '1');">may giac
-            
+        <ul class="sub-menu" id="menuMatHang">
+          <li class="sp">may giac
           </li>
-          <li class="sp" data-mamh="2" onclick="event.stopPropagation(); handleLoadPage('sanpham', '2');">tủ lạnh</li>
-          <li class="sp" data-mamh="3" onclick="event.stopPropagation(); handleLoadPage('sanpham', '3');">TV</li>
-          <li class="sp" data-mamh="4" onclick="event.stopPropagation(); handleLoadPage('sanpham', '4');">máy lạnh</li>
-          <li class="sp" data-mamh="5" onclick="event.stopPropagation(); handleLoadPage('sanpham', '5');">máy lọc không khí</li>
-          <!-- <li><a href="">noi com</a></li>
-          <li><a href="">lo vi song</a></li> -->
         </ul>
       </div>
     </button>
@@ -113,7 +106,7 @@
                 <label>Địa chỉ</label>
             </div>
             <div class="btndky">
-                <button type="button" onclick="dangKy()">Đăng ký</button>
+                <button type="submit" onclick="dangKy()">Đăng ký</button>
             </div>
         </form> 
         

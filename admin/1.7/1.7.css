@@ -80,19 +80,36 @@
   background-color: #0056b3;
 }
 
-/* Nút Quay lại */
+/* Nút Quay lại (Ngoài khung lọc) */
 .back-button {
     background-color: #6c757d; /* Màu xám */
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 8px 15px; /* Điều chỉnh để giống .detail */
+    border-radius: 6px; /* Điều chỉnh để giống .detail */
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Giữ margin khi dùng bên ngoài filter-box */
+    font-weight: 500; /* Điều chỉnh để giống .detail */
     transition: background-color 0.2s;
 }
 
 .back-button:hover {
+    background-color: #5a6268;
+}
+
+/* Style riêng cho nút Hiển thị tất cả bên trong filter-box */
+.show-all-button {
+    background-color: #6c757d; /* Màu xám */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.show-all-button:hover {
     background-color: #5a6268;
 }
 
