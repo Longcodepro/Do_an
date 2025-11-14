@@ -14,6 +14,11 @@ function kiemTraNhap(tk, mk) {
         document.getElementById("dk-tk").focus();
         return false;
     }
+    if (tk.includes(" ")) {
+        alert("Tên tài khoản không được chứa khoảng trắng!");
+        document.getElementById("dk-tk").focus(); // Giả sử id này tồn tại khi gọi
+        return false;
+    }
     if (mk.trim() === "") {
         alert("Bạn chưa nhập mật khẩu!");
         document.getElementById("dk-mk").focus();

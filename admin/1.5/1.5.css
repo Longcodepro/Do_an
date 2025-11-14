@@ -102,11 +102,14 @@ h2 {
 
 /* --- Nhập Sản Phẩm (dsSanPham) --- */
 
+/* --- Nhập Sản Phẩm (dsSanPham) --- */
+
 #dsSanPham {
     flex-grow: 1;
 }
 .hangSP {
     display: flex;
+    flex-wrap: wrap; 
     gap: 8px; /* Khoảng cách giữa các ô */
     align-items: center;
     margin-bottom: 10px;
