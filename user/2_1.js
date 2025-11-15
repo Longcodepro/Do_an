@@ -238,7 +238,7 @@ function SuaThongTin() {
 
     // Chuyển các trường nội dung thành input để chỉnh sửa
     document.getElementById("in-ten").innerHTML = `<input type="text" id="edit-ten" value="${user.tenKH}">`;
-    document.getElementById("in-mk").innerHTML = `<input type="password" id="edit-mk" value="${user.matKhau}">`; 
+    document.getElementById("in-mk").innerHTML = `<input type="text" id="edit-mk" value="${user.matKhau}">`; 
     
     // Giới tính (Chuyển đổi lại thành 1/0 để dễ dàng xử lý form)
     let checkedNam = (user.gioiTinh == "Nam" || user.gioiTinh == "1") ? "checked" : "";
