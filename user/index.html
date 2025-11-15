@@ -8,16 +8,17 @@
     <script src="trang.js"></script>
     <link rel="stylesheet" href="2_1.css">
     <script src="2_1.js"></script>
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <title>Document</title>
   </head>
   <body>     
-    <nav id="header">
+    <nav id="header" style="position: fixed; top: 0px; width: 100%; z-index: 1; ">
     <div class="nav-img">
       <img src="../img/sgu-Photoroom.png" alt="logo" />
     </div>
     <button class="btn-bar">
-      <i class="nav-bar fa-solid fa-bars-staggered"></i>
+      <i class="nav-bar fa-solid fa-bars-staggered " onclick="handleLoadPage('sanpham')"></i>
       <div >
         <p onclick="handleLoadPage('sanpham')">SẢN PHẨM</p>
         <ul class="sub-menu" id="menuMatHang">
@@ -27,16 +28,16 @@
       </div>
     </button>
     <button class="home" >
-      <i class="fa-solid fa-house"></i>
+      <i class="fa-solid fa-house"  onclick="loadpage('trangchu')"></i>
       <div onclick="loadpage('trangchu')">TRANG CHỦ</div>
       </button>
     <button class="cart" onclick="toggleCart(true)">
       <i class="fa-solid fa-cart-shopping "></i>
-      <div>Giỏ Hàng</div>
+      <div><p>Giỏ Hàng</p></div>
     </button>
     <button class="user" id="nut-dn">
       <i class="nav-user fa-solid fa-circle-user"></i>
-      <div onclick="moFormdnhap()" >ĐĂNG NHẬP</div>
+      <div onclick="moFormdnhap()" ><p>ĐĂNG NHẬP</p></div>
     </button>
     <button class="user" id="nut-tk" style="display: none; position: relative;">
             <span id="btn-tk" style="background-color: transparent; border: none;"></span>
@@ -48,7 +49,8 @@
                 </div>
     </button>
     <button class="Hotline">
-      <i class="fa-solid fa-phone-volume"></i> 1900 1800
+      <i class="fa-solid fa-phone-volume"></i> 
+      <p>1900 1800</p>
     </button>
   </nav>
   <div id="overlay"></div>
@@ -151,7 +153,7 @@
                 </div>
             </div>
         </div>
-  <div class="search">
+  <div class="search" style="margin-top: 65px;">
     <button class="btn-search">
       <i class="nav-search fa-solid fa-magnifying-glass"></i>
     </button>
