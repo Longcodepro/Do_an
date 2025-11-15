@@ -2,8 +2,8 @@ h2 {
     text-align: center;
     margin-bottom: 25px;
     color: #333;
-    font-size: 26px; /* Kích thước lớn hơn */
-    border-bottom: 3px solid #007bff; /* Viền dày hơn */
+    font-size: 26px; 
+    border-bottom: 3px solid #007bff; 
     padding-bottom: 12px;
 }
 
@@ -42,7 +42,7 @@ h2 {
 }
 
 /* Nút Tìm */
-.filter-box button:first-of-type { /* Nút Tìm */
+.filter-box button:first-of-type { 
     background: #6c757d;
     color: white;
 }
@@ -87,7 +87,8 @@ h2 {
 }
 
 #formThemPhieu input[type="number"],
-#formThemPhieu input[type="date"] {
+#formThemPhieu input[type="date"],
+#formThemPhieu input[type="text"]#maPhieuHienThi {
     padding: 8px 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -106,12 +107,13 @@ h2 {
 }
 .hangSP {
     display: flex;
-    gap: 10px;
+    gap: 8px; /* Khoảng cách giữa các ô */
     align-items: center;
     margin-bottom: 10px;
-    padding: 5px;
-    border: 1px dashed #ddd;
+    padding: 8px; 
+    border: 1px solid #ddd; 
     border-radius: 4px;
+    background-color: white;
 }
 
 .hangSP input {
@@ -119,19 +121,16 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
+    height: 38px; /* Cố định chiều cao */
+    box-sizing: border-box; /* Quan trọng để padding không làm tăng chiều rộng */
 }
 
-/* --- Khung Chọn SP (chonSP-wrap) ĐÃ CẬP NHẬT RẤT NHIỀU --- */
-.chonSP-wrap {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    flex-grow: 1;
-}
+/* ⚠️ PHẦN CSS SỬA KÍCH THƯỚC VÀ MÀU SẮC ⚠️ */
 
-.chonSP-wrap .maSP-input {
-    flex-grow: 0;
-    width: 100px; /* Chiều rộng cố định cho Mã SP */
+/* Input Mã SP (ID) - Ô BÉ */
+.hangSP .maSP-input {
+    width: 80px; /* Chiều rộng cố định */
+    flex-shrink: 0; 
 }
 
 /* Nút kiểm tra (✔) */
@@ -143,12 +142,12 @@ h2 {
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-}
-.kiem-tra-btn:hover {
-    background: #218838;
+    flex-shrink: 0; 
+    line-height: 1;
+    height: 38px; /* Cố định chiều cao bằng input */
 }
 
-/* Khung hiển thị tên sản phẩm (span) - GIỐNG INPUT */
+/* Khung hiển thị tên sản phẩm (span) - Chiếm phần lớn diện tích */
 .tenSP-hienThi {
     /* Đảm bảo style giống hệt input */
     border: 1px solid #ccc; 
@@ -157,19 +156,30 @@ h2 {
     border-radius: 4px;
     font-size: 14px;
     color: #333;
-    background-color: #f1f1f1; /* Màu nền xám nhẹ để phân biệt */
-    flex-grow: 1;
-    /* Dùng display: block khi hiện ra để chiếm không gian */
+    background-color: #f1f1f1;
+    
+    flex-grow: 1; /* Cho phép nó mở rộng tối đa */
+    flex-basis: 150px; /* Kích thước tối thiểu ban đầu */
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 38px; 
+    display: flex; 
+    align-items: center;
+    box-sizing: border-box;
 }
 
 
-/* Input Số Lượng và Giá Nhập */
-.soLuong, .giaNhap {
-    width: 80px;
+/* Input Số Lượng và Giá Nhập - Kích thước cố định, gọn gàng */
+.soLuong {
+    width: 60px; 
     text-align: center;
+    flex-shrink: 0;
 }
 .giaNhap {
-    background-color: #f7f7f7; /* Tùy chọn */
+    width: 110px; /* Lớn hơn chút cho số tiền */
+    background-color: #f7f7f7; 
+    flex-shrink: 0;
 }
 
 /* Nút Thêm/Xóa dòng SP */
@@ -180,19 +190,25 @@ h2 {
     cursor: pointer;
     font-weight: bold;
     color: white;
-    width: 35px;
+    width: 38px; /* Kích thước nút */
     line-height: 1;
+    height: 38px; 
+    flex-shrink: 0;
 }
-.hangSP button:not(.kiem-tra-btn):first-of-type { /* Nút + */
-    background: #17a2b8;
+
+/* Nút + (Dùng class .nut-them) - MÀU XANH DƯƠNG */
+.hangSP .nut-them { 
+    background: #17a2b8; /* TÔI DÙNG MÀU XANH DƯƠNG NHẠT CỦA NÚT HOÀN THÀNH TRONG BẢNG*/
 }
-.hangSP button:not(.kiem-tra-btn):first-of-type:hover {
+.hangSP .nut-them:hover {
     background: #138496;
 }
-.hangSP button:not(.kiem-tra-btn):last-of-type { /* Nút - */
-    background: #dc3545;
+
+/* Nút - */
+.hangSP button:last-of-type { 
+    background: #dc3545; /* MÀU ĐỎ */
 }
-.hangSP button:not(.kiem-tra-btn):last-of-type:hover {
+.hangSP button:last-of-type:hover {
     background: #c82333;
 }
 
@@ -200,7 +216,9 @@ h2 {
 /* --- Hai nút Lưu/Hủy cuối form --- */
 #hai-nut {
     margin-top: 20px;
-    justify-content: flex-end; /* Đẩy ra cuối */
+    justify-content: flex-end; 
+    display: flex; 
+    gap: 8px; 
 }
 
 /* Nút Hủy */
@@ -227,6 +245,7 @@ h2 {
 /* --------------------------------- */
 #table-wrap {
     overflow-x: auto;
+    margin-bottom: 10%;
 }
 
 #bangNhap {

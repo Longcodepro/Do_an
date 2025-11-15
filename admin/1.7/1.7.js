@@ -51,21 +51,22 @@ function quanLyDonHang() {
     const filterBox = document.createElement("div");
     filterBox.className = "filter-box";
     filterBox.innerHTML = `
-        <label for="fromDate">Từ ngày:</label>
-        <input type="date" id="fromDate">
-        <label for="toDate">Đến ngày:</label>
-        <input type="date" id="toDate">
-        <label for="statusFilter">Trạng thái:</label>
-        <select id="statusFilter">
-            <option value="">Tất cả trạng thái</option>
-            <option value="Hoàn thành">Hoàn thành</option>
-            <option value="Đã giao">Đã giao</option>
-            <option value="Đang vận chuyển">Đang vận chuyển</option>
-            <option value="Đang xử lý">Đang xử lý</option>
-            <option value="Đã hủy">Đã hủy</option>
-        </select>
-        <button id="applyFilter" class="detail">Áp dụng Lọc</button>
-    `;
+    <label for="fromDate">Từ ngày:</label>
+    <input type="date" id="fromDate">
+    <label for="toDate">Đến ngày:</label>
+    <input type="date" id="toDate">
+    <label for="statusFilter">Trạng thái:</label>
+    <select id="statusFilter">
+        <option value="">Tất cả trạng thái</option>
+        <option value="Hoàn thành">Hoàn thành</option>
+        <option value="Đã giao">Đã giao</option>
+        <option value="Đang vận chuyển">Đang vận chuyển</option>
+        <option value="Đang xử lý">Đang xử lý</option>
+        <option value="Đã hủy">Đã hủy</option>
+    </select>
+    <button id="applyFilter" class="detail">Áp dụng Lọc</button>
+    <button id="showAll" class="back-button">Hiển thị tất cả</button>
+`;
     noiDung.appendChild(filterBox);
     
     // Thêm div chứa bảng để có thể cập nhật
@@ -75,16 +76,28 @@ function quanLyDonHang() {
     noiDung.appendChild(tableContainer);
 
     // Gán sự kiện Lọc
-    document.getElementById("applyFilter").addEventListener('click', () => {
-        const fromDateStr = document.getElementById('fromDate').value;
-        const toDateStr = document.getElementById('toDate').value;
-        const status = document.getElementById('statusFilter').value;
-        displayDonHang(rows, fromDateStr, toDateStr, status);
-    });
+document.getElementById("applyFilter").addEventListener('click', () => {
+    const fromDateStr = document.getElementById('fromDate').value;
+    const toDateStr = document.getElementById('toDate').value;
+    const status = document.getElementById('statusFilter').value;
+    displayDonHang(rows, fromDateStr, toDateStr, status);
+});
 
-    // Hiển thị lần đầu với toàn bộ dữ liệu
+// Gán sự kiện Hiển thị tất cả
+document.getElementById("showAll").addEventListener('click', () => {
+    // Xóa giá trị trong các ô lọc
+    document.getElementById('fromDate').value = '';
+    document.getElementById('toDate').value = '';
+    document.getElementById('statusFilter').value = '';
+    
+    // Hiển thị lại toàn bộ đơn hàng
     displayDonHang(rows);
+});
+
+// Hiển thị lần đầu với toàn bộ dữ liệu
+displayDonHang(rows);
 }
+
 
 // ===================== 2. HÀM THỰC HIỆN LỌC VÀ HIỂN THỊ BẢNG =====================
 function displayDonHang(allRows, fromDateStr = null, toDateStr = null, statusFilter = "") {

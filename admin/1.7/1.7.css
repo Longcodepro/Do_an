@@ -46,7 +46,7 @@
   display: flex;
   flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
   align-items: center;
-  gap: 15px; /* Khoảng cách giữa các thành phần */
+  gap: 10px; /* Khoảng cách giữa các thành phần */
 }
 
 .filter-box label {
