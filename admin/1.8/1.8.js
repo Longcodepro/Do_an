@@ -1,3 +1,4 @@
+
 // Quản lý số lượng tồn sản phẩm
 // ===============================
 
@@ -8,37 +9,37 @@ function quanLySoLuongTon() {
     return;
   }
 
-  const dsMatHang = typeof tableMatHang !== 'undefined' ? tableMatHang : [];
+  const dsMatHang = typeof tableMatHang !== 'undefined' && tableMatHang ? tableMatHang : (typeof matHang !== 'undefined' ? matHang : []);
 
   noiDung.innerHTML = `
   <div>
     <h2 style="color:#333">Quản Lí Số Lượng Tồn Của Sản Phẩm</h2>
-    <div class="bo-loc">
-      <input type="text" id="timKiemMaSP" placeholder="🔍 Tìm theo mã sản phẩm...">
-      <input type="text" id="timKiemTon" placeholder="🔍 Tìm kiếm theo tên sản phẩm...">
-      <select id="locLoai">
+    <div class="bo-loc" style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap; align-items: center;">
+      <input type="text" id="timKiemMaSP" placeholder="🔍 Tìm theo mã sản phẩm..." style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      <input type="text" id="timKiemTon" placeholder="🔍 Tìm kiếm theo tên sản phẩm..." style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      <select id="locLoai" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
         <option value="">-- Tất cả loại --</option>
         ${dsMatHang.map(l => `<option value="${l.maMatHang}">${l.tenMatHang}</option>`).join("")}
       </select>
-      <select id="locTrangThai">
+      <select id="locTrangThai" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
         <option value="">-- Tất cả trạng thái --</option>
         <option value="Hết hàng">Hết hàng</option>
         <option value="Còn ít">Còn ít</option>
         <option value="Đủ hàng">Đủ hàng</option>
       </select>
-      <button id="nutLocTon">Lọc</button>
+      <button id="nutLocTon" style="padding: 8px 15px; background-color:#009879; color:white; border:none; border-radius: 4px; cursor:pointer;">Lọc</button>
     
     </div>
     <div>
-    <table border="1" width="100%" style="border-collapse:auto; text-align:center; margin-top:10px;; margin-bottom:10%">
+    <table width="100%" style="border-collapse:collapse; text-align:center; margin-top:10px; font-family: Arial, sans-serif; border: 1px solid #ddd;">
       <thead>
         <tr style="background-color:#009879; color:white;">
-          <th>Mã sản phẩm</th>
-          <th>Tên sản phẩm</th>
-          <th>Loại</th>
-          <th>Giá hiện tại</th>
-          <th>Số lượng tồn</th>
-          <th>Trạng thái</th>
+          <th style="padding:12px; border: 1px solid #ddd;">Mã sản phẩm</th>
+          <th style="padding:12px; border: 1px solid #ddd;">Tên sản phẩm</th>
+          <th style="padding:12px; border: 1px solid #ddd;">Loại</th>
+          <th style="padding:12px; border: 1px solid #ddd;">Giá hiện tại</th>
+          <th style="padding:12px; border: 1px solid #ddd;">Số lượng tồn</th>
+          <th style="padding:12px; border: 1px solid #ddd;">Trạng thái</th>
         </tr>
       </thead>
       <tbody id="bangTon"></tbody>
@@ -53,7 +54,7 @@ function quanLySoLuongTon() {
   document.getElementById("timKiemTon").addEventListener("input", () => hienThiSoLuongTon());
   document.getElementById("locLoai").addEventListener("change", () => hienThiSoLuongTon());
   document.getElementById("locTrangThai").addEventListener("change", () => hienThiSoLuongTon());
-  document.getElementById("nutLocTon").addEventListener("click", () => hienThiSoLuongTon());
+document.getElementById("nutLocTon").addEventListener("click", () => hienThiSoLuongTon());
 }
 
 function hienThiSoLuongTon() {
@@ -64,29 +65,46 @@ function hienThiSoLuongTon() {
   const bang = document.getElementById("bangTon");
   if (!bang) return;
 
-  const dsSanPham = typeof tableSp !== 'undefined' ? tableSp : [];
-  const dsMatHang = typeof tableMatHang !== 'undefined' ? tableMatHang : [];
+  const dsSanPham = typeof tatCaSanPham !== 'undefined' ? tatCaSanPham : [];
+ 
+  const dsMatHang = typeof tableMatHang !== 'undefined' && tableMatHang ? tableMatHang : (typeof matHang !== 'undefined' ? matHang : []);
 
   bang.innerHTML = "";
 
   dsSanPham
     .filter(sp => {
+      // Logic xác định trạng thái tồn kho
       const ton = sp.soLuong || 0;
       const nguongCanhBao = sp.nguongCanhBao || 5;
       let trangThai = ton <= 0 ? "Hết hàng" : ton < nguongCanhBao ? "Còn ít" : "Đủ hàng";
+      
+      // Lọc theo mã SP
+      const maSPMatch = !maSPFilter || sp.maSP.toString().includes(maSPFilter);
+      
+      // Lọc theo mã loại: So sánh maMatHang của SP (chuỗi) với maLoaiLoc (chuỗi)
+      const maLoaiMatch = !maLoaiLoc || sp.maMatHang.toString() === maLoaiLoc.toString();
+      
+      // Lọc theo tên sản phẩm
+      const tenSPMatch = !tuKhoa || (sp.tenSP && sp.tenSP.toLowerCase().includes(tuKhoa));
+      
+      // Lọc theo trạng thái
+      const trangThaiMatch = !trangThaiLoc || trangThai === trangThaiLoc;
+      
+      
+      const hienAnMatch = sp.hienAn === "1";
 
-      return (!maSPFilter || sp.maSP.toString() === maSPFilter) &&
-             (!maLoaiLoc || sp.maMatHang.toString() === maLoaiLoc) &&
-             (!tuKhoa || sp.tenSP.toLowerCase().includes(tuKhoa)) &&
-             (!trangThaiLoc || trangThai === trangThaiLoc);
+      return maSPMatch && maLoaiMatch && tenSPMatch && trangThaiMatch && hienAnMatch;
     })
     .forEach(sp => {
-      const loai = dsMatHang.find(l => l.maMatHang.toString() === sp.maMatHang);
+      
+      const loai = dsMatHang.find(l => l.maMatHang.toString() === sp.maMatHang.toString());
+      
       const ton = sp.soLuong || 0;
       const nguongCanhBao = sp.nguongCanhBao || 5;
       let trangThai = "";
       let mau = "";
 
+      // Xác định màu nền và trạng thái
       if (ton <= 0) {
         trangThai = "Hết hàng";
         mau = "#f8d7da";
@@ -102,12 +120,12 @@ function hienThiSoLuongTon() {
 
       bang.innerHTML += `
         <tr style="background-color:${mau};">
-          <td>${sp.maSP}</td>
-          <td>${sp.tenSP}</td>
-          <td>${loai ? loai.tenMatHang : "Không rõ"}</td>
-          <td>${giaHienThi}</td>
-          <td>${ton}</td>
-          <td>${trangThai}</td>
+          <td style="padding:8px; border: 1px solid #ddd;">${sp.maSP}</td>
+          <td style="padding:8px; text-align:left; border: 1px solid #ddd;">${sp.tenSP}</td>
+          <td style="padding:8px; border: 1px solid #ddd;">${loai ? loai.tenMatHang : "Không rõ"}</td>
+          <td style="padding:8px; border: 1px solid #ddd;">${giaHienThi}</td>
+          <td style="padding:8px; border: 1px solid #ddd;">${ton}</td>
+          <td style="padding:8px; border: 1px solid #ddd;">${trangThai}</td>
         </tr>
       `;
     });

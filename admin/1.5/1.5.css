@@ -102,11 +102,14 @@ h2 {
 
 /* --- Nhập Sản Phẩm (dsSanPham) --- */
 
+/* --- Nhập Sản Phẩm (dsSanPham) --- */
+
 #dsSanPham {
     flex-grow: 1;
 }
 .hangSP {
     display: flex;
+    flex-wrap: wrap; 
     gap: 8px; /* Khoảng cách giữa các ô */
     align-items: center;
     margin-bottom: 10px;
@@ -321,4 +324,12 @@ h2 {
 }
 .hanh-dong .luu:hover {
     background: #218838;
+}
+
+/* Nút Xóa */
+.hanh-dong .nut-xoa-phieu { 
+    background: #dc3545; /* Màu đỏ */
+}
+.hanh-dong .nut-xoa-phieu:hover {
+    background: #c82333;
 }
