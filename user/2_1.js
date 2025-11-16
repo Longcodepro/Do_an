@@ -87,10 +87,8 @@ function dangKy() {
     const mk = mkInput.value;
     if (!kiemTraNhap(tk, mk)) return;
 
-    // --- BẮT ĐẦU THÊM LOGIC KIỂM TRA EMAIL ---
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert("❌ Định dạng Email không hợp lệ (Ví dụ: user@example.com)!");
+    if (!kiemTraEmail(email)) {
+        alert("❌ Định dạng Email không hợp lệ (Ví dụ: user@example)!");
         document.getElementById("dk-email").focus();
         return; // Dừng hàm nếu email không hợp lệ
     }
