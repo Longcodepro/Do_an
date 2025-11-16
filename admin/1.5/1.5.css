@@ -14,7 +14,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 10px; /* Dùng lại 10px để tách nhóm tìm kiếm và nút thêm phiếu */
     margin-bottom: 25px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -22,8 +22,16 @@ h2 {
     background-color: #f9f9f9;
 }
 
+/* KHUNG NHÓM TÌM KIẾM MỚI */
+.search-group {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Giữ khoảng cách nhỏ giữa ô input và nút Tìm */
+}
+
 #timPhieuInput {
-    flex-grow: 1;
+    flex-grow: 0; 
+    max-width: 300px; 
     padding: 8px 12px;
     border-radius: 6px;
     border: 1px solid #ccc;
@@ -162,9 +170,9 @@ h2 {
     background-color: #f1f1f1;
     
     flex-grow: 1; /* Cho phép nó mở rộng tối đa */
-    flex-basis: 150px; /* Kích thước tối thiểu ban đầu */
+    flex-basis: auto;
     white-space: nowrap; 
-    overflow: hidden;
+    overflow: auto;
     text-overflow: ellipsis;
     height: 38px; 
     display: flex; 

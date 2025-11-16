@@ -399,16 +399,50 @@ function xoaPhieu(nut) {
     }
 }
 
-// ✅ Tìm phiếu
+// ✅ Tìm phiếu (Đã sửa đổi để CHỈ tìm chính xác Mã Sản Phẩm)
 function timPhieuNhap() {
-    const txt = document.getElementById("timPhieuInput").value.toLowerCase();
+    // Chỉ tìm chính xác theo mã SP.
+    const txt = document.getElementById("timPhieuInput").value.trim(); // Không cần toLowerCase()
     
+    // Nếu rỗng, hiển thị tất cả
+    if (!txt) {
+         document.querySelectorAll("#bangNhap tbody tr").forEach(row => {
+            row.style.display = "";
+        });
+        return;
+    }
+
+    // 1. Lấy tất cả các phiếu nhập đã nhóm từ localStorage
+    const bangNhap = layBangNhap(); 
+    const phieuGroup = {};
+    bangNhap.forEach(item => {
+        if (!phieuGroup[item.maPhieu]) {
+            phieuGroup[item.maPhieu] = {
+                maPhieu: item.maPhieu,
+                dsMaSP: []
+            };
+        }
+        // Lưu mã SP dưới dạng chuỗi để so sánh chính xác với chuỗi nhập
+        phieuGroup[item.maPhieu].dsMaSP.push(String(item.maSP)); 
+    });
+    
+    // 2. Tìm kiếm các mã phiếu thỏa mãn điều kiện Mã Sản Phẩm (ID)
+    const maPhieuThoaMan = new Set();
+    Object.values(phieuGroup).forEach(p => {
+        // CHỈ tìm chính xác Mã Sản Phẩm (ID)
+        // Kiểm tra xem có bất kỳ Mã SP nào trong phiếu BẰNG CHUỖI tìm kiếm không
+        if (p.dsMaSP.some(maSP => maSP === txt)) { 
+            maPhieuThoaMan.add(p.maPhieu);
+        }
+    });
+
+    // 3. Hiển thị/Ẩn các dòng trong bảng
     document.querySelectorAll("#bangNhap tbody tr").forEach(row => {
-        row.style.display = row.dataset.maPhieu.toLowerCase().includes(txt) ? "" : "none";
+        const maPhieuCuaDong = row.dataset.maPhieu;
+        // Kiểm tra xem Mã phiếu của dòng hiện tại có nằm trong danh sách thỏa mãn không
+        row.style.display = maPhieuThoaMan.has(maPhieuCuaDong) ? "" : "none";
     });
 }
-
-
 // ==================================================
 // === CÁC HÀM XỬ LÝ GIAO DIỆN CHUNG (LAYOUT) ===
 // ==================================================
@@ -508,13 +542,15 @@ function veBang(danhSach) {
     });
 }
 
-// ✅ Thanh công cụ
+// ✅ Thanh công cụ (Sửa placeholder)
 function taoThanhCongCu(noiDung) {
     const box = document.createElement("div");
     box.className = "filter-box";
     box.innerHTML = `
-        <input type="text" id="timPhieuInput" placeholder="Nhập mã phiếu...">
-        <button onclick="timPhieuNhap()">Tìm</button>
+        <div class="search-group">
+            <input type="text" id="timPhieuInput" placeholder="Nhập Mã SP (ID)...">
+            <button onclick="timPhieuNhap()">Tìm</button>
+        </div>
         <button id="nutThem" onclick="hienThiFormThem()">+ Thêm phiếu</button>
     `;
     noiDung.appendChild(box);
