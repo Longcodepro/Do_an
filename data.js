@@ -2844,6 +2844,7 @@ const donHang = [
     hinhThucThanhToan: "Chuyển khoản",
     donViVanChuyen: "Giao Hàng Nhanh",
     khachHang: "Nguyễn Văn A",
+    maKH: 1  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH002",
@@ -2853,6 +2854,7 @@ const donHang = [
     hinhThucThanhToan: "Tiền mặt",
     donViVanChuyen: "Giao Hàng Tiết Kiệm",
     khachHang: "Trần Thị B",
+    maKH: 2  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH003",
@@ -2862,6 +2864,7 @@ const donHang = [
     hinhThucThanhToan: "Ví Momo",
     donViVanChuyen: "J&T Express",
     khachHang: "Lê Văn C",
+    maKH: 3  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH004",
@@ -2871,6 +2874,7 @@ const donHang = [
     hinhThucThanhToan: "Chuyển khoản",
     donViVanChuyen: "VNPost",
     khachHang: "Phạm Thị D",
+    maKH: 4  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH005",
@@ -2880,6 +2884,7 @@ const donHang = [
     hinhThucThanhToan: "Tiền mặt",
     donViVanChuyen: "Giao Hàng Nhanh",
     khachHang: "Hoàng Văn E",
+    maKH: 5  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH006",
@@ -2889,6 +2894,7 @@ const donHang = [
     hinhThucThanhToan: "Chuyển khoản",
     donViVanChuyen: "Shopee Express",
     khachHang: "Vũ Thị F",
+    maKH: 6  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH007",
@@ -2898,6 +2904,7 @@ const donHang = [
     hinhThucThanhToan: "Ví Momo",
     donViVanChuyen: "Giao Hàng Tiết Kiệm",
     khachHang: "Nguyễn Văn A",
+    maKH: 1  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH008",
@@ -2907,6 +2914,7 @@ const donHang = [
     hinhThucThanhToan: "Tiền mặt",
     donViVanChuyen: "VNPost",
     khachHang: "Trần Thị B",
+    maKH: 2  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH009",
@@ -2916,6 +2924,7 @@ const donHang = [
     hinhThucThanhToan: "Chuyển khoản",
     donViVanChuyen: "J&T Express",
     khachHang: "Phạm Văn G",
+    maKH: 7  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH010",
@@ -2925,6 +2934,7 @@ const donHang = [
     hinhThucThanhToan: "Ví Momo",
     donViVanChuyen: "Giao Hàng Nhanh",
     khachHang: "Lê Thị H",
+    maKH: 8  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH011",
@@ -2934,6 +2944,7 @@ const donHang = [
     hinhThucThanhToan: "Tiền mặt",
     donViVanChuyen: "Giao Hàng Tiết Kiệm",
     khachHang: "Nguyễn Thị I",
+    maKH: 9  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH012",
@@ -2943,6 +2954,7 @@ const donHang = [
     hinhThucThanhToan: "Ví Momo",
     donViVanChuyen: "VNPost",
     khachHang: "Võ Văn K",
+    maKH: 10  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH013",
@@ -2952,6 +2964,7 @@ const donHang = [
     hinhThucThanhToan: "Chuyển khoản",
     donViVanChuyen: "J&T Express",
     khachHang: "Trần Thị L",
+    maKH: 11  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH014",
@@ -2961,6 +2974,7 @@ const donHang = [
     hinhThucThanhToan: "Ví Momo",
     donViVanChuyen: "Shopee Express",
     khachHang: "Nguyễn Văn M",
+    maKH: 12  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH015",
@@ -2970,6 +2984,7 @@ const donHang = [
     hinhThucThanhToan: "Tiền mặt",
     donViVanChuyen: "Giao Hàng Nhanh",
     khachHang: "Lê Thị N",
+    maKH: 13  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH016",
@@ -2979,6 +2994,7 @@ const donHang = [
     hinhThucThanhToan: "Chuyển khoản",
     donViVanChuyen: "VNPost",
     khachHang: "Phạm Văn O",
+    maKH: 14  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH017",
@@ -2988,6 +3004,7 @@ const donHang = [
     hinhThucThanhToan: "Ví Momo",
     donViVanChuyen: "Giao Hàng Tiết Kiệm",
     khachHang: "Hoàng Thị P",
+    maKH: 15  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH018",
@@ -2997,6 +3014,7 @@ const donHang = [
     hinhThucThanhToan: "Tiền mặt",
     donViVanChuyen: "Shopee Express",
     khachHang: "Nguyễn Văn Q",
+    maKH: 16  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH019",
@@ -3006,6 +3024,7 @@ const donHang = [
     hinhThucThanhToan: "Ví Momo",
     donViVanChuyen: "VNPost",
     khachHang: "Trần Thị R",
+    maKH: 17  // THÊM TRƯỜNG NÀY
   },
   {
     maDH: "DH020",
@@ -3015,6 +3034,7 @@ const donHang = [
     hinhThucThanhToan: "Chuyển khoản",
     donViVanChuyen: "Giao Hàng Nhanh",
     khachHang: "Phạm Văn S",
+    maKH: 18  // THÊM TRƯỜNG NÀY
   },
 ];
 

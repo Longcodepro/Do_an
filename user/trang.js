@@ -477,14 +477,16 @@ function renderCart() {
 
 
 function lichSuMuaHang() {
-    const mainContentDiv = document.getElementById('content'); // <== PHẢI CÓ ID 'content'
+    const mainContentDiv = document.getElementById('noi_dung'); // ID chính xác
+
     if (mainContentDiv) {
-        mainContentDiv.innerHTML = trang.lichSuMuaHang; 
-        renderPurchaseHistory(); 
+        mainContentDiv.innerHTML = trang.lichSuMuaHang;
+        renderPurchaseHistory();  
     } else {
-        console.error("Lỗi: Không tìm thấy div có id='content' để chèn nội dung.");
+        console.error("Lỗi: Không tìm thấy div có id='noi_dung'");
     }
 }
+
 
 
 // =========================================================
@@ -870,7 +872,8 @@ function handleLoadPurchaseHistory() {
     handleLoadPage('lichSuMuaHang');
 }
 
-// ========== HÀM LƯU ĐƠN HÀNG ==========
+// ========== HÀM LƯU ĐƠN HÀNG (ĐÃ SỬA) ==========
+// ========== HÀM LƯU ĐƠN HÀNG (ĐÃ SỬA) ==========
 function saveOrderToLocalStorage(orderData) {
     console.log('🚀 Bắt đầu lưu đơn hàng...');
     
@@ -883,7 +886,7 @@ function saveOrderToLocalStorage(orderData) {
     const newOrderId = generateOrderId(bills);
     console.log('🆔 Mã đơn hàng mới:', newOrderId);
     
-    // Tạo đơn hàng mới
+    // Tạo đơn hàng mới VỚI maKH
     const newBill = {
         maDH: newOrderId,
         ngayDat: new Date().toLocaleString('vi-VN'),
@@ -892,7 +895,7 @@ function saveOrderToLocalStorage(orderData) {
         hinhThucThanhToan: orderData.paymentMethod,
         donViVanChuyen: 'Giao Hàng Nhanh',
         khachHang: orderData.customerInfo.tenKH,
-        maKH: orderData.customerInfo.maKH, // QUAN TRỌNG
+        maKH: orderData.customerInfo.maKH, // QUAN TRỌNG - LIÊN KẾT VỚI USER
         diaChiGiaoHang: orderData.address
     };
     
@@ -900,7 +903,7 @@ function saveOrderToLocalStorage(orderData) {
     
     bills.push(newBill);
     
-    // Thêm chi tiết
+    // Thêm chi tiết đơn hàng
     orderData.cart.forEach(item => {
         const product = findProductById(item.maSP);
         console.log(`🛒 Sản phẩm ${item.maSP}:`, product);
@@ -921,7 +924,6 @@ function saveOrderToLocalStorage(orderData) {
     setlocalStorage('billDetail', billDetails);
     
     console.log('✅ Đã lưu đơn hàng thành công!');
-    console.log('🗂️ Tất cả đơn hàng sau khi lưu:', getlocalStorage('bill'));
     
     // Cập nhật UI ngay lập tức
     if (document.getElementById('historyTableContainer')) {
@@ -930,6 +932,135 @@ function saveOrderToLocalStorage(orderData) {
     }
 }
 
+// ========== HÀM RENDER LỊCH SỬ MUA HÀNG (ĐÃ SỬA) ==========
+function renderPurchaseHistory() {
+    console.log('🔄 Bắt đầu renderPurchaseHistory...');
+    
+    const currentUser = getlocalStorage('currentUser');
+    const container = document.getElementById('historyTableContainer');
+    
+    if (!container) {
+        console.error('❌ Không tìm thấy container historyTableContainer');
+        return;
+    }
+    
+    if (!currentUser) {
+        container.innerHTML = `
+            <div class="login-required-message">
+                <i class="fa-solid fa-user-lock" style="font-size: 3em; color: #ff6b6b; margin-bottom: 20px;"></i>
+                <h3>Vui lòng đăng nhập</h3>
+                <p>Bạn cần đăng nhập để xem lịch sử mua hàng của mình.</p>
+                <button onclick="moFormdnhap()" style="margin-top: 15px; padding: 10px 20px; background-color: #1e90ff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập ngay
+                </button>
+            </div>
+        `;
+        return;
+    }
+
+    const bills = getlocalStorage('bill') || [];
+    const billDetails = getlocalStorage('billDetail') || [];
+    const products = getlocalStorage('product') || [];
+    
+    console.log(`📊 Tìm thấy ${bills.length} bills, ${billDetails.length} bill details`);
+    console.log(`👤 User hiện tại có maKH: ${currentUser.maKH}`);
+    
+    // Lọc bills của user hiện tại - CHỈ HIỂN THỊ ĐƠN HÀNG CỦA USER NÀY
+    const userBills = bills.filter(bill => bill.maKH === currentUser.maKH);
+
+    
+    console.log(`✅ Tìm thấy ${userBills.length} bills cho user ${currentUser.maKH}`);
+    
+    if (userBills.length === 0) {
+        container.innerHTML = `
+            <div class="no-orders-message">
+                <i class="fa-solid fa-box-open" style="font-size: 3em; color: #6c757d; margin-bottom: 20px;"></i>
+                <h3>Chưa có đơn hàng</h3>
+                <p>Bạn chưa có đơn hàng nào. Hãy mua sắm và quay lại sau!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Sắp xếp đơn hàng mới nhất lên đầu
+    const sortedDonHang = [...userBills].sort((a, b) => {
+        return new Date(b.ngayDat) - new Date(a.ngayDat);
+    });
+
+    let html = '';
+    
+    sortedDonHang.forEach(dh => {
+        const chiTiet = billDetails.filter(ct => ct.maDH === dh.maDH);
+        
+        let chiTietHtml = '';
+        let totalOrderValue = 0;
+
+        chiTiet.forEach(item => {
+            const product = products.find(p => p.maSP == item.maSP);
+            const tenSP = product ? product.tenSP : `Sản phẩm (Mã: ${item.maSP})`;
+            const hinhAnh = product ? product.hinhAnh : '../img/placeholder.png';
+            const donGia = item.tongTien / item.soLuong;
+            totalOrderValue += item.tongTien;
+
+            chiTietHtml += `
+                <div class="history-item-detail" style="display: flex; align-items: center; padding: 10px; border-bottom: 1px dashed #eee;">
+                    <img src="${hinhAnh}" alt="${tenSP}" class="history-product-image" style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px;">
+                    <div class="history-item-info">
+                        <strong>${tenSP}</strong>
+                        <p>${formatCurrency(donGia)} x ${item.soLuong}</p>
+                        <p class="item-total" style="color: #e74c3c; font-weight: bold;">Thành tiền: ${formatCurrency(item.tongTien)}</p>
+                    </div>
+                </div>
+            `;
+        });
+
+        const statusClass = dh.trangThai.toLowerCase().replace(/\s+/g, '-');
+        const ngayGio = dh.ngayDat;
+
+        html += `
+            <div class="invoice-card user-order" style="border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 20px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <div class="invoice-header" style="background: #e6f3ff; padding: 15px; border-radius: 10px 10px 0 0;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span class="invoice-id" style="font-weight: bold; color: #1e90ff;">Mã Đơn: #${dh.maDH}</span>
+                        <span class="invoice-date" style="color: #666;">Ngày Đặt: ${ngayGio}</span>
+                    </div>
+                </div>
+                <div class="invoice-address" style="padding: 15px; border-bottom: 1px solid #eee;">
+                    <strong>Địa chỉ giao hàng:</strong> ${dh.diaChiGiaoHang || 'Chưa có thông tin'}
+                </div>
+                <div class="invoice-body" style="padding: 15px;">
+                    <h4 style="margin-bottom: 10px;">Sản phẩm:</h4>
+                    ${chiTietHtml}
+                </div>
+                <div class="invoice-footer" style="padding: 15px; background: #f8f9fa; border-radius: 0 0 10px 10px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="status ${statusClass}" style="color: ${getStatusColor(dh.trangThai)}; font-weight: bold;">Trạng Thái: ${dh.trangThai}</span>
+                    <span class="total" style="font-size: 1.1em; font-weight: bold;">Tổng Tiền: <strong style="color: #e74c3c;">${formatCurrency(totalOrderValue)}</strong></span>
+                </div>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+    console.log('✅ Đã render xong lịch sử mua hàng');
+}
+
+// ========== HÀM HỖ TRỢ MÀU TRẠNG THÁI ==========
+function getStatusColor(status) {
+    switch (status) {
+        case "Hoàn thành":
+            return "#28a745";
+        case "Đã giao":
+            return "#007bff";
+        case "Đang vận chuyển":
+            return "#ffc107";
+        case "Đang xử lý":
+            return "#fd7e14";
+        case "Đã hủy":
+            return "#dc3545";
+        default:
+            return "#6c757d";
+    }
+}
 // =========================================================
 // HÀM KIỂM TRA DỮ LIỆU - THÊM VÀO CUỐI trang.js
 // =========================================================
