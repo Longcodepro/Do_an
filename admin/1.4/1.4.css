@@ -1,102 +1,160 @@
-/* javascript */
-#div{
+/* CSS TỐI ƯU HÓA */
+
+/* 1. ĐỊNH DẠNG CHUNG & CONTAINER */
+#div {
     background-color: #E6F0FF; 
     padding: 10px;
-    color:blue;}
-#div1{
+    color: blue;
+}
+
+#div1 {
     border: 2px solid blue;
     padding: 10px;
-    display:flex;
+    display: flex;
     flex-direction: row;
     border-radius: 20px;
 }
-#logo{
+
+#div2 {
+    overflow-y: auto;
+    height: 100%;
+}
+
+/* 2. THÀNH PHẦN MENU (INPUTS, BUTTONS, LOGO) */
+/* CÁC THÀNH PHẦN CHUNG: Màu nền xanh-xám, viền xanh dương */
+#tim_theo_loai,
+.searchBox,
+#kinh_lup,
+#them_sp,
+#tang_giam {
+    background-color: rgba(79, 179, 229, 0.845);
+    border: 2px solid blue;
+    margin-left: 10px; /* Áp dụng cho hầu hết các thành phần */
+    cursor: pointer;
+}
+
+#logo {
     border: 2px solid blue;
     border-radius: 500px;
-    width: 3%;
-    height: 3%;
+    width: 50px;
+    height: 50px;
     margin-left: 1%;
 }
-#tim_theo_loai{
-    background-color: rgba(79, 179, 229, 0.845);
-    margin-left: 10px;
-    border: 2px solid blue;
+
+/* Tùy chỉnh riêng cho các Input/Select */
+#tim_theo_loai {
+    margin-left: 10px; /* Đã được gộp ở trên */
 }
-.searchBox{
-    margin-left: 10px;
-    background-color: rgba(79, 179, 229, 0.845);
+
+.searchBox {
     width: 35%;
-    border: 2px solid blue;
 }
-#kinh_lup{
-    background-color: rgba(79, 179, 229, 0.845);
-    cursor: pointer;
+
+/* Tùy chỉnh riêng cho các Button */
+#kinh_lup {
     margin-left: 2px;
-    border: 2px solid blue;
 }
-#them_sp{
-    background-color: rgba(79, 179, 229, 0.845);
-    cursor: pointer;
-    margin-left: 10px;
-    color:blue;
+
+#them_sp,
+#tang_giam {
+    color: blue;
     font-size: larger;
-    border: 2px solid blue;
 }
-#tang_giam{
-    background-color: rgba(79, 179, 229, 0.845);
-    cursor: pointer;
-    margin-left: 10px;
-    color:blue;
-    font-size: larger;
-    border: 2px solid blue;
+
+#tang_giam {
     border-radius: 20px;
     width: 10%;
 }
+
+/* Hover Effect */
 #tang_giam:hover {
     background-color: rgba(55, 150, 200, 0.845); 
     border-color: darkblue;
 }
-#div2{
-    overflow-y: auto;
-    height: 79%
-}
-#table{
+
+/* 3. BẢNG DỮ LIỆU (TABLE) */
+#table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 0.5%;
     font-size: medium;
 }
-.headTable{
+
+.headTable,
+.du_lieu {
     border: 1px solid blue;
 }
-.du_lieu{
-    border: 1px solid blue;
+
+.du_lieu {
     text-align: center;
     padding: 2px;
 }
-.xoa_sua{
+
+.xoa_sua {
     background-color: rgba(79, 179, 229, 0.845);
     color: blue;
     cursor: pointer;
 }
-.tieu_de_nhapSp{
-    width: 100%;
-    text-align: center;
-    font-size:x-large;
-    color:cornflowerblue
-}
-.khungThemSp{
+
+/* 4. FORM THÊM/SỬA SẢN PHẨM */
+.khungThemSp {
     border: 2px solid blue;
     padding: 10px;
     border-radius: 20px;
     margin-top: 2%;
-    display:flex;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    position: relative; /*chỉnh nút thoát*/
+    position: relative;
 }
-.nut_thoat{
+
+.tieu_de_nhapSp {
+    width: 100%;
+    text-align: center;
+    font-size: x-large;
+    color: cornflowerblue;
+}
+
+/* Input chung trong form */
+.khungThemSp input,
+.khungThemSp .selectMatHang {
+    width: 45%;
+    border: 2px solid blue;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.khungThemSp input {
+    height: 40px;
+}
+
+.khungThemSp .selectMatHang {
+    height: 91px;
+}
+
+.phanTramGiam {
+    height: 40px; /* Đảm bảo chiều cao phù hợp */
+    margin-left: 5%;
+}
+
+/* Cần giữ lại để định dạng textarea/box đặc biệt (nếu sử dụng) */
+.special {
+    width: 45%;
+    height: 91px;
+    margin-top: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    /* Loại bỏ các thuộc tính lặp lại */
+    /* border, border-radius đã được gộp ở trên */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 5. NÚT THOÁT & VÙNG ẢNH */
+.nut_thoat {
     position: absolute;
     left: 0px;
     top: 0px;
@@ -106,75 +164,45 @@
     border-color: blue;
     background-color: rgba(79, 179, 229, 0.845);
 }
-.khungThemSp input{
-    width: 45%;
-    height: 40px;
-    border: 2px solid blue;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-.khungThemSp .selectMatHang{
-    width: 45%;
-    height: 91px;
-    border: 2px solid blue;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-.special{
-    border: 2px solid blue;
-    width: 45%;
-    height: 91px;
-    border-radius: 5px;
-    margin-top: 10px;
-    padding: 5px;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    box-sizing: border-box;
-}
-.phanTramGiam{
-    height: 10%;
-    margin-left: 5%;
-}
 
-#divBaoAnh{
+#divBaoAnh {
     width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: center;
     margin-left: 2.7%;
 }
-.divBao{
-    display:flex;
+
+/* 6. NÚT XÁC NHẬN & RESET */
+.divBao {
+    display: flex;
     margin-top: 10px;
     flex-direction: row;
     gap: 10px;
     margin-right: 5%;
 }
-.divBao button{
+
+.divBao button {
     flex: 1;
     height: 50px;
     width: 80px;
     color: white;
     border-radius: 6px;
     cursor: pointer;
+    margin-top: 10px; /* Gộp từ .xac_nhan và .reset */
 }
-.divBao .xac_nhan{
+
+.divBao .xac_nhan {
     background-color: #007BFF;
-    margin-top: 10px;
 }
-.divBao .reset{
+
+.divBao .reset {
     background-color: #17a2b8;
-    margin-top: 10px;
     margin-left: 2%;
 }
 
-.inThongTin{
+.inThongTin {
     border: 2px solid blue;
     margin-top: 10px;
 }
-
-/* html */

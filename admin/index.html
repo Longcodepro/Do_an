@@ -1,107 +1,94 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
+<head>
     <script src="./code.js"></script>
-    <link  href="./style.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
 
     <script src="./1.2/1.2.js"></script>
     <link href="./1.2/1.2.css" rel="stylesheet">
+
     <script src="./1.3/1.3.js"></script>
     <link href="./1.3/1.3.css" rel="stylesheet">
+
     <script src="./1.4/1.4.js"></script>
     <link href="./1.4/1.4.css" rel="stylesheet">
 
-
     <script src="./1.5/1.5.js"></script>
     <link href="./1.5/1.5.css" rel="stylesheet">
+
     <script src="./1.6/1.6.js"></script>
     <link href="./1.6/1.6.css" rel="stylesheet">
+
     <script src="./1.7/1.7.js"></script>
     <link href="./1.7/1.7.css" rel="stylesheet">
+
     <script src="./1.8/1.8.js"></script>
     <link href="./1.8/1.8.css" rel="stylesheet">
-
-  </head>
-  <body>
-  <!-- Trang Dang Nhap -->
-  <div class="overlay" id="loginOverlay" >
-    <div class="login" id="closeX">
-                <!-- <span onclick="closeLogin()" class="closeX">X</span> -->
-                <h1>Đăng Nhập</h1>
-                <form id="loginForm">
-                    <div class="formtk">
-                        <input type="text" id="username" required >
-                        <label><span>Tài Khoản</span></label>
-                    </div>
-                    <div class="formtk">
-                        <input type="password" id="password" required >
-                        <label><span>Mật Khẩu </span></label> 
-                    </div>
-                    <div>
-                        <button type="submit" class="nutlogin">Đăng nhập</button>
-                        <p class="text">Bạn muốn mua hàng?<a href="2_1gop2_2.html">Home User</a></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-                    <!-- Trang chủ -->
-        <div class="home" >
-            <header class="topmenu">
-                <div class="logo">
-                <div class="logo-icon"><img src="../img/sgu.jpg" alt="Logo SGU"></div>
-                <span class="logo-text">  Điện máy<span class="highlight">SGU</span></span>
+</head>
+<body>
+    <div class="overlay" id="loginOverlay">
+        <div class="login" id="closeX">
+            <h1>Đăng Nhập</h1>
+            <form id="loginForm">
+                <div class="formtk">
+                    <input type="text" id="username" required>
+                    <label><span>Tài Khoản</span></label>
                 </div>
+                <div class="formtk">
+                    <input type="password" id="password" required>
+                    <label><span>Mật Khẩu </span></label>
+                </div>
+                <div>
+                    <button type="submit" class="nutlogin">Đăng nhập</button>
+                    <p class="text">Bạn muốn mua hàng?<a href="2_1gop2_2.html">Home User</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="home">
+        <header class="topmenu">
+            <div class="logo">
+                <div class="logo-icon"><img src="../img/sgu.jpg" alt="Logo SGU"></div>
+                <span class="logo-text"> Điện máy<span class="highlight">SGU</span></span>
+            </div>
 
-
-                <!-- <div class="search-bar" style="display: none;">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Bạn cần tìm gì hôm nay?">
-                </div> -->
-
-                <div class="actions">
+            <div class="actions">
                 <div class="action-item" id="nutlogin">
-                    <button onclick="openLogin()" class="nutlogin"><i class="fa-regular fa-user"></i>   Đăng Nhập</button>
+                    <button onclick="openLogin()" class="nutlogin"><i class="fa-regular fa-user"></i> Đăng Nhập</button>
                 </div>
                 <div class="action-item" id="nutaccount" style="display: none; position: relative;">
-                    <button onclick="account()" class="nutlogin" id="nutAdmin"><i class="fa-regular fa-user"></i>   Admin </button>
-                    <div id="menuAdmin" class="nutAdmin" > 
-                        <!-- <div style="padding: 5px;cursor: pointer;"><i class="fa-regular fa-user"></i>   Thông tin tài khoản</div> -->
+                    <button onclick="account()" class="nutlogin" id="nutAdmin"><i class="fa-regular fa-user"></i> Admin </button>
+                    <div id="menuAdmin" class="nutAdmin">
                         <hr style="border: solid 1px black;">
-                        <div style="padding: 5px;cursor: pointer;" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i>   Đăng xuất</div>
+                        <div style="padding: 5px;cursor: pointer;" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</div>
                     </div>
                 </div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="l-menu">
+                <div class="danhmuc" onclick="danhmuc()">
+                    <button class="nutlogin"><i class="fa-solid fa-bars"></i></button>
                 </div>
-            </header>
-            <div class="container" >
-                <div class="l-menu" >
-                    <div class="danhmuc" onclick="danhmuc()">
-                        <button class="nutlogin"><i class="fa-solid fa-bars"></i></button>
-                    </div>
-                    <div id="menuDanhmuc">
-                        <ul>
-                            <li onclick="quanLyKhachHang()"> Quản Lí Khách Hàng</li>
-                            <li onclick="quanLyLoaiSanPham()">Quản Lí Loại Sản Phẩm</li>
-                            <!--phần 1.4 -->
-                            <li onclick="hamChinh()">Quản Lí Danh Mục Sản Phẩm</li>
-                            <!--kết thúc 1.4-->
-                            <li onclick="quanLyNhapHang()">Quản Lí Nhập Sản Phẩm</li>
-                            <li onclick="quanLyGiaBan()" >Quản Lí Giá Bán</li>  <!-- 1.6 -->
-                            <li onclick="quanLyDonHang()">Quản Lí Đơn Đặt Hàng Của Khách Hàng</li>
-                            <li onclick="quanLySoLuongTon()">Quản Lí Số Lượng Tồn Của Sản Phẩm</li>
-                        </ul>
-                    </div>
+                <div id="menuDanhmuc">
+                    <ul>
+                        <li onclick="quanLyKhachHang()"> Quản Lí Khách Hàng</li>
+                        <li onclick="quanLyLoaiSanPham()">Quản Lí Loại Sản Phẩm</li>
+                        <li onclick="quanLiSanPham()">Quản Lí Danh Mục Sản Phẩm</li>
+                        <li onclick="quanLyNhapHang()">Quản Lí Nhập Sản Phẩm</li>
+                        <li onclick="quanLyGiaBan()">Quản Lí Giá Bán</li> <li onclick="quanLyDonHang()">Quản Lí Đơn Đặt Hàng Của Khách Hàng</li>
+                        <li onclick="quanLySoLuongTon()">Quản Lí Số Lượng Tồn Của Sản Phẩm</li>
+                    </ul>
                 </div>
-                            <!-- 1.2 -->
-                <div class="content" id="noi_dung" style="overflow : auto; ">
-                  <h2>Chào mừng đến với trang quản trị</h2>
-                </div>
-              <!-- 1.7: Quản lý đơn hàng -->
-                <div class="content" id="noi_dung_donhang" style="display:none; overflow:auto;">
-                    <h2>Quản lý đơn hàng</h2>
-                    <div id="bangDonHang"></div>
-                </div>
+            </div>
+            <div class="content" id="noi_dung" style="overflow : auto;">
+                <h2>Chào mừng đến với trang quản trị</h2>
+            </div>
+            <div class="content" id="noi_dung_donhang" style="display:none; overflow:auto;">
+                <h2>Quản lý đơn hàng</h2>
+                <div id="bangDonHang"></div>
+            </div>
+        </div>
     </div>
-  </div>
- 
 </body>
 </html>

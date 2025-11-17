@@ -17,15 +17,13 @@ const trang = {
                 </div>
             </div>
             
-            <!-- PHẦN GIỚI THIỆU CÔNG TY -->
             <div class="company-intro-section">
                 <div class="intro-container">
                     <div class="intro-header">
                         <h2>🏢 ĐIỆN MÁY SGU</h2>
                         <p class="slogan">Uy Tín - Chất Lượng - Giá Tốt Nhất</p>
                     </div>
-                    <!-- Nội dung giới thiệu... -->
-                </div>
+                    </div>
             </div>
             
             <div class="lon4">
@@ -75,7 +73,7 @@ const trang = {
 };
 
 // ============================================================================
-// 2. HÀM HỖ TRỢ CHUNG (LocalStorage, Format)
+// 2. HÀM HỖ TRỢ CHUNG (LocalStorage, Format, Tìm kiếm sản phẩm)
 // ============================================================================
 
 function setlocalStorage(key, data) {
@@ -94,15 +92,43 @@ function formatCurrency(amount) {
     }).format(amount);
 }
 
+// 2.4. Hỗ trợ: Tìm sản phẩm theo maSP từ localStorage
+function findProductById(maSP) {
+    const allProducts = getlocalStorage('product') || [];
+    // Phải đảm bảo maSP cùng kiểu dữ liệu khi so sánh (dùng == hoặc ép kiểu)
+    return allProducts.find(p => p.maSP == maSP);
+}
+
+
 // ============================================================================
-// 3. PHẦN QUẢN LÝ GIỎ HÀNG
+// 3. PHẦN QUẢN LÝ GIỎ HÀNG (Đã cập nhật kiểm tra tồn kho)
 // ============================================================================
 
 // 3.1. Thêm sản phẩm vào giỏ hàng
 function addToCart(maSP) {
     let cart = getlocalStorage('cart') || [];
+    const product = findProductById(maSP);
+    
+    if (!product) {
+        alert('❌ Sản phẩm không tồn tại!');
+        return;
+    }
+    
+    // Tìm sản phẩm hiện có trong giỏ
     const existingItemIndex = cart.findIndex(item => item.maSP == maSP);
+    let currentQuantityInCart = 0;
+    
+    if (existingItemIndex > -1) {
+        currentQuantityInCart = cart[existingItemIndex].soLuong;
+    }
 
+    // KIỂM TRA SỐ LƯỢNG TỒN KHO TRƯỚC KHI THÊM
+    if (currentQuantityInCart >= product.soLuong) {
+        alert(`❌ Rất tiếc! Số lượng sản phẩm "${product.tenSP}" trong kho chỉ còn ${product.soLuong} sản phẩm.`);
+        return; // Dừng, không thêm vào giỏ
+    }
+    
+    // Tiến hành thêm hoặc tăng số lượng
     if (existingItemIndex > -1) {
         cart[existingItemIndex].soLuong += 1;
     } else {
@@ -114,14 +140,24 @@ function addToCart(maSP) {
     toggleCart(true);
 }
 
-// 3.2. Thay đổi số lượng sản phẩm
+// 3.2. Thay đổi số lượng sản phẩm (Đã cập nhật kiểm tra tồn kho)
 function changeQuantity(maSP, delta) {
     let cart = getlocalStorage('cart') || [];
     const item = cart.find(item => item.maSP == maSP);
 
     if (item) {
-        item.soLuong += delta;
-        if (item.soLuong <= 0) {
+        const product = findProductById(maSP);
+        const newQuantity = item.soLuong + delta;
+
+        if (newQuantity > 0) {
+            // Kiểm tra tồn kho chỉ khi cố gắng TĂNG số lượng (delta > 0)
+            if (delta > 0 && newQuantity > product.soLuong) {
+                 alert(`❌ Số lượng tối đa cho sản phẩm "${product.tenSP}" là ${product.soLuong}.`);
+                 return; // Không cho phép tăng nếu vượt tồn kho
+            }
+            item.soLuong = newQuantity;
+        } else if (newQuantity <= 0) {
+            // Xóa sản phẩm nếu số lượng về 0 hoặc âm
             cart = cart.filter(i => i.maSP != maSP);
         }
     }
@@ -210,7 +246,7 @@ function toggleCart(show = true) {
 }
 
 // ============================================================================
-// 4. PHẦN THANH TOÁN
+// 4. PHẦN THANH TOÁN (Đã cập nhật trừ số lượng)
 // ============================================================================
 
 // 4.1. Mở form thanh toán
@@ -219,7 +255,8 @@ function openCheckoutForm() {
     
     if (!user) {
         alert('❌ Vui lòng đăng nhập để thanh toán!');
-        moFormdnhap();
+        // Thay moFormdnhap() bằng hàm mở form đăng nhập thực tế của bạn
+        // moFormdnhap(); 
         return;
     }
 
@@ -314,7 +351,7 @@ function closeCheckoutForm() {
     }
 }
 
-// 4.3. Xác nhận thanh toán
+// 4.3. Xác nhận thanh toán (ĐÃ CẬP NHẬT TRỪ SỐ LƯỢNG TỒN KHO)
 function confirmCheckout(totalAmount) {
     const address = document.getElementById('checkout-address').value.trim();
     const paymentMethod = document.getElementById('checkout-payment').value;
@@ -325,6 +362,12 @@ function confirmCheckout(totalAmount) {
         alert('❌ Vui lòng nhập địa chỉ giao hàng!');
         document.getElementById('checkout-address').focus();
         return;
+    }
+
+    // BỔ SUNG: KIỂM TRA LẠI TỒN KHO LẦN CUỐI TRƯỚC KHI TẠO ĐƠN
+    if (!checkFinalStock(cart)) {
+        // checkFinalStock sẽ tự báo lỗi nếu có
+        return; 
     }
 
     const orderData = {
@@ -341,7 +384,13 @@ function confirmCheckout(totalAmount) {
         orderDate: new Date().toISOString()
     };
 
+    // 1. TRỪ SỐ LƯỢNG SẢN PHẨM TRƯỚC KHI LƯU ĐƠN HÀNG
+    updateProductStock(cart);
+
+    // 2. LƯU ĐƠN HÀNG VÀO LOCALSTORAGE
     saveOrderToLocalStorage(orderData);
+    
+    // 3. DỌN DẸP
     localStorage.removeItem('cart');
     closeCheckoutForm();
     toggleCart(false);
@@ -408,8 +457,9 @@ function generateOrderId(existingBills) {
     return 'DH' + String(maxId + 1).padStart(3, '0');
 }
 
+
 // ============================================================================
-// 5. PHẦN LỊCH SỬ MUA HÀNG
+// 5. PHẦN LỊCH SỬ MUA HÀNG (Giữ nguyên)
 // ============================================================================
 
 // 5.1. Hàm gọi khi click menu "Lịch Sử Đơn Hàng"
@@ -569,10 +619,53 @@ function renderPurchaseHistory() {
 }
 
 // ============================================================================
-// 6. KHỞI TẠO KHI TRANG LOAD
+// 6. KHỞI TẠO KHI TRANG LOAD (Giữ nguyên)
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Trang đã load xong');
     renderCart();
 });
+
+
+// ============================================================================
+// 7. HÀM XỬ LÝ SỐ LƯỢNG TỒN KHO (MỚI)
+// ============================================================================
+
+// 7.1. Cập nhật số lượng tồn kho sau khi thanh toán
+function updateProductStock(cartItems) {
+    let allProducts = getlocalStorage('product') || [];
+
+    cartItems.forEach(item => {
+        const productIndex = allProducts.findIndex(p => p.maSP == item.maSP);
+        
+        if (productIndex > -1) {
+            // Trừ số lượng đã mua
+            allProducts[productIndex].soLuong -= item.soLuong;
+            // Đảm bảo số lượng không bị âm
+            if (allProducts[productIndex].soLuong < 0) {
+                 allProducts[productIndex].soLuong = 0;
+            }
+        }
+    });
+
+    setlocalStorage('product', allProducts);
+    console.log('✅ Đã trừ số lượng tồn kho thành công.');
+}
+
+// 7.2. Kiểm tra lại tồn kho lần cuối
+function checkFinalStock(cartItems) {
+    const allProducts = getlocalStorage('product') || [];
+    let hasError = false;
+
+    for (const item of cartItems) {
+        const product = allProducts.find(p => p.maSP == item.maSP);
+
+        if (product && item.soLuong > product.soLuong) {
+            alert(`❌ Lỗi tồn kho: Sản phẩm "${product.tenSP}" chỉ còn ${product.soLuong} trong kho, nhưng bạn yêu cầu ${item.soLuong}. Vui lòng cập nhật giỏ hàng.`);
+            hasError = true;
+            break;
+        }
+    }
+    return !hasError;
+}
