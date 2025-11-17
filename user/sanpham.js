@@ -4,6 +4,13 @@
   const submenu1 = document.querySelector(".loai");
   const thitiet1 = document.getElementById("chitiet");
 
+  let giaMinHienTai = 0; // Giá trị tối thiểu
+  let giaMaxHienTai = Infinity;
+  const giaMinElement = document.getElementById("giaMin");
+  const giaMaxElement = document.getElementById("giaMax");
+  const btnLocGiaElement = document.getElementById("btnLocGia");
+  const loiLocGiaElement = document.getElementById("loiLocGia");
+
   // **[ĐÃ CẬP NHẬT]** Lấy element cho lọc giá
   const locGiaElement = document.getElementById("locGia");
 
@@ -44,24 +51,86 @@
 
   // ======== [MỚI] LỌC SẢN PHẨM THEO GIÁ =========
   function locTheoGia(ds, khoangGia) {
-    if (khoangGia === "all") return ds;
+  // 1. Lọc theo khoảng giá cố định (nếu đang dùng select box cũ)
+  // Nếu bạn muốn bỏ hẳn select box, có thể xóa logic switch/case này.
+  if (khoangGia !== "all" && khoangGia !== "tuychinh") {
+      return ds.filter((sp) => {
+          const giaBan = sp.gsht || parsePrice(sp.giaHienTai);
+          switch (khoangGia) {
+              case "duoi5":
+                  return giaBan < 5000000;
+              case "5den10":
+                  return giaBan >= 5000000 && giaBan <= 10000000;
+              case "10den20":
+                  return giaBan > 10000000 && giaBan <= 20000000;
+              case "tren20":
+                  return giaBan > 20000000;
+              default:
+                  return true;
+          }
+      });
+  }
 
-    return ds.filter((sp) => {
-      // Dùng gsht (giá số hiện tại) nếu có, nếu không thì parse giaHienTai
-      const giaBan = sp.gsht || parsePrice(sp.giaHienTai);
+  // 2. Lọc theo khoảng giá TÙY CHỈNH (giá từ ... đến ...)
+  // Chỉ lọc theo giá tùy chỉnh nếu nó đã được thiết lập.
+  if (giaMinHienTai !== 0 || giaMaxHienTai !== Infinity) {
+      return ds.filter((sp) => {
+          const giaBan = sp.gsht || parsePrice(sp.giaHienTai);
+          return giaBan >= giaMinHienTai && giaBan <= giaMaxHienTai;
+      });
+  }
 
-      switch (khoangGia) {
-        case "duoi5":
-          return giaBan < 5000000;
-        case "5den10":
-          return giaBan >= 5000000 && giaBan <= 10000000;
-        case "10den20":
-          return giaBan > 10000000 && giaBan <= 20000000;
-        case "tren20":
-          return giaBan > 20000000;
-        default:
-          return true;
-      }
+  // Trường hợp mặc định
+  return ds;
+  }
+  // **[MỚI]** Lắng nghe sự kiện click cho nút lọc giá tùy chỉnh
+  if (btnLocGiaElement) {
+    btnLocGiaElement.addEventListener("click", () => {
+        const minStr = giaMinElement.value.trim();
+        const maxStr = giaMaxElement.value.trim();
+
+        // Chuyển đổi và kiểm tra giá trị
+        let min = minStr === "" ? 0 : Number(minStr);
+        let max = maxStr === "" ? Infinity : Number(maxStr);
+
+        // Kiểm tra lỗi đầu vào
+        if (isNaN(min) || isNaN(max) || min < 0 || max < 0) {
+            loiLocGiaElement.textContent = "Vui lòng nhập giá trị số hợp lệ.";
+            return;
+        }
+
+        if (max !== Infinity && min > max) {
+            loiLocGiaElement.textContent = "Giá tối thiểu không được lớn hơn giá tối đa.";
+            return;
+        }
+
+        // Đặt lại các biến trạng thái
+        loiLocGiaElement.textContent = "";
+        giaMinHienTai = min;
+        giaMaxHienTai = max;
+
+        // Bỏ chọn (reset) lọc giá cố định nếu có
+        if (locGiaElement) {
+            locGiaElement.value = "all";
+            giaLocHienTai = "tuychinh"; // Đánh dấu đang dùng lọc tùy chỉnh
+        }
+
+        locSanPhamTongHop(); // Gọi hàm lọc tổng hợp
+    });
+  }
+
+  // **[CẬP NHẬT]** Lắng nghe sự kiện thay đổi lọc giá cố định (nếu vẫn dùng)
+  if (locGiaElement) {
+    locGiaElement.addEventListener("change", (e) => {
+        giaLocHienTai = e.target.value;
+        
+        // Reset lọc tùy chỉnh khi chuyển sang lọc cố định
+        giaMinHienTai = 0;
+        giaMaxHienTai = Infinity;
+        if (giaMinElement) giaMinElement.value = "";
+        if (giaMaxElement) giaMaxElement.value = "";
+        if (loiLocGiaElement) loiLocGiaElement.textContent = "";
+  locSanPhamTongHop();
     });
   }
 

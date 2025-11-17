@@ -56,6 +56,14 @@ const trang = {
                         <option value="10den20">Từ 10.000.000 - 20.000.000 VNĐ</option>
                         <option value="tren20">Trên 20.000.000 VNĐ</option>
                     </select>
+                    <div id="locGiaTuyChinh">
+                        <label for="giaMin">Giá từ (VNĐ):</label>
+                        <input type="number" id="giaMin" placeholder="0"> <br>
+                        <label for="giaMax">đến (VNĐ):</label>
+                        <input type="number" id="giaMax" placeholder="20000000">
+                        <button id="btnLocGia">Lọc</button>
+                        <p id="loiLocGia" style="color: red;"></p>
+                    </div>
                 </div>
                 <div class="menu-conten" id="products"></div>
                 <ul id="phantrang" class="phantrang"></ul>
