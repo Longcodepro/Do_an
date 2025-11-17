@@ -350,21 +350,29 @@ function showStatusPopup(maDH) {
     
     // Xác nhận thay đổi trạng thái
     document.getElementById("confirmStatus").addEventListener("click", () => {
-        const newStatus = document.getElementById("newStatus").value;
-        if (!newStatus) {
-            alert("Vui lòng chọn trạng thái");
-            return;
-        }
+    const newStatus = document.getElementById("newStatus").value;
+    if (!newStatus) {
+        alert("Vui lòng chọn trạng thái");
+        return;
+    }
 
+    const confirmed = confirm(`Bạn có chắc muốn cập nhật trạng thái đơn hàng ${maDH} thành "${newStatus}" không?`);
+
+    if (confirmed) {
         const rows = getlocalStorage("bill");
         const order = rows.find(dh => dh.maDH === maDH);
         order.trangThai = newStatus;
         setlocalStorage("bill", rows);
 
-        alert(`Đã cập nhật trạng thái đơn hàng ${maDH} thành "${newStatus}"`);
+        alert(`Trạng thái đơn hàng ${maDH} đã được cập nhật thành công.`);
         popup.remove();
         quanLyDonHang();
-    });
+    } else {
+        alert("Đã hủy thao tác cập nhật.");
+        popup.remove();
+    }
+});
+
 }
 // Trong file 1.7.js, đảm bảo hàm updateOrderStatus hoạt động tốt
 function updateOrderStatus(maDH, newStatus) {
