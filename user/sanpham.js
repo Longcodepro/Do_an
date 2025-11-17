@@ -274,7 +274,7 @@
       phantrang1.appendChild(cuoi);
     }
     const sau = document.createElement("li");
-    sau.textContent = "&raquo;";
+    sau.textContent = ">>";
     sau.classList.add("arrow");
     sau.addEventListener("click", () => {
       if (trangHienTai < tongTrang) {
