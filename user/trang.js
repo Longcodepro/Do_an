@@ -1,5 +1,5 @@
 // ============================================================================
-// FILE: trang.js - QUẢN LÝ TRANG, GIỎ HÀNG, THANH TOÁN, LỊCH SỬ
+// FILE: trang.js - QUẢN LÝ TRANG, GIỎ HÀNG, THANH TOÁN, LỊCH SỬ (CẢI TIẾN)
 // ============================================================================
 
 // ============================================================================
@@ -339,10 +339,10 @@ function toggleCart(show = true) {
 }
 
 // ============================================================================
-// 4. PHẦN THANH TOÁN
+// 4. PHẦN THANH TOÁN (CẢI TIẾN)
 // ============================================================================
 
-// 4.1. Mở form thanh toán
+// 4.1. Mở form thanh toán với lựa chọn địa chỉ
 function openCheckoutForm() {
     const user = getlocalStorage('currentUser');
     
@@ -375,6 +375,8 @@ function openCheckoutForm() {
         }
     });
 
+    const userAddress = user.diaChi || '';
+
     const checkoutHTML = `
         <div class="checkout-overlay active" id="checkoutOverlay">
             <div class="checkout-container">
@@ -396,15 +398,41 @@ function openCheckoutForm() {
                     </div>
 
                     <div class="form-group">
-                        <label for="checkout-address">
-                            <i class="fa-solid fa-location-dot"></i> Địa chỉ giao hàng
+                        <label>
+                            <i class="fa-solid fa-location-dot"></i> Chọn địa chỉ giao hàng
                         </label>
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                                <input 
+                                    type="radio" 
+                                    name="addressType" 
+                                    value="account" 
+                                    ${userAddress ? 'checked' : ''}
+                                    onchange="toggleAddressInput()"
+                                >
+                                Địa chỉ tài khoản
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                                <input 
+                                    type="radio" 
+                                    name="addressType" 
+                                    value="custom"
+                                    ${!userAddress ? 'checked' : ''}
+                                    onchange="toggleAddressInput()"
+                                >
+                                Địa chỉ khác
+                            </label>
+                        </div>
+                        
+                        <div id="accountAddressDisplay" style="display: ${userAddress ? 'block' : 'none'}; padding: 10px; background: #f0f0f0; border-radius: 5px; margin-bottom: 10px;">
+                            <strong>📍 Địa chỉ:</strong> ${userAddress || 'Chưa có địa chỉ'}
+                        </div>
+                        
                         <input 
                             type="text" 
                             id="checkout-address" 
-                            value="${user.diaChi || ''}" 
                             placeholder="Nhập địa chỉ giao hàng"
-                            required
+                            style="display: ${!userAddress ? 'block' : 'none'};"
                         >
                     </div>
 
@@ -434,6 +462,21 @@ function openCheckoutForm() {
     document.body.insertAdjacentHTML('beforeend', checkoutHTML);
 }
 
+// 4.1.1. Toggle hiển thị input địa chỉ
+function toggleAddressInput() {
+    const addressType = document.querySelector('input[name="addressType"]:checked').value;
+    const accountAddressDisplay = document.getElementById('accountAddressDisplay');
+    const customAddressInput = document.getElementById('checkout-address');
+    
+    if (addressType === 'account') {
+        accountAddressDisplay.style.display = 'block';
+        customAddressInput.style.display = 'none';
+    } else {
+        accountAddressDisplay.style.display = 'none';
+        customAddressInput.style.display = 'block';
+    }
+}
+
 // 4.2. Đóng form thanh toán
 function closeCheckoutForm() {
     const overlay = document.getElementById('checkoutOverlay');
@@ -442,16 +485,28 @@ function closeCheckoutForm() {
     }
 }
 
-// 4.3. Xác nhận thanh toán
+// 4.3. Xác nhận thanh toán (CẢI TIẾN - dùng confirm)
 function confirmCheckout(totalAmount) {
-    const address = document.getElementById('checkout-address').value.trim();
+    const addressType = document.querySelector('input[name="addressType"]:checked').value;
     const paymentMethod = document.getElementById('checkout-payment').value;
     const cart = getlocalStorage('cart') || [];
     const user = getlocalStorage('currentUser');
+    
+    let finalAddress = '';
+    
+    // Lấy địa chỉ theo lựa chọn
+    if (addressType === 'account') {
+        finalAddress = user.diaChi || '';
+    } else {
+        finalAddress = document.getElementById('checkout-address').value.trim();
+    }
 
-    if (!address) {
+    // Validate địa chỉ
+    if (!finalAddress) {
         alert('❌ Vui lòng nhập địa chỉ giao hàng!');
-        document.getElementById('checkout-address').focus();
+        if (addressType === 'custom') {
+            document.getElementById('checkout-address').focus();
+        }
         return;
     }
 
@@ -460,10 +515,23 @@ function confirmCheckout(totalAmount) {
         return; 
     }
 
+    // ✨ THAY ĐỔI: Dùng confirm thay vì alert
+    const confirmMessage = `🛒 XÁC NHẬN ĐẶT HÀNG\n\n` +
+                          `📦 Tổng tiền: ${formatCurrency(totalAmount)}\n` +
+                          `📍 Địa chỉ: ${finalAddress}\n` +
+                          `💳 Thanh toán: ${paymentMethod}\n\n` +
+                          `Bạn có chắc chắn muốn đặt hàng?`;
+    
+    if (!confirm(confirmMessage)) {
+        // Nếu người dùng chọn "Hủy", không làm gì cả - form vẫn mở
+        return;
+    }
+
+    // Nếu người dùng chọn "OK", tiếp tục xử lý đơn hàng
     const orderData = {
         cart: cart,
         totalAmount: totalAmount,
-        address: address,
+        address: finalAddress,
         paymentMethod: paymentMethod,
         customerInfo: {
             maKH: user.maKH,
@@ -485,7 +553,8 @@ function confirmCheckout(totalAmount) {
     closeCheckoutForm();
     toggleCart(false);
 
-    alert(`✅ Đặt hàng thành công!\n\n📦 Tổng tiền: ${formatCurrency(totalAmount)}\n📍 Địa chỉ: ${address}\n💳 Thanh toán: ${paymentMethod}`);
+    // Thông báo thành công
+    alert(`✅ Đặt hàng thành công!\n\n📦 Tổng tiền: ${formatCurrency(totalAmount)}\n📍 Địa chỉ: ${finalAddress}\n💳 Thanh toán: ${paymentMethod}\n\n🎉 Cảm ơn bạn đã mua hàng!`);
     
     renderCart();
 }

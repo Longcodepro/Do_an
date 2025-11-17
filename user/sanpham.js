@@ -426,6 +426,37 @@
     locSanPhamTongHop();
   }
 
+  function timKiemNangCao(tukhoa, maLoaiMoi, khoangGiaMoi) {
+    // 1. Cập nhật trạng thái Từ khóa (Tên sản phẩm)
+    currentKeyword = tukhoa.trim().toLowerCase();
+
+    // 2. Cập nhật trạng thái Loại sản phẩm
+    currentMaLoai = String(maLoaiMoi);
+
+    // 3. Cập nhật trạng thái Khoảng giá cố định
+    giaLocHienTai = khoangGiaMoi;
+
+    // 4. Đảm bảo rằng lọc tùy chỉnh bị reset khi dùng lọc cố định
+    giaMinHienTai = 0;
+    giaMaxHienTai = Infinity;
+    if (giaMinElement) giaMinElement.value = "";
+    if (giaMaxElement) giaMaxElement.value = "";
+    if (loiLocGiaElement) loiLocGiaElement.textContent = "";
+
+    // 5. Cập nhật trạng thái hiển thị cho danh mục
+    const danhMucItems = document.querySelectorAll(".sanpham1");
+    danhMucItems.forEach((item) => {
+        item.classList.toggle(
+            "active",
+            String(item.dataset.mamh) === currentMaLoai
+        );
+    });
+
+    // 6. Gọi hàm lọc tổng hợp để áp dụng TẤT CẢ các tiêu chí
+    locSanPhamTongHop();
+  }
+
+
   // ======== THÊM SẢN PHẨM MỚI (Giữ nguyên) =========
   function themSpVoDanhSach(spMoi) {
     // 1. Cập nhật mảng gốc và Local Storage
