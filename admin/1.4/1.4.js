@@ -20,21 +20,21 @@ function setlocalStorage(key, value){
 
 // truyền vô key để lấy data
 function getlocalStorage(key){
-    const data = localStorage.getItem(key);
-    
-    // Nếu data không tồn tại (null) hoặc là chuỗi rỗng (""), trả về mảng rỗng
-    if (!data || data === 'null' || data === '') {
-        return [];
-    }
-    
-    try {
-        // Cố gắng parse JSON
-        return JSON.parse(data);
-    } catch (e) {
-        // Nếu parse thất bại (JSON không hợp lệ), in lỗi ra console và trả về mảng rỗng
-        console.error("Lỗi parse JSON cho key:", key, e);
-        return [];
-    }
+    const data = localStorage.getItem(key);
+    
+    // Nếu data không tồn tại (null) hoặc là chuỗi rỗng (""), trả về mảng rỗng
+    if (!data || data === 'null' || data === '') {
+        return [];
+    }
+    
+    try {
+        // Cố gắng parse JSON
+        return JSON.parse(data);
+    } catch (e) {
+        // Nếu parse thất bại (JSON không hợp lệ), in lỗi ra console và trả về mảng rỗng
+        console.error("Lỗi parse JSON cho key:", key, e);
+        return [];
+    }
 }
 
 let rowsSp = getlocalStorage('product');  // tạo biến bảng sản phẩm cục bộ
@@ -115,7 +115,7 @@ function menu(div) {
     const div2 = document.querySelector('#div2');
     div2.remove();
     const divTong = document.querySelector('#noi_dung');  
-    rowsSp = rowsSp1;   // cập lại danh sách sản phẩm hiện tại
+    rowsSp = rowsSp1;   // cập lại danh sách sản phẩm hiện tại
     content(divTong);
   });
 
@@ -175,7 +175,7 @@ function menu(div) {
 
 // hàm đổi chữ tăng/giảm
 function doi_chieu(chieu) {
-    return chieu == "Tăng" ? "Giảm" : "Tăng";
+    return chieu == "Tăng" ? "Giảm" : "Tăng";
 }
 // sort bảng theo mã sản phẩm
 function sort(chieu) {
@@ -232,12 +232,14 @@ function themSanPham() {
   tenSp.id = 'tenSp';
   d.appendChild(tenSp);
 
-  // số lượng
+  // số lượng tồn
   const soLuong = document.createElement('input');
   soLuong.type = 'number';
   soLuong.min = '1'; // tối thiểu là 1
   soLuong.placeholder = 'Số lượng sản phẩm...';
   soLuong.id = 'soLuong';
+  soLuong.value = 0;
+  soLuong.readOnly = "true";
   d.appendChild(soLuong);
 
   // giá bán
@@ -345,10 +347,10 @@ function themSanPham() {
     // 4. Xóa form và cập nhật bảng
     d.innerHTML = '';
     rowsSp = getlocalStorage("product"); // Cập nhật lại biến rowsSp cục bộ
-    const div2 = document.querySelector('#div2');   //bắt div2 và xóa
+    const div2 = document.querySelector('#div2');   //bắt div2 và xóa
     div2.remove();
     const divTong = document.querySelector('#noi_dung');
-    content(divTong);   //tạo một table mới
+    content(divTong);   //tạo một table mới
   })
 
   // nút button reset
@@ -357,7 +359,7 @@ function themSanPham() {
   reset.classList.add('reset');
   bao.appendChild(reset);
   reset.addEventListener('click', () => {
-    themSanPham();  // gọi lại
+    themSanPham();  // gọi lại
   })
 }
 
@@ -464,7 +466,7 @@ function check(truyenAnh, text, ma_cu) {  
 
     giaGoc: formatCurrency(giaBanNumber), // "8.500.000 ₫"
     giaHienTai: formatCurrency(giaHienTaiNumber), // "7.650.000 ₫"
-    
+    
     giamGiaFormatted: giamGiaNumber // Sửa lỗi: dùng giamGiaNumber
   }
   
@@ -476,9 +478,18 @@ function check(truyenAnh, text, ma_cu) {  
 
 // hàm thêm sản phẩm vô list sản phẩm
 function themSpVoDanhSach(thong_tin, rowsSp1) {
-  rowsSp1.push(thong_tin);  // đẩy thêm một phần tử vô cuối mảng 
+  // ============================================================
+  // 1️⃣ THÊM SẢN PHẨM VÀO BẢNG PRODUCT
+  // ============================================================
+  rowsSp1.push(thong_tin);
   setlocalStorage("product", rowsSp1);
-  console.log('Đã thêm sản phẩm này vô danh sach: ' + JSON.stringify(thong_tin));  // in ra thông tin trong console để kiểm tra 
+  console.log('✅ Đã thêm sản phẩm vào danh sách: ' + JSON.stringify(thong_tin));
+  
+  // ============================================================
+  // 2️⃣ (ĐÃ XÓA) PHẦN TẠO PHIẾU NHẬP HÀNG TỰ ĐỘNG
+  // ============================================================
+  
+  console.log('🎉 Hoàn tất thêm sản phẩm!');
 }
 
 // hàm in ra content
@@ -579,11 +590,11 @@ function content(div){
 // hiện thị
 function nut_hien_an(idSp){
   const row = rowsSp.find( row => row.maSP === idSp);
-  row.hienAn = row.hienAn == 1 ? 0 : 1;
+  row.hienAn = row.hienAn == 1 ? 0 : 1;
   console.log('Nhấn nút hiện/ẩn sản phẩm có mã: ' + idSp);
   console.log('Hien/an: '+ row.hienAn);
 
-  const rowsSp1 = getlocalStorage("product");   // cập nhập
+  const rowsSp1 = getlocalStorage("product");   // cập nhập
   const row1 = rowsSp1.find(row => row.maSP === idSp);
   row1.hienAn = row.hienAn;
   setlocalStorage("product", rowsSp1);
@@ -619,7 +630,7 @@ function xoaSp(idSp){
 function suaSp(idSp){
   //lấy hàng cần sửa
   const row = rowsSp.find( row => row.maSP === idSp);
-  const ma_sp_cu = row.maSP; // Lưu lại mã sản phẩm cũ để dùng cho hàm check/suaSpVoDanhSach
+  const ma_sp_cu = row.maSP; // Lưu lại mã sản phẩm cũ để dùng cho hàm check/suaSpVoDanhSach
 
   const d = document.querySelector('#div2');
   d.innerHTML = '';
@@ -664,6 +675,7 @@ function suaSp(idSp){
   soLuong.value = row.soLuong;  // đặt sẵn giá trị
   soLuong.placeholder = "Số lượng";
   soLuong.id = 'soLuong';
+  soLuong.readOnly = "true";    // chỉ cho xem không cho sửa
   d.appendChild(soLuong);
   // giá bán
   const giaBan = document.createElement('input');

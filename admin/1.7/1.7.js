@@ -1,3 +1,4 @@
+
 // CÁC HÀM LẤY VÀ CẬP NHẬP DỮ LIỆU TỪ LOCAL STORAGE
 function setlocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
@@ -198,34 +199,26 @@ function displayDonHang(allRows, fromDateStr = null, toDateStr = null, statusFil
             tr.appendChild(td);
         });
 
-     // Cột Thao tác 
-    const tdActions = document.createElement("td");
-    const divActions = document.createElement("div");
-    divActions.style.display = 'flex';
-    divActions.style.gap = '5px';
-    divActions.style.justifyContent = 'center';
+        // Cột Thao tác 
+        const tdActions = document.createElement("td");
+        const divActions = document.createElement("div");
+        divActions.style.display = 'flex';
+        divActions.style.gap = '5px';
+        divActions.style.justifyContent = 'center';
 
-    const btnDetail = document.createElement("button");
-    btnDetail.textContent = "Chi Tiết";
-    btnDetail.className = "detail";
+        const btnDetail = document.createElement("button");
+        btnDetail.textContent = "Chi Tiết";
+        btnDetail.className = "detail";
 
-    btnDetail.addEventListener("click", () => {
-        showChiTietDonHang(dh.maDH, dh.khachHang);
-    });
+        btnDetail.addEventListener("click", () => {
+            showChiTietDonHang(dh.maDH, dh.khachHang);
+        });
 
-    // Nút Cập nhật
-    const btnUpdate = document.createElement("button");
-    btnUpdate.textContent = "Cập Nhật";
-    btnUpdate.className = "update-button";
-    btnUpdate.addEventListener("click", () => {
-        showUpdatePopup(dh.maDH, dh.trangThai);
-    });
-
-    divActions.appendChild(btnDetail);
-    divActions.appendChild(btnUpdate);
-    tdActions.appendChild(divActions);
-    tr.appendChild(tdActions);
-    tbody.appendChild(tr);
+        divActions.appendChild(btnDetail);
+        tdActions.appendChild(divActions);
+        tr.appendChild(tdActions);
+        
+        tbody.appendChild(tr);
     });
 
     table.appendChild(tbody);
@@ -315,58 +308,71 @@ function showChiTietDonHang(maDH, tenKH) {
     table.appendChild(tbody);
     wrap.appendChild(table);
     noiDung.appendChild(wrap);
+
+    const btnUpdateStatus = document.createElement("button");
+    btnUpdateStatus.textContent = "Cập nhật trạng thái đơn hàng";
+    btnUpdateStatus.className = "detail";
+    btnUpdateStatus.style.marginTop = "20px";
+    btnUpdateStatus.addEventListener("click", () => {
+        showStatusPopup(maDH);
+    });
+
+    noiDung.appendChild(btnUpdateStatus);
 }
-// Hiển thị popup cập nhật trạng thái
-function showUpdatePopup(maDH, currentStatus) {
+
+
+function showStatusPopup(maDH) {
     const popup = document.createElement("div");
     popup.className = "status-popup";
-
     popup.innerHTML = `
         <div class="popup-box">
-            <h3>Cập nhật trạng thái đơn hàng: ${maDH}</h3>
-            <label>Trạng thái mới:</label>
+            <h3>Cập nhật trạng thái</h3>
             <select id="newStatus">
+                <option value="">-- Cập nhật trạng thái mới --</option>
                 <option value="Hoàn thành">Hoàn thành</option>
-                <option value="Đã giao">Đã giao</option>
                 <option value="Đang vận chuyển">Đang vận chuyển</option>
                 <option value="Đang xử lý">Đang xử lý</option>
                 <option value="Đã hủy">Đã hủy</option>
             </select>
             <div class="popup-actions">
-                <button id="confirmUpdate" class="detail">Xác nhận</button>
-                <button id="cancelUpdate" class="back-button">Hủy</button>
+                <button id="confirmStatus" class="detail">Cập nhật</button>
+                <button id="cancelPopup" class="show-all-button">Hủy</button>
             </div>
         </div>
     `;
-
+    
     document.body.appendChild(popup);
-
-    document.getElementById("newStatus").value = currentStatus;
-
-    // Xử lý nút xác nhận
-    document.getElementById("confirmUpdate").addEventListener("click", () => {
-        const newStatus = document.getElementById("newStatus").value;
-        updateOrderStatus(maDH, newStatus);
-        popup.remove();
-        quanLyDonHang(); // refresh danh sách
-    });
-
-    // Hủy popup
-    document.getElementById("cancelUpdate").addEventListener("click", () => {
+    
+    // Hủy thay đổi
+    document.getElementById("cancelPopup").addEventListener("click", () => {
         popup.remove();
     });
-}
-
-// Cập nhật trạng thái đơn hàng trong LocalStorage
-function updateOrderStatus(maDH, newStatus) {
-    const rows = getlocalStorage("bill");
-    const orderIndex = rows.findIndex(dh => dh.maDH === maDH);
-
-    if (orderIndex !== -1) {
-        rows[orderIndex].trangThai = newStatus;
-        setlocalStorage("bill", rows);
-        alert(`Cập nhật trạng thái đơn hàng ${maDH} thành công!`);
+    
+    // Xác nhận thay đổi trạng thái
+    document.getElementById("confirmStatus").addEventListener("click", () => {
+    const newStatus = document.getElementById("newStatus").value;
+    if (!newStatus) {
+        alert("Vui lòng chọn trạng thái");
+        return;
     }
+
+    const confirmed = confirm(`Bạn có chắc muốn cập nhật trạng thái đơn hàng ${maDH} thành "${newStatus}" không?`);
+
+    if (confirmed) {
+        const rows = getlocalStorage("bill");
+        const order = rows.find(dh => dh.maDH === maDH);
+        order.trangThai = newStatus;
+        setlocalStorage("bill", rows);
+
+        alert(`Trạng thái đơn hàng ${maDH} đã được cập nhật thành công.`);
+        popup.remove();
+        quanLyDonHang();
+    } else {
+        alert("Đã hủy thao tác cập nhật.");
+        popup.remove();
+    }
+});
+
 }
 // Trong file 1.7.js, đảm bảo hàm updateOrderStatus hoạt động tốt
 function updateOrderStatus(maDH, newStatus) {
