@@ -296,8 +296,27 @@ function HuyChinhSua() {
 function LuuThongTin() {
     let user = JSON.parse(localStorage.getItem("currentUser"));
     
+    // Lấy giá trị mới của các trường input
     let newMK = document.getElementById("edit-mk").value;
-    if (!kiemTraNhapSua(newMK)) return;
+    let newEmail = document.getElementById("edit-email").value;
+    let newSdt = document.getElementById("edit-sdt").value;
+    
+    // 1. Kiểm tra Mật khẩu (không được trống)
+    if (!kiemTraNhapSua(newMK)) return; // kiemTraNhapSua() đã có alert nội bộ
+    
+    // 2. Kiểm tra định dạng Email
+    if (!kiemTraEmail(newEmail)) {
+        alert("❌ Định dạng Email mới không hợp lệ (Ví dụ: user@domain)!");
+        document.getElementById("edit-email").focus();
+        return;
+    }
+    
+    // 3. Kiểm tra định dạng Số điện thoại
+    if (!kiemTraSDT(newSdt)) {
+        alert("❌ Số điện thoại mới không hợp lệ (Phải là 10 số và bắt đầu bằng 0)!");
+        document.getElementById("edit-sdt").focus();
+        return;
+    }
     
     // LẤY BẢNG KHÁCH HÀNG TRỰC TIẾP
     let bangKH = getlocalStorage("khachHang");
@@ -315,13 +334,14 @@ function LuuThongTin() {
 
     // Cập nhật dữ liệu mới vào mảng tổng (Sử dụng tên trường mới)
     bangKH[khIndex].tenKH = document.getElementById("edit-ten").value;
+    // Lấy giá trị Giới tính đã chọn
     bangKH[khIndex].gioiTinh = document.querySelector('input[name="edit-sex"]:checked')?.value || "Nam";
-    bangKH[khIndex].soDienThoai = document.getElementById("edit-sdt").value;
+    bangKH[khIndex].soDienThoai = newSdt;
     bangKH[khIndex].diaChi = document.getElementById("edit-dc").value;
-    bangKH[khIndex].email = document.getElementById("edit-email").value;
+    bangKH[khIndex].email = newEmail;
     bangKH[khIndex].matKhau = newMK;
     
-    // Cập nhật lại localStorage
+    // 4. Cập nhật lại localStorage
     setlocalStorage("khachHang", bangKH);
     localStorage.setItem("currentUser", JSON.stringify(bangKH[khIndex])); // Cập nhật currentUser
 
