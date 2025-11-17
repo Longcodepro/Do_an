@@ -16,8 +16,7 @@
 }
 
 #div2 {
-    overflow-y: auto;
-    height: 100%;
+    margin-bottom: 10%;
 }
 
 /* 2. THÀNH PHẦN MENU (INPUTS, BUTTONS, LOGO) */

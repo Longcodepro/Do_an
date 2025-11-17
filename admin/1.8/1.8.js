@@ -31,7 +31,7 @@ function quanLySoLuongTon() {
     
     </div>
     <div>
-    <table width="100%" style="border-collapse:collapse; text-align:center; margin-top:10px; font-family: Arial, sans-serif; border: 1px solid #ddd;">
+    <table width="100%" style="border-collapse:collapse; text-align:center; margin-top:10px; font-family: Arial, sans-serif; border: 1px solid #ddd; margin-bottom: 10%">
       <thead>
         <tr style="background-color:#009879; color:white;">
           <th style="padding:12px; border: 1px solid #ddd;">Mã sản phẩm</th>
