@@ -3342,7 +3342,7 @@ const nhapHang = [
   { maPhieu: "PN12", maSP: 38, soLuong: 60, giaNhap: 160000, ngayNhap: "2025-10-21" ,trangThai: true},
   { maPhieu: "PN13", maSP: 41, soLuong: 35, giaNhap: 320000, ngayNhap: "2025-10-23",trangThai: true },
   { maPhieu: "PN14", maSP: 45, soLuong: 25, giaNhap: 550000, ngayNhap: "2025-10-24",trangThai: true },
-  { maPhieu: "PN15", maSP: 49, soLuong: 18, giaNhap: 1100000, ngayNhap: "2025-10-26",trangThai: true },
+  { maPhieu: "PN16", maSP: 49, soLuong: 18, giaNhap: 1100000, ngayNhap: "2025-10-26",trangThai: true },
 ];
 const tableNhapHang = JSON.parse(localStorage.getItem("nhapHang"));
 if (tableNhapHang) {

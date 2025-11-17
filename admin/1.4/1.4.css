@@ -162,6 +162,7 @@
     border-radius: 3px;
     border-color: blue;
     background-color: rgba(79, 179, 229, 0.845);
+    border-radius: 10px;
 }
 
 #divBaoAnh {
