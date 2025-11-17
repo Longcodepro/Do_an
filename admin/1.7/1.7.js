@@ -366,3 +366,19 @@ function showStatusPopup(maDH) {
         quanLyDonHang();
     });
 }
+// Trong file 1.7.js, đảm bảo hàm updateOrderStatus hoạt động tốt
+function updateOrderStatus(maDH, newStatus) {
+    const rows = getlocalStorage("bill");
+    const orderIndex = rows.findIndex(dh => dh.maDH === maDH);
+
+    if (orderIndex !== -1) {
+        rows[orderIndex].trangThai = newStatus;
+        setlocalStorage("bill", rows);
+        alert(`Cập nhật trạng thái đơn hàng ${maDH} thành công!`);
+        
+        // Cập nhật real-time cho user nếu đang xem lịch sử
+        if (document.getElementById('historyTableContainer')) {
+            renderPurchaseHistory();
+        }
+    }
+}

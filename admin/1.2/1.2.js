@@ -18,7 +18,7 @@ function quanLyKhachHang() {
         return;
     }
 
-    const noiDung = document.getElementById("noi_dung");
+    const noiDung = document.getElementById("noi_dung");    // bắt div nội dung
     noiDung.innerHTML = "<h2 style='color:#333'>Quản Lí Khách Hàng</h2>";
 
     const wrap = document.createElement("div");
@@ -139,18 +139,18 @@ function quanLyKhachHang() {
             if (!khachHangNow) return;
 
             const khachHangIndex = khachHangNow.findIndex((x) => x.maKH === kh.maKH);
-            if (khachHangIndex === -1) return;
+            if (khachHangIndex === -1) return;  // nếu tìm không thấy khách hàng cần reset mật khẩu thì return
 
-            const newTrangThai = khachHangNow[khachHangIndex].trangThai == 1 ? 0 : 1;
-            khachHangNow[khachHangIndex].trangThai = newTrangThai;
+            const newTrangThai = khachHangNow[khachHangIndex].trangThai == 1 ? 0 : 1;   //nếu trangThai == 1 thì newTrangThai = 0 và ngược lại
+            khachHangNow[khachHangIndex].trangThai = newTrangThai;  // gán trạng thái mới cho tài khoản khách hàng
             
-            setlocalStorage("khachHang", khachHangNow);
+            setlocalStorage("khachHang", khachHangNow); // cập nhập vô localStorage
 
-            const newStatusText = newTrangThai == 1 ? "Đang hoạt động" : "Bị khóa";
+            const newStatusText = newTrangThai == 1 ? "Đang hoạt động" : "Bị khóa"; // câph nhập ô trạng thái
             tdStatus.textContent = newStatusText;
             tdStatus.style.color = newTrangThai == 1 ? "green" : "red";
 
-            const newButtonText = newTrangThai == 1 ? "Khóa" : "Mở";
+            const newButtonText = newTrangThai == 1 ? "Khóa" : "Mở";    // cập nhập chức năng nút bấm
             btnToggle.textContent = newButtonText;
             btnToggle.className = newTrangThai == 1 ? "khoa" : "mo";
 

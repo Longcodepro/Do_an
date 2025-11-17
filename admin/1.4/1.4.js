@@ -39,8 +39,8 @@ function getlocalStorage(key){
 
 let rowsSp = getlocalStorage('product');  // tạo biến bảng sản phẩm cục bộ
 
-// hàm chính
-function hamChinh() {
+// quản lí sản phẩm
+function quanLiSanPham() {
   // tạo div nối với nội thẻ div có id = noi_dung trong html admin
   const div = document.querySelector('#noi_dung');
   div.innerHTML = '';
@@ -48,7 +48,7 @@ function hamChinh() {
   content(div);
 }
 
-// hàm in ra các menu
+// hàm in ra các menu chứa các chức năng
 function menu(div) {
   // làm phần nút thêm sản phẩm, logo, tìm kiếm,
   const div1 = document.createElement('div');
@@ -90,7 +90,7 @@ function menu(div) {
       let rowsSp1 = getlocalStorage("product");
       rowsSp1 = rowsSp1.filter(row => row.maMatHang === theo_loai.value);
       const divTong = document.querySelector('#noi_dung'); 
-      rowsSp = rowsSp1;
+      rowsSp = rowsSp1; // cập lại danh sách sản phẩm hiện tại
       content(divTong);
     }
   });
@@ -110,13 +110,12 @@ function menu(div) {
     let rowsSp1 = getlocalStorage("product");
     const tu_khoa = document.querySelector('#searchBox').value.trim().toLowerCase();  // xóa khoảng trắng bằng trim và chuyển thành chữ thường
     
-    // Chỉnh sửa: Đảm bảo so sánh mã SP dưới dạng string nếu tu_khoa là string
     rowsSp1 = rowsSp1.filter(row => String(row.maSP).includes(tu_khoa)); // Sử dụng String(row.maSP)
     
     const div2 = document.querySelector('#div2');
     div2.remove();
     const divTong = document.querySelector('#noi_dung');  
-    rowsSp = rowsSp1;
+    rowsSp = rowsSp1;   // cập lại danh sách sản phẩm hiện tại
     content(divTong);
   });
 
@@ -156,6 +155,7 @@ function menu(div) {
       themSanPham();
     }
   }
+
   // sắp xếp tăng dần hoặc giảm dần
   const tang_giam = document.createElement('button');
   tang_giam.id = 'tang_giam';
@@ -172,15 +172,10 @@ function menu(div) {
     content(divTong); // truyền vô divTong để tạo bảng mới
   };
 }
+
 // hàm đổi chữ tăng/giảm
 function doi_chieu(chieu) {
-  if (chieu === "Giảm") {
-    chieu = "Tăng";
-  }
-  else {
-    chieu = "Giảm";
-  }
-  return chieu;
+    return chieu == "Tăng" ? "Giảm" : "Tăng";
 }
 // sort bảng theo mã sản phẩm
 function sort(chieu) {
@@ -196,12 +191,13 @@ function sort(chieu) {
     });
   }
 }
+
 // hàm thêm sản phẩm
 function themSanPham() {
   const d = document.querySelector('#div2');
   d.innerHTML = '';
   d.classList = 'khungThemSp';
-  // tạo khung thoát
+  // tạo ô thoát
   const thoat = document.createElement('button');
   thoat.textContent = 'X';
   thoat.classList.add('nut_thoat');
@@ -213,11 +209,13 @@ function themSanPham() {
       content(divTong);
     }
   });
+
   //tạo tiêu đề
   const tieu_de = document.createElement('div');
   tieu_de.textContent = "Hãy nhập đầy đủ các thông tin sau";
   tieu_de.classList.add('tieu_de_nhapSp');
   d.appendChild(tieu_de);
+
   // tạo các khung nhập
   // mã sản phẩm
   const maSp = document.createElement('input');
@@ -225,6 +223,7 @@ function themSanPham() {
   maSp.type = 'number';
   maSp.id = 'maSp';
   d.appendChild(maSp);
+
   // tên sản phẩm
   const tenSp = document.createElement('input');
   tenSp.type = 'text';
@@ -232,6 +231,7 @@ function themSanPham() {
   tenSp.style.marginLeft = '5%';
   tenSp.id = 'tenSp';
   d.appendChild(tenSp);
+
   // số lượng
   const soLuong = document.createElement('input');
   soLuong.type = 'number';
@@ -239,13 +239,15 @@ function themSanPham() {
   soLuong.placeholder = 'Số lượng sản phẩm...';
   soLuong.id = 'soLuong';
   d.appendChild(soLuong);
+
   // giá bán
   const giaBan = document.createElement('input');
   giaBan.type = 'number';
-  giaBan.placeholder = 'Giá bạn của sản phẩm...';
+  giaBan.placeholder = 'Giá bán của sản phẩm...';
   giaBan.style.marginLeft = '5%';
   giaBan.id = 'giaBan';
   d.appendChild(giaBan);
+
   // thuộc mã mặt hàng
   const matHang = document.createElement('select');
   matHang.classList = 'selectMatHang';
@@ -259,13 +261,6 @@ function themSanPham() {
     op.value = rowsMh[i].maMatHang;
     matHang.appendChild(op);
   }
-  // tạo text 
-  // const thongTinSanPham = document.createElement('textarea'); // dùng thẻ này có thể nhập nhiều hơn thay vì dùng input
-  // thongTinSanPham.classList.add('special');
-  // thongTinSanPham.style.marginLeft = '5%';
-  // thongTinSanPham.placeholder = 'Thông tin sản phẩm';
-  // thongTinSanPham.id = 'thongTinSanPham';
-  // d.appendChild(thongTinSanPham);
 
   // text nhập phần trăm giảm
   const giamGia = document.createElement('input');
@@ -277,13 +272,13 @@ function themSanPham() {
   giamGia.placeholder = 'Nhập phần trăm giảm giá (%)...';
   giamGia.id = 'giamGia';
 
-
   // tạo ô thêm ảnh
   const anh = document.createElement('input');
   anh.type = 'file';
   anh.accept = 'image/*'; // chỉ chấp nhận file ảnh
   anh.type.marginLeft = '5%';
   let truyenAnh = ''; //chuyển sang check để nhập thông tin
+
   // tạo ô xem ảnh mới up lên
   const xem_anh = document.createElement('img');
   xem_anh.classList.add('xem_anh');
@@ -350,22 +345,23 @@ function themSanPham() {
     // 4. Xóa form và cập nhật bảng
     d.innerHTML = '';
     rowsSp = getlocalStorage("product"); // Cập nhật lại biến rowsSp cục bộ
-    const div2 = document.querySelector('#div2');
+    const div2 = document.querySelector('#div2');   //bắt div2 và xóa
     div2.remove();
     const divTong = document.querySelector('#noi_dung');
-    content(divTong);
+    content(divTong);   //tạo một table mới
   })
+
   // nút button reset
   const reset = document.createElement('button');
   reset.textContent = "Reset";
   reset.classList.add('reset');
   bao.appendChild(reset);
   reset.addEventListener('click', () => {
-    // Chỉnh sửa: Gọi lại hàm thêm sản phẩm để reset form
-    themSanPham();
+    themSanPham();  // gọi lại
   })
 }
-// hàm kiểm tra nội dung nhập vào
+
+// hàm kiểm tra nội dung nhập vào của hai chức năng thêm và sửa
 function check(truyenAnh, text, ma_cu) {  
   // lấy dữ liệu
   const rowsSp1 = getlocalStorage('product');
@@ -385,7 +381,6 @@ function check(truyenAnh, text, ma_cu) {  
   }
   // kiểm tra xem mã sản phẩm có bị trùng không
   for (let i = 0; i < rowsSp1.length; i++) {
-    // Chỉnh sửa: So sánh mã sản phẩm dưới dạng chuỗi để an toàn hơn
     if (ma.value.trim() === String(rowsSp1[i].maSP)) {
       if( ma.value.trim() === String(rowsSp1[i].maSP)){
         if( text === "Thêm"){
@@ -393,7 +388,6 @@ function check(truyenAnh, text, ma_cu) {  
           ma.focus();
           return 0;
         }
-        // Chỉnh sửa: Đảm bảo so sánh mã cũ và mã mới sau khi đã trim
         if( text === "Sửa" && String(ma_cu) !== ma.value.trim()){
           alert('Mã sản phẩm này đã tồn tại, hãy nhập mã khác cho sản phẩm mới');
           ma.focus();
@@ -402,36 +396,42 @@ function check(truyenAnh, text, ma_cu) {  
       }
     }
   }
+
   // kiểm tra tên sản phẩm
   if (ten.value.trim() === '') {
     alert('Bạn chưa nhập tên sản phẩm');
     ten.focus();
     return 0;
   }
+
   // số lượng sản phẩm
   if (so_luong.value.trim() === '') {
     alert('Bạn chưa nhập số lượng sản phẩm'); 
     so_luong.focus();
     return 0;
   }
+
   // kiểm tra giá bán
   if (gia.value.trim() === '') {
     alert('Bạn chưa nhập giá bán sản phẩm');
     gia.focus();
     return 0;
   }
+
   // kiểm tra mặt hàng
   if (mathang.value.trim() === '') {
     alert('Bạn chưa chọn mặt hàng sản phẩm');
     mathang.focus();
     return 0;
   }
+
   // kiểm tra thông tin sản phẩm
   if (giamGia.value.trim() === '') {
     alert('Bạn chưa nhập phan tram giam gia');
     giamGia.focus();
     return 0;
   }
+
   // hàm kiểm tra ảnh
   if( truyenAnh === '' || truyenAnh == null){
     alert('Bạn chưa tải ảnh sản phẩm lên');
@@ -440,8 +440,8 @@ function check(truyenAnh, text, ma_cu) {  
 
   // === CHUYỂN ĐỔI VÀ ĐỊNH DẠNG DỮ LIỆU ĐỂ ĐẢM BẢO KIỂU DỮ LIỆU ===
   // Giá trị số nguyên (Number)
-  const giaBanNumber = Number(gia.value); // Giá gốc (số)
-  const giamGiaNumber = Number(giamGia.value); // Phần trăm giảm (số)
+  const giaBanNumber = Number(gia.value); 
+  const giamGiaNumber = Number(giamGia.value); 
   const soLuongNumber = Number(so_luong.value);
   const maSpNumber = Number(ma.value);
   
@@ -450,40 +450,84 @@ function check(truyenAnh, text, ma_cu) {  
 
   // Tạo đối tượng thông tin sản phẩm
   const thong_tin = {
-    // Dạng SỐ (Number)
     maSP: maSpNumber, 
     soLuong: soLuongNumber,
     gsgg: giaBanNumber, // Giá gốc (số)
     gsht: giaHienTaiNumber, // Giá hiện tại (số)
-    // Chỉnh sửa: Dùng giamGiaNumber thay cho giamGiaValue undefined
-    nguongCanhBao: 4, // Giữ nguyên
-    
-    // Dạng CHUỖI (String)
+
+    nguongCanhBao: 4, // Mặc định
+
     tenSP: ten.value.trim(),
     hinhAnh: truyenAnh,
     maMatHang: mathang.value, // Giữ là chuỗi theo mẫu data
     hienAn: "1",
 
-    // Dạng CHUỖI ĐỊNH DẠNG (String Formatted) để hiển thị
     giaGoc: formatCurrency(giaBanNumber), // "8.500.000 ₫"
     giaHienTai: formatCurrency(giaHienTaiNumber), // "7.650.000 ₫"
-    // Định dạng phần trăm giảm giá theo mẫu: "-10%"
-    giamGiaFormatted: `-${giamGiaNumber}%` // Sửa lỗi: dùng giamGiaNumber
+    
+    giamGiaFormatted: giamGiaNumber // Sửa lỗi: dùng giamGiaNumber
   }
   
-  // Chỉnh sửa: Gán trường giamGia (Number) bằng giamGiaFormatted (String)
   thong_tin.giamGia = thong_tin.giamGiaFormatted; 
   delete thong_tin.giamGiaFormatted;
   
-  // Hàm check chỉ trả về dữ liệu nếu hợp lệ
   return thong_tin; 
 }
-// Chỉnh sửa: Đưa hàm này ra ngoài hàm check()
+
 // hàm thêm sản phẩm vô list sản phẩm
 function themSpVoDanhSach(thong_tin, rowsSp1) {
-  rowsSp1.push(thong_tin);  // đẩy thêm một phần tử vô cuối mảng 
-  setlocalStorage("product", rowsSp1);
-  console.log('Đã thêm sản phẩm này vô danh sach: ' + JSON.stringify(thong_tin));  // in ra thông tin trong console để kiểm tra 
+  // ============================================================
+  // 1️⃣ THÊM SẢN PHẨM VÀO BẢNG PRODUCT
+  // ============================================================
+  rowsSp1.push(thong_tin);
+  setlocalStorage("product", rowsSp1);
+  console.log('✅ Đã thêm sản phẩm vào danh sách: ' + JSON.stringify(thong_tin));
+  
+  // ============================================================
+  // 2️⃣ TẠO PHIẾU NHẬP HÀNG TỰ ĐỘNG
+  // ============================================================
+  
+  // Lấy danh sách phiếu nhập hiện có
+  let tablePhieuNhap = getlocalStorage("nhapHang") || [];
+  
+  // Tạo mã phiếu tự động
+  let maPhieuMoi;
+  if (tablePhieuNhap.length === 0) {
+    maPhieuMoi = "PN001";
+  } else {
+    // Tìm mã phiếu lớn nhất
+    const maxNumber = tablePhieuNhap.reduce((max, phieu) => {   // so sánh từng phần tử
+      const num = parseInt(phieu.maPhieu.replace('PN', ''));
+      return num > max ? num : max;
+    }, 0);  // 0 là giá trị khởi tạo
+    
+    // Tạo mã mới
+    const newNumber = maxNumber + 1;
+    maPhieuMoi = 'PN' + String(newNumber).padStart(2, '0');
+  }
+  
+  // Lấy ngày hiện tại (định dạng YYYY-MM-DD)
+  const today = new Date();
+  const ngayNhap = today.toISOString().split('T')[0];
+  
+  // Tạo object phiếu nhập
+  const nhapHang = {
+    maPhieu: maPhieuMoi,                        // PN001, PN002...
+    maSP: thong_tin.maSP,                       // Mã sản phẩm
+    soLuong: thong_tin.soLuong,                 // Số lượng nhập
+    giaNhap: Number(thong_tin.gsgg * 0.9),      // Giá nhập = 90% giá gốc
+    ngayNhap: ngayNhap,                         // Ngày nhập hôm nay
+    trangThai: true                             // Đã duyệt tự động
+  };
+  
+  // Thêm phiếu nhập vào danh sách
+  tablePhieuNhap.push(nhapHang);
+  
+  // Lưu vào localStorage
+  setlocalStorage("nhapHang", tablePhieuNhap);
+  
+  console.log('📦 Đã tạo phiếu nhập hàng: ' + JSON.stringify(nhapHang));
+  console.log('🎉 Hoàn tất thêm sản phẩm + phiếu nhập!');
 }
 
 // hàm in ra content
@@ -535,7 +579,6 @@ function content(div){
       soLuong.textContent = row.soLuong;
       const gia = document.createElement('td'); // ô giá bán
       gia.classList.add('du_lieu');
-      // Chỉnh sửa: Nếu giaHienTai đã có định dạng, không cần thêm 'VND' nữa
       gia.textContent = row.giaHienTai.includes('₫') ? row.giaHienTai : row.giaHienTai + ' VND'; 
       const hien_an = document.createElement('td'); // ô hiện/ẩn
       hien_an.classList.add('du_lieu');
@@ -585,14 +628,11 @@ function content(div){
 // hiện thị
 function nut_hien_an(idSp){
   const row = rowsSp.find( row => row.maSP === idSp);
-  if( row.hienAn === '1'){
-    row.hienAn = '0';
-  }
-  else row.hienAn = '1';
+  row.hienAn = row.hienAn == 1 ? 0 : 1;
   console.log('Nhấn nút hiện/ẩn sản phẩm có mã: ' + idSp);
   console.log('Hien/an: '+ row.hienAn);
 
-  const rowsSp1 = getlocalStorage("product");
+  const rowsSp1 = getlocalStorage("product");   // cập nhập
   const row1 = rowsSp1.find(row => row.maSP === idSp);
   row1.hienAn = row.hienAn;
   setlocalStorage("product", rowsSp1);
@@ -673,6 +713,7 @@ function suaSp(idSp){
   soLuong.value = row.soLuong;  // đặt sẵn giá trị
   soLuong.placeholder = "Số lượng";
   soLuong.id = 'soLuong';
+  soLuong.readOnly = "true";    // chỉ cho xem không cho sửa
   d.appendChild(soLuong);
   // giá bán
   const giaBan = document.createElement('input');
@@ -704,10 +745,8 @@ function suaSp(idSp){
   giamGia.type = 'number';
   giamGia.min = '0';
   giamGia.max = '100';
-  
-  // Chỉnh sửa: Lấy giá trị phần trăm giảm giá (là số) từ chuỗi: "-10%" -> 10
-  const giamGiaString = String(row.giamGia).replace('-', '').replace('%', '');
-  giamGia.value = Number(giamGiaString); 
+ 
+  giamGia.value = row.giamGia; 
   
   giamGia.placeholder = 'Nhập phần trăm giảm giá (%)...';
   giamGia.id = 'giamGia';
@@ -762,6 +801,7 @@ function suaSp(idSp){
       alert("Bạn đã hủy chọn file ảnh mới");
     } 
   });
+
   // div bao reset và xác nhận
   const bao = document.createElement('div');
   d.appendChild(bao);

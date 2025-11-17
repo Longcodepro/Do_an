@@ -1,204 +1,181 @@
-const trang={
-    trangchu:`
-     <div class="lon">
-             
+// ============================================================================
+// FILE: trang.js - QUẢN LÝ TRANG, GIỎ HÀNG, THANH TOÁN, LỊCH SỬ
+// ============================================================================
+
+// ============================================================================
+// 1. PHẦN ĐỊNH NGHĨA HTML CÁC TRANG
+// ============================================================================
+
+const trang = {
+    trangchu: `
+        <div class="lon">
+            <!-- SLIDE BANNER -->
             <div class="lon1">
-              <div class="slide">
-                <div class="anh">
-                  <img src="../img/de2.jpg" alt="" />
-                </div>
-              </div>
-            </div>
-            
-
-
-<!-- PHẦN GIỚI THIỆU CÔNG TY -->
-<div class="company-intro-section">
-  <div class="intro-container">
-    
-    <!-- Header -->
-    <div class="intro-header">
-      <h2>🏢 ĐIỆN MÁY SGU</h2>
-      <p class="slogan">Uy Tín - Chất Lượng - Giá Tốt Nhất</p>
-    </div>
-
-    <!-- About Company -->
-    <div class="intro-content">
-      <div class="intro-text">
-        <h3>📖 Về Chúng Tôi</h3>
-        <p>
-          <strong>Điện Máy SGU</strong> là đơn vị cung cấp thiết bị điện tử, điện máy uy tín hàng đầu tại Việt Nam. 
-          Với hơn <strong>10 năm kinh nghiệm</strong> trong ngành, chúng tôi cam kết mang đến cho khách hàng 
-          những sản phẩm chính hãng, chất lượng cao với giá cả cạnh tranh nhất.
-        </p>
-      </div>
-
-      <!-- Statistics -->
-      <div class="intro-stats">
-        <div class="stat-item">
-          <i class="fa-solid fa-users"></i>
-          <h4>500K+</h4>
-          <p>Khách Hàng Tin Dùng</p>
-        </div>
-        <div class="stat-item">
-          <i class="fa-solid fa-store"></i>
-          <h4>50+</h4>
-          <p>Cửa Hàng Toàn Quốc</p>
-        </div>
-        <div class="stat-item">
-          <i class="fa-solid fa-box"></i>
-          <h4>10,000+</h4>
-          <p>Sản Phẩm Đa Dạng</p>
-        </div>
-        <div class="stat-item">
-          <i class="fa-solid fa-star"></i>
-          <h4>4.8/5</h4>
-          <p>Đánh Giá Từ Khách Hàng</p>
-        </div>
-      </div>
-
-      <!-- Core Values -->
-      <div class="intro-values">
-        <h3>💎 Giá Trị Cốt Lõi</h3>
-        <div class="values-grid">
-          <div class="value-item">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h4>Bảo Hành Chính Hãng</h4>
-            <p>Cam kết 100% sản phẩm chính hãng, bảo hành dài hạn</p>
-          </div>
-          <div class="value-item">
-            <i class="fa-solid fa-truck-fast"></i>
-            <h4>Giao Hàng Nhanh</h4>
-            <p>Giao hàng miễn phí trong 2 giờ nội thành</p>
-          </div>
-          <div class="value-item">
-            <i class="fa-solid fa-credit-card"></i>
-            <h4>Trả Góp 0%</h4>
-            <p>Hỗ trợ trả góp lãi suất 0% qua thẻ tín dụng</p>
-          </div>
-          <div class="value-item">
-            <i class="fa-solid fa-rotate-left"></i>
-            <h4>Đổi Trả Linh Hoạt</h4>
-            <p>Đổi trả trong 15 ngày nếu có lỗi từ nhà sản xuất</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Contact Info -->
-      <div class="intro-contact">
-        <h3>📞 Liên Hệ Với Chúng Tôi</h3>
-        <div class="contact-grid">
-          <div class="contact-item">
-            <i class="fa-solid fa-phone"></i>
-            <span><strong>Hotline:</strong> 1900 1800</span>
-          </div>
-          <div class="contact-item">
-            <i class="fa-solid fa-envelope"></i>
-            <span><strong>Email:</strong> support@dienmaysgu.vn</span>
-          </div>
-          <div class="contact-item">
-            <i class="fa-solid fa-location-dot"></i>
-            <span><strong>Địa chỉ:</strong> 273 An Dương Vương, Q.5, TP.HCM</span>
-          </div>
-          <div class="contact-item">
-            <i class="fa-solid fa-clock"></i>
-            <span><strong>Giờ làm việc:</strong> 8:00 - 22:00 (Cả tuần)</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
-
-
-
-
-
-            <div class="lon4">
-              <div class="anhthan">
-                <div class="anhlon">
-                  <img src="../img/de.avif" alt="" />
-                  <img src="../img/anh3.webp" alt="" />
-                </div>
-              </div>
-            </div>  
-            
-                </div>
-    </div>
-    `,
-    sanpham:`
-     <div class="khonglo" >
-     
-        <div class="sanpham">
-            <div class="menu-top">
-                <ul class="loai">
-                    <li >
-              <div class="anh">
-                <img src="../img/4.png" alt="may giac" />
-              </div>
-              <p>Máy Giặc</p>
-            </li>
-             
-                </ul>
-                 <select id="locGia" class="chon-gia"> 
-            <option value="all">Giá bán: Tất cả</option>
-            <option value="duoi5">Dưới 5.000.000 VNĐ</option>
-            <option value="5den10">Từ 5.000.000 - 10.000.000 VNĐ</option>
-            <option value="10den20">Từ 10.000.000 - 20.000.000 VNĐ</option>
-            <option value="tren20">Trên 20.000.000 VNĐ</option>
-        </select>
-            </div>
-           
-            <div class="menu-conten" id="products">
-                <div class="product" id="thongtin"  data-id="001">
-                    <div class="anh1">
-                        <img src="../img/4.png" alt="">
+                <div class="slide">
+                    <div class="anh">
+                        <img src="../img/de2.jpg" alt="Banner điện máy SGU" />
                     </div>
-                    <h4>Máy giặt LG FV1410S3B 10 kg Inverter</h4>
-                    <div>
-                        <div class="price">
-                            <span class="price-new">5.990.000đ</span>
-                            <span class="price-old">8.990.000đ </span>
-                            <small>-25%</small>
-                           </div>
-                           <div class="tuongtac">
-                            
-                            <div class="sao"><i class="fa-solid fa-star"></i> 5.0</div> 
-                            <div class="chitiet"> <i class="fa-regular fa-square-plus"  ></i>
-                                <div class="note">Chi Tiết</div>
+                </div>
+            </div>
+            
+            <!-- PHẦN GIỚI THIỆU CÔNG TY -->
+            <div class="company-intro-section">
+                <div class="intro-container">
+                    
+                    <!-- Header -->
+                    <div class="intro-header">
+                        <h2>🏢 ĐIỆN MÁY SGU</h2>
+                        <p class="slogan">Uy Tín - Chất Lượng - Giá Tốt Nhất</p>
+                    </div>
+
+                    <!-- Nội dung giới thiệu -->
+                    <div class="intro-content">
+                        
+                        <!-- Về chúng tôi -->
+                        <div class="intro-text">
+                            <h3>📖 Về Chúng Tôi</h3>
+                            <p>
+                                <strong>Điện Máy SGU</strong> là đơn vị cung cấp thiết bị điện tử, điện máy uy tín hàng đầu tại Việt Nam. 
+                                Với hơn <strong>10 năm kinh nghiệm</strong> trong ngành, chúng tôi cam kết mang đến cho khách hàng 
+                                những sản phẩm chính hãng, chất lượng cao với giá cả cạnh tranh nhất.
+                            </p>
+                        </div>
+
+                        <!-- Thống kê -->
+                        <div class="intro-stats">
+                            <div class="stat-item">
+                                <i class="fa-solid fa-users"></i>
+                                <h4>500K+</h4>
+                                <p>Khách Hàng Tin Dùng</p>
                             </div>
-                           </div>
-                           <div class="hang">
-                            <div class="mua"> Mua </div>
-                            <div><i class="nav-cart fa-solid fa-cart-shopping" style="margin-left: 7px;"></i></div>
-                           </div>
+                            <div class="stat-item">
+                                <i class="fa-solid fa-store"></i>
+                                <h4>50+</h4>
+                                <p>Cửa Hàng Toàn Quốc</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fa-solid fa-box"></i>
+                                <h4>10,000+</h4>
+                                <p>Sản Phẩm Đa Dạng</p>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fa-solid fa-star"></i>
+                                <h4>4.8/5</h4>
+                                <p>Đánh Giá Từ Khách Hàng</p>
+                            </div>
+                        </div>
+
+                        <!-- Giá trị cốt lõi -->
+                        <div class="intro-values">
+                            <h3>💎 Giá Trị Cốt Lõi</h3>
+                            <div class="values-grid">
+                                <div class="value-item">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <div>
+                                        <h4>Bảo Hành Chính Hãng</h4>
+                                        <p>Cam kết 100% sản phẩm chính hãng, bảo hành dài hạn</p>
+                                    </div>
+                                </div>
+                                <div class="value-item">
+                                    <i class="fa-solid fa-truck-fast"></i>
+                                    <div>
+                                        <h4>Giao Hàng Nhanh</h4>
+                                        <p>Giao hàng miễn phí trong 2 giờ nội thành</p>
+                                    </div>
+                                </div>
+                                <div class="value-item">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                    <div>
+                                        <h4>Trả Góp 0%</h4>
+                                        <p>Hỗ trợ trả góp lãi suất 0% qua thẻ tín dụng</p>
+                                    </div>
+                                </div>
+                                <div class="value-item">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                    <div>
+                                        <h4>Đổi Trả Linh Hoạt</h4>
+                                        <p>Đổi trả trong 15 ngày nếu có lỗi từ nhà sản xuất</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Thông tin liên hệ -->
+                        <div class="intro-contact">
+                            <h3>📞 Liên Hệ Với Chúng Tôi</h3>
+                            <div class="contact-grid">
+                                <div class="contact-item">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span><strong>Hotline:</strong> 1900 1800</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span><strong>Email:</strong> support@dienmaysgu.vn</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span><strong>Địa chỉ:</strong> 273 An Dương Vương, Q.5, TP.HCM</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span><strong>Giờ làm việc:</strong> 8:00 - 22:00 (Cả tuần)</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                       
+                </div>
             </div>
-           
-           
         </div>
-        <ul id="phantrang" class="phantrang"></ul>
-        <div id="chitiet" style="display:none;"></div>
-        
-    </div>
     `,
-
-
+    
+    sanpham: `
+        <div class="khonglo">
+            <div class="sanpham">
+                <div class="menu-top">
+                    <ul class="loai">
+                        <li>
+                            <div class="anh">
+                                <img src="../img/4.png" alt="may giac" />
+                            </div>
+                            <p>Máy Giặc</p>
+                        </li>
+                    </ul>
+                    <select id="locGia" class="chon-gia"> 
+                        <option value="all">Giá bán: Tất cả</option>
+                        <option value="duoi5">Dưới 5.000.000 VNĐ</option>
+                        <option value="5den10">Từ 5.000.000 - 10.000.000 VNĐ</option>
+                        <option value="10den20">Từ 10.000.000 - 20.000.000 VNĐ</option>
+                        <option value="tren20">Trên 20.000.000 VNĐ</option>
+                    </select>
+                    <div id="locGiaTuyChinh">
+                        <label for="giaMin">Giá từ (VNĐ):</label>
+                        <input type="number" id="giaMin" placeholder="0"> <br>
+                        <label for="giaMax">đến (VNĐ):</label> <br>
+                        <input type="number" id="giaMax" placeholder="20000000">
+                        <button id="btnLocGia">Lọc</button>
+                        <p id="loiLocGia" style="color: red;"></p>
+                    </div>
+                </div>
+                <div class="menu-conten" id="products"></div>
+                <ul id="phantrang" class="phantrang"></ul>
+                <div id="chitiet" style="display:none;"></div>
+            </div>
+        </div>
+    `,
+    
     lichSuMuaHang: `
         <div class="purchase-history-page">
-            <h2 style="text-align: center; margin-bottom: 20px;">Lịch Sử Mua Hàng</h2>
-            <div id="historyTableContainer" class="history-table-container">
-                </div>
+            <h2 style="text-align: center; margin-bottom: 20px;">📋 Lịch Sử Mua Hàng</h2>
+            <div id="historyTableContainer" class="history-table-container"></div>
         </div>
-    `,
-}
-// =========================================================
-// HÀM HỖ TRỢ (Lưu/Lấy localStorage, Định dạng tiền tệ)
-// =========================================================
+    `
+};
+
+// ============================================================================
+// 2. HÀM HỖ TRỢ CHUNG (LocalStorage, Format, Tìm kiếm sản phẩm)
+// ============================================================================
+
 function setlocalStorage(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
 }
@@ -207,223 +184,98 @@ function getlocalStorage(key) {
     return JSON.parse(localStorage.getItem(key));
 }
 
-function formatCurrency(number) {
+function formatCurrency(amount) {
+    if (!amount || isNaN(amount)) return '0đ';
     return new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
-    }).format(number);
+    }).format(amount);
 }
 
-// =========================================================
-// HÀM QUẢN LÝ GIỎ HÀNG
-// =========================================================
+function findProductById(maSP) {
+    const allProducts = getlocalStorage('product') || [];
+    return allProducts.find(p => p.maSP == maSP);
+}
 
-// Hàm chính: Thêm sản phẩm vào giỏ
+// ============================================================================
+// 3. PHẦN QUẢN LÝ GIỎ HÀNG
+// ============================================================================
+
+// 3.1. Thêm sản phẩm vào giỏ hàng
 function addToCart(maSP) {
-    // 1. Lấy giỏ hàng hiện tại (mảng các {maSP, soLuong})
     let cart = getlocalStorage('cart') || [];
+    const product = findProductById(maSP);
     
-    // 2. Kiểm tra sản phẩm đã tồn tại chưa
-    const existingItemIndex = cart.findIndex(item => item.maSP == maSP); 
-
+    if (!product) {
+        alert('❌ Sản phẩm không tồn tại!');
+        return;
+    }
+    
+    const existingItemIndex = cart.findIndex(item => item.maSP == maSP);
+    let currentQuantityInCart = 0;
+    
     if (existingItemIndex > -1) {
-        // Nếu đã có, tăng số lượng lên 1
-        cart[existingItemIndex].soLuong += 1;
-    } else {
-        // Nếu chưa có, thêm sản phẩm mới
-        cart.push({
-            maSP: maSP,
-            soLuong: 1
-        });
+        currentQuantityInCart = cart[existingItemIndex].soLuong;
     }
 
-    // 3. Lưu giỏ hàng mới và hiển thị
+    // Kiểm tra tồn kho
+    if (currentQuantityInCart >= product.soLuong) {
+        alert(`❌ Rất tiếc! Số lượng sản phẩm "${product.tenSP}" trong kho chỉ còn ${product.soLuong} sản phẩm.`);
+        return;
+    }
+    
+    if (existingItemIndex > -1) {
+        cart[existingItemIndex].soLuong += 1;
+    } else {
+        cart.push({ maSP: maSP, soLuong: 1 });
+    }
+
     setlocalStorage('cart', cart);
-    renderCart(); // Cập nhật nội dung giỏ hàng
-    toggleCart(true); // Mở giỏ hàng overlay
+    renderCart();
+    toggleCart(true);
 }
 
-// Hàm thay đổi số lượng (dùng cho nút +/-)
+// 3.2. Thay đổi số lượng sản phẩm
 function changeQuantity(maSP, delta) {
     let cart = getlocalStorage('cart') || [];
     const item = cart.find(item => item.maSP == maSP);
 
     if (item) {
-        item.soLuong += delta;
-        // Nếu số lượng <= 0, xóa sản phẩm khỏi giỏ
-        if (item.soLuong <= 0) {
+        const product = findProductById(maSP);
+        const newQuantity = item.soLuong + delta;
+
+        if (newQuantity > 0) {
+            if (delta > 0 && newQuantity > product.soLuong) {
+                alert(`❌ Số lượng tối đa cho sản phẩm "${product.tenSP}" là ${product.soLuong}.`);
+                return;
+            }
+            item.soLuong = newQuantity;
+        } else if (newQuantity <= 0) {
             cart = cart.filter(i => i.maSP != maSP);
         }
     }
+    
     setlocalStorage('cart', cart);
     renderCart();
 }
 
-// Hàm xóa sản phẩm khỏi giỏ
+// 3.3. Xóa sản phẩm khỏi giỏ
 function removeItem(maSP) {
+    if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) return;
+    
     let cart = getlocalStorage('cart') || [];
     cart = cart.filter(item => item.maSP != maSP);
     setlocalStorage('cart', cart);
     renderCart();
 }
 
-// =========================================================
-// HÀM HIỂN THỊ (RENDER) GIỎ HÀNG
-// =========================================================
+// 3.4. Hiển thị giỏ hàng
 function renderCart() {
     const cartContentDiv = document.getElementById('cartContent');
     const cartSummaryDiv = document.getElementById('cartSummary');
-    const cart = getlocalStorage('cart') || [];
-    let itemsHtml = '';
-    let totalAmount = 0;
-
-    if (cart.length === 0) {
-        itemsHtml = '<p style="text-align: center; color: #555;">Giỏ hàng của bạn đang trống.</p>';
-        cartSummaryDiv.innerHTML = '<button class="checkout-btn" disabled>Giỏ hàng trống</button>';
-    } else {
-        // Gọi hàm findProductById từ data.js
-        cart.forEach(item => {
-            const product = window.findProductById(item.maSP); 
-
-            if (product) {
-                totalAmount += product.giaSo * item.soLuong;
-
-                itemsHtml += `
-                    <div class="cart-item">
-                        <img src="${product.hinhAnh}" alt="${product.tenSP}" class="small-item-image">
-                        <div class="small-item-info">
-                            <strong>${product.tenSP}</strong>
-                            <p>${formatCurrency(product.giaSo)} x ${item.soLuong}</p>
-                            <div class="quantity-controls">
-                                <button onclick="changeQuantity(${product.maSP}, -1)">-</button>
-                                <span>${item.soLuong}</span>
-                                <button onclick="changeQuantity(${product.maSP}, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="remove-btn" onclick="removeItem(${product.maSP})"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                `;
-            } else {
-                console.warn(`Không tìm thấy sản phẩm với maSP: ${item.maSP} trong giỏ hàng.`);
-            }
-        });
-
-        // Cập nhật phần tổng tiền và nút thanh toán
-        cartSummaryDiv.innerHTML = `
-            <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">
-                Tổng cộng: ${formatCurrency(totalAmount)}
-            </div>
-            <button class="checkout-btn" onclick="">
-                Tiến hành Thanh Toán
-            </button>
-        `;
-    }
     
-    cartContentDiv.innerHTML = itemsHtml;
-}
-
-// =========================================================
-// SỬA HÀM BẬT/TẮT GIỎ HÀNG OVERLAY (Chỉ hiển thị Giỏ hàng)
-// =========================================================
-function toggleCart(show = true) {
-    const cartOverlay = document.getElementById('cartOverlay');
-    if (cartOverlay) {
-        if (show) {
-            renderCart(); // Cập nhật nội dung trước khi mở
-            cartOverlay.classList.add('active');
-        } else {
-            cartOverlay.classList.remove('active');
-        }
-    }
-}
-
-// =========================================================
-// KHỞI TẠO KHI TRANG LOAD
-// =========================================================
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Đảm bảo giỏ hàng được hiển thị đúng
-    renderCart(); 
-
-    // 2. Gắn sự kiện click cho icon giỏ hàng trên header
-    // Thay thế '#header .cart-icon' bằng selector đúng của nút Giỏ hàng trên header của bạn nếu cần
-    const headerCartIcon = document.querySelector('#header .cart-icon'); 
-    if (headerCartIcon) {
-        headerCartIcon.addEventListener('click', () => toggleCart(true));
-    }
+    if (!cartContentDiv || !cartSummaryDiv) return;
     
-    // Nếu bạn muốn nút "Giỏ hàng" trên header mở Giỏ hàng sidebar thay vì chuyển trang
-    // BẠN CẦN XÓA HOẶC VÔ HIỆU HÓA onlick cũ trên nút đó trong index.html
-});
-
-// =========================================================
-// BỔ SUNG CÁC HÀM HỖ TRỢ BỊ THIẾU
-// (Lấy từ data.js hoặc định nghĩa mới)
-// =========================================================
-function setlocalStorage(key, value){
-    localStorage.setItem(key, JSON.stringify(value));
-}
-
-function getlocalStorage(key){
-    return JSON.parse(localStorage.getItem(key));
-}
-
-function formatCurrency(number) {
-    if (isNaN(number)) return "Giá không xác định";
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
-}
-
-// Ví dụ hàm tăng/giảm số lượng
-function changeQuantity(maSP, delta) {
-    let cart = getlocalStorage('cart') || [];
-    const itemIndex = cart.findIndex(item => item.maSP === maSP);
-
-    if (itemIndex > -1) {
-        cart[itemIndex].soLuong += delta;
-        
-        // Kiểm tra số lượng không nhỏ hơn 1
-        if (cart[itemIndex].soLuong < 1) {
-            cart[itemIndex].soLuong = 1; 
-        }
-
-        setlocalStorage('cart', cart);
-        renderCart(); // Cập nhật lại giao diện
-    }
-}
-
-// Ví dụ hàm xóa sản phẩm
-function removeItem(maSP) {
-    if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) return;
-    
-    let cart = getlocalStorage('cart') || [];
-    // Lọc ra các sản phẩm không phải là sản phẩm cần xóa
-    const newCart = cart.filter(item => item.maSP !== maSP); 
-
-    setlocalStorage('cart', newCart);
-    renderCart(); // Cập nhật lại giao diện
-}
-
-
-
-// =========================================================
-// HÀM 1: BẬT/TẮT GIỎ HÀNG OVERLAY
-// =========================================================
-function toggleCart(show = true) {
-    const cartOverlay = document.getElementById('cartOverlay');
-    if (show) {
-        cartOverlay.classList.add('active');
-        renderCart(); // Gọi hàm hiển thị dữ liệu mỗi khi bật giỏ hàng
-    } else {
-        cartOverlay.classList.remove('active');
-    }
-}
-
-
-// =========================================================
-// HÀM 2: HIỂN THỊ DỮ LIỆU GIỎ HÀNG TRONG OVERLAY
-// =========================================================
-function renderCart() {
-    const cartContentDiv = document.getElementById('cartContent');
-    const cartSummaryDiv = document.getElementById('cartSummary');
     const cart = getlocalStorage('cart') || [];
     const allProducts = getlocalStorage('product') || [];
     let itemsHtml = '';
@@ -436,7 +288,6 @@ function renderCart() {
         cart.forEach(item => {
             const product = allProducts.find(p => p.maSP == item.maSP);
             if (product) {
-                // dùng gsht (giá hiện tại) từ data.js
                 const price = product.gsht || 0;
                 const subTotal = price * item.soLuong;
                 totalAmount += subTotal;
@@ -461,7 +312,6 @@ function renderCart() {
             }
         });
 
-        // Cập nhật tổng tiền và nút thanh toán
         cartSummaryDiv.innerHTML = `
             <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">
                 Tổng cộng: ${formatCurrency(totalAmount)}
@@ -475,180 +325,29 @@ function renderCart() {
     cartContentDiv.innerHTML = itemsHtml;
 }
 
-
-function lichSuMuaHang() {
-    const mainContentDiv = document.getElementById('content'); // <== PHẢI CÓ ID 'content'
-    if (mainContentDiv) {
-        mainContentDiv.innerHTML = trang.lichSuMuaHang; 
-        renderPurchaseHistory(); 
-    } else {
-        console.error("Lỗi: Không tìm thấy div có id='content' để chèn nội dung.");
+// 3.5. Bật/Tắt giỏ hàng overlay
+function toggleCart(show = true) {
+    const cartOverlay = document.getElementById('cartOverlay');
+    if (cartOverlay) {
+        if (show) {
+            renderCart();
+            cartOverlay.classList.add('active');
+        } else {
+            cartOverlay.classList.remove('active');
+        }
     }
 }
 
-// Hàm render chi tiết từng đơn hàng
-function renderPurchaseHistory() {
-    // Sử dụng trực tiếp mảng donHang từ data.js
-    const donHangHienThi = donHang || []; 
-    // Sử dụng trực tiếp mảng chiTietDonHang từ data.js
-    const chiTiet = chiTietDonHang || []; 
-    
-    let html = '';
+// ============================================================================
+// 4. PHẦN THANH TOÁN
+// ============================================================================
 
-    if (donHangHienThi.length === 0) {
-        html = '<p style="text-align: center; margin-top: 50px; font-size: 1.2em;">Bạn chưa có đơn hàng nào.</p>';
-    } else {
-        // Hiển thị đơn hàng mới nhất trước (Sắp xếp theo ngày đặt)
-        // Tạo bản sao và sắp xếp ngược lại theo maDH nếu mã có số thứ tự tăng dần
-        const sortedDonHang = [...donHangHienThi].sort((a, b) => {
-            // Sắp xếp ngược lại (mới nhất lên đầu)
-            return b.ngayDat.localeCompare(a.ngayDat);
-        });
-
-        sortedDonHang.forEach(dh => { 
-            // Lọc chi tiết đơn hàng cho từng mã đơn hàng (maDH)
-            const chiTietCuaDH = chiTiet.filter(ct => ct.maDH === dh.maDH);
-            
-            let chiTietHtml = chiTietCuaDH.map(item => {
-                // Giả định hàm findProductById(maSP) đã có trong data.js
-                // LƯU Ý: maSP trong chiTietDonHang là số, cần đảm bảo findProductById xử lý đúng
-                const sp = findProductById(item.maSP); 
-                const tenSP = sp ? sp.tenSP : `Sản phẩm (Mã: ${item.maSP})`;
-                const hinhAnh = sp ? sp.hinhAnh : '../img/placeholder.png'; // Ảnh mặc định
-                
-                // Tiền là tổng tiền cho số lượng đó, cần tính lại đơn giá nếu cần.
-                // Nếu muốn hiển thị đơn giá/sản phẩm: đơn giá = item.tongTien / item.soLuong
-                
-                // Giả định hàm formatCurrency(amount) đã có
-                return `
-                    <div class="history-item-detail">
-                        <img src="${hinhAnh}" alt="${tenSP}" class="history-product-image">
-                        <div class="history-item-info">
-                            <strong>${tenSP}</strong>
-                            <p>${formatCurrency(item.tongTien / item.soLuong)} x ${item.soLuong}</p>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            // Thêm class dựa trên trạng thái để dễ dàng CSS
-            const statusClass = dh.trangThai.replace(/\s/g, '-').toLowerCase().replace('đã-giao', 'hoan-thanh'); // Gộp "Đã giao" vào "Hoàn thành" cho CSS
-            const ngayGio = dh.ngayDat.split(' '); // Tách Ngày và Giờ
-
-            html += `
-                <div class="invoice-card">
-                    <div class="invoice-header">
-                        <span class="invoice-id">Mã Đơn: #${dh.maDH}</span>
-                        <span class="invoice-date">Ngày Đặt: ${ngayGio[0]} (${ngayGio[1]})</span>
-                    </div>
-                    <div class="invoice-body">
-                        ${chiTietHtml}
-                    </div>
-                    <div class="invoice-footer">
-                        <span class="status ${statusClass}">Trạng Thái: ${dh.trangThai}</span>
-                        <span class="total">Tổng Tiền: <strong>${formatCurrency(dh.giaTri)}</strong></span>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    const container = document.getElementById('historyTableContainer');
-    if (container) {
-        container.innerHTML = html;
-    }
-}
-
-// =========================================================
-// HÀM HỖ TRỢ ĐỊNH DẠNG TIỀN TỆ (NẾU CHƯA CÓ)
-// =========================================================
-function formatCurrency(amount) {
-    if (typeof amount !== 'number' || isNaN(amount)) return '0đ';
-    // Đảm bảo hàm này sử dụng số nguyên (gsht, gsgg) từ data.js
-    return amount.toLocaleString('vi-VN') + 'đ';
-}
-
-// =========================================================
-// HÀM RENDER LỊCH SỬ MUA HÀNG
-// =========================================================
-function renderPurchaseHistory() {
-    // Lấy dữ liệu đơn hàng (ưu tiên từ localStorage 'bill' nếu đã có)
-    // Giả định getlocalStorage() là hàm bạn đã định nghĩa để lấy dữ liệu từ localStorage
-    const donHangHienThi = getlocalStorage('bill') || donHang; 
-    
-    // chiTietDonHang và tatCaSanPham là các mảng global từ data.js
-    const chiTietDonHangToanBo = chiTietDonHang; 
-    
-    let html = '';
-
-    if (donHangHienThi.length === 0) {
-        html = '<p style="text-align: center; margin-top: 50px; font-size: 1.2em; color: #555;">Bạn chưa có đơn hàng nào.</p>';
-    } else {
-        // Duyệt qua từng đơn hàng, sắp xếp đơn hàng mới nhất lên đầu
-        donHangHienThi.slice().reverse().forEach(dh => { 
-            // Lọc chi tiết đơn hàng cho mã đơn hàng hiện tại
-            const chiTiet = chiTietDonHangToanBo.filter(ct => ct.maDH === dh.maDH);
-
-            let chiTietHtml = '';
-
-            // Duyệt qua chi tiết từng sản phẩm trong đơn hàng
-            chiTiet.forEach(item => {
-                // Giả định hàm findProductById(maSP) đã có trong data.js
-                const product = findProductById(item.maSP); 
-                const tenSP = product ? product.tenSP : 'Sản phẩm không rõ (Mã: ' + item.maSP + ')';
-                const hinhAnh = product ? product.hinhAnh : '../img/default.png'; 
-                // Đơn giá = Tổng tiền chi tiết / Số lượng
-                const donGia = item.tongTien / item.soLuong; 
-
-                chiTietHtml += `
-                    <div class="history-item-detail">
-                        <img src="${hinhAnh}" alt="${tenSP}" class="history-product-image">
-                        <div class="history-item-info">
-                            <strong>${tenSP}</strong>
-                            <p>${formatCurrency(donGia)} x ${item.soLuong}</p>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            // Xử lý trạng thái để tạo class CSS (Hoàn thành/Đang vận chuyển/Đã hủy)
-            const statusClass = dh.trangThai.replace(/\s/g, '-').toLowerCase().replace('đã-giao', 'hoan-thanh'); 
-            const ngayGio = dh.ngayDat.split(' '); // Tách Ngày và Giờ
-
-            html += `
-                <div class="invoice-card">
-                    <div class="invoice-header">
-                        <span class="invoice-id">Mã Đơn: #${dh.maDH}</span>
-                        <span class="invoice-date">Ngày Đặt: ${ngayGio[0]} (${ngayGio[1]})</span>
-                        <span class="invoice-customer">Khách Hàng: ${dh.khachHang}</span>
-                    </div>
-                    <div class="invoice-body">
-                        ${chiTietHtml}
-                    </div>
-                    <div class="invoice-footer">
-                        <span class="status ${statusClass}">Trạng Thái: ${dh.trangThai}</span>
-                        <span class="total">Tổng Tiền: <strong>${formatCurrency(dh.giaTri)}</strong></span>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    const container = document.getElementById('historyTableContainer');
-    if (container) {
-        container.innerHTML = html;
-    }
-}
-
-
-// ========== HÀM MỞ FORM THANH TOÁN ==========
+// 4.1. Mở form thanh toán
 function openCheckoutForm() {
-    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const user = getlocalStorage('currentUser');
     
-    // Kiểm tra đăng nhập
     if (!user) {
         alert('❌ Vui lòng đăng nhập để thanh toán!');
-        moFormdnhap(); // Mở form đăng nhập
         return;
     }
 
@@ -658,7 +357,6 @@ function openCheckoutForm() {
         return;
     }
 
-    // Tính tổng tiền
     const allProducts = getlocalStorage('product');
     let totalAmount = 0;
     let orderSummary = '';
@@ -677,7 +375,6 @@ function openCheckoutForm() {
         }
     });
 
-    // Tạo HTML form thanh toán
     const checkoutHTML = `
         <div class="checkout-overlay active" id="checkoutOverlay">
             <div class="checkout-container">
@@ -689,7 +386,6 @@ function openCheckoutForm() {
                 </div>
                 
                 <div class="checkout-body">
-                    <!-- Thông tin đơn hàng -->
                     <div class="checkout-summary">
                         <h3>📦 Đơn hàng của bạn</h3>
                         ${orderSummary}
@@ -699,7 +395,6 @@ function openCheckoutForm() {
                         </div>
                     </div>
 
-                    <!-- Địa chỉ giao hàng -->
                     <div class="form-group">
                         <label for="checkout-address">
                             <i class="fa-solid fa-location-dot"></i> Địa chỉ giao hàng
@@ -713,7 +408,6 @@ function openCheckoutForm() {
                         >
                     </div>
 
-                    <!-- Phương thức thanh toán -->
                     <div class="form-group">
                         <label for="checkout-payment">
                             <i class="fa-solid fa-credit-card"></i> Phương thức thanh toán
@@ -725,7 +419,6 @@ function openCheckoutForm() {
                     </div>
                 </div>
 
-                <!-- Nút xác nhận / Hủy -->
                 <div class="checkout-actions">
                     <button class="btn-confirm" onclick="confirmCheckout(${totalAmount})">
                         <i class="fa-solid fa-check"></i> Xác Nhận Đặt Hàng
@@ -738,11 +431,10 @@ function openCheckoutForm() {
         </div>
     `;
 
-    // Thêm form vào body
     document.body.insertAdjacentHTML('beforeend', checkoutHTML);
 }
 
-// ========== HÀM ĐÓNG FORM THANH TOÁN ==========
+// 4.2. Đóng form thanh toán
 function closeCheckoutForm() {
     const overlay = document.getElementById('checkoutOverlay');
     if (overlay) {
@@ -750,21 +442,24 @@ function closeCheckoutForm() {
     }
 }
 
-// ========== HÀM XÁC NHẬN THANH TOÁN ==========
+// 4.3. Xác nhận thanh toán
 function confirmCheckout(totalAmount) {
     const address = document.getElementById('checkout-address').value.trim();
     const paymentMethod = document.getElementById('checkout-payment').value;
     const cart = getlocalStorage('cart') || [];
-    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const user = getlocalStorage('currentUser');
 
-    // Validate địa chỉ
     if (!address) {
         alert('❌ Vui lòng nhập địa chỉ giao hàng!');
         document.getElementById('checkout-address').focus();
         return;
     }
 
-    // Dữ liệu đơn hàng
+    // Kiểm tra tồn kho lần cuối
+    if (!checkFinalStock(cart)) {
+        return; 
+    }
+
     const orderData = {
         cart: cart,
         totalAmount: totalAmount,
@@ -779,13 +474,14 @@ function confirmCheckout(totalAmount) {
         orderDate: new Date().toISOString()
     };
 
+    // Trừ số lượng sản phẩm
+    updateProductStock(cart);
+
     // Lưu đơn hàng
     saveOrderToLocalStorage(orderData);
-
-    // Xóa giỏ hàng
+    
+    // Dọn dẹp
     localStorage.removeItem('cart');
-
-    // Đóng form
     closeCheckoutForm();
     toggleCart(false);
 
@@ -794,34 +490,270 @@ function confirmCheckout(totalAmount) {
     renderCart();
 }
 
-// ========== HÀM LƯU ĐƠN HÀNG ==========
+// 4.4. Lưu đơn hàng vào localStorage
 function saveOrderToLocalStorage(orderData) {
+    console.log('🚀 Đang lưu đơn hàng...');
+    
     let bills = getlocalStorage('bill') || [];
     let billDetails = getlocalStorage('billDetail') || [];
     
-    const newOrderId = `DH${String(bills.length + 1).padStart(3, '0')}`;
+    const newOrderId = generateOrderId(bills);
+    console.log('🆔 Mã đơn hàng mới:', newOrderId);
     
-    bills.push({
+    const newBill = {
         maDH: newOrderId,
         ngayDat: new Date().toLocaleString('vi-VN'),
         giaTri: orderData.totalAmount,
         trangThai: 'Đang xử lý',
         hinhThucThanhToan: orderData.paymentMethod,
         donViVanChuyen: 'Giao Hàng Nhanh',
-        khachHang: orderData.customerInfo.tenKH
-    });
+        khachHang: orderData.customerInfo.tenKH,
+        maKH: orderData.customerInfo.maKH,
+        diaChiGiaoHang: orderData.address
+    };
+    
+    bills.push(newBill);
     
     orderData.cart.forEach(item => {
-        const product = tatCaSanPham.find(p => p.maSP === item.maSP);
-        billDetails.push({
-            maCTDH: billDetails.length + 1,
-            maDH: newOrderId,
-            maSP: item.maSP,
-            soLuong: item.soLuong,
-            tongTien: product.gsht * item.soLuong
-        });
+        const product = findProductById(item.maSP);
+        if (product) {
+            billDetails.push({
+                maCTDH: billDetails.length + 1,
+                maDH: newOrderId,
+                maSP: item.maSP,
+                soLuong: item.soLuong,
+                tongTien: product.gsht * item.soLuong
+            });
+        }
     });
     
     setlocalStorage('bill', bills);
     setlocalStorage('billDetail', billDetails);
+    
+    console.log('✅ Đã lưu đơn hàng thành công!');
 }
+
+// 4.5. Tạo mã đơn hàng mới
+function generateOrderId(existingBills) {
+    if (!existingBills || existingBills.length === 0) {
+        return 'DH001';
+    }
+    
+    const maxId = existingBills.reduce((max, bill) => {
+        const currentId = parseInt(bill.maDH.replace('DH', ''));
+        return currentId > max ? currentId : max;
+    }, 0);
+    
+    return 'DH' + String(maxId + 1).padStart(3, '0');
+}
+
+// ============================================================================
+// 5. PHẦN LỊCH SỬ MUA HÀNG
+// ============================================================================
+
+// 5.1. Hàm gọi khi click menu "Lịch Sử Đơn Hàng"
+window.lichSuMuaHang = function() {
+    console.log('=== CLICK VÀO LỊCH SỬ MUA HÀNG ===');
+    
+    const noidung = document.getElementById("noi_dung");
+    
+    if (!noidung) {
+        console.error('❌ Không tìm thấy div noi_dung!');
+        return;
+    }
+    
+    noidung.innerHTML = `
+        <div class="purchase-history-page" style="max-width: 1200px; margin: 20px auto; padding: 20px;">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #1e90ff;">📋 Lịch Sử Mua Hàng</h2>
+            <div id="historyTableContainer" class="history-table-container"></div>
+        </div>
+    `;
+    
+    setTimeout(() => {
+        renderPurchaseHistory();
+    }, 100);
+}
+
+// 5.2. Render dữ liệu lịch sử mua hàng
+function renderPurchaseHistory() {
+    console.log('🔄 Bắt đầu render lịch sử...');
+    
+    const currentUser = getlocalStorage('currentUser');
+    const container = document.getElementById('historyTableContainer');
+    
+    if (!container) {
+        console.error('❌ Không tìm thấy historyTableContainer');
+        return;
+    }
+    
+    // Kiểm tra đăng nhập
+    if (!currentUser) {
+        console.log('❌ Chưa đăng nhập');
+        container.innerHTML = `
+            <div style="text-align: center; padding: 50px; background: #f8f9fa; border-radius: 10px;">
+                <i class="fa-solid fa-user-lock" style="font-size: 4em; color: #ff6b6b; margin-bottom: 20px;"></i>
+                <h3 style="color: #333;">Vui lòng đăng nhập</h3>
+                <p style="color: #666; margin: 20px 0;">Bạn cần đăng nhập để xem lịch sử mua hàng của mình.</p>
+                <button onclick="moFormdnhap()" style="padding: 12px 24px; background: #1e90ff; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">
+                    <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập ngay
+                </button>
+            </div>
+        `;
+        return;
+    }
+
+    const bills = getlocalStorage('bill') || [];
+    const billDetails = getlocalStorage('billDetail') || [];
+    const products = getlocalStorage('product') || [];
+    
+    console.log('📊 Dữ liệu:', {
+        totalBills: bills.length,
+        userMaKH: currentUser.maKH
+    });
+    
+    // Lọc đơn hàng của user
+    const userBills = bills.filter(bill => bill.maKH == currentUser.maKH);
+    
+    console.log(`✅ Tìm thấy ${userBills.length} đơn hàng`);
+    
+    if (userBills.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 50px; background: #f8f9fa; border-radius: 10px;">
+                <i class="fa-solid fa-box-open" style="font-size: 4em; color: #6c757d; margin-bottom: 20px;"></i>
+                <h3 style="color: #333;">Chưa có đơn hàng</h3>
+                <p style="color: #666; margin: 20px 0;">Bạn chưa có đơn hàng nào. Hãy mua sắm và quay lại sau!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Sắp xếp đơn hàng mới nhất lên đầu
+    const sortedBills = [...userBills].sort((a, b) => {
+        return new Date(b.ngayDat) - new Date(a.ngayDat);
+    });
+    
+    let html = '';
+    
+    sortedBills.forEach(bill => {
+        const details = billDetails.filter(d => d.maDH === bill.maDH);
+        
+        let detailsHtml = '';
+        let totalValue = 0;
+        
+        details.forEach(item => {
+            const product = products.find(p => p.maSP == item.maSP);
+            const tenSP = product ? product.tenSP : `Sản phẩm mã ${item.maSP}`;
+            const hinhAnh = product ? product.hinhAnh : '../img/placeholder.png';
+            const donGia = item.tongTien / item.soLuong;
+            totalValue += item.tongTien;
+            
+            detailsHtml += `
+                <div style="display: flex; gap: 15px; padding: 10px; border-bottom: 1px solid #eee; align-items: center;">
+                    <img src="${hinhAnh}" alt="${tenSP}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; color: #333;">${tenSP}</div>
+                        <div style="color: #666; font-size: 14px;">${formatCurrency(donGia)} x ${item.soLuong}</div>
+                        <div style="color: #e74c3c; font-weight: 600;">Thành tiền: ${formatCurrency(item.tongTien)}</div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        html += `
+            <div style="border: 1px solid #e0e0e0; border-radius: 12px; margin-bottom: 20px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px 20px; color: white;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-size: 18px; font-weight: bold;">Đơn hàng #${bill.maDH}</div>
+                            <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">
+                                <i class="fa-regular fa-calendar"></i> ${bill.ngayDat}
+                            </div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-weight: 600;">
+                            ${bill.trangThai}
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="padding: 15px 20px; background: #f8f9fa; border-bottom: 1px solid #e0e0e0;">
+                    <strong><i class="fa-solid fa-location-dot"></i> Địa chỉ giao hàng:</strong> 
+                    <span style="color: #666;">${bill.diaChiGiaoHang || 'Chưa có thông tin'}</span>
+                </div>
+                
+                <div style="padding: 15px 20px;">
+                    <h4 style="margin: 0 0 15px 0; color: #333;">Sản phẩm:</h4>
+                    ${detailsHtml}
+                </div>
+                
+                <div style="padding: 15px 20px; background: #f8f9fa; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="font-size: 14px; color: #666; margin-bottom: 5px;">
+                            <i class="fa-solid fa-truck"></i> ${bill.donViVanChuyen}
+                        </div>
+                        <div style="font-size: 14px; color: #666;">
+                            <i class="fa-solid fa-credit-card"></i> ${bill.hinhThucThanhToan}
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 14px; color: #666; margin-bottom: 5px;">Tổng tiền:</div>
+                        <div style="font-size: 24px; font-weight: bold; color: #e74c3c;">${formatCurrency(totalValue)}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+    console.log('✅ Render hoàn tất!');
+}
+
+// ============================================================================
+// 6. HÀM XỬ LÝ SỐ LƯỢNG TỒN KHO
+// ============================================================================
+
+// 6.1. Cập nhật số lượng tồn kho sau khi thanh toán
+function updateProductStock(cartItems) {
+    let allProducts = getlocalStorage('product') || [];
+
+    cartItems.forEach(item => {
+        const productIndex = allProducts.findIndex(p => p.maSP == item.maSP);
+        
+        if (productIndex > -1) {
+            // Trừ số lượng đã mua
+            allProducts[productIndex].soLuong -= item.soLuong;
+            // Đảm bảo số lượng không bị âm
+            if (allProducts[productIndex].soLuong < 0) {
+                allProducts[productIndex].soLuong = 0;
+            }
+        }
+    });
+
+    setlocalStorage('product', allProducts);
+    console.log('✅ Đã trừ số lượng tồn kho thành công.');
+}
+
+// 6.2. Kiểm tra lại tồn kho lần cuối
+function checkFinalStock(cartItems) {
+    const allProducts = getlocalStorage('product') || [];
+    let hasError = false;
+
+    for (const item of cartItems) {
+        const product = allProducts.find(p => p.maSP == item.maSP);
+
+        if (product && item.soLuong > product.soLuong) {
+            alert(`❌ Lỗi tồn kho: Sản phẩm "${product.tenSP}" chỉ còn ${product.soLuong} trong kho, nhưng bạn yêu cầu ${item.soLuong}. Vui lòng cập nhật giỏ hàng.`);
+            hasError = true;
+            break;
+        }
+    }
+    return !hasError;
+}
+
+// ============================================================================
+// 7. KHỞI TẠO KHI TRANG LOAD
+// ============================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 Trang đã load xong');
+    renderCart();
+});
