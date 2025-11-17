@@ -476,9 +476,58 @@ function check(truyenAnh, text, ma_cu) {  
 
 // hàm thêm sản phẩm vô list sản phẩm
 function themSpVoDanhSach(thong_tin, rowsSp1) {
-  rowsSp1.push(thong_tin);  // đẩy thêm một phần tử vô cuối mảng 
-  setlocalStorage("product", rowsSp1);
-  console.log('Đã thêm sản phẩm này vô danh sach: ' + JSON.stringify(thong_tin));  // in ra thông tin trong console để kiểm tra 
+  // ============================================================
+  // 1️⃣ THÊM SẢN PHẨM VÀO BẢNG PRODUCT
+  // ============================================================
+  rowsSp1.push(thong_tin);
+  setlocalStorage("product", rowsSp1);
+  console.log('✅ Đã thêm sản phẩm vào danh sách: ' + JSON.stringify(thong_tin));
+  
+  // ============================================================
+  // 2️⃣ TẠO PHIẾU NHẬP HÀNG TỰ ĐỘNG
+  // ============================================================
+  
+  // Lấy danh sách phiếu nhập hiện có
+  let tablePhieuNhap = getlocalStorage("nhapHang") || [];
+  
+  // Tạo mã phiếu tự động
+  let maPhieuMoi;
+  if (tablePhieuNhap.length === 0) {
+    maPhieuMoi = "PN001";
+  } else {
+    // Tìm mã phiếu lớn nhất
+    const maxNumber = tablePhieuNhap.reduce((max, phieu) => {   // so sánh từng phần tử
+      const num = parseInt(phieu.maPhieu.replace('PN', ''));
+      return num > max ? num : max;
+    }, 0);  // 0 là giá trị khởi tạo
+    
+    // Tạo mã mới
+    const newNumber = maxNumber + 1;
+    maPhieuMoi = 'PN' + String(newNumber).padStart(2, '0');
+  }
+  
+  // Lấy ngày hiện tại (định dạng YYYY-MM-DD)
+  const today = new Date();
+  const ngayNhap = today.toISOString().split('T')[0];
+  
+  // Tạo object phiếu nhập
+  const nhapHang = {
+    maPhieu: maPhieuMoi,                        // PN001, PN002...
+    maSP: thong_tin.maSP,                       // Mã sản phẩm
+    soLuong: thong_tin.soLuong,                 // Số lượng nhập
+    giaNhap: Number(thong_tin.gsgg * 0.9),      // Giá nhập = 90% giá gốc
+    ngayNhap: ngayNhap,                         // Ngày nhập hôm nay
+    trangThai: true                             // Đã duyệt tự động
+  };
+  
+  // Thêm phiếu nhập vào danh sách
+  tablePhieuNhap.push(nhapHang);
+  
+  // Lưu vào localStorage
+  setlocalStorage("nhapHang", tablePhieuNhap);
+  
+  console.log('📦 Đã tạo phiếu nhập hàng: ' + JSON.stringify(nhapHang));
+  console.log('🎉 Hoàn tất thêm sản phẩm + phiếu nhập!');
 }
 
 // hàm in ra content
@@ -664,6 +713,7 @@ function suaSp(idSp){
   soLuong.value = row.soLuong;  // đặt sẵn giá trị
   soLuong.placeholder = "Số lượng";
   soLuong.id = 'soLuong';
+  soLuong.readOnly = "true";    // chỉ cho xem không cho sửa
   d.appendChild(soLuong);
   // giá bán
   const giaBan = document.createElement('input');
