@@ -112,7 +112,9 @@
 .show-all-button:hover {
     background-color: #5a6268;
 }
-
+h3{
+  color:black;
+}
 /* Popup cập nhật trạng thái */
 .status-popup {
     position: fixed;
