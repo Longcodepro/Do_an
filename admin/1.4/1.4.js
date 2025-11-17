@@ -243,7 +243,7 @@ function themSanPham() {
   // giá bán
   const giaBan = document.createElement('input');
   giaBan.type = 'number';
-  giaBan.placeholder = 'Giá bạn của sản phẩm...';
+  giaBan.placeholder = 'Giá bán của sản phẩm...';
   giaBan.style.marginLeft = '5%';
   giaBan.id = 'giaBan';
   d.appendChild(giaBan);
