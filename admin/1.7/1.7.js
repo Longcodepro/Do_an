@@ -23,8 +23,6 @@ function getStatusColor(status) {
     switch (status) {
         case "Hoàn thành":
             return "green";
-        case "Đã giao":
-            return "#007bff";
         case "Đang vận chuyển":
             return "#ffc107";
         case "Đang xử lý":
@@ -60,7 +58,6 @@ function quanLyDonHang() {
     <select id="statusFilter">
         <option value="">Tất cả trạng thái</option>
         <option value="Hoàn thành">Hoàn thành</option>
-        <option value="Đã giao">Đã giao</option>
         <option value="Đang vận chuyển">Đang vận chuyển</option>
         <option value="Đang xử lý">Đang xử lý</option>
         <option value="Đã hủy">Đã hủy</option>
